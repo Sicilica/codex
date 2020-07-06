@@ -34,7 +34,7 @@ const convertCard = (
   } else if (firstInfoPart.includes("Upgrade")) {
     typeSpecificData = parseUpgradeInfo(infoLineParts, typeLineParts);
   } else if (firstInfoPart.includes("Hero")) {
-    typeSpecificData = parseHeroInfo(typeLineParts);
+    typeSpecificData = parseHeroInfo(raw.cardText, typeLineParts);
   } else {
     throw new Error(`Unable to parse card: ${raw.infoLine}`);
   }
@@ -79,14 +79,40 @@ const parseBuildingInfo = (
 };
 
 const parseHeroInfo = (
+  cardText: string,
   typeParts: Array<string>,
 ) => {
   const color = typeParts[0].toLowerCase();
   const spec = parse(/^(\w+) Hero$/, typeParts[1]).toLowerCase();
+
+  const lowBand = cardText.substring(0, cardText.search(/\dLevel/) + 1);
+  cardText = cardText.substring(lowBand.length);
+  const midBand = cardText.substring(0, cardText.search(/\dLevel/) + 1);
+  const maxBand = cardText.substring(midBand.length);
+
+  const lowBandParts = lowBand.split("•").map(p => p.trim());
+  const midBandParts = midBand.split("•").map(p => p.trim());
+  const maxBandParts = maxBand.split("•").map(p => p.trim());
+
+  const levelBands = [lowBandParts, midBandParts, maxBandParts].map(parts => {
+    const level = parseInt(parse(/^Level (\d+)/, parts[0]));
+    const bandText = parse(/:(.*)$/, parts[0]).trim();
+    const attack = parseInt(parse(/^ATK: (\d+)$/, parts[1]));
+    const health = parseInt(parse(/^HP: (\d+)$/, parts[2]));
+
+    return {
+      level,
+      attack,
+      health,
+      bandText,
+    };
+  });
+
   return {
     type: "hero",
     color,
     spec,
+    levelBands,
   };
 };
 

@@ -171,6 +171,26 @@
     "type": "hero",
     "color": "red",
     "spec": "anarchy",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 2,
+        "bandText": "Haste (Can attack and play ⤵ abilities the turn he arrives.)"
+      },
+      {
+        "level": 4,
+        "attack": 3,
+        "health": 3,
+        "bandText": "Whenever Zane kills a scavenger, get ①.Whenever Zane kills a technician, draw a card."
+      },
+      {
+        "level": 6,
+        "attack": 4,
+        "health": 4,
+        "bandText": "Max level: Shove a patroller to an empty slot in its patrol zone, then deal 1 damage to it. ◎"
+      }
+    ],
     "cardText": "Level 1-3: Haste (Can attack and play ⤵ abilities the turn he arrives.) • ATK: 2 • HP: 2Level 4-5: Whenever Zane kills a scavenger, get ①.Whenever Zane kills a technician, draw a card. • ATK: 3 • HP: 3Level 6: Max level: Shove a patroller to an empty slot in its patrol zone, then deal 1 damage to it. ◎ • ATK: 4 • HP: 4",
     "cardRulings": [
       "Zane's middle ability requires ZANE to kill a scavenger or technician to get a bonus. If Zane himself kills them in combat or if Zane uses the damage from his max level ability, that counts. If another unit or hero kills them, or if Zane uses a spell to kill them, that does not count. — Sirlin, 03/03/16",
@@ -397,6 +417,26 @@
     "type": "hero",
     "color": "red",
     "spec": "blood",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 1,
+        "health": 3,
+        "bandText": "Dies: Deal 1 damage to each opponent's base. ◎"
+      },
+      {
+        "level": 4,
+        "attack": 2,
+        "health": 3,
+        "bandText": "Your units get Frenzy 1 (+1 ATK on your turn.)"
+      },
+      {
+        "level": 6,
+        "attack": 3,
+        "health": 4,
+        "bandText": "The first unit that arrives from your hand each turn gets haste."
+      }
+    ],
     "cardText": "Level 1-3: Dies: Deal 1 damage to each opponent's base. ◎ • ATK: 1 • HP: 3Level 4-5: Your units get Frenzy 1 (+1 ATK on your turn.) • ATK: 2 • HP: 3Level 6: The first unit that arrives from your hand each turn gets haste. • ATK: 3 • HP: 4",
     "cardRulings": [
       "If a unit arrives from your hand, then after that you control a max level Drakk, then another unit arrives from your hand, NEITHER of those units will get haste from Drakk's max level ability. The second one won't because his ability only ever cares about the first unit per turn that arrives from your hand. The first one in this example also doesn't because you didn't have a max level Drakk when you played that unit, and Drakk's ability can't retroactively grant haste to units you played earlier in the turn. — Sirlin, 03/03/16",
@@ -620,6 +660,26 @@
     "type": "hero",
     "color": "red",
     "spec": "fire",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": "Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.)"
+      },
+      {
+        "level": 4,
+        "attack": 3,
+        "health": 3,
+        "bandText": "⤵ → Deal 1 damage to a patrolling unit or building. ◎"
+      },
+      {
+        "level": 7,
+        "attack": 4,
+        "health": 3,
+        "bandText": "⤵ → Deal 3 damage to a unit or building. ◎"
+      }
+    ],
     "cardText": "Level 1-3: Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.) • ATK: 2 • HP: 3Level 4-6: ⤵ → Deal 1 damage to a patrolling unit or building. ◎ • ATK: 3 • HP: 3Level 7: ⤵ → Deal 3 damage to a unit or building. ◎ • ATK: 4 • HP: 3",
     "cardRulings": []
   },
@@ -1014,6 +1074,26 @@
     "type": "hero",
     "color": "green",
     "spec": "balance",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": ""
+      },
+      {
+        "level": 5,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Your units with no abilities get +1/+1."
+      },
+      {
+        "level": 8,
+        "attack": 4,
+        "health": 5,
+        "bandText": "During your turn: Flying"
+      }
+    ],
     "cardText": "Level 1-4:  • ATK: 2 • HP: 3Level 5-7: Your units with no abilities get +1/+1. • ATK: 3 • HP: 4Level 8: During your turn: Flying • ATK: 4 • HP: 5",
     "cardRulings": [
       "\"Units with no abilities\" means units that don't have any ability text at all. Keywords such as haste, swift strike, resist 1, frenzy 1, etc. do count as abilities. If an effect changes a units stats, such as giving it +1/+1, that does not count as an ability. If a unit has damage on it, or +1/+1 runes, or any other type of rune, that does not count as having an ability. Illusions have the property that they die when they are targeted, but they have no actual ability saying this (just help text), so an Illusion with no ability does get Midori's bonus. — Sirlin, 03/04/16",
@@ -1245,6 +1325,26 @@
     "type": "hero",
     "color": "green",
     "spec": "feral",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": "Discard two cards → Calamandra gets stealth this turn."
+      },
+      {
+        "level": 3,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Your units get resist 1 (Opponents must pay ① each time they would ◎ them with a spell or ability.)"
+      },
+      {
+        "level": 5,
+        "attack": 4,
+        "health": 5,
+        "bandText": "④, ⤵ → Search your codex for a tiger unit and put it into play."
+      }
+    ],
     "cardText": "Level 1-2: Discard two cards → Calamandra gets stealth this turn. • ATK: 2 • HP: 3Level 3-4: Your units get resist 1 (Opponents must pay ① each time they would ◎ them with a spell or ability.) • ATK: 3 • HP: 4Level 5: ④, ⤵ → Search your codex for a tiger unit and put it into play. • ATK: 4 • HP: 5",
     "cardRulings": [
       "When her max level ability \"puts a Tiger into play,\" that means you don't pay for the Tiger and you don't have to have the appropriate tech building for it either. — Sirlin, 03/04/16"
@@ -1461,6 +1561,26 @@
     "type": "hero",
     "color": "green",
     "spec": "growth",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 1,
+        "health": 3,
+        "bandText": "Arrives: Summon a 0/1 green Wisp token."
+      },
+      {
+        "level": 3,
+        "attack": 1,
+        "health": 4,
+        "bandText": "⤵ → Give a unit +1 ATK/+1 armor this turn. ◎"
+      },
+      {
+        "level": 5,
+        "attack": 1,
+        "health": 5,
+        "bandText": "Max Level: Summon a 3/3 blue Water Elemental token with anti-air."
+      }
+    ],
     "cardText": "Level 1-2: Arrives: Summon a 0/1 green Wisp token. • ATK: 1 • HP: 3Level 3-4: ⤵ → Give a unit +1 ATK/+1 armor this turn. ◎ • ATK: 1 • HP: 4Level 5: Max Level: Summon a 3/3 blue Water Elemental token with anti-air. • ATK: 1 • HP: 5",
     "cardRulings": []
   },
@@ -1857,6 +1977,26 @@
     "type": "hero",
     "color": "blue",
     "spec": "law",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": "Stash (You may keep a card during the draw/discard step. If you do, draw one card less.)"
+      },
+      {
+        "level": 3,
+        "attack": 2,
+        "health": 4,
+        "bandText": "⤵ → Sideline a tech 0 or I patroller. (Move it out of the patrol zone.) ◎"
+      },
+      {
+        "level": 5,
+        "attack": 3,
+        "health": 4,
+        "bandText": "⤵ → Draw a card."
+      }
+    ],
     "cardText": "Level 1-2: Stash (You may keep a card during the draw/discard step. If you do, draw one card less.) • ATK: 2 • HP: 3Level 3-4: ⤵ → Sideline a tech 0 or I patroller. (Move it out of the patrol zone.) ◎ • ATK: 2 • HP: 4Level 5: ⤵ → Draw a card. • ATK: 3 • HP: 4",
     "cardRulings": [
       "An example of how stash works. Normally (without stash), if you have 2 cards left in hand when you reach the discard/draw phase, you'd discard both cards and then draw 4 cards (you draw 2 more than you discard). If you have stash, instead of discarding both cards, you can choose to keep one of them in your hand. If you do, you will STILL end up with 4 cards total, but you'll be drawing 3 cards rather than 4 (the 4th card is the one you kept). — Sirlin, 03/07/16"
@@ -2086,6 +2226,26 @@
     "type": "hero",
     "color": "blue",
     "spec": "peace",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": "Frenzy 1 (Gets +1 ATK on your turn.)"
+      },
+      {
+        "level": 5,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Readiness (Doesn't exhaust to attack, but can only attack once per turn.)"
+      },
+      {
+        "level": 8,
+        "attack": 4,
+        "health": 5,
+        "bandText": "Max Level: Summon three 1/1 blue soldier tokens with sparkshot."
+      }
+    ],
     "cardText": "Level 1-4: Frenzy 1 (Gets +1 ATK on your turn.) • ATK: 2 • HP: 3Level 5-7: Readiness (Doesn't exhaust to attack, but can only attack once per turn.) • ATK: 3 • HP: 4Level 8: Max Level: Summon three 1/1 blue soldier tokens with sparkshot. • ATK: 4 • HP: 5",
     "cardRulings": []
   },
@@ -2305,6 +2465,26 @@
     "type": "hero",
     "color": "blue",
     "spec": "truth",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 1,
+        "health": 3,
+        "bandText": "Arrives: Summon a 0/1 blue Mirror Illusion token.② → Summon another (limit: 2)."
+      },
+      {
+        "level": 3,
+        "attack": 1,
+        "health": 4,
+        "bandText": "② → One of your Mirror Illusions becomes a copy of another tech 0, I, or II unit. It's still an Illusion. Trash it at end of turn."
+      },
+      {
+        "level": 5,
+        "attack": 1,
+        "health": 5,
+        "bandText": "Whenever a non-token unit of yours arrives, you may make one of your Mirrors an Illusion copy of it. Trash that token when Quince or its original leaves."
+      }
+    ],
     "cardText": "Level 1-2: Arrives: Summon a 0/1 blue Mirror Illusion token.② → Summon another (limit: 2). • ATK: 1 • HP: 3Level 3-4: ② → One of your Mirror Illusions becomes a copy of another tech 0, I, or II unit. It's still an Illusion. Trash it at end of turn. • ATK: 1 • HP: 4Level 5: Whenever a non-token unit of yours arrives, you may make one of your Mirrors an Illusion copy of it. Trash that token when Quince or its original leaves. • ATK: 1 • HP: 5",
     "cardRulings": [
       "Copying something copies the printed version of the card and does not copy any modifiers. For example, if you copy a 2/2 that has a +1/+1 rune on it and Spirit of the Panda attached to it, the copy will just be a 2/2. — Sirlin, 03/07/16",
@@ -2709,6 +2889,26 @@
     "type": "hero",
     "color": "black",
     "spec": "demonology",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": "Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.)"
+      },
+      {
+        "level": 3,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Resist 1①, ⤵, Discard a card → Fetch a Demonology spell from your codex, reveal it, then put it in your hand."
+      },
+      {
+        "level": 5,
+        "attack": 4,
+        "health": 5,
+        "bandText": "Max Level: Give +2/+2 to one friendly and one opposing tech 0 or I unit. They lose +2/+2 and die at your next upkeep."
+      }
+    ],
     "cardText": "Level 1-2: Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.) • ATK: 2 • HP: 3Level 3-4: Resist 1①, ⤵, Discard a card → Fetch a Demonology spell from your codex, reveal it, then put it in your hand. • ATK: 3 • HP: 4Level 5: Max Level: Give +2/+2 to one friendly and one opposing tech 0 or I unit. They lose +2/+2 and die at your next upkeep. • ATK: 4 • HP: 5",
     "cardRulings": [
       "The max level ability is not optional, so you must try to do as much as you can when she reaches max level. If you don't have a friendly tech 0 or I unit, you still must try to give the bonus to an opposing tech 0 or I unit, and vice versa. — Sirlin, 03/07/16",
@@ -2942,6 +3142,26 @@
     "type": "hero",
     "color": "black",
     "spec": "disease",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 1,
+        "health": 3,
+        "bandText": "Deals damage to units and heroes in the form of -1/-1 runes."
+      },
+      {
+        "level": 4,
+        "attack": 2,
+        "health": 4,
+        "bandText": "Sacrifice a non-Demon unit → Put a -1/-1 rune on a unit. ◎Once-per-turn."
+      },
+      {
+        "level": 6,
+        "attack": 2,
+        "health": 5,
+        "bandText": "The first time a unit with a -1/-1 rune dies each turn, the active player puts a -1/-1 rune on two units friendly to the dead unit. ◎"
+      }
+    ],
     "cardText": "Level 1-3: Deals damage to units and heroes in the form of -1/-1 runes. • ATK: 1 • HP: 3Level 4-5: Sacrifice a non-Demon unit → Put a -1/-1 rune on a unit. ◎Once-per-turn. • ATK: 2 • HP: 4Level 6: The first time a unit with a -1/-1 rune dies each turn, the active player puts a -1/-1 rune on two units friendly to the dead unit. ◎ • ATK: 2 • HP: 5",
     "cardRulings": [
       "Even though this deals damage in the form of -1/-1 runes, it still counts as \"dealing combat damage\" and anything that checks if it died to combat damage, such as Brave Knight, see getting hit by this and immediately dying as \"dying from combat damage.\" — Sirlin, 03/07/16"
@@ -3160,6 +3380,26 @@
     "type": "hero",
     "color": "black",
     "spec": "necromancy",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 1,
+        "health": 3,
+        "bandText": "① → Summon a 1/1 black Skeleton token. Once-per-turn."
+      },
+      {
+        "level": 4,
+        "attack": 2,
+        "health": 4,
+        "bandText": "Sacrifice a Skeleton → Draw a card."
+      },
+      {
+        "level": 7,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Max Level: You may put a tech I or II unit that costs ⑤ or less from your discard pile into play if you meet the tech reqs for it."
+      }
+    ],
     "cardText": "Level 1-3: ① → Summon a 1/1 black Skeleton token. Once-per-turn. • ATK: 1 • HP: 3Level 4-6: Sacrifice a Skeleton → Draw a card. • ATK: 2 • HP: 4Level 7: Max Level: You may put a tech I or II unit that costs ⑤ or less from your discard pile into play if you meet the tech reqs for it. • ATK: 3 • HP: 4",
     "cardRulings": [
       "\"Meeting the tech reqs for it\" means that you control the correct tech building. For example, if you want to put a Disease tech II unit into play using the max level ability, you must have a Disease tech II building. — Sirlin, 03/07/16",
@@ -3553,6 +3793,26 @@
     "type": "hero",
     "color": "white",
     "spec": "discipline",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": "Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.)"
+      },
+      {
+        "level": 3,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Readiness (Doesn't exhaust to attack, but can only attack once per turn.)"
+      },
+      {
+        "level": 7,
+        "attack": 4,
+        "health": 5,
+        "bandText": "Max Level: Put a sword rune on this.⤵, Remove a sword rune → Destroy a unit or hero. ◎"
+      }
+    ],
     "cardText": "Level 1-2: Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.) • ATK: 2 • HP: 3Level 3-6: Readiness (Doesn't exhaust to attack, but can only attack once per turn.) • ATK: 3 • HP: 4Level 7: Max Level: Put a sword rune on this.⤵, Remove a sword rune → Destroy a unit or hero. ◎ • ATK: 4 • HP: 5",
     "cardRulings": [
       "You can't activate his max level ability while attacking and he can't attack if he's exhausted. So if you want to attack and use his ability in the same turn, you generally have to attack first, and then use his ability after he finishes attacking. If he can't survive an attack, you'll have to pick which one you want to do. — Sirlin, 03/19/16"
@@ -3769,6 +4029,26 @@
     "type": "hero",
     "color": "white",
     "spec": "ninjutsu",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 1,
+        "health": 3,
+        "bandText": "While Setsuki isn't patrolling, opponents must pay ① each time they would attack her."
+      },
+      {
+        "level": 4,
+        "attack": 2,
+        "health": 3,
+        "bandText": "Attacks: Swift strike this turn. (Deals combat damage before units and heroes without swift strike.)"
+      },
+      {
+        "level": 6,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Upkeep: Draw 2 cards."
+      }
+    ],
     "cardText": "Level 1-3: While Setsuki isn't patrolling, opponents must pay ① each time they would attack her. • ATK: 1 • HP: 3Level 4-5: Attacks: Swift strike this turn. (Deals combat damage before units and heroes without swift strike.) • ATK: 2 • HP: 3Level 6: Upkeep: Draw 2 cards. • ATK: 3 • HP: 4",
     "cardRulings": [
       "It's ok to have more than 5 cards in your hand. When you reach the discard/draw phase, you'll still have to discard your hand, and draw that many cards + 2, capped at 5. — Sirlin, 03/09/16"
@@ -3988,6 +4268,26 @@
     "type": "hero",
     "color": "white",
     "spec": "strength",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 4,
+        "bandText": ""
+      },
+      {
+        "level": 5,
+        "attack": 3,
+        "health": 5,
+        "bandText": "Unstoppable by patrol zones with only one patroller."
+      },
+      {
+        "level": 8,
+        "attack": 4,
+        "health": 6,
+        "bandText": "Two Lives (If this would die, heal all damage on it and put a crumbling rune on it instead. While it has a crumbling rune, it can really die.)"
+      }
+    ],
     "cardText": "Level 1-4:  • ATK: 2 • HP: 4Level 5-7: Unstoppable by patrol zones with only one patroller. • ATK: 3 • HP: 5Level 8: Two Lives (If this would die, heal all damage on it and put a crumbling rune on it instead. While it has a crumbling rune, it can really die.) • ATK: 4 • HP: 6",
     "cardRulings": [
       "If this doesn't have a crumbling rune on it and it would die, it doesn't actually die so nothing that triggers on \"dies\" will happen. For example, it won't draw a card if it \"would die\" in the technician slot, only when it really does die after it has a crumbling rune on it. — Sirlin, 03/09/16"
@@ -4373,6 +4673,26 @@
     "type": "hero",
     "color": "purple",
     "spec": "past",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 1,
+        "health": 3,
+        "bandText": "Fading 4Attacks: Put a time rune on this."
+      },
+      {
+        "level": 4,
+        "attack": 2,
+        "health": 4,
+        "bandText": "Dies from fading: Opponents skip their next draw/discard step (they keep their hand cards)."
+      },
+      {
+        "level": 7,
+        "attack": 3,
+        "health": 5,
+        "bandText": "Remove two time runes → Trash a unit. ◎Leaves: Return all cards to play that Pasternaak trashed."
+      }
+    ],
     "cardText": "Level 1-3: Fading 4Attacks: Put a time rune on this. • ATK: 1 • HP: 3Level 4-6: Dies from fading: Opponents skip their next draw/discard step (they keep their hand cards). • ATK: 2 • HP: 4Level 7: Remove two time runes → Trash a unit. ◎Leaves: Return all cards to play that Pasternaak trashed. • ATK: 3 • HP: 5",
     "cardRulings": [
       "She fades away when her last time rune is removed for any reason. Removing the last rune with the Time Spiral spell or her own max level ability will cause her to die. — Sirlin, 03/02/16",
@@ -4604,6 +4924,26 @@
     "type": "hero",
     "color": "purple",
     "spec": "present",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": "Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.)"
+      },
+      {
+        "level": 3,
+        "attack": 2,
+        "health": 4,
+        "bandText": "⤵, Discard a card → Draw a card."
+      },
+      {
+        "level": 5,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Max Level: You may trash a friendly unit then return it to play. ◎"
+      }
+    ],
     "cardText": "Level 1-2: Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.) • ATK: 2 • HP: 3Level 3-4: ⤵, Discard a card → Draw a card. • ATK: 2 • HP: 4Level 5: Max Level: You may trash a friendly unit then return it to play. ◎ • ATK: 3 • HP: 4",
     "cardRulings": [
       "When his max level ability returns a unit to play, it returns under the control of whoever controlled it when it was trashed. — sharpo, 03/14/16",
@@ -4827,6 +5167,26 @@
     "type": "hero",
     "color": "purple",
     "spec": "future",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": "⓪ → Look at the top card of your draw pile.① → Exchange the top card of your draw pile with a card from your hand."
+      },
+      {
+        "level": 5,
+        "attack": 3,
+        "health": 3,
+        "bandText": "⤵ → Play the top card of your draw pile. (You still pay for it and must meet the reqs for it.)"
+      },
+      {
+        "level": 7,
+        "attack": 3,
+        "health": 5,
+        "bandText": "Max Level: Summon a 6/7 purple Mech token with forecast 2 that's untargetable. (It will arrive in two turns.)"
+      }
+    ],
     "cardText": "Level 1-4: ⓪ → Look at the top card of your draw pile.① → Exchange the top card of your draw pile with a card from your hand. • ATK: 2 • HP: 3Level 5-6: ⤵ → Play the top card of your draw pile. (You still pay for it and must meet the reqs for it.) • ATK: 3 • HP: 3Level 7: Max Level: Summon a 6/7 purple Mech token with forecast 2 that's untargetable. (It will arrive in two turns.) • ATK: 3 • HP: 5",
     "cardRulings": [
       "If you have no draw pile, looking at the top card of your draw pile does nothing. It does NOT cause you to shuffle your discard pile into your draw pile. — Sirlin, 03/11/16",
@@ -5243,6 +5603,26 @@
     "type": "hero",
     "color": "neutral",
     "spec": "bashing",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": ""
+      },
+      {
+        "level": 5,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Attacks: Deal 1 damage to that opponent's base. ◎"
+      },
+      {
+        "level": 8,
+        "attack": 4,
+        "health": 5,
+        "bandText": "Readiness (Doesn't exhaust to attack, but can only attack once per turn.)"
+      }
+    ],
     "cardText": "Level 1-4:  • ATK: 2 • HP: 3Level 5-7: Attacks: Deal 1 damage to that opponent's base. ◎ • ATK: 3 • HP: 4Level 8: Readiness (Doesn't exhaust to attack, but can only attack once per turn.) • ATK: 4 • HP: 5",
     "cardRulings": [
       "When Troq attacks something, his middle ability is saying to deal 1 damage to the base controlled by the same player who controls the thing he's attacking. — Sirlin, 03/03/16"
@@ -5460,6 +5840,26 @@
     "type": "hero",
     "color": "neutral",
     "spec": "finesse",
+    "levelBands": [
+      {
+        "level": 1,
+        "attack": 2,
+        "health": 3,
+        "bandText": ""
+      },
+      {
+        "level": 3,
+        "attack": 2,
+        "health": 4,
+        "bandText": "⤵ → Sideline a tech 0 or tech I patroller. (Move it out of the patrol zone.) ◎"
+      },
+      {
+        "level": 5,
+        "attack": 3,
+        "health": 4,
+        "bandText": "Your tech 0 units cost ① less to play."
+      }
+    ],
     "cardText": "Level 1-2:  • ATK: 2 • HP: 3Level 3-4: ⤵ → Sideline a tech 0 or tech I patroller. (Move it out of the patrol zone.) ◎ • ATK: 2 • HP: 4Level 5: Your tech 0 units cost ① less to play. • ATK: 3 • HP: 4",
     "cardRulings": [
       "You can only reduce the gold cost of something to 0, not lower than that. — Sirlin, 03/02/16"
