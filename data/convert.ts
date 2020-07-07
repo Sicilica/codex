@@ -70,7 +70,7 @@ const parseBuildingInfo = (
   const health = parseInt(parse(/^HP: (\d+)$/, infoParts[2]));
 
   return {
-    type: "building",
+    type: "BUILDING",
     ...parseTechCardTypeLine(typeParts),
     health,
     tags,
@@ -82,8 +82,8 @@ const parseHeroInfo = (
   cardText: string,
   typeParts: Array<string>,
 ) => {
-  const color = typeParts[0].toLowerCase();
-  const spec = parse(/^(\w+) Hero$/, typeParts[1]).toLowerCase();
+  const color = typeParts[0].toUpperCase();
+  const spec = parse(/^(\w+) Hero$/, typeParts[1]).toUpperCase();
 
   const lowBand = cardText.substring(0, cardText.search(/\dLevel/) + 1);
   cardText = cardText.substring(lowBand.length);
@@ -107,9 +107,9 @@ const parseHeroInfo = (
       bandText,
     };
   });
-
+  
   return {
-    type: "hero",
+    type: "HERO",
     color,
     spec,
     levelBands,
@@ -123,11 +123,11 @@ const parseSpellInfo = (
   let color: string;
   let spec: string | null;
   if (typeParts[0].includes("Magic")) {
-    color = parse(/^(\w+) Magic$/, typeParts[0]).toLowerCase();
+    color = parse(/^(\w+) Magic$/, typeParts[0]).toUpperCase();
     spec = null;
   } else {
-    color = typeParts[0].toLowerCase();
-    spec = parse(/^(\w+) (Ultimate )?Magic$/, typeParts[1]).toLowerCase();
+    color = typeParts[0].toUpperCase();
+    spec = parse(/^(\w+) (Ultimate )?Magic$/, typeParts[1]).toUpperCase();
   }
 
   const { fullType, tags } = parseTagsAndFullType(infoParts[0]);
@@ -135,7 +135,7 @@ const parseSpellInfo = (
   const ongoing = fullType.includes("Ongoing");
 
   return {
-    type: "spell",
+    type: "SPELL",
     color,
     spec,
     tags,
@@ -155,7 +155,7 @@ const parseUnitInfo = (
   const health = parseInt(parse(/^HP: (\d+)$/, infoParts[3]));
 
   return {
-    type: "unit",
+    type: "UNIT",
     ...parseTechCardTypeLine(typeParts),
     attack,
     health,
@@ -172,7 +172,7 @@ const parseUpgradeInfo = (
   const legendary = fullType.includes("Legendary");
 
   return {
-    type: "upgrade",
+    type: "UPGRADE",
     ...parseTechCardTypeLine(typeParts),
     legendary,
     // Note that upgrades never actually have tags
@@ -187,7 +187,7 @@ const parseTagsAndFullType = (
   let tags: Array<string>;
   if (line.includes("—")) {
     fullType = parse(/^([\w ]+) —/, line);
-    tags = parse(/— ([\w ]+)$/, line).toLowerCase().split(" ");
+    tags = parse(/— ([\w ]+)$/, line).toUpperCase().split(" ");
   } else {
     fullType = line;
     tags = [];
@@ -205,12 +205,12 @@ const parseTechCardTypeLine = (
   let spec: string | null;
   let tech: number;
   if (typeParts[0].includes("Tech 0")) {
-    color = parse(/^(\w+) Tech 0$/, typeParts[0]).toLowerCase();
+    color = parse(/^(\w+) Tech 0$/, typeParts[0]).toUpperCase();
     spec = null;
     tech = 0;
   } else {
-    color = typeParts[0].toLowerCase();
-    spec = parse(/^(\w+) Tech I+$/, typeParts[1]).toLowerCase();
+    color = typeParts[0].toUpperCase();
+    spec = parse(/^(\w+) Tech I+$/, typeParts[1]).toUpperCase();
     tech = parse(/^\w+ Tech (I+)$/, typeParts[1]).length;
   }
   return {

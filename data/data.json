@@ -3,14 +3,14 @@
     "name": "Nautical Dog",
     "image": "0001_nautical_dog.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "red",
+    "type": "UNIT",
+    "color": "RED",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "dog"
+      "DOG"
     ],
     "legendary": false,
     "cardText": "Frenzy 1 (Gets +1 ATK on your turn.)",
@@ -20,14 +20,14 @@
     "name": "Mad Man",
     "image": "0002_mad_man.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "red",
+    "type": "UNIT",
+    "color": "RED",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "brigand"
+      "BRIGAND"
     ],
     "legendary": false,
     "cardText": "Haste (Can attack and play ⤵ abilities, if he had any, the turn he arrives.)",
@@ -37,14 +37,14 @@
     "name": "Bombaster",
     "image": "0003_bombaster.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "red",
+    "type": "UNIT",
+    "color": "RED",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "pirate"
+      "PIRATE"
     ],
     "legendary": false,
     "cardText": "①, Sacrifice Bombaster → Deal 2 damage to a patrolling unit.",
@@ -54,14 +54,14 @@
     "name": "Careless Musketeer",
     "image": "0004_careless_musketeer.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "red",
+    "type": "UNIT",
+    "color": "RED",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 1,
     "tags": [
-      "pirate"
+      "PIRATE"
     ],
     "legendary": false,
     "cardText": "⤵ → Deal 1 damage to a unit or building and 1 damage to your base.",
@@ -71,14 +71,14 @@
     "name": "Bloodrage Ogre",
     "image": "0005_bloodrage_ogre.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "red",
+    "type": "UNIT",
+    "color": "RED",
     "spec": null,
     "tech": 0,
     "attack": 3,
     "health": 2,
     "tags": [
-      "ogre"
+      "OGRE"
     ],
     "legendary": false,
     "cardText": "End of turn: Return Bloodrage Ogre to his owner's hand if he didn't arrive or attack this turn.",
@@ -91,14 +91,14 @@
     "name": "Makeshift Rambaster",
     "image": "0006_makeshift_rambaster.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "red",
+    "type": "UNIT",
+    "color": "RED",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 2,
     "tags": [
-      "contraption"
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "Haste (Can attack and play ⤵ abilities, if it had any, the turn it arrives.)+2 ATK when attacking buildings.Can't patrol.",
@@ -108,8 +108,8 @@
     "name": "Bloodburn",
     "image": "0007_bloodburn.jpg",
     "cost": 3,
-    "type": "upgrade",
-    "color": "red",
+    "type": "UPGRADE",
+    "color": "RED",
     "spec": null,
     "tech": 0,
     "legendary": false,
@@ -123,11 +123,11 @@
     "name": "Scorch",
     "image": "0008_scorch.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "red",
+    "type": "SPELL",
+    "color": "RED",
     "spec": null,
     "tags": [
-      "burn"
+      "BURN"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -138,11 +138,11 @@
     "name": "Charge",
     "image": "0009_charge.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "red",
+    "type": "SPELL",
+    "color": "RED",
     "spec": null,
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -153,8 +153,8 @@
     "name": "Pillage",
     "image": "0010_pillage.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "red",
+    "type": "SPELL",
+    "color": "RED",
     "spec": null,
     "tags": [],
     "ultimate": false,
@@ -168,9 +168,9 @@
     "name": "Captain Zane",
     "image": "0000_anarchy_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "HERO",
+    "color": "RED",
+    "spec": "ANARCHY",
     "levelBands": [
       {
         "level": 1,
@@ -202,9 +202,9 @@
     "name": "Chaos Mirror",
     "image": "0011_chaos_mirror.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -218,9 +218,9 @@
     "name": "Detonate",
     "image": "0012_detonate.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -235,11 +235,11 @@
     "name": "Surprise Attack",
     "image": "0013_surprise_attack.jpg",
     "cost": 5,
-    "type": "spell",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tags": [
-      "summon"
+      "SUMMON"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -250,9 +250,9 @@
     "name": "Maximum Anarchy",
     "image": "0014_maximum_anarchy.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tags": [],
     "ultimate": true,
     "ongoing": false,
@@ -267,14 +267,14 @@
     "name": "Calypso Vystari",
     "image": "0023_calypso_vystari.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tech": 1,
     "attack": 2,
     "health": 2,
     "tags": [
-      "mystic"
+      "MYSTIC"
     ],
     "legendary": false,
     "cardText": "⤵ → If you played a spell this turn, sideline a patroller. (Move it out of the patrol zone.)",
@@ -287,14 +287,14 @@
     "name": "Gunpoint Taxman",
     "image": "0024_gunpoint_taxman.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "pirate"
+      "PIRATE"
     ],
     "legendary": false,
     "cardText": "Anti-air (Can attack fliers, but can ignore patrolling fliers. Deals combat damage to fliers it fights or that fly over this while it patrols.)Whenever Gunpoint Taxman kills a patroller, steal ① from that player.",
@@ -306,14 +306,14 @@
     "name": "Disguised Monkey",
     "image": "0029_disguised_monkey.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "monkey"
+      "MONKEY"
     ],
     "legendary": false,
     "cardText": "HasteArrives: Gets stealth this turn (Can sneak past patrollers if that opponent has no detector.)",
@@ -323,14 +323,14 @@
     "name": "Chameleon Lizzo",
     "image": "0030_chameleon_lizzo.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tech": 2,
     "attack": 4,
     "health": 3,
     "tags": [
-      "lizardman"
+      "LIZARDMAN"
     ],
     "legendary": false,
     "cardText": "HasteStealth (Can sneak past patrollers if that opponent has no detector.)At the end of turn, return Chameleon Lizzo to his owner's hand. (Return it only if it's still in play.)",
@@ -343,14 +343,14 @@
     "name": "Marauder",
     "image": "0031_marauder.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tech": 2,
     "attack": 4,
     "health": 3,
     "tags": [
-      "pirate"
+      "PIRATE"
     ],
     "legendary": false,
     "cardText": "Boost ③ (You may pay an additional ③ when you play this to get the boost effect.)HasteArrives: If you boosted, trash a worker.",
@@ -362,14 +362,14 @@
     "name": "Steam Tank",
     "image": "0032_steam_tank.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tech": 2,
     "attack": 3,
     "health": 6,
     "tags": [
-      "contraption"
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "+4 ATK when attacking buildings",
@@ -379,9 +379,9 @@
     "name": "Sanatorium",
     "image": "0033_sanatorium.jpg",
     "cost": 4,
-    "type": "building",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "BUILDING",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tech": 2,
     "health": 4,
     "tags": [],
@@ -396,15 +396,15 @@
     "name": "Pirate Gunship",
     "image": "0044_pirate_gunship.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "red",
-    "spec": "anarchy",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "ANARCHY",
     "tech": 3,
     "attack": 7,
     "health": 6,
     "tags": [
-      "contraption",
-      "airship"
+      "CONTRAPTION",
+      "AIRSHIP"
     ],
     "legendary": false,
     "cardText": "Flying, haste, long-range, resist 2 (Opponents must pay ② each time they would ◎ this with a spell or ability.)Obliterate 2 (Whenever this attacks, destroy the defender's two lowest tech units first.)",
@@ -414,9 +414,9 @@
     "name": "Drakk Ramhorn",
     "image": "0001_blood_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "red",
-    "spec": "blood",
+    "type": "HERO",
+    "color": "RED",
+    "spec": "BLOOD",
     "levelBands": [
       {
         "level": 1,
@@ -450,9 +450,9 @@
     "name": "Desperation",
     "image": "0015_desperation.jpg",
     "cost": 0,
-    "type": "spell",
-    "color": "red",
-    "spec": "blood",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "BLOOD",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -466,11 +466,11 @@
     "name": "Kidnapping",
     "image": "0016_kidnapping.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "red",
-    "spec": "blood",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "BLOOD",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -484,11 +484,11 @@
     "name": "Bloodlust",
     "image": "0017_bloodlust.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "red",
-    "spec": "blood",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "BLOOD",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -499,11 +499,11 @@
     "name": "War Drums",
     "image": "0018_war_drums.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "red",
-    "spec": "blood",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "BLOOD",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": true,
     "ongoing": true,
@@ -516,14 +516,14 @@
     "name": "Crash Bomber",
     "image": "0025_crash_bomber.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "red",
-    "spec": "blood",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "BLOOD",
     "tech": 1,
     "attack": 2,
     "health": 2,
     "tags": [
-      "pirate"
+      "PIRATE"
     ],
     "legendary": false,
     "cardText": "Dies on your turn: Deal 1 damage to a patroller or building.Dies on another player's turn: Deal 1 damage to that player's base.",
@@ -533,9 +533,9 @@
     "name": "Rickety Mine",
     "image": "0026_rickety_mine.jpg",
     "cost": 2,
-    "type": "building",
-    "color": "red",
-    "spec": "blood",
+    "type": "BUILDING",
+    "color": "RED",
+    "spec": "BLOOD",
     "tech": 1,
     "health": 3,
     "tags": [],
@@ -550,14 +550,14 @@
     "name": "Shoddy Glider",
     "image": "0034_shoddy_glider.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "red",
-    "spec": "blood",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "BLOOD",
     "tech": 2,
     "attack": 3,
     "health": 1,
     "tags": [
-      "contraption"
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "Haste, ephemeralFlying (Can fly over ground patrollers. Ground forces without anti-air can't attack this or deal combat damage to it when attacked.)",
@@ -567,14 +567,14 @@
     "name": "Captured Bugblatter",
     "image": "0035_captured_bugblatter.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "red",
-    "spec": "blood",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "BLOOD",
     "tech": 2,
     "attack": 4,
     "health": 2,
     "tags": [
-      "beast"
+      "BEAST"
     ],
     "legendary": false,
     "cardText": "Whenever a unit dies on an opponent's turn, their base takes 1 damage.Whenever a unit dies on your turn, deal 1 damage to an opponent's base.",
@@ -587,14 +587,14 @@
     "name": "Crashbarrow",
     "image": "0036_crashbarrow.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "red",
-    "spec": "blood",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "BLOOD",
     "tech": 2,
     "attack": 6,
     "health": 2,
     "tags": [
-      "contraption"
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "Haste, ephemeralOverpower (Excess combat damage this would deal to a patroller hits something else this could attack.)",
@@ -604,14 +604,14 @@
     "name": "Land Octopus",
     "image": "0037_land_octopus.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "red",
-    "spec": "blood",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "BLOOD",
     "tech": 2,
     "attack": 8,
     "health": 7,
     "tags": [
-      "octopus"
+      "OCTOPUS"
     ],
     "legendary": false,
     "cardText": "Overpower (Excess combat damage this would deal to a patroller hits something else this could attack.)Upkeep: Sacrifice two workers or Land Octopus.Can't patrol.",
@@ -623,14 +623,14 @@
     "name": "Ogre Recruiter",
     "image": "0038_ogre_recruiter.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "red",
-    "spec": "blood",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "BLOOD",
     "tech": 2,
     "attack": 5,
     "health": 4,
     "tags": [
-      "ogre"
+      "OGRE"
     ],
     "legendary": false,
     "cardText": "Attacks: If this survives the combat, gain control of a tech 0 or tech I unit.",
@@ -640,14 +640,14 @@
     "name": "Pirate-Gang Commander",
     "image": "0045_pirate_gang_commander.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "red",
-    "spec": "blood",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "BLOOD",
     "tech": 3,
     "attack": 6,
     "health": 6,
     "tags": [
-      "pirate"
+      "PIRATE"
     ],
     "legendary": false,
     "cardText": "Arrives: Summon three 2/2 red Pirate tokens.Your units have \"Dies: deal 1 damage to each opposing base. ◎\"You may play tech I or II Blood units for free and without any tech buildings.",
@@ -657,9 +657,9 @@
     "name": "Jaina Stormborne",
     "image": "0002_fire_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "red",
-    "spec": "fire",
+    "type": "HERO",
+    "color": "RED",
+    "spec": "FIRE",
     "levelBands": [
       {
         "level": 1,
@@ -687,11 +687,11 @@
     "name": "Fire Dart",
     "image": "0019_fire_dart.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "red",
-    "spec": "fire",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "FIRE",
     "tags": [
-      "burn"
+      "BURN"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -702,11 +702,11 @@
     "name": "Ember Sparks",
     "image": "0020_ember_sparks.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "red",
-    "spec": "fire",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "FIRE",
     "tags": [
-      "burn"
+      "BURN"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -720,11 +720,11 @@
     "name": "Flame Arrow",
     "image": "0021_flame_arrow.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "red",
-    "spec": "fire",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "FIRE",
     "tags": [
-      "burn"
+      "BURN"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -735,11 +735,11 @@
     "name": "Burning Volley",
     "image": "0022_burning_volley.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "red",
-    "spec": "fire",
+    "type": "SPELL",
+    "color": "RED",
+    "spec": "FIRE",
     "tags": [
-      "burn"
+      "BURN"
     ],
     "ultimate": true,
     "ongoing": false,
@@ -753,14 +753,14 @@
     "name": "Lobber",
     "image": "0027_lobber.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "red",
-    "spec": "fire",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "FIRE",
     "tech": 1,
     "attack": 2,
     "health": 2,
     "tags": [
-      "brigand"
+      "BRIGAND"
     ],
     "legendary": false,
     "cardText": "Haste (Can attack and play ⤵ abilities the turn he arrives.)⤵ → Deal 1 damage to a building.",
@@ -770,14 +770,14 @@
     "name": "Firebat",
     "image": "0028_firebat.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "red",
-    "spec": "fire",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "FIRE",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "spellcaster"
+      "SPELLCASTER"
     ],
     "legendary": false,
     "cardText": "①, ⤵ → Deal 2 damage to a patroller or building.",
@@ -787,14 +787,14 @@
     "name": "Bamstamper Lizzo",
     "image": "0039_bamstamper_lizzo.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "red",
-    "spec": "fire",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "FIRE",
     "tech": 2,
     "attack": 5,
     "health": 3,
     "tags": [
-      "lizardman"
+      "LIZARDMAN"
     ],
     "legendary": false,
     "cardText": "Arrives: Deal 3 damage to a unit.",
@@ -806,14 +806,14 @@
     "name": "Doubleshot Archer",
     "image": "0040_doubleshot_archer.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "red",
-    "spec": "fire",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "FIRE",
     "tech": 2,
     "attack": 4,
     "health": 3,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Long-range (Defenders without long-range deal no damage to this when it attacks.)Attacks: Deal 3 damage to that opponent's base.",
@@ -823,14 +823,14 @@
     "name": "Molting Firebird",
     "image": "0041_molting_firebird.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "red",
-    "spec": "fire",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "FIRE",
     "tech": 2,
     "attack": 4,
     "health": 3,
     "tags": [
-      "bird"
+      "BIRD"
     ],
     "legendary": false,
     "cardText": "FlyingDamages a building: Deal 1 damage to every unit and hero that opponent controls.",
@@ -840,9 +840,9 @@
     "name": "Firehouse",
     "image": "0042_firehouse.jpg",
     "cost": 3,
-    "type": "building",
-    "color": "red",
-    "spec": "fire",
+    "type": "BUILDING",
+    "color": "RED",
+    "spec": "FIRE",
     "tech": 2,
     "health": 4,
     "tags": [],
@@ -858,9 +858,9 @@
     "name": "Hotter Fire",
     "image": "0043_hotter_fire.jpg",
     "cost": 3,
-    "type": "upgrade",
-    "color": "red",
-    "spec": "fire",
+    "type": "UPGRADE",
+    "color": "RED",
+    "spec": "FIRE",
     "tech": 2,
     "legendary": false,
     "tags": [],
@@ -875,14 +875,14 @@
     "name": "Cinderblast Dragon",
     "image": "0046_cinderblast_dragon.jpg",
     "cost": 7,
-    "type": "unit",
-    "color": "red",
-    "spec": "fire",
+    "type": "UNIT",
+    "color": "RED",
+    "spec": "FIRE",
     "tech": 3,
     "attack": 6,
     "health": 6,
     "tags": [
-      "dragon"
+      "DRAGON"
     ],
     "legendary": false,
     "cardText": "Flying, resist 2 (Opponents must pay ② each time the would ◎ this with a spell or ability.)Arrives or attacks: You may play a non-ultimate Fire spell from your hand or codex for free. (Then discard the spell.)",
@@ -895,14 +895,14 @@
     "name": "Merfolk Prospector",
     "image": "0000_merfolk_prospector.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "green",
+    "type": "UNIT",
+    "color": "GREEN",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "merfolk"
+      "MERFOLK"
     ],
     "legendary": false,
     "cardText": "⤵ → Gain ①.",
@@ -912,14 +912,14 @@
     "name": "Tiger Cub",
     "image": "0001_tiger_cub.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "green",
+    "type": "UNIT",
+    "color": "GREEN",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "tiger"
+      "TIGER"
     ],
     "legendary": false,
     "cardText": "",
@@ -929,14 +929,14 @@
     "name": "Young Treant",
     "image": "0002_young_treant.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "green",
+    "type": "UNIT",
+    "color": "GREEN",
     "spec": null,
     "tech": 0,
     "attack": 0,
     "health": 2,
     "tags": [
-      "tree"
+      "TREE"
     ],
     "legendary": false,
     "cardText": "Arrives: Draw a card.Can't attack",
@@ -946,14 +946,14 @@
     "name": "Playful Panda",
     "image": "0003_playful_panda.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "green",
+    "type": "UNIT",
+    "color": "GREEN",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "panda"
+      "PANDA"
     ],
     "legendary": false,
     "cardText": "Arrives: Exhausted. Summon a 0/1 green Wisp token.",
@@ -963,14 +963,14 @@
     "name": "Ironbark Treant",
     "image": "0004_ironbark_treant.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "green",
+    "type": "UNIT",
+    "color": "GREEN",
     "spec": null,
     "tech": 0,
     "attack": 3,
     "health": 2,
     "tags": [
-      "tree"
+      "TREE"
     ],
     "legendary": false,
     "cardText": "-2 ATK / +2 armor while patrolling. (Armor absorbs damage before HP and is then destroyed.)",
@@ -983,15 +983,15 @@
     "name": "Spore Shambler",
     "image": "0005_spore_shambler.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "green",
+    "type": "UNIT",
+    "color": "GREEN",
     "spec": null,
     "tech": 0,
     "attack": 0,
     "health": 1,
     "tags": [
-      "cute",
-      "animal"
+      "CUTE",
+      "ANIMAL"
     ],
     "legendary": false,
     "cardText": "Arrives: Put two +1/+1 runes on this.① or ⤵, then remove a +1/+1 rune → Put a +1/+1 rune on another unit.",
@@ -1004,13 +1004,13 @@
     "name": "Verdant Tree",
     "image": "0006_verdant_tree.jpg",
     "cost": 2,
-    "type": "building",
-    "color": "green",
+    "type": "BUILDING",
+    "color": "GREEN",
     "spec": null,
     "tech": 0,
     "health": 3,
     "tags": [
-      "tree"
+      "TREE"
     ],
     "legendary": false,
     "cardText": "Healing 1 (During your upkeep, heal 1 damage from all friendly units and heroes.)⤵ → Your tech buildings build instantly this turn.",
@@ -1023,8 +1023,8 @@
     "name": "Rich Earth",
     "image": "0007_rich_earth.jpg",
     "cost": 3,
-    "type": "upgrade",
-    "color": "green",
+    "type": "UPGRADE",
+    "color": "GREEN",
     "spec": null,
     "tech": 0,
     "legendary": false,
@@ -1039,11 +1039,11 @@
     "name": "Rampant Growth",
     "image": "0008_rampant_growth.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "green",
+    "type": "SPELL",
+    "color": "GREEN",
     "spec": null,
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -1056,11 +1056,11 @@
     "name": "Forest's Favor",
     "image": "0009_forests_favor.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "green",
+    "type": "SPELL",
+    "color": "GREEN",
     "spec": null,
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -1071,9 +1071,9 @@
     "name": "Master Midori",
     "image": "0003_balance_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "green",
-    "spec": "balance",
+    "type": "HERO",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "levelBands": [
       {
         "level": 1,
@@ -1106,9 +1106,9 @@
     "name": "Moment's Peace",
     "image": "0010_moments_peace.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "green",
-    "spec": "balance",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -1122,9 +1122,9 @@
     "name": "Nature Reclaims",
     "image": "0011_nature_reclaims.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "green",
-    "spec": "balance",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -1137,11 +1137,11 @@
     "name": "Circle of Life",
     "image": "0012_circle_of_life.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "green",
-    "spec": "balance",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tags": [
-      "summon"
+      "SUMMON"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -1155,11 +1155,11 @@
     "name": "Final Showdown",
     "image": "0013_final_showdown.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "green",
-    "spec": "balance",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": true,
     "ongoing": true,
@@ -1172,14 +1172,14 @@
     "name": "Gemscout Owl",
     "image": "0022_gemscout_owl.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "green",
-    "spec": "balance",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tech": 1,
     "attack": 0,
     "health": 1,
     "tags": [
-      "bird"
+      "BIRD"
     ],
     "legendary": false,
     "cardText": "Flying but can't attack.Resist 1Upkeep: Gain ①",
@@ -1189,14 +1189,14 @@
     "name": "Tiny Basilisk",
     "image": "0023_tiny_basilisk.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "green",
-    "spec": "balance",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tech": 1,
     "attack": 1,
     "health": 2,
     "tags": [
-      "beast"
+      "BEAST"
     ],
     "legendary": false,
     "cardText": "Deathtouch (Combat damage this deals to units or heroes, even to their armor, kills them.)Tiny Basilisk is unattackable and unstoppable by tech 0 units. (Cannot be attacked by tech 0 units and can ignore tech 0 patrollers when attacking.)",
@@ -1206,14 +1206,14 @@
     "name": "Chameleon",
     "image": "0028_chameleon.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "green",
-    "spec": "balance",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "beast"
+      "BEAST"
     ],
     "legendary": false,
     "cardText": "Stealth (Can sneak past patrollers if that opponent has no detector.)",
@@ -1223,14 +1223,14 @@
     "name": "Fairie Dragon",
     "image": "0029_fairie_dragon.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "green",
-    "spec": "balance",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tech": 2,
     "attack": 4,
     "health": 2,
     "tags": [
-      "dragon"
+      "DRAGON"
     ],
     "legendary": false,
     "cardText": "FlyingArrives: You may put a feather rune on a tech I or II unit. Units with feather runes are 3/1 and have flying.",
@@ -1245,14 +1245,14 @@
     "name": "Dothram Horselord",
     "image": "0030_dothram_horselord.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "green",
-    "spec": "balance",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tech": 2,
     "attack": 6,
     "health": 5,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "OverpowerUpkeep: If a player has more total ATK than each other player, Dothram Horselord joins their forces.",
@@ -1265,14 +1265,14 @@
     "name": "Wandering Mimic",
     "image": "0031_wandering_mimic.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "green",
-    "spec": "balance",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tech": 2,
     "attack": 4,
     "health": 4,
     "tags": [
-      "shapeshifter"
+      "SHAPESHIFTER"
     ],
     "legendary": false,
     "cardText": "As long as a unit or hero with flying is in play, Wandering Mimic has flying. The same is true for overpower, haste, sparkshot, untargetable, and stealth.",
@@ -1284,14 +1284,14 @@
     "name": "Potent Basilisk",
     "image": "0032_potent_basilisk.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "green",
-    "spec": "balance",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tech": 2,
     "attack": 3,
     "health": 5,
     "tags": [
-      "beast"
+      "BEAST"
     ],
     "legendary": false,
     "cardText": "Arrives: You may destroy an upgrade or ongoing spell.Untargetable, deathtouch",
@@ -1301,14 +1301,14 @@
     "name": "Tyrannosaurus Rex",
     "image": "0043_tyrannosaurus_rex.jpg",
     "cost": 8,
-    "type": "unit",
-    "color": "green",
-    "spec": "balance",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "BALANCE",
     "tech": 3,
     "attack": 10,
     "health": 10,
     "tags": [
-      "dinosaur"
+      "DINOSAUR"
     ],
     "legendary": false,
     "cardText": "Overpower, resist 2Arrives: Destroy up to two units, upgrades, and/or workers.",
@@ -1322,9 +1322,9 @@
     "name": "Calamandra Moss",
     "image": "0004_feral_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "green",
-    "spec": "feral",
+    "type": "HERO",
+    "color": "GREEN",
+    "spec": "FERAL",
     "levelBands": [
       {
         "level": 1,
@@ -1354,11 +1354,11 @@
     "name": "Ferocity",
     "image": "0014_ferocity.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "green",
-    "spec": "feral",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -1369,11 +1369,11 @@
     "name": "Behind the Ferns",
     "image": "0015_behind_the_ferns.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "green",
-    "spec": "feral",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": true,
@@ -1387,11 +1387,11 @@
     "name": "Murkwood Allies",
     "image": "0016_murkwood_allies.jpg",
     "cost": 5,
-    "type": "spell",
-    "color": "green",
-    "spec": "feral",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tags": [
-      "summon"
+      "SUMMON"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -1402,9 +1402,9 @@
     "name": "Feral Strike",
     "image": "0017_feral_strike.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "green",
-    "spec": "feral",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tags": [],
     "ultimate": true,
     "ongoing": false,
@@ -1417,14 +1417,14 @@
     "name": "Huntress",
     "image": "0024_huntress.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "green",
-    "spec": "feral",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "centaur"
+      "CENTAUR"
     ],
     "legendary": false,
     "cardText": "Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.)Anti-air (Can attack fliers, but can ignore patrolling fliers. Deals combat damage to fliers it fights or that fly over this while it patrols.)",
@@ -1434,14 +1434,14 @@
     "name": "Centaur",
     "image": "0025_centaur.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "green",
-    "spec": "feral",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tech": 1,
     "attack": 3,
     "health": 4,
     "tags": [
-      "centaur"
+      "CENTAUR"
     ],
     "legendary": false,
     "cardText": "Overpower (Excess combat damage this would deal to a patroller hits something else this could attack.)",
@@ -1451,14 +1451,14 @@
     "name": "Stalking Tiger",
     "image": "0033_stalking_tiger.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "green",
-    "spec": "feral",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tech": 2,
     "attack": 4,
     "health": 4,
     "tags": [
-      "tiger"
+      "TIGER"
     ],
     "legendary": false,
     "cardText": "Stealth while attacking a unit.Stalking Tiger is invisible while you have a Feral hero. (To opponents without a detector, it's untargetable, unattackable, and can sneak past patrollers. While patrolling, it's attackable.)",
@@ -1468,14 +1468,14 @@
     "name": "Predator Tiger",
     "image": "0034_predator_tiger.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "green",
-    "spec": "feral",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tech": 2,
     "attack": 4,
     "health": 4,
     "tags": [
-      "tiger"
+      "TIGER"
     ],
     "legendary": false,
     "cardText": "Predator Tiger is unstoppable by tech 0 units. (Can ignore tech 0 patrollers when attacking.)Whenever Predator Tiger deals combat damage to a base, trash a worker at that base.",
@@ -1485,14 +1485,14 @@
     "name": "Barkcoat Bear",
     "image": "0035_barkcoat_bear.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "green",
-    "spec": "feral",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tech": 2,
     "attack": 5,
     "health": 5,
     "tags": [
-      "bear"
+      "BEAR"
     ],
     "legendary": false,
     "cardText": "Resist 2 (Opponents must pay ② each time they would ◎ this with a spell or ability.)Overpower (Excess combat damage this would deal to a patroller hits something else this could attack.)",
@@ -1502,14 +1502,14 @@
     "name": "Rampaging Elephant",
     "image": "0036_rampaging_elephant.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "green",
-    "spec": "feral",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tech": 2,
     "attack": 6,
     "health": 7,
     "tags": [
-      "elephant"
+      "ELEPHANT"
     ],
     "legendary": false,
     "cardText": "The first time Rampaging Elephant exhausts each turn, ready him. (He can attack again!)",
@@ -1519,14 +1519,14 @@
     "name": "Gigadon",
     "image": "0037_gigadon.jpg",
     "cost": 9,
-    "type": "unit",
-    "color": "green",
-    "spec": "feral",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tech": 2,
     "attack": 8,
     "health": 8,
     "tags": [
-      "dinosaur"
+      "DINOSAUR"
     ],
     "legendary": false,
     "cardText": "Gigadon costs ① less to play for each green unit you have.Overpower",
@@ -1539,14 +1539,14 @@
     "name": "Moss Ancient",
     "image": "0044_moss_ancient.jpg",
     "cost": 7,
-    "type": "unit",
-    "color": "green",
-    "spec": "feral",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "FERAL",
     "tech": 3,
     "attack": 8,
     "health": 9,
     "tags": [
-      "ancient"
+      "ANCIENT"
     ],
     "legendary": false,
     "cardText": "UntargetableArrives or attacks: Summons three 1/1 green Squirrel tokens.Your squirrels have haste and are invisible.",
@@ -1558,9 +1558,9 @@
     "name": "Argagarg Garg",
     "image": "0005_growth_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "green",
-    "spec": "growth",
+    "type": "HERO",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "levelBands": [
       {
         "level": 1,
@@ -1588,11 +1588,11 @@
     "name": "Polymorph: Squirrel",
     "image": "0018_polymorph_squirrel.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "green",
-    "spec": "growth",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -1609,11 +1609,11 @@
     "name": "Dinosize",
     "image": "0019_dinosize.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "green",
-    "spec": "growth",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -1624,11 +1624,11 @@
     "name": "Spirit of the Panda",
     "image": "0020_spirit_of_the_panda.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "green",
-    "spec": "growth",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": true,
@@ -1639,11 +1639,11 @@
     "name": "Stampede",
     "image": "0021_stampede.jpg",
     "cost": 6,
-    "type": "spell",
-    "color": "green",
-    "spec": "growth",
+    "type": "SPELL",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": true,
     "ongoing": false,
@@ -1656,14 +1656,14 @@
     "name": "Galina Glimmer",
     "image": "0026_galina_glimmer.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "green",
-    "spec": "growth",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tech": 1,
     "attack": 2,
     "health": 2,
     "tags": [
-      "nymph"
+      "NYMPH"
     ],
     "legendary": true,
     "cardText": "Upkeep: Gain ① for every two of your green units.",
@@ -1676,14 +1676,14 @@
     "name": "Giant Panda",
     "image": "0027_giant_panda.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "green",
-    "spec": "growth",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tech": 1,
     "attack": 2,
     "health": 4,
     "tags": [
-      "panda"
+      "PANDA"
     ],
     "legendary": false,
     "cardText": "Arrives: Exhausted. Summon a 0/1 green Wisp token.",
@@ -1693,14 +1693,14 @@
     "name": "Artisan Mantis",
     "image": "0038_artisan_mantis.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "green",
-    "spec": "growth",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tech": 2,
     "attack": 4,
     "health": 5,
     "tags": [
-      "insect"
+      "INSECT"
     ],
     "legendary": false,
     "cardText": "Arrives: Repair 3 damage from a building.",
@@ -1712,14 +1712,14 @@
     "name": "Oversized Rhinoceros",
     "image": "0039_oversized_rhinoceros.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "green",
-    "spec": "growth",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tech": 2,
     "attack": 7,
     "health": 8,
     "tags": [
-      "rhino"
+      "RHINO"
     ],
     "legendary": false,
     "cardText": "",
@@ -1729,14 +1729,14 @@
     "name": "Blooming Ancient",
     "image": "0040_blooming_ancient.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "green",
-    "spec": "growth",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tech": 2,
     "attack": 2,
     "health": 4,
     "tags": [
-      "ancient"
+      "ANCIENT"
     ],
     "legendary": false,
     "cardText": "Whenever another unit or hero of yours arrives, put a +1/+1 rune on this.Remove a +1/+1 rune → Put a +1/+1 rune on another unit.",
@@ -1746,13 +1746,13 @@
     "name": "Blooming Elm",
     "image": "0041_blooming_elm.jpg",
     "cost": 3,
-    "type": "building",
-    "color": "green",
-    "spec": "growth",
+    "type": "BUILDING",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tech": 2,
     "health": 4,
     "tags": [
-      "tree"
+      "TREE"
     ],
     "legendary": false,
     "cardText": "Your units and heroes with +1/+1 runes have overpower.⤵ → Put three +1/+1 runes on a unit or one on a hero if that unit or hero doesn't have any +1/+1 runes.",
@@ -1764,9 +1764,9 @@
     "name": "Might of Leaf and Claw",
     "image": "0042_might_of_leaf_and_claw.jpg",
     "cost": 3,
-    "type": "upgrade",
-    "color": "green",
-    "spec": "growth",
+    "type": "UPGRADE",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tech": 2,
     "legendary": false,
     "tags": [],
@@ -1781,14 +1781,14 @@
     "name": "Guargum, Eternal Sentinel",
     "image": "0045_guargum.jpg",
     "cost": 10,
-    "type": "unit",
-    "color": "green",
-    "spec": "growth",
+    "type": "UNIT",
+    "color": "GREEN",
+    "spec": "GROWTH",
     "tech": 3,
     "attack": 12,
     "health": 12,
     "tags": [
-      "ancient"
+      "ANCIENT"
     ],
     "legendary": true,
     "cardText": "Resist 2 (Opponents must pay ② each time they would ◎ this with a spell or ability.)Obliterate 4 (Whenver this attacks, destroy the defender's four lowest tech units first.)You may play Growth spells for free and without having a Growth Hero.",
@@ -1800,14 +1800,14 @@
     "name": "Building Inspector",
     "image": "0000_building_inspector.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "blue",
+    "type": "UNIT",
+    "color": "BLUE",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "administrator"
+      "ADMINISTRATOR"
     ],
     "legendary": false,
     "cardText": "The first building each opponent builds each turn costs ① more to build.",
@@ -1819,15 +1819,15 @@
     "name": "Spectral Aven",
     "image": "0001_spectral_aven.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "blue",
+    "type": "UNIT",
+    "color": "BLUE",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "bird",
-      "illusion"
+      "BIRD",
+      "ILLUSION"
     ],
     "legendary": false,
     "cardText": "(Illusions die when ◎ by spells or abilities.)Flying (Can fly over ground patrollers. Ground forces without anti-air can't attack this or deal combat damage to it when attacked.)",
@@ -1837,14 +1837,14 @@
     "name": "Bluecoat Musketeer",
     "image": "0002_bluecoat_musketeer.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "blue",
+    "type": "UNIT",
+    "color": "BLUE",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 2,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "While this has exactly 1 ATK, it has long-range.(Defenders without long-range deal no damage to this when it attacks.)",
@@ -1856,14 +1856,14 @@
     "name": "Traffic Director",
     "image": "0003_traffic_director.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "blue",
+    "type": "UNIT",
+    "color": "BLUE",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "administrator"
+      "ADMINISTRATOR"
     ],
     "legendary": false,
     "cardText": "Unstoppable when attacking a building. (Can ignore patrollers.)Untargetable (Can't be the ◎ of spells or abilities.)",
@@ -1873,15 +1873,15 @@
     "name": "Porkhand Magistrate",
     "image": "0004_porkhand_magistrate.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "blue",
+    "type": "UNIT",
+    "color": "BLUE",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 3,
     "tags": [
-      "pig",
-      "administrator"
+      "PIG",
+      "ADMINISTRATOR"
     ],
     "legendary": false,
     "cardText": "①, ⤵ → Disable a unit or hero. Its controller draws a card. (Exhaust it and it doesn't ready during its next ready step. Sideline it if it was patrolling.)",
@@ -1894,14 +1894,14 @@
     "name": "Reputable Newsman",
     "image": "0005_reputable_newsman.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "blue",
+    "type": "UNIT",
+    "color": "BLUE",
     "spec": null,
     "tech": 0,
     "attack": 0,
     "health": 3,
     "tags": [
-      "mercenary"
+      "MERCENARY"
     ],
     "legendary": false,
     "cardText": "Arrives: Choose a number. Opponents can't play spells or upgrades that cost that amount.",
@@ -1913,8 +1913,8 @@
     "name": "Jail",
     "image": "0006_jail.jpg",
     "cost": 3,
-    "type": "building",
-    "color": "blue",
+    "type": "BUILDING",
+    "color": "BLUE",
     "spec": null,
     "tech": 0,
     "health": 3,
@@ -1930,8 +1930,8 @@
     "name": "Lawful Search",
     "image": "0007_lawful_search.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "blue",
+    "type": "SPELL",
+    "color": "BLUE",
     "spec": null,
     "tags": [],
     "ultimate": false,
@@ -1943,11 +1943,11 @@
     "name": "Arrest",
     "image": "0008_arrest.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "blue",
+    "type": "SPELL",
+    "color": "BLUE",
     "spec": null,
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -1958,8 +1958,8 @@
     "name": "Manufactured Truth",
     "image": "0009_manufactured_truth.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "blue",
+    "type": "SPELL",
+    "color": "BLUE",
     "spec": null,
     "tags": [],
     "ultimate": false,
@@ -1974,9 +1974,9 @@
     "name": "Bigby Hayes",
     "image": "0006_law_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "blue",
-    "spec": "law",
+    "type": "HERO",
+    "color": "BLUE",
+    "spec": "LAW",
     "levelBands": [
       {
         "level": 1,
@@ -2006,11 +2006,11 @@
     "name": "Injunction",
     "image": "0011_injunction.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "blue",
-    "spec": "law",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "LAW",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -2025,11 +2025,11 @@
     "name": "Community Service",
     "image": "0012_community_service.jpg",
     "cost": 5,
-    "type": "spell",
-    "color": "blue",
-    "spec": "law",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "LAW",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -2042,9 +2042,9 @@
     "name": "Jurisdiction",
     "image": "0010_jurisdiction.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "blue",
-    "spec": "law",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "LAW",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -2057,9 +2057,9 @@
     "name": "Judgment Day",
     "image": "0013_judgment_day.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "blue",
-    "spec": "law",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "LAW",
     "tags": [],
     "ultimate": true,
     "ongoing": false,
@@ -2072,14 +2072,14 @@
     "name": "Tax Collector",
     "image": "0022_tax_collector.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "blue",
-    "spec": "law",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "LAW",
     "tech": 1,
     "attack": 2,
     "health": 3,
     "tags": [
-      "administrator"
+      "ADMINISTRATOR"
     ],
     "legendary": false,
     "cardText": "Arrives: Steal ① from an opponent.",
@@ -2091,14 +2091,14 @@
     "name": "Scribe",
     "image": "0023_scribe.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "blue",
-    "spec": "law",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "LAW",
     "tech": 1,
     "attack": 1,
     "health": 3,
     "tags": [
-      "administrator"
+      "ADMINISTRATOR"
     ],
     "legendary": false,
     "cardText": "Arrives: Draw a card.",
@@ -2108,14 +2108,14 @@
     "name": "Guardian of the Gates",
     "image": "0033_guardian_of_the_gates.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "blue",
-    "spec": "law",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "LAW",
     "tech": 2,
     "attack": 1,
     "health": 6,
     "tags": [
-      "guard"
+      "GUARD"
     ],
     "legendary": false,
     "cardText": "Can't attack.Whenever Guardian of the Gates deals combat damage to a unit, disable it. (Exhaust it and it doesn't ready during its next ready step.)",
@@ -2128,14 +2128,14 @@
     "name": "Insurance Agent",
     "image": "0034_insurance_agent.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "blue",
-    "spec": "law",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "LAW",
     "tech": 2,
     "attack": 2,
     "health": 2,
     "tags": [
-      "administrator"
+      "ADMINISTRATOR"
     ],
     "legendary": false,
     "cardText": "Arrives: Put an insurance rune on a unit. When that insured unit dies, gain gold equal to its gold cost and draw a card.",
@@ -2152,14 +2152,14 @@
     "name": "Justice Juggernaut",
     "image": "0035_justice_juggernaut.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "blue",
-    "spec": "law",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "LAW",
     "tech": 2,
     "attack": 4,
     "health": 6,
     "tags": [
-      "contraption"
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "Unstoppable but can't patrol. (Can ignore patrollers when attacking.)Two Lives (If this would die, heal all damage on it and put a crumbling rune on it instead. While it has a crumbling rune, it can really die.)",
@@ -2171,14 +2171,14 @@
     "name": "Arresting Constable",
     "image": "0036_arresting_constable.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "blue",
-    "spec": "law",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "LAW",
     "tech": 2,
     "attack": 2,
     "health": 3,
     "tags": [
-      "guard"
+      "GUARD"
     ],
     "legendary": false,
     "cardText": "⤵ → Disable a tech 0, I, or II unit. (Exhaust it and it doesn't ready during its next ready step. Sideline it if it was patrolling.)",
@@ -2188,9 +2188,9 @@
     "name": "Censorship Council",
     "image": "0037_censorship_council.jpg",
     "cost": 4,
-    "type": "building",
-    "color": "blue",
-    "spec": "law",
+    "type": "BUILDING",
+    "color": "BLUE",
+    "spec": "LAW",
     "tech": 2,
     "health": 5,
     "tags": [],
@@ -2204,14 +2204,14 @@
     "name": "Lawbringer Gryphon",
     "image": "0043_lawbringer_gryphon.jpg",
     "cost": 10,
-    "type": "unit",
-    "color": "blue",
-    "spec": "law",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "LAW",
     "tech": 3,
     "attack": 7,
     "health": 6,
     "tags": [
-      "gryphon"
+      "GRYPHON"
     ],
     "legendary": false,
     "cardText": "Your base gains flying. (Ground forces without anti-air can't attack it.)Flying, resist 2 (Opponents must pay ② each time they would ◎ this with a spell or ability.)Obliterate 4 (Whenever this attacks, destroy the defender's four lowest tech units first.)",
@@ -2223,9 +2223,9 @@
     "name": "General Onimaru",
     "image": "0007_peace_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "blue",
-    "spec": "peace",
+    "type": "HERO",
+    "color": "BLUE",
+    "spec": "PEACE",
     "levelBands": [
       {
         "level": 1,
@@ -2253,12 +2253,12 @@
     "name": "Boot Camp",
     "image": "0014_boot_camp.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "blue",
-    "spec": "peace",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tags": [
-      "buff",
-      "debuff"
+      "BUFF",
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -2271,11 +2271,11 @@
     "name": "Elite Training",
     "image": "0015_elite_training.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "blue",
-    "spec": "peace",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -2286,9 +2286,9 @@
     "name": "General's Hammer",
     "image": "0016_generals_hammer.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "blue",
-    "spec": "peace",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -2299,11 +2299,11 @@
     "name": "The Art of War",
     "image": "0017_the_art_of_war.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "blue",
-    "spec": "peace",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": true,
     "ongoing": false,
@@ -2314,14 +2314,14 @@
     "name": "Overeager Cadet",
     "image": "0024_overeager_cadet.jpg",
     "cost": 0,
-    "type": "unit",
-    "color": "blue",
-    "spec": "peace",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tech": 1,
     "attack": 2,
     "health": 2,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "",
@@ -2331,14 +2331,14 @@
     "name": "Brave Knight",
     "image": "0025_brave_knight.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "blue",
-    "spec": "peace",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Readiness (Doesn't exhaust to attack, but can only attack once per turn.)Whenever Brave Knight would die from combat damage, return him to his owner's hand instead.",
@@ -2351,14 +2351,14 @@
     "name": "Drill Sergeant",
     "image": "0028_drill_sergeant.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "blue",
-    "spec": "peace",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Whenever you play a unit from your hand, put a +1/+1 rune on this.Remove a +1/+1 rune → Put a +1/+1 rune on another unit.",
@@ -2371,14 +2371,14 @@
     "name": "Flagstone Spy",
     "image": "0029_flagstone_spy.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "blue",
-    "spec": "peace",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Invisible (To opponents without a detector, he's untargetable, unattackable, and can sneak past patrollers. While patrolling, he's attackable.)Whenever Flagstone Spy deals combat damage to a building, look at that player's hand and steal ① from them.",
@@ -2390,15 +2390,15 @@
     "name": "Debilitator Alpha",
     "image": "0030_debilitator_alpha.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "blue",
-    "spec": "peace",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tech": 2,
     "attack": 4,
     "health": 5,
     "tags": [
-      "clockwork",
-      "soldier"
+      "CLOCKWORK",
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "As squad leader: Units attacking Debilitator Alpha get -1 ATK.",
@@ -2408,15 +2408,15 @@
     "name": "Air Hammer",
     "image": "0031_air_hammer.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "blue",
-    "spec": "peace",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "bird",
-      "soldier"
+      "BIRD",
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Flying +2 ATK when attacking damaged buildings.",
@@ -2426,9 +2426,9 @@
     "name": "Flagstone Garrison",
     "image": "0032_flagstone_garrison.jpg",
     "cost": 3,
-    "type": "building",
-    "color": "blue",
-    "spec": "peace",
+    "type": "BUILDING",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tech": 2,
     "health": 4,
     "tags": [],
@@ -2443,14 +2443,14 @@
     "name": "Patriot Gryphon",
     "image": "0044_patriot_gryphon.jpg",
     "cost": 8,
-    "type": "unit",
-    "color": "blue",
-    "spec": "peace",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "PEACE",
     "tech": 3,
     "attack": 6,
     "health": 7,
     "tags": [
-      "gryphon"
+      "GRYPHON"
     ],
     "legendary": false,
     "cardText": "Flying, resist 2 (Opponents must pay ② each time they would ◎ this with a spell or ability.)Unstoppable by units with 2 ATK or less.Whenever Patriot Gryphon destroys a building, he also deals his ATK to that opponent's base.",
@@ -2462,9 +2462,9 @@
     "name": "Sirus Quince",
     "image": "0008_truth_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "blue",
-    "spec": "truth",
+    "type": "HERO",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "levelBands": [
       {
         "level": 1,
@@ -2502,11 +2502,11 @@
     "name": "Free Speech",
     "image": "0018_free_speech.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "blue",
-    "spec": "truth",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -2523,11 +2523,11 @@
     "name": "Hallucination",
     "image": "0019_hallucination.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "blue",
-    "spec": "truth",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -2538,11 +2538,11 @@
     "name": "Dreamscape",
     "image": "0020_dreamscape.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "blue",
-    "spec": "truth",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": true,
@@ -2553,11 +2553,11 @@
     "name": "Mind Control",
     "image": "0021_mind_control.jpg",
     "cost": 5,
-    "type": "spell",
-    "color": "blue",
-    "spec": "truth",
+    "type": "SPELL",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": true,
     "ongoing": true,
@@ -2572,15 +2572,15 @@
     "name": "Spectral Flagbearer",
     "image": "0026_spectral_flagbearer.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "blue",
-    "spec": "truth",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tech": 1,
     "attack": 2,
     "health": 2,
     "tags": [
-      "flagbearer",
-      "illusion"
+      "FLAGBEARER",
+      "ILLUSION"
     ],
     "legendary": false,
     "cardText": "(Illusions die when ◎ by spells or abilities.)Whenever an opponent plays a spell or ability that can ◎ a flagbearer, it must ◎ a flagbearer at least once.",
@@ -2592,15 +2592,15 @@
     "name": "Spectral Hound",
     "image": "0027_spectral_hound.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "blue",
-    "spec": "truth",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "dog",
-      "illusion"
+      "DOG",
+      "ILLUSION"
     ],
     "legendary": false,
     "cardText": "(Illusions die when ◎ by spells or abilities.)",
@@ -2610,14 +2610,14 @@
     "name": "Macciatus, The Whisperer",
     "image": "0038_macciatus.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "blue",
-    "spec": "truth",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "herald"
+      "HERALD"
     ],
     "legendary": true,
     "cardText": "Your Illusion units get +1/+1 and no longer die when they are ◎ by spells or abilities.",
@@ -2627,15 +2627,15 @@
     "name": "Reteller of Truths",
     "image": "0039_reteller_of_truths.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "blue",
-    "spec": "truth",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "bard",
-      "illusion"
+      "BARD",
+      "ILLUSION"
     ],
     "legendary": false,
     "cardText": "(Illusions die when ◎ by spells or abilities.)The first two times each turn one of your non-token Illusion units dies (including this one), return it to its owner's hand.",
@@ -2647,15 +2647,15 @@
     "name": "Spectral Tiger",
     "image": "0040_spectral_tiger.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "blue",
-    "spec": "truth",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tech": 2,
     "attack": 5,
     "health": 5,
     "tags": [
-      "tiger",
-      "illusion"
+      "TIGER",
+      "ILLUSION"
     ],
     "legendary": false,
     "cardText": "(Illusions die when ◎ by spells or abilities.)",
@@ -2665,15 +2665,15 @@
     "name": "Spectral Roc",
     "image": "0041_spectral_roc.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "blue",
-    "spec": "truth",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tech": 2,
     "attack": 4,
     "health": 5,
     "tags": [
-      "bird",
-      "illusion"
+      "BIRD",
+      "ILLUSION"
     ],
     "legendary": false,
     "cardText": "(Illusions die when ◎ by spells or abilities.)Flying",
@@ -2683,9 +2683,9 @@
     "name": "Eyes of the Chancellor",
     "image": "0042_eyes_of_the_chancellor.jpg",
     "cost": 3,
-    "type": "upgrade",
-    "color": "blue",
-    "spec": "truth",
+    "type": "UPGRADE",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tech": 2,
     "legendary": false,
     "tags": [],
@@ -2696,15 +2696,15 @@
     "name": "Liberty Gryphon",
     "image": "0045_liberty_gryphon.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "blue",
-    "spec": "truth",
+    "type": "UNIT",
+    "color": "BLUE",
+    "spec": "TRUTH",
     "tech": 3,
     "attack": 5,
     "health": 5,
     "tags": [
-      "gryphon",
-      "illusion"
+      "GRYPHON",
+      "ILLUSION"
     ],
     "legendary": false,
     "cardText": "(Illusions die when ◎ by spells or abilities.)Flying, hasteUnstoppable, unattackable, and untargetable while you control an Illusion with any other name than Liberty Gryphon.",
@@ -2716,14 +2716,14 @@
     "name": "Pestering Haunt",
     "image": "0000_pestering_haunt.jpg",
     "cost": 0,
-    "type": "unit",
-    "color": "black",
+    "type": "UNIT",
+    "color": "BLACK",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "ghost"
+      "GHOST"
     ],
     "legendary": false,
     "cardText": "Unstoppable but can't patrol (Can ignore patrollers when attacking.)Can't be sacrificed.Can't have more than 1 ATK.",
@@ -2735,14 +2735,14 @@
     "name": "Skeleton Javelineer",
     "image": "0001_skeleton_javelineer.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "black",
+    "type": "UNIT",
+    "color": "BLACK",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "skeleton"
+      "SKELETON"
     ],
     "legendary": false,
     "cardText": "Arrives: Put a javelin rune on this.Remove a javelin rune → This gets long-range this turn. (Defenders without long-range deal no damage to this when it attacks.)",
@@ -2752,14 +2752,14 @@
     "name": "Poisonblade Rogue",
     "image": "0002_poisonblade_rogue.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "black",
+    "type": "UNIT",
+    "color": "BLACK",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 1,
     "tags": [
-      "rogue"
+      "ROGUE"
     ],
     "legendary": false,
     "cardText": "Attacks: Gets armor piercing and deals damage to units and heroes in the form of -1/-1 runes this turn.",
@@ -2771,15 +2771,15 @@
     "name": "Thieving Imp",
     "image": "0003_theiving_imp.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "black",
+    "type": "UNIT",
+    "color": "BLACK",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "imp",
-      "demon"
+      "IMP",
+      "DEMON"
     ],
     "legendary": false,
     "cardText": "Arrives: An opponent discards a card at random.",
@@ -2789,15 +2789,15 @@
     "name": "Jandra, the Negator",
     "image": "0004_jandra.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "black",
+    "type": "UNIT",
+    "color": "BLACK",
     "spec": null,
     "tech": 0,
     "attack": 3,
     "health": 3,
     "tags": [
-      "demon",
-      "horror"
+      "DEMON",
+      "HORROR"
     ],
     "legendary": true,
     "cardText": "Overpower (Excess combat damage this would deal to a patroller hits something else this could attack.)Dies from combat damage: Destroy all your units except for Demons.",
@@ -2809,8 +2809,8 @@
     "name": "Graveyard",
     "image": "0005_graveyard.jpg",
     "cost": 2,
-    "type": "building",
-    "color": "black",
+    "type": "BUILDING",
+    "color": "BLACK",
     "spec": null,
     "tech": 0,
     "health": 3,
@@ -2825,8 +2825,8 @@
     "name": "Skeletal Archery",
     "image": "0006_skeletal_archery.jpg",
     "cost": 2,
-    "type": "upgrade",
-    "color": "black",
+    "type": "UPGRADE",
+    "color": "BLACK",
     "spec": null,
     "tech": 0,
     "legendary": false,
@@ -2838,11 +2838,11 @@
     "name": "Deteriorate",
     "image": "0007_deteriorate.jpg",
     "cost": 0,
-    "type": "spell",
-    "color": "black",
+    "type": "SPELL",
+    "color": "BLACK",
     "spec": null,
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -2855,11 +2855,11 @@
     "name": "Summon Skeletons",
     "image": "0008_summon_skeletons.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "black",
+    "type": "SPELL",
+    "color": "BLACK",
     "spec": null,
     "tags": [
-      "summon"
+      "SUMMON"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -2870,8 +2870,8 @@
     "name": "Sacrifice the Weak",
     "image": "0009_sacrifice_the_weak.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "black",
+    "type": "SPELL",
+    "color": "BLACK",
     "spec": null,
     "tags": [],
     "ultimate": false,
@@ -2886,9 +2886,9 @@
     "name": "Vandy Anadrose",
     "image": "0009_demonology_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "black",
-    "spec": "demonology",
+    "type": "HERO",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "levelBands": [
       {
         "level": 1,
@@ -2919,11 +2919,11 @@
     "name": "Soul Stone",
     "image": "0010_soul_stone.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "black",
-    "spec": "demonology",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": true,
@@ -2937,9 +2937,9 @@
     "name": "Dark Pact",
     "image": "0011_dark_pact.jpg",
     "cost": 0,
-    "type": "spell",
-    "color": "black",
-    "spec": "demonology",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -2950,11 +2950,11 @@
     "name": "Shadow Blade",
     "image": "0012_shadow_blade.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "black",
-    "spec": "demonology",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -2967,11 +2967,11 @@
     "name": "Metamorphosis",
     "image": "0013_metamorphosis.jpg",
     "cost": 6,
-    "type": "spell",
-    "color": "black",
-    "spec": "demonology",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": true,
     "ongoing": false,
@@ -2985,14 +2985,14 @@
     "name": "Gargoyle",
     "image": "0022_gargoyle.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "black",
-    "spec": "demonology",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tech": 1,
     "attack": 0,
     "health": 2,
     "tags": [
-      "horror"
+      "HORROR"
     ],
     "legendary": false,
     "cardText": "Indestructible (If this would die, exhaust it and remove all damage and attachments from it instead. You can't sacrifice it.)Can't attack or patrol.① → Until your next upkeep, Gargoyle isn't indestructible, gains flying, +3 ATK, and it can attack and patrol. Once-per-turn.",
@@ -3004,14 +3004,14 @@
     "name": "Twilight Baron",
     "image": "0023_twilight_baron.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "black",
-    "spec": "demonology",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tech": 1,
     "attack": 4,
     "health": 4,
     "tags": [
-      "demon"
+      "DEMON"
     ],
     "legendary": false,
     "cardText": "Overpower (Excess combat damage this would deal to a patroller hits something else this could attack.)You can't play tech II or III units.",
@@ -3026,14 +3026,14 @@
     "name": "Voidblocker",
     "image": "0028_voidblocker.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "black",
-    "spec": "demonology",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tech": 2,
     "attack": 2,
     "health": 6,
     "tags": [
-      "demon"
+      "DEMON"
     ],
     "legendary": false,
     "cardText": "Whenever an opponent attacks Voidblocker, they exhaust another of their ready units or heroes.",
@@ -3045,14 +3045,14 @@
     "name": "Blackhand Dozer",
     "image": "0029_blackhand_dozer.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "black",
-    "spec": "demonology",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tech": 2,
     "attack": 7,
     "health": 6,
     "tags": [
-      "demon"
+      "DEMON"
     ],
     "legendary": false,
     "cardText": "OverpowerDamage you deal can reduce opposing bases' HP to 6, but not lower.Dies: Active player destroys one of your lowest tech units.",
@@ -3064,14 +3064,14 @@
     "name": "Banefire Golem",
     "image": "0030_banefire_golem.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "black",
-    "spec": "demonology",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tech": 2,
     "attack": 7,
     "health": 7,
     "tags": [
-      "demon"
+      "DEMON"
     ],
     "legendary": false,
     "cardText": "Upkeep: Sacrifice a unit. If you do, deal 1 damage to each opposing unit, hero, and building.",
@@ -3083,15 +3083,15 @@
     "name": "Terras Q, the Shackled",
     "image": "0031_terras_q.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "black",
-    "spec": "demonology",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tech": 2,
     "attack": 15,
     "health": 15,
     "tags": [
-      "demon",
-      "overlord"
+      "DEMON",
+      "OVERLORD"
     ],
     "legendary": true,
     "cardText": "Resist 3, Obliterate 2 (Whenever this attacks, destroy the defender's two lowest tech units first.)Arrives: Summon four 0/1 black Warlock tokens for an opponent. Terras Q can't attack or patrol while any of those tokens are in play.",
@@ -3106,9 +3106,9 @@
     "name": "Shrine of Forbidden Knowledge",
     "image": "0032_shrine_of_forbidden_knowledge.jpg",
     "cost": 3,
-    "type": "building",
-    "color": "black",
-    "spec": "demonology",
+    "type": "BUILDING",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tech": 2,
     "health": 5,
     "tags": [],
@@ -3122,14 +3122,14 @@
     "name": "Zarramonde, the Obliterator",
     "image": "0043_zarramonde.jpg",
     "cost": 10,
-    "type": "unit",
-    "color": "black",
-    "spec": "demonology",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DEMONOLOGY",
     "tech": 3,
     "attack": 11,
     "health": 11,
     "tags": [
-      "demon"
+      "DEMON"
     ],
     "legendary": true,
     "cardText": "Arrives: If you played Zarramonde from your hand, destroy a unit, hero, worker, upgrade, or ongoing spell.Untargetable, obliterate 4 (Whenever this attacks, destroy the defender's four lowest tech units first.)",
@@ -3139,9 +3139,9 @@
     "name": "Orpal Gloor",
     "image": "0010_disease_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "black",
-    "spec": "disease",
+    "type": "HERO",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "levelBands": [
       {
         "level": 1,
@@ -3171,11 +3171,11 @@
     "name": "Sickness",
     "image": "0014_sickness.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "black",
-    "spec": "disease",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -3188,9 +3188,9 @@
     "name": "Spreading Plague",
     "image": "0015_spreading_plague.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "black",
-    "spec": "disease",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -3201,9 +3201,9 @@
     "name": "Carrion Curse",
     "image": "0016_carrion_curse.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "black",
-    "spec": "disease",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -3214,11 +3214,11 @@
     "name": "Death and Decay",
     "image": "0017_death_and_decay.jpg",
     "cost": 8,
-    "type": "spell",
-    "color": "black",
-    "spec": "disease",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": true,
     "ongoing": false,
@@ -3231,14 +3231,14 @@
     "name": "Crypt Crawler",
     "image": "0026_crypt_crawler.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "black",
-    "spec": "disease",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "insect"
+      "INSECT"
     ],
     "legendary": false,
     "cardText": "Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.)① -> A flier loses flying this turn.",
@@ -3250,14 +3250,14 @@
     "name": "Plague Spitter",
     "image": "0027_plague_spitter.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "black",
-    "spec": "disease",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "horror"
+      "HORROR"
     ],
     "legendary": false,
     "cardText": "Anti-air (Can attack fliers, but can ignore patrolling fliers. Deals combat damage to fliers it fights or that fly over this while it patrols.)Deals damage to units and heroes in the form of -1/-1 runes.",
@@ -3269,14 +3269,14 @@
     "name": "Gorgon",
     "image": "0033_gorgon.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "black",
-    "spec": "disease",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tech": 2,
     "attack": 2,
     "health": 4,
     "tags": [
-      "horror"
+      "HORROR"
     ],
     "legendary": false,
     "cardText": "Deathtouch (Combat damage this deals to units or heroes, even to their armor, kills them.)Dies: Draw a card.",
@@ -3286,14 +3286,14 @@
     "name": "Cursed Ghoul",
     "image": "0034_cursed_ghoul.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "black",
-    "spec": "disease",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tech": 2,
     "attack": 4,
     "health": 5,
     "tags": [
-      "ghoul"
+      "GHOUL"
     ],
     "legendary": false,
     "cardText": "Arrives: Put a -1/-1 rune on a unit.Unstoppable by units with -1/-1 runes. (Can ignore those patrollers when attacking.)",
@@ -3303,14 +3303,14 @@
     "name": "Cursed Crow",
     "image": "0035_cursed_crow.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "black",
-    "spec": "disease",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "bird"
+      "BIRD"
     ],
     "legendary": false,
     "cardText": "FlyingDamages a base: Defending player discards a card at random.",
@@ -3322,14 +3322,14 @@
     "name": "Abomination",
     "image": "0036_abomination.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "black",
-    "spec": "disease",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tech": 2,
     "attack": 6,
     "health": 6,
     "tags": [
-      "horror"
+      "HORROR"
     ],
     "legendary": false,
     "cardText": "All other units get -1/-1.",
@@ -3341,9 +3341,9 @@
     "name": "Plague Lab",
     "image": "0037_plague_lab.jpg",
     "cost": 3,
-    "type": "building",
-    "color": "black",
-    "spec": "disease",
+    "type": "BUILDING",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tech": 2,
     "health": 4,
     "tags": [],
@@ -3358,14 +3358,14 @@
     "name": "Plague Lord",
     "image": "0044_plague_lord.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "black",
-    "spec": "disease",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "DISEASE",
     "tech": 3,
     "attack": 4,
     "health": 7,
     "tags": [
-      "horror"
+      "HORROR"
     ],
     "legendary": false,
     "cardText": "Arrives or attacks: Put a -1/-1 rune on each opposing unit and hero.Upkeep: Each player's base takes 1 damage for each -1/-1 rune on their units and heroes.Resist 2",
@@ -3377,9 +3377,9 @@
     "name": "Garth Torken",
     "image": "0011_necromancy_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "HERO",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "levelBands": [
       {
         "level": 1,
@@ -3410,11 +3410,11 @@
     "name": "Nether Drain",
     "image": "0018_nether_drain.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -3428,11 +3428,11 @@
     "name": "Lich's Bargain",
     "image": "0019_lichs_bargain.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tags": [
-      "summon"
+      "SUMMON"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -3445,9 +3445,9 @@
     "name": "Doom Grasp",
     "image": "0020_doom_grasp.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -3461,9 +3461,9 @@
     "name": "Death Rites",
     "image": "0021_death_rites.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "SPELL",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tags": [],
     "ultimate": true,
     "ongoing": false,
@@ -3476,14 +3476,14 @@
     "name": "Hooded Executioner",
     "image": "0024_hooded_executioner.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Boost ③ (You may pay an additional ③ when you play this to get the boost effect.)If you boosted, destroy each opponent's weakest unit. (The lowest tech unit with the least ATK. You choose if there's a tie for least ATK.)",
@@ -3496,14 +3496,14 @@
     "name": "Bone Collector",
     "image": "0025_bone_collector.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "zombie"
+      "ZOMBIE"
     ],
     "legendary": false,
     "cardText": "Attacks: Summon a 1/1 black Skeleton token.",
@@ -3513,14 +3513,14 @@
     "name": "Blackhand Resurrector",
     "image": "0038_blackhand_resurrector.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "spellcaster"
+      "SPELLCASTER"
     ],
     "legendary": false,
     "cardText": "⤵, Sacrifice Blackhand Resurrector → Summon a hero from your command zone that died previously this game. It arrives at max level.",
@@ -3533,14 +3533,14 @@
     "name": "Skeletal Lord",
     "image": "0039_skeletal_lord.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "spellcaster"
+      "SPELLCASTER"
     ],
     "legendary": false,
     "cardText": "Your Skeletons get +1/+1.Exhaust five of your Skeletons → Put a unit from your hand into play.",
@@ -3553,14 +3553,14 @@
     "name": "Corpse Catapult",
     "image": "0040_corpse_catapult.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tech": 2,
     "attack": 1,
     "health": 4,
     "tags": [
-      "contraption"
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "Whenever one of your units dies, put a corpse rune on this.⤵, Remove two corpse runes → Deal 6 damage to a building.",
@@ -3570,14 +3570,14 @@
     "name": "Wight",
     "image": "0041_wight.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tech": 2,
     "attack": 4,
     "health": 4,
     "tags": [
-      "horror"
+      "HORROR"
     ],
     "legendary": false,
     "cardText": "Unstoppable when attacking heroes.Deathtouch when attacking heroes.",
@@ -3587,14 +3587,14 @@
     "name": "Necromancer",
     "image": "0042_necromancer.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "spellcaster"
+      "SPELLCASTER"
     ],
     "legendary": false,
     "cardText": "Long-range (Defenders without long-range deal no damage to this when it attacks.)Whenever another non-token unit of yours dies, summon a 1/1 black Skeleton token.",
@@ -3604,14 +3604,14 @@
     "name": "Lord of Shadows",
     "image": "0045_lord_of_shadows.jpg",
     "cost": 7,
-    "type": "unit",
-    "color": "black",
-    "spec": "necromancy",
+    "type": "UNIT",
+    "color": "BLACK",
+    "spec": "NECROMANCY",
     "tech": 3,
     "attack": 8,
     "health": 7,
     "tags": [
-      "overlord"
+      "OVERLORD"
     ],
     "legendary": false,
     "cardText": "Your black units are invisible. (To opponents without a detector, they are untargetable, unattackable, and can sneak past patrollers. While patrolling, they are attackable.)",
@@ -3623,14 +3623,14 @@
     "name": "Smoker",
     "image": "0000_smoker.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "white",
+    "type": "UNIT",
+    "color": "WHITE",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "ninja"
+      "NINJA"
     ],
     "legendary": false,
     "cardText": "Stealth (Can sneak past patrollers if that opponent has no detector.)When Smoker is ◎ by a spell or ability, return him to his owner's hand.",
@@ -3642,14 +3642,14 @@
     "name": "Savior Monk",
     "image": "0001_savior_monk.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "white",
+    "type": "UNIT",
+    "color": "WHITE",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "monk"
+      "MONK"
     ],
     "legendary": false,
     "cardText": "Healing 1 (During your upkeep, heal 1 damage from all friendly units and heroes.)",
@@ -3659,14 +3659,14 @@
     "name": "Fox Viper",
     "image": "0002_fox_viper.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "white",
+    "type": "UNIT",
+    "color": "WHITE",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 1,
     "tags": [
-      "ninja"
+      "NINJA"
     ],
     "legendary": false,
     "cardText": "Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.)",
@@ -3676,14 +3676,14 @@
     "name": "Aged Sensei",
     "image": "0003_aged_sensei.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "white",
+    "type": "UNIT",
+    "color": "WHITE",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "monk"
+      "MONK"
     ],
     "legendary": false,
     "cardText": "⤵ → Give a friendly unit or hero +1 ATK/+1 armor this turn. (Armor absorbs damage before HP and is then destroyed.)",
@@ -3693,14 +3693,14 @@
     "name": "Morningstar Flagbearer",
     "image": "0004_morningstar_flagbearer.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "white",
+    "type": "UNIT",
+    "color": "WHITE",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "flagbearer"
+      "FLAGBEARER"
     ],
     "legendary": false,
     "cardText": "Whenever an opponent plays a spell or ability that can ◎ a flagbearer, it must ◎ a flagbearer at least once.",
@@ -3710,14 +3710,14 @@
     "name": "Fox Primus",
     "image": "0005_fox_primus.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "white",
+    "type": "UNIT",
+    "color": "WHITE",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "ninja"
+      "NINJA"
     ],
     "legendary": false,
     "cardText": "Frenzy 1 (Gets +1 ATK on your turn.)Anti-air (Can attack fliers, but can ignore patrolling fliers. Deals combat damage to fliers it fights or that fly over this while it patrols.)",
@@ -3727,8 +3727,8 @@
     "name": "Safe Attacking",
     "image": "0006_safe_attacking.jpg",
     "cost": 1,
-    "type": "upgrade",
-    "color": "white",
+    "type": "UPGRADE",
+    "color": "WHITE",
     "spec": null,
     "tech": 0,
     "legendary": false,
@@ -3743,11 +3743,11 @@
     "name": "Sensei's Advice",
     "image": "0007_senseis_advice.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "white",
+    "type": "SPELL",
+    "color": "WHITE",
     "spec": null,
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -3758,8 +3758,8 @@
     "name": "Grappling Hook",
     "image": "0008_grappling_hook.jpg",
     "cost": 0,
-    "type": "spell",
-    "color": "white",
+    "type": "SPELL",
+    "color": "WHITE",
     "spec": null,
     "tags": [],
     "ultimate": false,
@@ -3773,8 +3773,8 @@
     "name": "Snapback",
     "image": "0009_snapback.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "white",
+    "type": "SPELL",
+    "color": "WHITE",
     "spec": null,
     "tags": [],
     "ultimate": false,
@@ -3790,9 +3790,9 @@
     "name": "Grave Stormborne",
     "image": "0015_discipline_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "white",
-    "spec": "discipline",
+    "type": "HERO",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "levelBands": [
       {
         "level": 1,
@@ -3822,9 +3822,9 @@
     "name": "Martial Mastery",
     "image": "0010_martial_mastery.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "white",
-    "spec": "discipline",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -3837,9 +3837,9 @@
     "name": "Versatile Style",
     "image": "0011_versatile_style.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "white",
-    "spec": "discipline",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -3850,11 +3850,11 @@
     "name": "Reversal",
     "image": "0012_reversal.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "white",
-    "spec": "discipline",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -3865,9 +3865,9 @@
     "name": "True Power of Storms",
     "image": "0013_true_power_of_storms.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "white",
-    "spec": "discipline",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tags": [],
     "ultimate": true,
     "ongoing": false,
@@ -3880,15 +3880,15 @@
     "name": "Rambasa Twin",
     "image": "0022_rambasa_twin.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "white",
-    "spec": "discipline",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tech": 1,
     "attack": 3,
     "health": 2,
     "tags": [
-      "tiger",
-      "monk"
+      "TIGER",
+      "MONK"
     ],
     "legendary": false,
     "cardText": "Arrives: You may put a Rambasa Twin from your codex into play.The first time a Rambasa Twin dies each turn, return him to his owner's codex.",
@@ -3900,14 +3900,14 @@
     "name": "Sparring Partner",
     "image": "0023_sparring_partner.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "white",
-    "spec": "discipline",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tech": 1,
     "attack": 2,
     "health": 2,
     "tags": [
-      "monk"
+      "MONK"
     ],
     "legendary": false,
     "cardText": "⤵ → Put a +1/+1 rune on a friendly unit or hero that doesn't have a +1/+1 rune.② → Ready Sparring Partner, but he can't attack this turn (he can only spar).",
@@ -3919,14 +3919,14 @@
     "name": "Young Lightning Dragon",
     "image": "0028_young_lightning_dragon.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "white",
-    "spec": "discipline",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "dragon"
+      "DRAGON"
     ],
     "legendary": false,
     "cardText": "Flying (Can fly over ground patrollers. Ground forces without anti-air can't attack this or deal combat damage to it when attacked.)① → Gets +1 ATK this turn. Thrice-per-turn.",
@@ -3938,15 +3938,15 @@
     "name": "Focus Master",
     "image": "0029_focus_master.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "white",
-    "spec": "discipline",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tech": 2,
     "attack": 4,
     "health": 3,
     "tags": [
-      "monk",
-      "mystic"
+      "MONK",
+      "MYSTIC"
     ],
     "legendary": false,
     "cardText": "Arrives: Put three focus runes on this.Whenever a friendly unit or hero would take exactly lethal damage, remove a focus rune to prevent 1 damage.",
@@ -3959,14 +3959,14 @@
     "name": "Vigor Adept",
     "image": "0030_vigor_adept.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "white",
-    "spec": "discipline",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tech": 2,
     "attack": 5,
     "health": 5,
     "tags": [
-      "monk"
+      "MONK"
     ],
     "legendary": false,
     "cardText": "Frenzy 1 (Gets +1 ATK on your turn.)Readiness (Doesn't exhaust to attack, but can only attack once per turn.)",
@@ -3976,15 +3976,15 @@
     "name": "Mind-Parry Monk",
     "image": "0031_mind_parry_monk.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "white",
-    "spec": "discipline",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tech": 2,
     "attack": 5,
     "health": 4,
     "tags": [
-      "monk",
-      "mystic"
+      "MONK",
+      "MYSTIC"
     ],
     "legendary": false,
     "cardText": "Opponents can't ◎ your units or heroes with spells or abilities.",
@@ -3996,9 +3996,9 @@
     "name": "Training Grounds",
     "image": "0032_training_grounds.jpg",
     "cost": 1,
-    "type": "building",
-    "color": "white",
-    "spec": "discipline",
+    "type": "BUILDING",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tech": 2,
     "health": 4,
     "tags": [],
@@ -4010,13 +4010,13 @@
     "name": "Hero's Monument",
     "image": "0043_heros_monument.jpg",
     "cost": 5,
-    "type": "building",
-    "color": "white",
-    "spec": "discipline",
+    "type": "BUILDING",
+    "color": "WHITE",
+    "spec": "DISCIPLINE",
     "tech": 3,
     "health": 6,
     "tags": [
-      "monument"
+      "MONUMENT"
     ],
     "legendary": true,
     "cardText": "UntargetableArrives: Summon an 8/8 legendary white Ghost token named \"Daigo Stormborne.\" He's indestructible, untargetable, and unstoppable, but can't patrol. Trash him when this leaves play.Your heroes get +1/+1.",
@@ -4026,9 +4026,9 @@
     "name": "Setsuki Hiruki",
     "image": "0016_ninjutsu_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "HERO",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "levelBands": [
       {
         "level": 1,
@@ -4058,11 +4058,11 @@
     "name": "Hidden Ninja",
     "image": "0014_hidden_ninja.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -4075,11 +4075,11 @@
     "name": "Speed of the Fox",
     "image": "0015_speed_of_the_fox.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -4090,9 +4090,9 @@
     "name": "Shuriken Hail",
     "image": "0016_shuriken_hail.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -4105,11 +4105,11 @@
     "name": "Fox's Den Students",
     "image": "0017_foxs_den_students.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tags": [
-      "summon"
+      "SUMMON"
     ],
     "ultimate": true,
     "ongoing": false,
@@ -4120,14 +4120,14 @@
     "name": "Inverse Power Ninja",
     "image": "0024_inverse_power_ninja.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tech": 1,
     "attack": 6,
     "health": 6,
     "tags": [
-      "ninja"
+      "NINJA"
     ],
     "legendary": false,
     "cardText": "Gets -1/-1 for each other unit or hero you have.",
@@ -4139,15 +4139,15 @@
     "name": "Fuzz Cuddles",
     "image": "0025_fuzz_cuddles.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tech": 1,
     "attack": 2,
     "health": 3,
     "tags": [
-      "cute",
-      "animal"
+      "CUTE",
+      "ANIMAL"
     ],
     "legendary": false,
     "cardText": "Healing 2 (During your upkeep, heal 2 damage from all friendly units and heroes.)",
@@ -4157,15 +4157,15 @@
     "name": "Flying Fox",
     "image": "0033_flying_fox.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tech": 2,
     "attack": 3,
     "health": 1,
     "tags": [
-      "ninja",
-      "contraption"
+      "NINJA",
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "Flying (Can fly over ground patrollers. Ground forces without anti-air can't attack this or deal combat damage to it when attacked.)",
@@ -4175,14 +4175,14 @@
     "name": "Glorious Ninja",
     "image": "0034_glorious_ninja.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tech": 2,
     "attack": 4,
     "health": 3,
     "tags": [
-      "ninja"
+      "NINJA"
     ],
     "legendary": false,
     "cardText": "HasteSwift Strike (Deals its combat damage before units and heroes without swift strike.)",
@@ -4192,15 +4192,15 @@
     "name": "Porcupine",
     "image": "0035_porcupine.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tech": 2,
     "attack": 2,
     "health": 6,
     "tags": [
-      "cute",
-      "animal"
+      "CUTE",
+      "ANIMAL"
     ],
     "legendary": false,
     "cardText": "Deathtouch (Combat damage this deals to units or heroes, even to their armor, kills them.)",
@@ -4210,16 +4210,16 @@
     "name": "Masked Raccoon",
     "image": "0036_masked_raccoon.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tech": 2,
     "attack": 3,
     "health": 4,
     "tags": [
-      "cute",
-      "animal",
-      "ninja"
+      "CUTE",
+      "ANIMAL",
+      "NINJA"
     ],
     "legendary": false,
     "cardText": "Unstoppable by units if you have another Ninja.Unattackable by units if you have another Cute Animal.",
@@ -4229,9 +4229,9 @@
     "name": "Fox's Den School",
     "image": "0037_foxs_den_school.jpg",
     "cost": 4,
-    "type": "building",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "BUILDING",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tech": 2,
     "health": 4,
     "tags": [],
@@ -4245,14 +4245,14 @@
     "name": "Jade Fox, Den's Headmistress",
     "image": "0044_jade_fox.jpg",
     "cost": 8,
-    "type": "unit",
-    "color": "white",
-    "spec": "ninjutsu",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "NINJUTSU",
     "tech": 3,
     "attack": 4,
     "health": 6,
     "tags": [
-      "ninja"
+      "NINJA"
     ],
     "legendary": true,
     "cardText": "Arrives: Summon four 1/1 white Ninja tokens.Your Ninjas have flying and swift strike.",
@@ -4265,9 +4265,9 @@
     "name": "Garus Rook",
     "image": "0017_strength_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "white",
-    "spec": "strength",
+    "type": "HERO",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "levelBands": [
       {
         "level": 1,
@@ -4297,11 +4297,11 @@
     "name": "Bird's Nest",
     "image": "0018_birds_nest.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "white",
-    "spec": "strength",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tags": [
-      "summon"
+      "SUMMON"
     ],
     "ultimate": false,
     "ongoing": true,
@@ -4315,11 +4315,11 @@
     "name": "Entangling Vines",
     "image": "0019_entangling_vines.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "white",
-    "spec": "strength",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": true,
@@ -4330,11 +4330,11 @@
     "name": "Thunderclap",
     "image": "0020_thunderclap.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "white",
-    "spec": "strength",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -4348,9 +4348,9 @@
     "name": "Earthquake",
     "image": "0021_earthquake.jpg",
     "cost": 5,
-    "type": "spell",
-    "color": "white",
-    "spec": "strength",
+    "type": "SPELL",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tags": [],
     "ultimate": true,
     "ongoing": false,
@@ -4363,9 +4363,9 @@
     "name": "Mythmaking",
     "image": "0026_mythmaking.jpg",
     "cost": 2,
-    "type": "upgrade",
-    "color": "white",
-    "spec": "strength",
+    "type": "UPGRADE",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tech": 1,
     "legendary": true,
     "tags": [],
@@ -4376,14 +4376,14 @@
     "name": "Ardra's Boulder",
     "image": "0027_ardras_boulder.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "white",
-    "spec": "strength",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tech": 1,
     "attack": 0,
     "health": 6,
     "tags": [
-      "rock"
+      "ROCK"
     ],
     "legendary": true,
     "cardText": "",
@@ -4393,14 +4393,14 @@
     "name": "Doubling Barbarbarian",
     "image": "0038_doubling_barbarbarian.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "white",
-    "spec": "strength",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tech": 2,
     "attack": 3,
     "health": 5,
     "tags": [
-      "warrior"
+      "WARRIOR"
     ],
     "legendary": false,
     "cardText": "Overpower (Excess combat damage this would deal to a patroller hits something else this could attack.)Whenever he would gain ATK, HP, or armor, he gains double that much instead.",
@@ -4414,14 +4414,14 @@
     "name": "Whitestar Grappler",
     "image": "0039_whitestar_grappler.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "white",
-    "spec": "strength",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tech": 2,
     "attack": 3,
     "health": 5,
     "tags": [
-      "warrior"
+      "WARRIOR"
     ],
     "legendary": false,
     "cardText": "⤵ → Deal 4 damage to a unit. If it's still alive, it deals its ATK to Whitestar Grappler. Sideline it if it was patrolling.",
@@ -4431,14 +4431,14 @@
     "name": "Colossus",
     "image": "0040_colossus.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "white",
-    "spec": "strength",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tech": 2,
     "attack": 6,
     "health": 7,
     "tags": [
-      "golem"
+      "GOLEM"
     ],
     "legendary": false,
     "cardText": "Unstoppable when attacking a base.",
@@ -4448,14 +4448,14 @@
     "name": "Jefferson DeGrey, Ghostly Diplomat",
     "image": "0041_jefferson_degrey.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "white",
-    "spec": "strength",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tech": 2,
     "attack": 4,
     "health": 3,
     "tags": [
-      "barrister"
+      "BARRISTER"
     ],
     "legendary": true,
     "cardText": "Arrives: Destroy all tokens.",
@@ -4465,9 +4465,9 @@
     "name": "Morningstar Pass",
     "image": "0042_morningstar_pass.jpg",
     "cost": 4,
-    "type": "building",
-    "color": "white",
-    "spec": "strength",
+    "type": "BUILDING",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tech": 2,
     "health": 4,
     "tags": [],
@@ -4481,14 +4481,14 @@
     "name": "Oathkeeper of Kor Mountain",
     "image": "0045_oathkeeper_of_kor_mountain.jpg",
     "cost": 7,
-    "type": "unit",
-    "color": "white",
-    "spec": "strength",
+    "type": "UNIT",
+    "color": "WHITE",
+    "spec": "STRENGTH",
     "tech": 3,
     "attack": 7,
     "health": 8,
     "tags": [
-      "warrior"
+      "WARRIOR"
     ],
     "legendary": true,
     "cardText": "Arrives: Choose an oath: \"I won't play cards from my hand besides workers\" or \"I will skip my draw/discard phase.\" You can't break that oath while Oathkeeper is in play.Swift strike, resist 2② → Sideline all patrolling units.",
@@ -4501,14 +4501,14 @@
     "name": "Neo Plexus",
     "image": "0000_neo_plexus.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "purple",
+    "type": "UNIT",
+    "color": "PURPLE",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "",
@@ -4518,14 +4518,14 @@
     "name": "Plasmodium",
     "image": "0001_plasmodium.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "purple",
+    "type": "UNIT",
+    "color": "PURPLE",
     "spec": null,
     "tech": 0,
     "attack": 4,
     "health": 4,
     "tags": [
-      "beast"
+      "BEAST"
     ],
     "legendary": false,
     "cardText": "Forecast 3 (Starts off in the future, not in play. Put three time runes on this and remove one each upkeep. When you remove the last, it arrives.)Haste (Can attack and play ⤵ abilities, if he had any, the turn he arrives.)",
@@ -4535,15 +4535,15 @@
     "name": "Nullcraft",
     "image": "0002_nullcraft.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "purple",
+    "type": "UNIT",
+    "color": "PURPLE",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "mech",
-      "airship"
+      "MECH",
+      "AIRSHIP"
     ],
     "legendary": false,
     "cardText": "Flying, hasteCan't be the ◎ of Buff or Debuff spells.",
@@ -4555,14 +4555,14 @@
     "name": "Fading Argonaut",
     "image": "0003_fading_argonaut.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "purple",
+    "type": "UNIT",
+    "color": "PURPLE",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 3,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Fading 3 (Arrives with three time runes. Remove one each upkeep. When you remove the last, sacrifice this.)",
@@ -4572,14 +4572,14 @@
     "name": "Tinkerer",
     "image": "0004_tinkerer.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "purple",
+    "type": "UNIT",
+    "color": "PURPLE",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 2,
     "tags": [
-      "scientist"
+      "SCIENTIST"
     ],
     "legendary": false,
     "cardText": "⤵ → Add or remove a time rune from a card (or forcasted card) with at least one time rune.",
@@ -4591,15 +4591,15 @@
     "name": "Hardened Mox",
     "image": "0005_hardened_mox.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "purple",
+    "type": "UNIT",
+    "color": "PURPLE",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "mech",
-      "soldier"
+      "MECH",
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Indestructible (If this would die, exhaust it and remove all damage and attachments from it instead. You can't sacrifice it.)When you have a tech II unit (even a forecasted one), trash Hardened Mox.",
@@ -4611,8 +4611,8 @@
     "name": "Battle Suits",
     "image": "0006_battle_suits.jpg",
     "cost": 2,
-    "type": "upgrade",
-    "color": "purple",
+    "type": "UPGRADE",
+    "color": "PURPLE",
     "spec": null,
     "tech": 0,
     "legendary": false,
@@ -4624,8 +4624,8 @@
     "name": "Time Spiral",
     "image": "0007_time_spiral.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "purple",
+    "type": "SPELL",
+    "color": "PURPLE",
     "spec": null,
     "tags": [],
     "ultimate": false,
@@ -4639,8 +4639,8 @@
     "name": "Temporal Research",
     "image": "0008_temporal_research.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "purple",
+    "type": "SPELL",
+    "color": "PURPLE",
     "spec": null,
     "tags": [],
     "ultimate": false,
@@ -4655,11 +4655,11 @@
     "name": "Forgotten Fighter",
     "image": "0009_forgotten_fighter.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "purple",
+    "type": "SPELL",
+    "color": "PURPLE",
     "spec": null,
     "tags": [
-      "bounce"
+      "BOUNCE"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -4670,9 +4670,9 @@
     "name": "Prynn Pasternaak",
     "image": "0012_past_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "purple",
-    "spec": "past",
+    "type": "HERO",
+    "color": "PURPLE",
+    "spec": "PAST",
     "levelBands": [
       {
         "level": 1,
@@ -4706,9 +4706,9 @@
     "name": "Vortoss Emblem",
     "image": "0010_vortoss_emblem.jpg",
     "cost": 0,
-    "type": "spell",
-    "color": "purple",
-    "spec": "past",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tags": [],
     "ultimate": false,
     "ongoing": true,
@@ -4721,11 +4721,11 @@
     "name": "Undo",
     "image": "0011_undo.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "purple",
-    "spec": "past",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tags": [
-      "bounce"
+      "BOUNCE"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -4738,9 +4738,9 @@
     "name": "Origin Story",
     "image": "0012_origin_story.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "purple",
-    "spec": "past",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -4753,11 +4753,11 @@
     "name": "Rewind",
     "image": "0013_rewind.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "purple",
-    "spec": "past",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tags": [
-      "bounce"
+      "BOUNCE"
     ],
     "ultimate": true,
     "ongoing": false,
@@ -4770,14 +4770,14 @@
     "name": "Seer",
     "image": "0022_seer.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "purple",
-    "spec": "past",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tech": 1,
     "attack": 2,
     "health": 1,
     "tags": [
-      "mystic"
+      "MYSTIC"
     ],
     "legendary": false,
     "cardText": "Arrives: You may add or remove a time rune from a card (or forcasted card) with at least one time rune.",
@@ -4789,14 +4789,14 @@
     "name": "Stewardess of the Undone",
     "image": "0023_stewardess_of_the_undone.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "purple",
-    "spec": "past",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tech": 1,
     "attack": 2,
     "health": 3,
     "tags": [
-      "mystic"
+      "MYSTIC"
     ],
     "legendary": false,
     "cardText": "Arrives: You may return a tech 0 unit to its owner's hand.",
@@ -4808,15 +4808,15 @@
     "name": "Shimmer Ray",
     "image": "0028_shimmer_ray.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "purple",
-    "spec": "past",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tech": 2,
     "attack": 3,
     "health": 4,
     "tags": [
-      "mech",
-      "airship"
+      "MECH",
+      "AIRSHIP"
     ],
     "legendary": false,
     "cardText": "Flying, Fading 2 (Arrives with two time runes. Remove one each upkeep. When you remove the last, sacrifice this.)Discard a card → Add a time rune to this.",
@@ -4828,14 +4828,14 @@
     "name": "Yesterday's Golgort",
     "image": "0029_yesterdays_golgort.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "purple",
-    "spec": "past",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tech": 2,
     "attack": 6,
     "health": 4,
     "tags": [
-      "beast"
+      "BEAST"
     ],
     "legendary": false,
     "cardText": "Fading 2 (Arrives with two time runes. Remove one each upkeep. When you remove the last, sacrifice this.)Whenever you deal combat damage to a building, put a time rune on this.",
@@ -4847,14 +4847,14 @@
     "name": "Rememberer",
     "image": "0030_rememberer.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "purple",
-    "spec": "past",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "mystic"
+      "MYSTIC"
     ],
     "legendary": false,
     "cardText": "Fading 3Whenever you remove a time rune from Rememberer, you may put a unit with fading from your discard pile into play if you meet the tech requirements for it.",
@@ -4869,9 +4869,9 @@
     "name": "Second Chances",
     "image": "0031_second_chances.jpg",
     "cost": 2,
-    "type": "upgrade",
-    "color": "purple",
-    "spec": "past",
+    "type": "UPGRADE",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tech": 2,
     "legendary": false,
     "tags": [],
@@ -4888,9 +4888,9 @@
     "name": "Slow-Time Generator",
     "image": "0032_slow_time_generator.jpg",
     "cost": 5,
-    "type": "building",
-    "color": "purple",
-    "spec": "past",
+    "type": "BUILDING",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tech": 2,
     "health": 2,
     "tags": [],
@@ -4904,14 +4904,14 @@
     "name": "Ebbflow Archon",
     "image": "0043_ebbflow_archon.jpg",
     "cost": 8,
-    "type": "unit",
-    "color": "purple",
-    "spec": "past",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PAST",
     "tech": 3,
     "attack": 12,
     "health": 12,
     "tags": [
-      "archon"
+      "ARCHON"
     ],
     "legendary": false,
     "cardText": "Fading 7 (Arrives with seven time runes. Remove one each upkeep. When you remove the last, sacrifice this.)Gets -1/-1 for each time rune on it.Remove a time rune → Return a unit to its owner's hand or a hero to its command zone.",
@@ -4921,9 +4921,9 @@
     "name": "Max Geiger",
     "image": "0013_present_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "purple",
-    "spec": "present",
+    "type": "HERO",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "levelBands": [
       {
         "level": 1,
@@ -4954,9 +4954,9 @@
     "name": "Temporal Distortion",
     "image": "0014_temporal_distortion.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "purple",
-    "spec": "present",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -4970,11 +4970,11 @@
     "name": "Now!",
     "image": "0015_now.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "purple",
-    "spec": "present",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -4985,9 +4985,9 @@
     "name": "Ready or Not",
     "image": "0016_ready_or_not.jpg",
     "cost": 4,
-    "type": "spell",
-    "color": "purple",
-    "spec": "present",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -5001,9 +5001,9 @@
     "name": "Research & Development",
     "image": "0017_research__development.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "purple",
-    "spec": "present",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tags": [],
     "ultimate": true,
     "ongoing": false,
@@ -5017,14 +5017,14 @@
     "name": "Argonaut",
     "image": "0024_argonaut.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "purple",
-    "spec": "present",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tech": 1,
     "attack": 3,
     "health": 4,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Readiness (Doesn't exhaust to attack, but can only attack once per turn.)",
@@ -5034,15 +5034,15 @@
     "name": "Sentry",
     "image": "0025_sentry.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "purple",
-    "spec": "present",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tech": 1,
     "attack": 3,
     "health": 2,
     "tags": [
-      "mech",
-      "drone"
+      "MECH",
+      "DRONE"
     ],
     "legendary": false,
     "cardText": "Sparkshot, anti-airPrevent the first damage per turn that a spell or ability would deal to one of your patrollers. (Choose randomly if multiple patrollers are damaged at once.)",
@@ -5054,14 +5054,14 @@
     "name": "Chronofixer",
     "image": "0033_chronofixer.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "purple",
-    "spec": "present",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tech": 2,
     "attack": 1,
     "health": 1,
     "tags": [
-      "mystic"
+      "MYSTIC"
     ],
     "legendary": false,
     "cardText": "UntargetableOpposing heroes can't level up.",
@@ -5074,14 +5074,14 @@
     "name": "Hyperion",
     "image": "0034_hyperion.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "purple",
-    "spec": "present",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tech": 2,
     "attack": 4,
     "health": 5,
     "tags": [
-      "soldier"
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "HasteAttacks: Draw a card.",
@@ -5091,14 +5091,14 @@
     "name": "Warp Gate Disciple",
     "image": "0035_warp_gate_disciple.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "purple",
-    "spec": "present",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tech": 2,
     "attack": 1,
     "health": 1,
     "tags": [
-      "mystic"
+      "MYSTIC"
     ],
     "legendary": false,
     "cardText": "①, ⤵ → Put a tech I or II unit from your codex into play. (You don't have to meet the tech reqs for it.)",
@@ -5110,14 +5110,14 @@
     "name": "Immortal",
     "image": "0036_immortal.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "purple",
-    "spec": "present",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tech": 2,
     "attack": 5,
     "health": 5,
     "tags": [
-      "mech"
+      "MECH"
     ],
     "legendary": false,
     "cardText": "Indestructible (If this would die, exhaust it and remove all damage and attachments from it instead. You can't sacrifice it.)",
@@ -5127,15 +5127,15 @@
     "name": "Tricycloid",
     "image": "0037_tricycloid.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "purple",
-    "spec": "present",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "mech",
-      "drone"
+      "MECH",
+      "DRONE"
     ],
     "legendary": false,
     "cardText": "Arrives: Put three time runes on this.Gets +1/+1 for each time rune on it.Remove a time rune → Deal 1 damage to a unit, hero, or building.",
@@ -5147,14 +5147,14 @@
     "name": "Octavian",
     "image": "0044_octavian.jpg",
     "cost": 8,
-    "type": "unit",
-    "color": "purple",
-    "spec": "present",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "PRESENT",
     "tech": 3,
     "attack": 8,
     "health": 8,
     "tags": [
-      "behemoth"
+      "BEHEMOTH"
     ],
     "legendary": false,
     "cardText": "⑧, ⤵ → Ready Octavian and disable up to eight units and/or heroes. (Exhaust them and they don't ready during their next ready step. Sideline them if they were patrolling.)",
@@ -5164,9 +5164,9 @@
     "name": "Vir Garbarean",
     "image": "0014_future_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "purple",
-    "spec": "future",
+    "type": "HERO",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "levelBands": [
       {
         "level": 1,
@@ -5198,9 +5198,9 @@
     "name": "Promise of Payment",
     "image": "0018_promise_of_payment.jpg",
     "cost": 0,
-    "type": "spell",
-    "color": "purple",
-    "spec": "future",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -5220,11 +5220,11 @@
     "name": "Unphase",
     "image": "0019_unphase.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "purple",
-    "spec": "future",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -5235,9 +5235,9 @@
     "name": "Assimilate",
     "image": "0020_assimilate.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "purple",
-    "spec": "future",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -5254,9 +5254,9 @@
     "name": "Double Time",
     "image": "0021_double_time.jpg",
     "cost": 6,
-    "type": "spell",
-    "color": "purple",
-    "spec": "future",
+    "type": "SPELL",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tags": [],
     "ultimate": true,
     "ongoing": false,
@@ -5269,15 +5269,15 @@
     "name": "Knight of the Conclave",
     "image": "0026_Knight_of_the_Conclave.jpg",
     "cost": 0,
-    "type": "unit",
-    "color": "purple",
-    "spec": "future",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tech": 1,
     "attack": 4,
     "health": 4,
     "tags": [
-      "mech",
-      "soldier"
+      "MECH",
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "Forecast 3 (Starts off in the future, not in play. Put three time runes on this and remove one each upkeep. When you remove the last, it arrives.)Resist 1 (Opponents must pay ① each time they would ◎ this with a spell or ability.)",
@@ -5287,15 +5287,15 @@
     "name": "Gilded Glaxx",
     "image": "0027_gilded_glaxx.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "purple",
-    "spec": "future",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tech": 1,
     "attack": 3,
     "health": 4,
     "tags": [
-      "mech",
-      "soldier"
+      "MECH",
+      "SOLDIER"
     ],
     "legendary": false,
     "cardText": "While you have gold in your gold pile, you can't sacrifice Gilded Glaxx and he can't leave play unless he dies from combat damage.",
@@ -5310,15 +5310,15 @@
     "name": "Omegacron",
     "image": "0038_omegacron.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "purple",
-    "spec": "future",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tech": 2,
     "attack": 9,
     "health": 7,
     "tags": [
-      "mech",
-      "drone"
+      "MECH",
+      "DRONE"
     ],
     "legendary": false,
     "cardText": "Forecast 6, Haste, untargetableSacrifice a unit, hero, worker, or upgrade → Remove a time rune from Omegacron while it's forecasted.",
@@ -5330,15 +5330,15 @@
     "name": "Reaver",
     "image": "0039_reaver.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "purple",
-    "spec": "future",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tech": 2,
     "attack": 0,
     "health": 4,
     "tags": [
-      "mech",
-      "drone"
+      "MECH",
+      "DRONE"
     ],
     "legendary": false,
     "cardText": "Forecast 2 (Starts off in the future, not in play. Put two time runes on this and remove one each upkeep. When you remove the last, it arrives.)①, ⤵, Discard a card → Choose one: Trash 2 workers. Deal 6 damage to up to 2 units and/or heroes.",
@@ -5351,15 +5351,15 @@
     "name": "Void Star",
     "image": "0040_void_star.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "purple",
-    "spec": "future",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tech": 2,
     "attack": 5,
     "health": 4,
     "tags": [
-      "mech",
-      "airship"
+      "MECH",
+      "AIRSHIP"
     ],
     "legendary": false,
     "cardText": "Flying, overpower④ → Gets +4 ATK until your next upkeep. Once-per-turn.",
@@ -5369,15 +5369,15 @@
     "name": "Xenostalker",
     "image": "0041_xenostalker.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "purple",
-    "spec": "future",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tech": 2,
     "attack": 3,
     "health": 6,
     "tags": [
-      "mech",
-      "drone"
+      "MECH",
+      "DRONE"
     ],
     "legendary": false,
     "cardText": "Unstoppable (Can ignore patrollers when attacking.)Attacks: Deal 1 damage to up to four patrollers without flying.",
@@ -5389,15 +5389,15 @@
     "name": "Hive",
     "image": "0042_hive.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "purple",
-    "spec": "future",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tech": 2,
     "attack": 0,
     "health": 6,
     "tags": [
-      "mech",
-      "airship"
+      "MECH",
+      "AIRSHIP"
     ],
     "legendary": false,
     "cardText": "Flying, resist 1Arrives: Summon five 1/1 purple Stinger tokens with flying.① → Re-summon a lost Stinger (limit: 5 per Hive.)",
@@ -5410,15 +5410,15 @@
     "name": "Nebula",
     "image": "0045_nebula.jpg",
     "cost": 7,
-    "type": "unit",
-    "color": "purple",
-    "spec": "future",
+    "type": "UNIT",
+    "color": "PURPLE",
+    "spec": "FUTURE",
     "tech": 3,
     "attack": 7,
     "health": 6,
     "tags": [
-      "mech",
-      "airship"
+      "MECH",
+      "AIRSHIP"
     ],
     "legendary": false,
     "cardText": "Flying, resist 3Your other units are invisible.⓪ → Destroy a tech 0, I, or II unit. Once-per-turn.",
@@ -5430,14 +5430,14 @@
     "name": "Timely Messenger",
     "image": "0003_timely_messenger.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "neutral",
+    "type": "UNIT",
+    "color": "NEUTRAL",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 1,
     "tags": [
-      "mercenary"
+      "MERCENARY"
     ],
     "legendary": false,
     "cardText": "Haste (Can attack and play ⤵ abilities, if he had any, the turn he arrives.)",
@@ -5447,14 +5447,14 @@
     "name": "Tenderfoot",
     "image": "0004_tenderfoot.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "neutral",
+    "type": "UNIT",
+    "color": "NEUTRAL",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 2,
     "tags": [
-      "virtuoso"
+      "VIRTUOSO"
     ],
     "legendary": false,
     "cardText": "",
@@ -5464,14 +5464,14 @@
     "name": "Older Brother",
     "image": "0005_older_brother.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "neutral",
+    "type": "UNIT",
+    "color": "NEUTRAL",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "drunkard"
+      "DRUNKARD"
     ],
     "legendary": false,
     "cardText": "",
@@ -5481,14 +5481,14 @@
     "name": "Brick Thief",
     "image": "0006_brick_thief.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "neutral",
+    "type": "UNIT",
+    "color": "NEUTRAL",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 1,
     "tags": [
-      "mercenary"
+      "MERCENARY"
     ],
     "legendary": false,
     "cardText": "Arrives or attacks: Deal 1 damage to a building and repair 1 damage from another building.Resist 1 (Opponents must pay ① each time they would ◎ this with a spell or ability.)",
@@ -5501,15 +5501,15 @@
     "name": "Helpful Turtle",
     "image": "0007_helpful_turtle.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "neutral",
+    "type": "UNIT",
+    "color": "NEUTRAL",
     "spec": null,
     "tech": 0,
     "attack": 1,
     "health": 2,
     "tags": [
-      "cute",
-      "animal"
+      "CUTE",
+      "ANIMAL"
     ],
     "legendary": false,
     "cardText": "Healing 1 (During your upkeep, heal 1 damage from all friendly units and heroes.)",
@@ -5519,14 +5519,14 @@
     "name": "Granfalloon Flagbearer",
     "image": "0008_granfalloon_flagbearer.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "neutral",
+    "type": "UNIT",
+    "color": "NEUTRAL",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "flagbearer"
+      "FLAGBEARER"
     ],
     "legendary": false,
     "cardText": "Whenever an opponent plays a spell or ability that can ◎ a flagbearer, it must ◎ a flagbearer at least once.",
@@ -5536,14 +5536,14 @@
     "name": "Fruit Ninja",
     "image": "0009_fruit_ninja.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "neutral",
+    "type": "UNIT",
+    "color": "NEUTRAL",
     "spec": null,
     "tech": 0,
     "attack": 2,
     "health": 2,
     "tags": [
-      "ninja"
+      "NINJA"
     ],
     "legendary": false,
     "cardText": "Frenzy 1 (Gets +1 ATK on your turn.)",
@@ -5553,11 +5553,11 @@
     "name": "Spark",
     "image": "0010_spark.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "neutral",
+    "type": "SPELL",
+    "color": "NEUTRAL",
     "spec": null,
     "tags": [
-      "burn"
+      "BURN"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -5568,11 +5568,11 @@
     "name": "Bloom",
     "image": "0011_bloom.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "neutral",
+    "type": "SPELL",
+    "color": "NEUTRAL",
     "spec": null,
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -5583,11 +5583,11 @@
     "name": "Wither",
     "image": "0012_wither.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "neutral",
+    "type": "SPELL",
+    "color": "NEUTRAL",
     "spec": null,
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -5600,9 +5600,9 @@
     "name": "Troq Bashar",
     "image": "0020_bashing_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "HERO",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "levelBands": [
       {
         "level": 1,
@@ -5632,9 +5632,9 @@
     "name": "Wrecking Ball",
     "image": "0021_wrecking_ball.jpg",
     "cost": 0,
-    "type": "spell",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "SPELL",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tags": [],
     "ultimate": false,
     "ongoing": false,
@@ -5645,11 +5645,11 @@
     "name": "The Boot",
     "image": "0022_the_boot.jpg",
     "cost": 3,
-    "type": "spell",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "SPELL",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -5662,11 +5662,11 @@
     "name": "Intimidate",
     "image": "0023_intimidate.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "SPELL",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -5679,11 +5679,11 @@
     "name": "Final Smash",
     "image": "0024_final_smash.jpg",
     "cost": 6,
-    "type": "spell",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "SPELL",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": true,
     "ongoing": false,
@@ -5698,14 +5698,14 @@
     "name": "Iron Man",
     "image": "0013_iron_man.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tech": 1,
     "attack": 3,
     "health": 4,
     "tags": [
-      "mercenary"
+      "MERCENARY"
     ],
     "legendary": false,
     "cardText": "",
@@ -5715,14 +5715,14 @@
     "name": "Revolver Ocelot",
     "image": "0014_revolver_ocelot.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tech": 1,
     "attack": 3,
     "health": 3,
     "tags": [
-      "leopard"
+      "LEOPARD"
     ],
     "legendary": false,
     "cardText": "Sparkshot (When attacking a patroller, deals 1 damage to an adjacent patroller.)",
@@ -5732,14 +5732,14 @@
     "name": "Hired Stomper",
     "image": "0015_hired_stomper.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tech": 2,
     "attack": 4,
     "health": 3,
     "tags": [
-      "lizardman"
+      "LIZARDMAN"
     ],
     "legendary": false,
     "cardText": "Arrives: Deal 3 damage to a unit. (Heroes aren't units.)",
@@ -5749,14 +5749,14 @@
     "name": "Regular-sized Rhinoceros",
     "image": "0016_regular_sized_rhinoceros.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tech": 2,
     "attack": 5,
     "health": 6,
     "tags": [
-      "rhino"
+      "RHINO"
     ],
     "legendary": false,
     "cardText": "",
@@ -5766,14 +5766,14 @@
     "name": "Sneaky Pig",
     "image": "0017_sneaky_pig.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "pig"
+      "PIG"
     ],
     "legendary": false,
     "cardText": "HasteArrives: Gets stealth this turn. (Can sneak past patrollers if that opponent has no detector.)",
@@ -5783,14 +5783,14 @@
     "name": "Eggship",
     "image": "0018_eggship.jpg",
     "cost": 4,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tech": 2,
     "attack": 4,
     "health": 3,
     "tags": [
-      "contraption"
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "Flying (Can fly over ground patrollers. Ground forces without anti-air can't attack this or deal combat damage to it when attacked.)",
@@ -5800,14 +5800,14 @@
     "name": "Harvest Reaper",
     "image": "0019_harvest_reaper.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tech": 2,
     "attack": 6,
     "health": 5,
     "tags": [
-      "contraption"
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "Overpower (Excess combat damage this would deal to a patroller hits something else this could attack.)",
@@ -5817,14 +5817,14 @@
     "name": "Trojan Duck",
     "image": "0020_trojan_duck.jpg",
     "cost": 7,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "bashing",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "BASHING",
     "tech": 3,
     "attack": 8,
     "health": 9,
     "tags": [
-      "contraption"
+      "CONTRAPTION"
     ],
     "legendary": false,
     "cardText": "Obliterate 2 (Whenever this attacks, destroy the defender's two lowest tech units first.)Arrives or attacks: Deal 4 damage to a building.",
@@ -5837,9 +5837,9 @@
     "name": "River Montoya",
     "image": "0021_finesse_hero.jpg",
     "cost": 2,
-    "type": "hero",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "HERO",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "levelBands": [
       {
         "level": 1,
@@ -5869,11 +5869,11 @@
     "name": "Harmony",
     "image": "0033_harmony.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "SPELL",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": true,
@@ -5889,11 +5889,11 @@
     "name": "Discord",
     "image": "0034_discord.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "SPELL",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": false,
     "ongoing": false,
@@ -5906,11 +5906,11 @@
     "name": "Two Step",
     "image": "0035_two_step.jpg",
     "cost": 2,
-    "type": "spell",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "SPELL",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tags": [
-      "buff"
+      "BUFF"
     ],
     "ultimate": false,
     "ongoing": true,
@@ -5924,11 +5924,11 @@
     "name": "Appel Stomp",
     "image": "0036_appel_stomp.jpg",
     "cost": 1,
-    "type": "spell",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "SPELL",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tags": [
-      "debuff"
+      "DEBUFF"
     ],
     "ultimate": true,
     "ongoing": false,
@@ -5941,14 +5941,14 @@
     "name": "Nimble Fencer",
     "image": "0025_nimble_fencer.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tech": 1,
     "attack": 2,
     "health": 3,
     "tags": [
-      "virtuoso"
+      "VIRTUOSO"
     ],
     "legendary": false,
     "cardText": "Your virtuosos have haste. (Can attack and ⤵ the turn they arrive.)",
@@ -5960,14 +5960,14 @@
     "name": "Star-Crossed Starlet",
     "image": "0026_star_crossed_starlet.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tech": 1,
     "attack": 3,
     "health": 2,
     "tags": [
-      "virtuoso"
+      "VIRTUOSO"
     ],
     "legendary": false,
     "cardText": "Upkeep: This takes 1 damage.This gets +1 ATK for each damage on her.",
@@ -5980,14 +5980,14 @@
     "name": "Grounded Guide",
     "image": "0027_grounded_guide.jpg",
     "cost": 5,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tech": 2,
     "attack": 4,
     "health": 4,
     "tags": [
-      "thespian"
+      "THESPIAN"
     ],
     "legendary": false,
     "cardText": "Your other units get +1 ATK.Your Virtuosos get +2/+1, instead.",
@@ -5999,14 +5999,14 @@
     "name": "Maestro",
     "image": "0028_maestro.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tech": 2,
     "attack": 3,
     "health": 5,
     "tags": [
-      "thespian"
+      "THESPIAN"
     ],
     "legendary": false,
     "cardText": "Your virtuosos cost ⓪ to play and gain \"⤵ → Deal 2 damage to a building. ◎\"",
@@ -6018,14 +6018,14 @@
     "name": "Backstabber",
     "image": "0029_backstabber.jpg",
     "cost": 3,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tech": 2,
     "attack": 3,
     "health": 3,
     "tags": [
-      "rogue"
+      "ROGUE"
     ],
     "legendary": false,
     "cardText": "Invisible (To opponents without a detector, this is untargetable, unattackable, and can sneak past patrollers. While patrolling, this is attackable.)",
@@ -6035,14 +6035,14 @@
     "name": "Cloud Sprite",
     "image": "0030_cloud_sprite.jpg",
     "cost": 2,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tech": 2,
     "attack": 3,
     "health": 2,
     "tags": [
-      "fairy"
+      "FAIRY"
     ],
     "legendary": false,
     "cardText": "Flying (Can fly over ground patrollers. Ground forces without anti-air can't attack this or deal combat damage to it when attacked.)",
@@ -6052,14 +6052,14 @@
     "name": "Leaping Lizard",
     "image": "0031_leaping_lizard.jpg",
     "cost": 1,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tech": 2,
     "attack": 3,
     "health": 5,
     "tags": [
-      "lizardman"
+      "LIZARDMAN"
     ],
     "legendary": false,
     "cardText": "Anti-air (Can attack fliers, but can ignore patrolling fliers. Deals combat damage to fliers it fights or that fly over this while it patrols.)",
@@ -6069,14 +6069,14 @@
     "name": "Blademaster",
     "image": "0032_blademaster.jpg",
     "cost": 6,
-    "type": "unit",
-    "color": "neutral",
-    "spec": "finesse",
+    "type": "UNIT",
+    "color": "NEUTRAL",
+    "spec": "FINESSE",
     "tech": 3,
     "attack": 7,
     "health": 5,
     "tags": [
-      "virtuoso"
+      "VIRTUOSO"
     ],
     "legendary": false,
     "cardText": "Your units and heroes have swift strike. (They deal combat damage before units and heroes without swift strike.)",
