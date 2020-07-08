@@ -7,6 +7,14 @@ import {
 
 import * as rawData from './data.json';
 
+import { getBuildingAbilities } from './buildings';
+import { getHeroAbilities } from './hero';
+import { getSpellBoostCost, getSpellDetails } from './spells';
+import { getUnitAbilities, getUnitBoostCost } from './units';
+import { getUpgradeAbilities } from './upgrades';
+
+const ERROR_ON_FAILED_LOAD = false;
+
 export const lookupCard = (
   name: string,
 ): Card => {
@@ -70,11 +78,11 @@ type RawCard = {
 
 const loadBand = (
   rawCard: RawCard & { type: 'HERO' },
-  index: number,
+  index: 0 | 1 | 2,
 ): HeroCard['bands'][0] => ({
   ...rawCard.levelBands[index],
   nextLevel: index < 2 ? rawCard.levelBands[index + 1].level : null,
-  abilities: ['TODO'],
+  abilities: getHeroAbilities(rawCard.name, index),
 });
 
 const loadCard = (
@@ -84,8 +92,8 @@ const loadCard = (
   case 'BUILDING':
     return {
       ...rawCard,
-      abilities: ['TODO'],
-      boostCost: null,  // TODO
+      abilities: getBuildingAbilities(rawCard.name),
+      boostCost: null,
     };
   case 'HERO':
     return {
@@ -101,22 +109,21 @@ const loadCard = (
   case 'SPELL':
     return {
       ...rawCard,
-      type: 'INSTANT_SPELL',  // TODO
-      effects: ['TODO'],
-      boostCost: null,  // TODO
+      ...getSpellDetails(rawCard.name),
+      boostCost: getSpellBoostCost(rawCard.name),
     };
   case 'UNIT':
     return {
       ...rawCard,
-      token: false,
-      abilities: ['TODO'],
-      boostCost: null,  // TODO
+      token: false, // TODO these aren't supported yet
+      abilities: getUnitAbilities(rawCard.name),
+      boostCost: getUnitBoostCost(rawCard.name),
     };
   case 'UPGRADE':
     return {
       ...rawCard,
-      abilities: ['TODO'],
-      boostCost: null,  // TODO
+      abilities: getUpgradeAbilities(rawCard.name),
+      boostCost: null,
     };
   default:
     return null;
@@ -128,5 +135,12 @@ const loadCard = (
 const cardMap: Record<string, Card | null> = {};
 for (let i = 0; rawData[i] != null; i++) {
   const rawCard = rawData[i] as RawCard;
-  cardMap[rawCard.name] = loadCard(rawCard);
+  try {
+    cardMap[rawCard.name] = loadCard(rawCard);
+  } catch (err) {
+    if (ERROR_ON_FAILED_LOAD) {
+      throw err;
+    }
+    cardMap[rawCard.name] = null;
+  }
 }
