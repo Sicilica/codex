@@ -1,5 +1,7 @@
-import { lookupCard } from "../../../data";
+import { lookupCard } from "../../data";
+
 import { GameState } from "../types";
+
 import { makeInstance } from "./helpers";
 
 export const playCard = (

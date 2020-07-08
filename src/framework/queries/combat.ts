@@ -1,3 +1,5 @@
+import { lookupCard } from "../../data";
+
 import {
   GameState,
   InstanceID,
@@ -10,7 +12,6 @@ import {
   isUnit,
 } from './common';
 import { getOpponents } from "./players";
-import { lookupCard } from "../../../data";
 
 export const canAttack = (
   $: GameState,

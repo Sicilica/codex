@@ -1,3 +1,5 @@
+import { lookupCard } from "../../data";
+
 import {
   Card,
   GameState,
@@ -9,7 +11,6 @@ import {
   UnitCard,
   CardID,
 } from "../types";
-import { lookupCard } from "../../../data";
 
 export const getInstance = (
   $: GameState,

@@ -1,18 +1,18 @@
 import { expect } from 'chai';
 
+import { lookupCard } from '../../data';
+import { performAction } from '../../framework/actions';
+import { canAttack, canPatrol } from "../../framework/queries/combat";
+import {
+  InstanceQuery,
+  queryInstances,
+} from "../../framework/queries/common";
 import {
   GameState,
   InstanceID,
   CardID,
   PlayerID,
-} from "../../src/framework/types";
-import {
-  InstanceQuery,
-  queryInstances,
-} from "../../src/framework/queries/common";
-import { canAttack, canPatrol } from "../../src/framework/queries/combat";
-import { performAction } from '../../src/framework/actions';
-import { lookupCard } from '../../data';
+} from "../../framework/types";
 
 const P1 = 'P1';
 const P2 = 'P2';
