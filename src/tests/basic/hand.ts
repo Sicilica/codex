@@ -1,4 +1,4 @@
-import { GameState } from "../../framework/types";
+import { GameState, PlayerState } from "../../framework/types";
 import { P1, initDummyGameState } from "../testhelper";
 import {
   discardAll,
@@ -10,10 +10,14 @@ import { expect } from "chai";
 describe("basic", () => {
   describe("hand", () => {
     let $: GameState;
+    let P: PlayerState;
+
     beforeEach(() => {
       $ = initDummyGameState();
-      $.players[P1].hand = [ "Nautical Dog", "Mad Man", "Bombaster" ];
-      $.players[P1].deck = [
+      P = $.players[P1];
+
+      P.hand = [ "Nautical Dog", "Mad Man", "Bombaster" ];
+      P.deck = [
         "Careless Musketeer",
         "Bloodrage Ogre",
         "Makeshift Rambaster",
@@ -22,140 +26,139 @@ describe("basic", () => {
 
     describe("discardAll()", () => {
       it("should discard all of the player's hand into the discard", () => {
-        discardAll($);
+        discardAll(P);
 
-        expect($.players[P1].hand.length).to.equal(0);
-        expect($.players[P1].discard.length).to.equal(3);
+        expect(P.hand.length).to.equal(0);
+        expect(P.discard.length).to.equal(3);
       });
 
       it("should not get rid of existing discarded cards", () => {
-        $.players[P1].discard = [ "Nautical Dog" ];
+        P.discard = [ "Nautical Dog" ];
 
-        discardAll($);
+        discardAll(P);
 
-        expect($.players[P1].hand.length).to.equal(0);
-        expect($.players[P1].discard.length).to.equal(4);
+        expect(P.hand.length).to.equal(0);
+        expect(P.discard.length).to.equal(4);
       });
 
       it("should not fail if the player's hand is empty", () => {
-        $.players[P1].hand = [];
+        P.hand = [];
 
-        discardAll($);
+        discardAll(P);
 
-        expect($.players[P1].hand.length).to.equal(0);
-        expect($.players[P1].discard.length).to.equal(0);
+        expect(P.hand.length).to.equal(0);
+        expect(P.discard.length).to.equal(0);
       });
     });
 
     describe("discardCard()", () => {
       it("moves cards from hand to discard pile when discarding", () => {
-        discardCard($, "Nautical Dog");
+        discardCard(P, "Nautical Dog");
 
-        expect($.players[P1].hand.length).to.equal(2);
-        expect($.players[P1].hand.indexOf("Nautical Dog")).to.equal(-1);
-        expect($.players[P1].discard.length).to.equal(1);
-        expect($.players[P1].discard.indexOf("Nautical Dog")).to.equal(0);
+        expect(P.hand.length).to.equal(2);
+        expect(P.hand.includes("Nautical Dog")).to.equal(false);
+        expect(P.discard.length).to.equal(1);
+        expect(P.discard.includes("Nautical Dog")).to.equal(true);
       });
 
       it("should only move one copy of the specified card", () => {
-        $.players[P1].hand = [ "Nautical Dog", "Nautical Dog" ];
+        P.hand = [ "Nautical Dog", "Nautical Dog" ];
 
-        discardCard($, "Nautical Dog");
+        discardCard(P, "Nautical Dog");
 
-        expect($.players[P1].hand.length).to.equal(1);
-        expect($.players[P1].hand.indexOf("Nautical Dog")).to.equal(0);
-        expect($.players[P1].discard.length).to.equal(1);
-        expect($.players[P1].discard.indexOf("Nautical Dog")).to.equal(0);
+        expect(P.hand).to.deep.equal([ "Nautical Dog" ]);
+        expect(P.discard.length).to.equal(1);
+        expect(P.discard.includes("Nautical Dog")).to.equal(true);
       });
 
       it("fails to discard when card is not in the player's hand", () => {
         expect(() =>
-          discardCard($, "Careless Musketeer")).to.throw("card not in hand");
+          discardCard(P, "Careless Musketeer")).to.throw("card not in hand");
 
-        expect($.players[P1].hand.length).to.equal(3);
+        expect(P.hand.length).to.equal(3);
       });
 
       it("successfully discards even when no card is specified", () => {
-        discardCard($);
+        discardCard(P);
 
-        expect($.players[P1].hand.length).to.equal(2);
-        expect($.players[P1].discard.length).to.equal(1);
+        expect(P.hand.length).to.equal(2);
+        expect(P.discard.length).to.equal(1);
         expect(
-          $.players[P1].hand.indexOf($.players[P1].discard[0])
-        ).to.equal(-1);
+          P.hand.includes(P.discard[0])
+        ).to.equal(false);
       });
 
       it("works with repeated specified calls", () => {
-        discardCard($, "Nautical Dog");
-        discardCard($, "Mad Man");
-        discardCard($, "Bombaster");
+        discardCard(P, "Nautical Dog");
+        discardCard(P, "Mad Man");
+        discardCard(P, "Bombaster");
 
-        expect($.players[P1].hand.length).to.equal(0);
-        expect($.players[P1].discard.length).to.equal(3);
+        expect(P.hand.length).to.equal(0);
+        expect(P.discard.length).to.equal(3);
       });
 
       it("works with repeated unspecified calls", () => {
-        discardCard($);
-        discardCard($);
-        discardCard($);
+        discardCard(P);
+        discardCard(P);
+        discardCard(P);
 
-        expect($.players[P1].hand.length).to.equal(0);
-        expect($.players[P1].discard.length).to.equal(3);
+        expect(P.hand.length).to.equal(0);
+        expect(P.discard.length).to.equal(3);
       });
 
       it("fails to discard when the player's hand is empty", () => {
-        discardCard($);
-        discardCard($);
-        discardCard($);
+        discardCard(P);
+        discardCard(P);
+        discardCard(P);
 
-        expect(() => discardCard($)).to.throw("hand is empty");
-        expect(() => discardCard($, "Mad Man")).to.throw("hand is empty");
+        expect(() => discardCard(P)).to.throw("hand is empty");
+        expect(() => discardCard(P, "Mad Man")).to.throw("hand is empty");
       });
     });
 
     describe("drawCard()", () => {
       it("should work under standard circumstances", () => {
-        drawCard($);
+        drawCard(P);
 
-        expect($.players[P1].hand.length).to.equal(4);
-        expect($.players[P1].hand.indexOf("Careless Musketeer")).to.equal(3);
-        expect($.players[P1].deck.length).to.equal(2);
-        expect($.players[P1].deck.indexOf("Careless Musketeer")).to.equal(-1);
+        expect(P.hand.length).to.equal(4);
+        expect(P.hand.includes("Careless Musketeer")).to.equal(true);
+        expect(P.deck.length).to.equal(2);
+        expect(P.deck.includes("Careless Musketeer")).to.equal(false);
       });
 
       it("should fail if the deck is empty", () => {
-        drawCard($);
-        drawCard($);
-        drawCard($);
+        expect(drawCard(P)).to.equal(true);
+        expect(drawCard(P)).to.equal(true);
+        expect(drawCard(P)).to.equal(true);
 
-        expect(() => drawCard($)).to.throw("deck is empty");
+        expect(drawCard(P)).to.equal(false);
       });
 
       it("should trigger a shuffle once if the discard is not empty", () => {
-        $.players[P1].discard = [ "Bloodburn" ];
+        P.discard = [ "Bloodburn" ];
 
-        drawCard($);
-        drawCard($);
-        drawCard($);
+        drawCard(P);
+        drawCard(P);
+        drawCard(P);
 
-        expect($.players[P1].deck.length).to.equal(0);
+        expect(P.deck.length).to.equal(0);
 
-        drawCard($);
+        drawCard(P);
 
-        expect($.players[P1].hand.length).to.equal(7);
-        expect($.players[P1].hand.indexOf("Bloodburn")).to.equal(6);
-        expect($.players[P1].hasShuffledThisTurn).to.equal(true);
+        expect(P.hand.length).to.equal(7);
+        expect(P.hand.includes("Bloodburn")).to.equal(true);
+        expect(P.hasShuffledThisTurn).to.equal(true);
       });
 
       it("should not allow two shuffles in one turn", () => {
-        $.players[P1].discard = [ "Bloodburn" ];
-        $.players[P1].hasShuffledThisTurn = true;
+        P.discard = [ "Bloodburn" ];
+        P.hasShuffledThisTurn = true;
 
-        drawCard($);
-        drawCard($);
-        drawCard($);
+        expect(drawCard(P)).to.equal(true);
+        expect(drawCard(P)).to.equal(true);
+        expect(drawCard(P)).to.equal(true);
 
-        expect(() => drawCard($)).to.throw("deck is empty");
+        expect(drawCard(P)).to.equal(false);
       });
     });
   });

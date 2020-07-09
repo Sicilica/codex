@@ -1,6 +1,6 @@
 import { lookupCard } from "../../data";
 
-import { GameState } from "../types";
+import { GameState, PlayerState } from "../types";
 
 import { makeInstance } from "./helpers";
 
@@ -11,22 +11,18 @@ import { makeInstance } from "./helpers";
  * to be unknown.
  * NOTE: This draws the top card. For abilities that allow drawing an arbitrary
  * card from the player's deck, a different function should be used.
- *
- * @param $
- * @param pid
  */
-export const drawCard = ($: GameState): void => {
-  const P = $.players[$.activePlayer];
-
+export const drawCard = (P: PlayerState): boolean => {
   if (P.deck.length > 0) {
     P.hand = P.hand.concat(P.deck.splice(0, 1));
-  } else if (P.hasShuffledThisTurn === false) {
-    P.hasShuffledThisTurn = true;
-    shuffle($);
-    drawCard($);
-  } else {
-    throw new Error("deck is empty");
+    return true;
+  } else if (P.hasShuffledThisTurn) {
+    return false;
   }
+
+  P.hasShuffledThisTurn = true;
+  shuffle(P);
+  return drawCard(P);
 };
 
 /**
@@ -37,9 +33,7 @@ export const drawCard = ($: GameState): void => {
  * @param $
  * @param pid
  */
-const shuffle = ($: GameState): void => {
-  const P = $.players[$.activePlayer];
-
+const shuffle = (P: PlayerState): void => {
   if (P.deck.length > 0) {
     throw new Error("deck is not empty");
   }
@@ -61,9 +55,7 @@ const shuffle = ($: GameState): void => {
  *
  * @param $
  */
-export const discardAll = ($: GameState): void => {
-  const P = $.players[$.activePlayer];
-
+export const discardAll = (P: PlayerState): void => {
   P.discard = P.discard.concat(P.hand);
   P.hand = [];
 };
@@ -75,11 +67,9 @@ export const discardAll = ($: GameState): void => {
  * random
  */
 export const discardCard = (
-  $: GameState,
-  cid: string|undefined = undefined
+  P: PlayerState,
+  cid?: string,
 ): void => {
-  const P = $.players[$.activePlayer];
-
   if (P.hand.length <= 0) {
     throw new Error("hand is empty");
   }
