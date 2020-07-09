@@ -1,6 +1,6 @@
 import { GameState } from "../../framework/types";
 import { P1, initDummyGameState } from "../testhelper";
-import { discardCard } from "../../framework/actions/hand";
+import { discardAll, discardCard } from "../../framework/actions/hand";
 import { expect } from "chai";
 
 describe("basic", () => {
@@ -9,6 +9,33 @@ describe("basic", () => {
     beforeEach(() => {
       $ = initDummyGameState();
       $.players[P1].hand = [ "Nautical Dog", "Mad Man", "Bombaster" ];
+    });
+
+    describe("discardAll()", () => {
+      it("should discard all of the player's hand into the discard", () => {
+        discardAll($);
+
+        expect($.players[P1].hand.length).to.equal(0);
+        expect($.players[P1].discard.length).to.equal(3);
+      });
+
+      it("should not get rid of existing discarded cards", () => {
+        $.players[P1].discard = [ "Nautical Dog" ];
+
+        discardAll($);
+
+        expect($.players[P1].hand.length).to.equal(0);
+        expect($.players[P1].discard.length).to.equal(4);
+      });
+
+      it("should not fail if the player's hand is empty", () => {
+        $.players[P1].hand = [];
+
+        discardAll($);
+
+        expect($.players[P1].hand.length).to.equal(0);
+        expect($.players[P1].discard.length).to.equal(0);
+      });
     });
 
     describe("discardCard()", () => {
