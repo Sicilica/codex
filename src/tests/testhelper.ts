@@ -20,6 +20,7 @@ export const initDummyGameState: () => GameState = () => {
         hand: [],
         discard: [],
         deck: [],
+        hasShuffledThisTurn: false,
         patrol: {
           squadLeader: null,
           elite: null,
@@ -56,6 +57,7 @@ export const initDummyGameState: () => GameState = () => {
         hand: [],
         discard: [],
         deck: [],
+        hasShuffledThisTurn: false,
         patrol: {
           squadLeader: null,
           elite: null,

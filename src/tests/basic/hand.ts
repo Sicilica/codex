@@ -1,6 +1,10 @@
 import { GameState } from "../../framework/types";
 import { P1, initDummyGameState } from "../testhelper";
-import { discardAll, discardCard } from "../../framework/actions/hand";
+import {
+  discardAll,
+  discardCard,
+  drawCard,
+} from "../../framework/actions/hand";
 import { expect } from "chai";
 
 describe("basic", () => {
@@ -9,6 +13,11 @@ describe("basic", () => {
     beforeEach(() => {
       $ = initDummyGameState();
       $.players[P1].hand = [ "Nautical Dog", "Mad Man", "Bombaster" ];
+      $.players[P1].deck = [
+        "Careless Musketeer",
+        "Bloodrage Ogre",
+        "Makeshift Rambaster",
+      ];
     });
 
     describe("discardAll()", () => {
@@ -101,6 +110,52 @@ describe("basic", () => {
 
         expect(() => discardCard($)).to.throw("hand is empty");
         expect(() => discardCard($, "Mad Man")).to.throw("hand is empty");
+      });
+    });
+
+    describe("drawCard()", () => {
+      it("should work under standard circumstances", () => {
+        drawCard($);
+
+        expect($.players[P1].hand.length).to.equal(4);
+        expect($.players[P1].hand.indexOf("Careless Musketeer")).to.equal(3);
+        expect($.players[P1].deck.length).to.equal(2);
+        expect($.players[P1].deck.indexOf("Careless Musketeer")).to.equal(-1);
+      });
+
+      it("should fail if the deck is empty", () => {
+        drawCard($);
+        drawCard($);
+        drawCard($);
+
+        expect(() => drawCard($)).to.throw("deck is empty");
+      });
+
+      it("should trigger a shuffle once if the discard is not empty", () => {
+        $.players[P1].discard = [ "Bloodburn" ];
+
+        drawCard($);
+        drawCard($);
+        drawCard($);
+
+        expect($.players[P1].deck.length).to.equal(0);
+
+        drawCard($);
+
+        expect($.players[P1].hand.length).to.equal(7);
+        expect($.players[P1].hand.indexOf("Bloodburn")).to.equal(6);
+        expect($.players[P1].hasShuffledThisTurn).to.equal(true);
+      });
+
+      it("should not allow two shuffles in one turn", () => {
+        $.players[P1].discard = [ "Bloodburn" ];
+        $.players[P1].hasShuffledThisTurn = true;
+
+        drawCard($);
+        drawCard($);
+        drawCard($);
+
+        expect(() => drawCard($)).to.throw("deck is empty");
       });
     });
   });
