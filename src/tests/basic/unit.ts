@@ -13,9 +13,7 @@ import {
   InstanceID,
   PlayerID,
 } from "../../framework/types";
-
-const P1 = "P1";
-const P2 = "P2";
+import { P1, initDummyGameState } from "../testhelper";
 
 const findInstance = (
   $: GameState,
@@ -67,85 +65,7 @@ describe("basic", () => {
   describe("unit", () => {
     let $: GameState;
     beforeEach(() => {
-      $ = {
-        activePlayer: P1,
-        instances: {},
-        nextID: 100,
-        players: {
-          [P1]: {
-            addon: null,
-            base: {
-              damage: 0,
-            },
-            gold: 0,
-            specs: [ "ANARCHY", "BLOOD", "FIRE" ],
-            mainSpec: null,
-            hand: [],
-            discard: [],
-            deck: [],
-            patrol: {
-              squadLeader: null,
-              elite: null,
-              scavenger: null,
-              technician: null,
-              lookout: null,
-            },
-            techBuildings: [
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-            ],
-          },
-          [P2]: {
-            addon: null,
-            base: {
-              damage: 0,
-            },
-            gold: 0,
-            specs: [ "BALANCE", "FERAL", "GROWTH" ],
-            mainSpec: null,
-            hand: [],
-            discard: [],
-            deck: [],
-            patrol: {
-              squadLeader: null,
-              elite: null,
-              scavenger: null,
-              technician: null,
-              lookout: null,
-            },
-            techBuildings: [
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-            ],
-          },
-        },
-      };
+      $ = initDummyGameState();
     });
 
     it("can't attack when first played", () => {
