@@ -1,9 +1,12 @@
 import { GameState } from "../types";
 
-import { playCard } from "./hand";
+import { discardCard, playCard } from "./hand";
 import { endTurn } from "./turn";
 
 export type Action = {
+  type: "DISCARD_SELECTED_CARD";
+  cardID: string;
+} | {
   type: "PLAY_CARD";
   cardID: string;
   boost: boolean;
@@ -16,6 +19,9 @@ export const performAction = (
   action: Action,
 ): void => {
   switch (action.type) {
+  case "DISCARD_SELECTED_CARD":
+    discardCard($, action.cardID);
+    break;
   case "END_TURN":
     endTurn($);
     break;
