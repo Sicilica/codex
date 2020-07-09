@@ -4,6 +4,31 @@ import { GameState } from "../types";
 
 import { makeInstance } from "./helpers";
 
+export const discardHand = (
+  $: GameState
+): void => {
+  const P = $.players[$.activePlayer];
+
+  for (let i = 0; i < P.hand.length; i++) {
+    P.discard.push(P.hand.pop()!);
+  }
+};
+
+export const drawCard = (
+  $: GameState
+): void => {
+  const P = $.players[$.activePlayer];
+
+  if (P.deck.length === 0) {
+    for (let i = 0; i < P.discard.length; i++) {
+      P.discard.push(P.deck.pop()!);
+    }
+  }
+  // todo: shuffle deck
+
+  P.hand.push(P.deck.pop()!);
+};
+
 export const playCard = (
   $: GameState,
   cid: string,
@@ -32,6 +57,7 @@ export const playCard = (
     P.gold -= card.cost;
   }
 
+  P.discard.push(cid);
   P.hand = P.hand.slice(0, indexInHand).concat(P.hand.slice(indexInHand + 1));
 
   switch (card.type) {

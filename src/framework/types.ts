@@ -50,6 +50,7 @@ export interface PlayerState {
   hand: Array<CardID>;
   deck: Array<CardID>;
   discard: Array<CardID>;
+  codex: Array<CardID>;
   patrol: {
     squadLeader: InstanceID | null;
     elite: InstanceID | null;

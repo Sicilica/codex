@@ -64,90 +64,135 @@ const debugGotoNextTurn = (
 };
 
 describe("basic", () => {
-  describe("unit", () => {
-    let $: GameState;
-    beforeEach(() => {
-      $ = {
-        activePlayer: P1,
-        instances: {},
-        nextID: 100,
-        players: {
-          [P1]: {
-            addon: null,
-            base: {
-              damage: 0,
-            },
-            gold: 0,
-            specs: [ "ANARCHY", "BLOOD", "FIRE" ],
-            mainSpec: null,
-            hand: [],
-            discard: [],
-            deck: [],
-            patrol: {
-              squadLeader: null,
-              elite: null,
-              scavenger: null,
-              technician: null,
-              lookout: null,
-            },
-            techBuildings: [
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-            ],
+  let $: GameState;
+  beforeEach(() => {
+    $ = {
+      activePlayer: P1,
+      instances: {},
+      nextID: 100,
+      players: {
+        [P1]: {
+          addon: null,
+          base: {
+            damage: 0,
           },
-          [P2]: {
-            addon: null,
-            base: {
-              damage: 0,
-            },
-            gold: 0,
-            specs: [ "BALANCE", "FERAL", "GROWTH" ],
-            mainSpec: null,
-            hand: [],
-            discard: [],
-            deck: [],
-            patrol: {
-              squadLeader: null,
-              elite: null,
-              scavenger: null,
-              technician: null,
-              lookout: null,
-            },
-            techBuildings: [
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-              {
-                damage: 0,
-                purchased: false,
-                ready: false,
-              },
-            ],
+          gold: 0,
+          specs: [ "ANARCHY", "BLOOD", "FIRE" ],
+          mainSpec: null,
+          hand: [],
+          discard: [],
+          deck: [],
+          patrol: {
+            squadLeader: null,
+            elite: null,
+            scavenger: null,
+            technician: null,
+            lookout: null,
           },
+          techBuildings: [
+            {
+              damage: 0,
+              purchased: false,
+              ready: false,
+            },
+            {
+              damage: 0,
+              purchased: false,
+              ready: false,
+            },
+            {
+              damage: 0,
+              purchased: false,
+              ready: false,
+            },
+          ],
         },
-      };
+        [P2]: {
+          addon: null,
+          base: {
+            damage: 0,
+          },
+          gold: 0,
+          specs: [ "BALANCE", "FERAL", "GROWTH" ],
+          mainSpec: null,
+          hand: [],
+          discard: [],
+          deck: [],
+          patrol: {
+            squadLeader: null,
+            elite: null,
+            scavenger: null,
+            technician: null,
+            lookout: null,
+          },
+          techBuildings: [
+            {
+              damage: 0,
+              purchased: false,
+              ready: false,
+            },
+            {
+              damage: 0,
+              purchased: false,
+              ready: false,
+            },
+            {
+              damage: 0,
+              purchased: false,
+              ready: false,
+            },
+          ],
+        },
+      },
+    };
+  });
+  describe("card", () => {
+    it("can't play card not in hand", () => {
+      expect(() => performAction($, {
+        type: "PLAY_CARD",
+        cardID: "Nautical Dog",
+        boost: false,
+      })).to.throw("card not in hand");
     });
 
+    it("played card is removed from hand", () => {
+      debugPlayCard($, "Nautical Dog");
+
+      const P = $.players[$.activePlayer];
+      expect(P.hand.pop() === "Nautical Dog").to.equal(false);
+    });
+
+    it("played card goes to discard", () => {
+      debugPlayCard($, "Nautical Dog");
+
+      const P = $.players[$.activePlayer];
+      expect(P.discard.pop() === "Nautical Dog").to.equal(true);
+    });
+
+    it("discarding hand leaves hand empty", () => {
+      const P = $.players[$.activePlayer];
+      P.hand.push("Nautical Dog");
+
+      performAction($, {
+        type: "DISCARD_HAND",
+      });
+
+      expect(P.hand.length === 0).to.equal(true);
+    });
+
+    it("discarded hand goes to discard", () => {
+      const P = $.players[$.activePlayer];
+      P.hand.push("Nautical Dog");
+
+      performAction($, {
+        type: "DISCARD_HAND",
+      });
+
+      expect(P.discard.pop() === "Nautical Dog").to.equal(true);
+    });
+  });
+
+  describe("unit", () => {
     it("can't attack when first played", () => {
       const iid = debugPlayUnit($, "Nautical Dog");
 
