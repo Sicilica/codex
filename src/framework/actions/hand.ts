@@ -5,6 +5,18 @@ import { GameState } from "../types";
 import { makeInstance } from "./helpers";
 
 /**
+ * For use at the end of a player's turn.
+ *
+ * @param $
+ */
+export const discardAll = ($: GameState): void => {
+  const P = $.players[$.activePlayer];
+
+  P.discard = P.discard.concat(P.hand);
+  P.hand = [];
+};
+
+/**
  *
  * @param $
  * @param cid when omitted, the card discarded from the player's hand will be
