@@ -8,7 +8,7 @@ export const playCard = (
   $: GameState,
   cid: string,
   boost: boolean,
-) => {
+): void => {
   const card = lookupCard(cid);
   const P = $.players[$.activePlayer];
 
@@ -34,12 +34,11 @@ export const playCard = (
 
   P.hand = P.hand.slice(0, indexInHand).concat(P.hand.slice(indexInHand + 1));
 
-  // TODO perform card effect
   switch (card.type) {
-    case 'UNIT': {
-      makeInstance($, $.activePlayer, cid);
-    } break;
-    default:
-      throw new Error("unexpected card type");
+  case "UNIT":
+    makeInstance($, $.activePlayer, cid);
+    break;
+  default:
+    throw new Error("unexpected card type");
   }
 };

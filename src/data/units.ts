@@ -1,7 +1,7 @@
-import { Ability } from '../framework/types';
+import { Ability } from "../framework/types";
 
 const unitBoostCosts: Record<string, number | undefined> = {
-  // TODO
+  // such empty
 };
 
 export const getUnitBoostCost = (
@@ -14,8 +14,8 @@ export const getUnitAbilities = (
   name: string,
 ): Array<Ability> => {
   switch (name) {
-  case 'Nautical Dog':
-    return ['TODO'];
+  case "Nautical Dog":
+    return [ "TODO" ];
   default:
     throw new Error(`Failed to find abilities for unit "${name}"`);
   }

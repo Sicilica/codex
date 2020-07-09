@@ -1,10 +1,10 @@
 import {
   Ability,
   Effect,
-} from '../framework/types';
+} from "../framework/types";
 
 const spellBoostCosts: Record<string, number | undefined> = {
-  // TODO
+  // such empty
 };
 
 export const getSpellBoostCost = (
@@ -17,10 +17,10 @@ export const getSpellDetails = (
   name: string,
 ): SpellDetails => {
   switch (name) {
-  case 'Scorch':
+  case "Scorch":
     return {
-      type: 'INSTANT_SPELL',
-      effects: ['TODO'],
+      type: "INSTANT_SPELL",
+      effects: [ "TODO" ],
     };
   default:
     throw new Error(`Failed to find details for spell "${name}"`);
@@ -28,13 +28,13 @@ export const getSpellDetails = (
 };
 
 type SpellDetails = {
-  type: 'ATTACHMENT_SPELL',
+  type: "ATTACHMENT_SPELL",
   abilities: Array<Ability>,
 } | {
-  type: 'INSTANT_SPELL',
+  type: "INSTANT_SPELL",
   effects: Array<Effect>,
 } | {
-  type: 'ONGOING_SPELL',
+  type: "ONGOING_SPELL",
   abilities: Array<Ability>,
   channeling: boolean,
 };

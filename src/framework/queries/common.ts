@@ -2,6 +2,7 @@ import { lookupCard } from "../../data";
 
 import {
   Card,
+  CardID,
   GameState,
   HeroCard,
   Instance,
@@ -9,7 +10,6 @@ import {
   PlayerID,
   PlayerState,
   UnitCard,
-  CardID,
 } from "../types";
 
 export const getInstance = (
@@ -29,13 +29,13 @@ export const getPlayer = (
 export const isHero = (
   card: Card,
 ): card is HeroCard => {
-  return card.type === 'HERO';
+  return card.type === "HERO";
 };
 
 export const isUnit = (
   card: Card,
 ): card is UnitCard => {
-  return card.type === 'UNIT';
+  return card.type === "UNIT";
 };
 
 export interface InstanceQuery {
@@ -60,7 +60,7 @@ export const queryInstances = (
       return false;
     }
 
-    if (query.tags != null && query.tags.some(tag => !card.tags.includes(tag))) {
+    if (query.tags?.some(tag => !card.tags.includes(tag))) {
       return false;
     }
 

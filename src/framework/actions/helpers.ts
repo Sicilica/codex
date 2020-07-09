@@ -1,8 +1,8 @@
 import {
+  CardID,
   GameState,
   Instance,
   PlayerID,
-  CardID,
 } from "../types";
 
 export const makeInstance = (
@@ -21,7 +21,7 @@ export const makeInstance = (
     attachments: [],
     armorDamage: 0,
     specialTokens: [],
-    readyState: 'READY',
+    readyState: "READY",
     arrivalFatigue: true,
   };
   $.instances[I.id] = I;

@@ -1,28 +1,28 @@
 export type Color =
-  | 'BLACK'
-  | 'BLUE'
-  | 'GREEN'
-  | 'NEUTRAL'
-  | 'PURPLE'
-  | 'RED'
-  | 'WHITE'
+  | "BLACK"
+  | "BLUE"
+  | "GREEN"
+  | "NEUTRAL"
+  | "PURPLE"
+  | "RED"
+  | "WHITE"
   ;
 
 export type Spec =
-  | 'BASHING' | 'FINESSE'
-  | 'ANARCHY' | 'BLOOD' | 'FIRE'
-  | 'BALANCE' | 'FERAL' | 'GROWTH'
-  | 'LAW' | 'PEACE' | 'TRUTH'
-  | 'DEMONOLOGY' | 'DISEASE' | 'NECROMANCY'
-  | 'DISCIPLINE' | 'NINJUTSU' | 'STRENGTH'
-  | 'FUTURE' | 'PAST' | 'PRESENT'
+  | "BASHING" | "FINESSE"
+  | "ANARCHY" | "BLOOD" | "FIRE"
+  | "BALANCE" | "FERAL" | "GROWTH"
+  | "LAW" | "PEACE" | "TRUTH"
+  | "DEMONOLOGY" | "DISEASE" | "NECROMANCY"
+  | "DISCIPLINE" | "NINJUTSU" | "STRENGTH"
+  | "FUTURE" | "PAST" | "PRESENT"
   ;
 
 export type Addon =
-  | 'HEROES\'_HALL'
-  | 'SURPLUS'
-  | 'TECH_LAB'
-  | 'TOWER'
+  | "HEROES'_HALL"
+  | "SURPLUS"
+  | "TECH_LAB"
+  | "TOWER"
   ;
 
 export interface GameState {
@@ -71,7 +71,7 @@ export interface Instance {
   specialTokens: Array<string>;
   attachments: Array<Instance>;
   level: number;
-  readyState: 'READY' | 'EXHAUSTED' | 'DISABLED';
+  readyState: "READY" | "EXHAUSTED" | "DISABLED";
   arrivalFatigue: boolean;
   armorDamage: number;
 }
@@ -102,7 +102,7 @@ interface CardBase {
 }
 
 export interface UnitCard extends CardBase {
-  type: 'UNIT';
+  type: "UNIT";
   attack: number;
   health: number;
   tech: number;
@@ -112,7 +112,7 @@ export interface UnitCard extends CardBase {
 }
 
 export interface BuildingCard extends CardBase {
-  type: 'BUILDING';
+  type: "BUILDING";
   health: number;
   tech: number;
   legendary: boolean;
@@ -120,32 +120,32 @@ export interface BuildingCard extends CardBase {
 }
 
 export interface UpgradeCard extends CardBase {
-  type: 'UPGRADE';
+  type: "UPGRADE";
   abilities: Array<Ability>;
   legendary: boolean;
 }
 
 export interface InstantSpellCard extends CardBase {
-  type: 'INSTANT_SPELL';
+  type: "INSTANT_SPELL";
   ultimate: boolean;
   effects: Array<Effect>;
 }
 
 export interface OngoingSpellCard extends CardBase {
-  type: 'ONGOING_SPELL';
+  type: "ONGOING_SPELL";
   channeling: boolean;
   ultimate: boolean;
   abilities: Array<Ability>;
 }
 
 export interface AttachmentSpellCard extends CardBase {
-  type: 'ATTACHMENT_SPELL';
+  type: "ATTACHMENT_SPELL";
   ultimate: boolean;
   abilities: Array<Ability>;
 }
 
 export interface HeroCard extends CardBase {
-  type: 'HERO';
+  type: "HERO";
   bands: [HeroCardBand, HeroCardBand, HeroCardBand];
 }
 
@@ -156,5 +156,5 @@ interface HeroCardBand {
   abilities: Array<Ability>;
 }
 
-export type Ability = 'TODO';
-export type Effect = 'TODO';
+export type Ability = "TODO";
+export type Effect = "TODO";

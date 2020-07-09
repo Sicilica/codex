@@ -3,15 +3,15 @@ import {
   Color,
   HeroCard,
   Spec,
-} from '../framework/types';
+} from "../framework/types";
 
-import * as rawData from './data.json';
+import * as rawData from "./data.json";
 
-import { getBuildingAbilities } from './buildings';
-import { getHeroAbilities } from './hero';
-import { getSpellBoostCost, getSpellDetails } from './spells';
-import { getUnitAbilities, getUnitBoostCost } from './units';
-import { getUpgradeAbilities } from './upgrades';
+import { getBuildingAbilities } from "./buildings";
+import { getHeroAbilities } from "./hero";
+import { getSpellBoostCost, getSpellDetails } from "./spells";
+import { getUnitAbilities, getUnitBoostCost } from "./units";
+import { getUpgradeAbilities } from "./upgrades";
 
 const ERROR_ON_FAILED_LOAD = false;
 
@@ -39,7 +39,7 @@ type RawCard = {
   cardText: string,
   cardRulings: Array<string>,
 } & ({
-  type: 'BUILDING',
+  type: "BUILDING",
   color: Color,
   spec: Spec,
   tech: number,
@@ -47,19 +47,19 @@ type RawCard = {
   tags: Array<string>,
   legendary: boolean,
 } | {
-  type: 'HERO',
+  type: "HERO",
   color: Color,
   spec: Spec,
   levelBands: [RawHeroBand, RawHeroBand, RawHeroBand],
 } | {
-  type: 'SPELL',
+  type: "SPELL",
   color: Color,
   spec: Spec,
   tags: Array<string>,
   ultimate: boolean,
   ongoing: boolean,
 } | {
-  type: 'UNIT',
+  type: "UNIT",
   color: Color,
   spec: Spec,
   tech: number,
@@ -68,7 +68,7 @@ type RawCard = {
   tags: Array<string>,
   legendary: boolean,
 } | {
-  type: 'UPGRADE',
+  type: "UPGRADE",
   color: Color,
   spec: Spec,
   tech: number,
@@ -77,9 +77,9 @@ type RawCard = {
 });
 
 const loadBand = (
-  rawCard: RawCard & { type: 'HERO' },
+  rawCard: RawCard & { type: "HERO" },
   index: 0 | 1 | 2,
-): HeroCard['bands'][0] => ({
+): HeroCard["bands"][0] => ({
   ...rawCard.levelBands[index],
   nextLevel: index < 2 ? rawCard.levelBands[index + 1].level : null,
   abilities: getHeroAbilities(rawCard.name, index),
@@ -89,13 +89,13 @@ const loadCard = (
   rawCard: RawCard,
 ): Card | null => {
   switch (rawCard.type) {
-  case 'BUILDING':
+  case "BUILDING":
     return {
       ...rawCard,
       abilities: getBuildingAbilities(rawCard.name),
       boostCost: null,
     };
-  case 'HERO':
+  case "HERO":
     return {
       ...rawCard,
       bands: [
@@ -106,20 +106,20 @@ const loadCard = (
       tags: [],
       boostCost: null,
     };
-  case 'SPELL':
+  case "SPELL":
     return {
       ...rawCard,
       ...getSpellDetails(rawCard.name),
       boostCost: getSpellBoostCost(rawCard.name),
     };
-  case 'UNIT':
+  case "UNIT":
     return {
       ...rawCard,
-      token: false, // TODO these aren't supported yet
+      token: false,
       abilities: getUnitAbilities(rawCard.name),
       boostCost: getUnitBoostCost(rawCard.name),
     };
-  case 'UPGRADE':
+  case "UPGRADE":
     return {
       ...rawCard,
       abilities: getUpgradeAbilities(rawCard.name),
@@ -130,8 +130,8 @@ const loadCard = (
   }
 };
 
-// Load cards when this file is first required. A loop like this is necessary because
-// of the nature of importing a JSON array directly.
+// Load cards when this file is first required. A loop like this is necessary
+// because of the nature of importing a JSON array directly.
 const cardMap: Record<string, Card | null> = {};
 for (let i = 0; rawData[i] != null; i++) {
   const rawCard = rawData[i] as RawCard;

@@ -1,21 +1,21 @@
-import { expect } from 'chai';
+import { expect } from "chai";
 
-import { lookupCard } from '../../data';
-import { performAction } from '../../framework/actions';
+import { lookupCard } from "../../data";
+import { performAction } from "../../framework/actions";
 import { canAttack, canPatrol } from "../../framework/queries/combat";
 import {
   InstanceQuery,
   queryInstances,
 } from "../../framework/queries/common";
 import {
+  CardID,
   GameState,
   InstanceID,
-  CardID,
   PlayerID,
 } from "../../framework/types";
 
-const P1 = 'P1';
-const P2 = 'P2';
+const P1 = "P1";
+const P2 = "P2";
 
 const findInstance = (
   $: GameState,
@@ -32,7 +32,7 @@ const debugPlayCard = (
   $.players[$.activePlayer].gold += card.cost;
   $.players[$.activePlayer].hand.push(cid);
   performAction($, {
-    type: 'PLAY_CARD',
+    type: "PLAY_CARD",
     cardID: cid,
     boost: false,
   });
@@ -54,17 +54,17 @@ const debugGotoNextTurn = (
 ) => {
   for (let i = 0; i < Object.keys($.players).length; i++) {
     performAction($, {
-      type: 'END_TURN',
+      type: "END_TURN",
     });
     if ($.activePlayer === pid) {
       return;
     }
   }
-  throw new Error('unknown player');
+  throw new Error("unknown player");
 };
 
-describe('basic', () => {
-  describe('unit', () => {
+describe("basic", () => {
+  describe("unit", () => {
     let $: GameState;
     beforeEach(() => {
       $ = {
@@ -78,7 +78,7 @@ describe('basic', () => {
               damage: 0,
             },
             gold: 0,
-            specs: ['ANARCHY', 'BLOOD', 'FIRE'],
+            specs: [ "ANARCHY", "BLOOD", "FIRE" ],
             mainSpec: null,
             hand: [],
             discard: [],
@@ -114,7 +114,7 @@ describe('basic', () => {
               damage: 0,
             },
             gold: 0,
-            specs: ['BALANCE', 'FERAL', 'GROWTH'],
+            specs: [ "BALANCE", "FERAL", "GROWTH" ],
             mainSpec: null,
             hand: [],
             discard: [],
@@ -147,24 +147,24 @@ describe('basic', () => {
         },
       };
     });
-  
-    it('can\'t attack when first played', () => {
-      const iid = debugPlayUnit($, 'Nautical Dog');
+
+    it("can't attack when first played", () => {
+      const iid = debugPlayUnit($, "Nautical Dog");
 
       expect(canAttack($, iid)).to.equal(false);
     });
 
-    it('can attack the turn after it\'s played', () => {
-      const iid = debugPlayUnit($, 'Nautical Dog');
+    it("can attack the turn after it's played", () => {
+      const iid = debugPlayUnit($, "Nautical Dog");
       debugGotoNextTurn($, P1);
 
       expect(canAttack($, iid)).to.equal(true);
     });
 
-    it('can patrol when first played', () => {
-      const iid = debugPlayUnit($, 'Nautical Dog');
+    it("can patrol when first played", () => {
+      const iid = debugPlayUnit($, "Nautical Dog");
 
       expect(canPatrol($, iid)).to.equal(true);
-    })
+    });
   });
 });

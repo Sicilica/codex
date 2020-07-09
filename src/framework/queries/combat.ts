@@ -10,7 +10,7 @@ import {
   getPlayer,
   isHero,
   isUnit,
-} from './common';
+} from "./common";
 import { getOpponents } from "./players";
 
 export const canAttack = (
@@ -28,7 +28,7 @@ export const canAttack = (
     return false;
   }
 
-  if (I.readyState !== 'READY' || I.arrivalFatigue) {
+  if (I.readyState !== "READY" || I.arrivalFatigue) {
     return false;
   }
 
@@ -49,12 +49,12 @@ export const canPatrol = (
     return false;
   }
 
-  if (I.readyState !== 'READY') {
+  if (I.readyState !== "READY") {
     return false;
   }
 
   return true;
-}
+};
 
 export const getPossibleAttackTargets = (
   $: GameState,
@@ -78,7 +78,12 @@ export const getPossibleAttackTargets = (
 
       // If there are other patrollers, we can't attack anything else
       let foundPatroller = false;
-      for (const defenderIID of [P.patrol.elite, P.patrol.scavenger, P.patrol.technician, P.patrol.lookout]) {
+      for (const defenderIID of [
+        P.patrol.elite,
+        P.patrol.scavenger,
+        P.patrol.technician,
+        P.patrol.lookout,
+      ]) {
         if (defenderIID != null) {
           targets.push(defenderIID);
           foundPatroller = true;
@@ -89,10 +94,8 @@ export const getPossibleAttackTargets = (
       }
 
       // Otherwise, we can attack anything
-      // TODO get all instances for this opponent
-      // TODO get tech buildings, base, addon (these should be instances maybe)
     }
   }
-  
+
   return targets;
 };

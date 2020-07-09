@@ -4,6 +4,9 @@ import { promisify } from "util";
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
+// eslint-disable-next-line max-len
+const IMAGE_PREFIX = "//res.cloudinary.com/rgdelato/image/fetch/f_auto/http://codexcards-assets.surge.sh/images/";
+
 const main = async () => {
   const raw = JSON.parse(await readFile("./dump.json", "utf8"));
   const out = raw.map(convertCard);
@@ -41,8 +44,8 @@ const convertCard = (
 
   return {
     name: raw.name,
-    image: raw.image.slice("//res.cloudinary.com/rgdelato/image/fetch/f_auto/http://codexcards-assets.surge.sh/images/".length),
-    cost: parseInt(parse(/^Cost: (\d+)$/, infoLineParts[1])),
+    image: raw.image.slice(IMAGE_PREFIX.length),
+    cost: parseInt(parse(/^Cost: (\d+)$/, infoLineParts[1]), 10),
     ...typeSpecificData,
     cardText: raw.cardText,
     cardRulings: raw.cardRulings,
@@ -66,8 +69,8 @@ const parseBuildingInfo = (
 ) => {
   const { fullType, tags } = parseTagsAndFullType(infoParts[0]);
   const legendary = fullType.includes("Legendary");
-  
-  const health = parseInt(parse(/^HP: (\d+)$/, infoParts[2]));
+
+  const health = parseInt(parse(/^HP: (\d+)$/, infoParts[2]), 10);
 
   return {
     type: "BUILDING",
@@ -86,19 +89,24 @@ const parseHeroInfo = (
   const spec = parse(/^(\w+) Hero$/, typeParts[1]).toUpperCase();
 
   const lowBand = cardText.substring(0, cardText.search(/\dLevel/) + 1);
-  cardText = cardText.substring(lowBand.length);
-  const midBand = cardText.substring(0, cardText.search(/\dLevel/) + 1);
-  const maxBand = cardText.substring(midBand.length);
+  const leftoverText = cardText.substring(lowBand.length);
+  const midBand = leftoverText
+    .substring(0, leftoverText.search(/\dLevel/) + 1);
+  const maxBand = leftoverText.substring(midBand.length);
 
   const lowBandParts = lowBand.split("•").map(p => p.trim());
   const midBandParts = midBand.split("•").map(p => p.trim());
   const maxBandParts = maxBand.split("•").map(p => p.trim());
 
-  const levelBands = [lowBandParts, midBandParts, maxBandParts].map(parts => {
-    const level = parseInt(parse(/^Level (\d+)/, parts[0]));
+  const levelBands = [
+    lowBandParts,
+    midBandParts,
+    maxBandParts,
+  ].map(parts => {
+    const level = parseInt(parse(/^Level (\d+)/, parts[0]), 10);
     const bandText = parse(/:(.*)$/, parts[0]).trim();
-    const attack = parseInt(parse(/^ATK: (\d+)$/, parts[1]));
-    const health = parseInt(parse(/^HP: (\d+)$/, parts[2]));
+    const attack = parseInt(parse(/^ATK: (\d+)$/, parts[1]), 10);
+    const health = parseInt(parse(/^HP: (\d+)$/, parts[2]), 10);
 
     return {
       level,
@@ -107,7 +115,7 @@ const parseHeroInfo = (
       bandText,
     };
   });
-  
+
   return {
     type: "HERO",
     color,
@@ -151,8 +159,8 @@ const parseUnitInfo = (
   const { fullType, tags } = parseTagsAndFullType(infoParts[0]);
   const legendary = fullType.includes("Legendary");
 
-  const attack = parseInt(parse(/^ATK: (\d+)$/, infoParts[2]));
-  const health = parseInt(parse(/^HP: (\d+)$/, infoParts[3]));
+  const attack = parseInt(parse(/^ATK: (\d+)$/, infoParts[2]), 10);
+  const health = parseInt(parse(/^HP: (\d+)$/, infoParts[3]), 10);
 
   return {
     type: "UNIT",
@@ -218,6 +226,6 @@ const parseTechCardTypeLine = (
     spec,
     tech,
   };
-}
+};
 
 main();

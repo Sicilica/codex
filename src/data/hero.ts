@@ -1,18 +1,20 @@
-import { Ability } from '../framework/types';
+import { Ability } from "../framework/types";
 
 export const getHeroAbilities = (
   name: string,
   index: 0 | 1 | 2,
 ): Array<Ability> => {
   switch (name) {
-  case 'Captain Zane':
+  case "Captain Zane":
     switch (index) {
     case 0:
-      return ['TODO'];
+      return [ "TODO" ];
     case 1:
-      return ['TODO'];
+      return [ "TODO" ];
     case 2:
-      return ['TODO'];
+      return [ "TODO" ];
+    default:
+      return [];
     }
   default:
     throw new Error(`Failed to find abilities for hero "${name}"`);

@@ -1,4 +1,4 @@
-import { Ability } from '../framework/types';
+import { Ability } from "../framework/types";
 
 export const getBuildingAbilities = (
   name: string,
