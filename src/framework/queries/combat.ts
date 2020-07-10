@@ -8,6 +8,7 @@ import {
 import {
   getInstance,
   getPlayer,
+  isBuilding,
   isHero,
   isUnit,
 } from "./common";
@@ -54,6 +55,35 @@ export const canPatrol = (
   }
 
   return true;
+};
+
+export const getHealth = (
+  $: GameState,
+  iid: InstanceID,
+): number => {
+  const I = getInstance($, iid);
+  if (I == null) {
+    throw new Error("id ${iid} is not an instance");
+  }
+
+  const card = lookupCard(I.card);
+
+  if (!isHero(card) && !isUnit(card) && !isBuilding(card)) {
+    throw new Error("must be a hero, unit, or building to get health");
+  }
+
+  if (isHero(card)) {
+    let health = 0;
+    card.bands.forEach(band => {
+      if (band.nextLevel == null || I.level < band.nextLevel) {
+        health = band.health;
+      }
+    });
+
+    return health - I.damage;
+  }
+
+  return card.health - I.damage;
 };
 
 export const getPossibleAttackTargets = (

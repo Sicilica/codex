@@ -1,6 +1,7 @@
 import { lookupCard } from "../../data";
 
 import {
+  BuildingCard,
   Card,
   CardID,
   GameState,
@@ -24,6 +25,12 @@ export const getPlayer = (
   pid: PlayerID | null,
 ): PlayerState | null => {
   return pid == null ? null : $.players[pid];
+};
+
+export const isBuilding = (
+  card: Card,
+): card is BuildingCard => {
+  return card.type === "BUILDING";
 };
 
 export const isHero = (
