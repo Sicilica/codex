@@ -112,13 +112,15 @@ export const playCard = (
     P.gold -= card.cost;
   }
 
-  P.discard.push(cid);
   P.hand = P.hand.slice(0, indexInHand).concat(P.hand.slice(indexInHand + 1));
 
   switch (card.type) {
   case "UNIT":
     makeInstance($, $.activePlayer, cid);
     break;
+  case "INSTANT_SPELL":
+    P.discard.push(cid);
+    throw new Error("INSTANT_SPELL not implemented yet.");
   default:
     throw new Error("unexpected card type");
   }

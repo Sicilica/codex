@@ -1,5 +1,6 @@
 import { GameState, PlayerState } from "../../framework/types";
-import { P1, initDummyGameState } from "../testhelper";
+import { P1, debugPlayCard, initDummyGameState } from "../testhelper";
+import { performAction } from "../../framework/actions";
 import {
   discardAll,
   discardCard,
@@ -159,6 +160,32 @@ describe("basic", () => {
         expect(drawCard(P)).to.equal(true);
 
         expect(drawCard(P)).to.equal(false);
+      });
+    });
+    describe("playCard()", () => {
+      it("can't play card not in hand", () => {
+        P.hand = [];
+
+        expect(() => performAction($, {
+          type: "PLAY_CARD",
+          cardID: "Nautical Dog",
+          boost: false,
+        })).to.throw("card not in hand");
+      });
+
+      it("can't play card without having enough money", () => {
+        expect(() => performAction($, {
+          type: "PLAY_CARD",
+          cardID: "Nautical Dog",
+          boost: false,
+        })).to.throw("not enough money");
+      });
+
+      it("played card is removed from hand", () => {
+        P.hand = [];
+        debugPlayCard($, "Nautical Dog");
+
+        expect(P.hand.pop() === "Nautical Dog").to.equal(false);
       });
     });
   });

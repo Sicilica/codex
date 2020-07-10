@@ -1,3 +1,7 @@
 .vscode
 build
 node_modules
+
+# emacs backup files
+.#*
+\#*#

@@ -1,50 +1,13 @@
 import { expect } from "chai";
 
-import { lookupCard } from "../../data";
 import { performAction } from "../../framework/actions";
 import { canAttack, canPatrol } from "../../framework/queries/combat";
+
 import {
-  InstanceQuery,
-  queryInstances,
-} from "../../framework/queries/common";
-import {
-  CardID,
   GameState,
-  InstanceID,
   PlayerID,
 } from "../../framework/types";
-import { P1, initDummyGameState } from "../testhelper";
-
-const findInstance = (
-  $: GameState,
-  query: InstanceQuery,
-): InstanceID => {
-  return queryInstances($, query)[0];
-};
-
-const debugPlayCard = (
-  $: GameState,
-  cid: CardID,
-) => {
-  const card = lookupCard(cid);
-  $.players[$.activePlayer].gold += card.cost;
-  $.players[$.activePlayer].hand.push(cid);
-  performAction($, {
-    type: "PLAY_CARD",
-    cardID: cid,
-    boost: false,
-  });
-};
-
-const debugPlayUnit = (
-  $: GameState,
-  cid: CardID,
-): InstanceID => {
-  debugPlayCard($, cid);
-  return findInstance($, {
-    card: cid,
-  });
-};
+import { P1, debugPlayUnit, initDummyGameState } from "../testhelper";
 
 const debugGotoNextTurn = (
   $: GameState,
@@ -79,30 +42,6 @@ describe("basic", () => {
   beforeEach(() => {
     $ = initDummyGameState();
   });
-  describe("card", () => {
-    it("can't play card not in hand", () => {
-      expect(() => performAction($, {
-        type: "PLAY_CARD",
-        cardID: "Nautical Dog",
-        boost: false,
-      })).to.throw("card not in hand");
-    });
-
-    it("played card is removed from hand", () => {
-      debugPlayCard($, "Nautical Dog");
-
-      const P = $.players[$.activePlayer];
-      expect(P.hand.pop() === "Nautical Dog").to.equal(false);
-    });
-
-    it("played card goes to discard", () => {
-      debugPlayCard($, "Nautical Dog");
-
-      const P = $.players[$.activePlayer];
-      expect(P.discard.pop() === "Nautical Dog").to.equal(true);
-    });
-  });
-
   describe("unit", () => {
     it("can't attack when first played", () => {
       const iid = debugPlayUnit($, "Nautical Dog");
