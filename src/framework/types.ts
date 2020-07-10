@@ -46,6 +46,7 @@ export interface PlayerState {
   hand: Array<CardID>;
   deck: Array<CardID>;
   discard: Array<CardID>;
+  hasShuffledThisTurn: boolean;
   patrol: {
     squadLeader: InstanceID | null;
     elite: InstanceID | null;
