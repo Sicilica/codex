@@ -1,6 +1,6 @@
 import { lookupCard } from "../../data";
 
-import { GameState, PlayerState } from "../types";
+import { CardID, GameState, PlayerState } from "../types";
 
 import { makeInstance } from "./helpers";
 
@@ -38,16 +38,24 @@ const shuffle = (P: PlayerState): void => {
     throw new Error("deck is not empty");
   }
 
-  // Shamelessly copied from https://link.medium.com/1JmrvTx7Y7
-  for (let i = P.discard.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * i);
-    const temp = P.discard[i];
-    P.discard[i] = P.discard[j];
-    P.discard[j] = temp;
-  }
+  shuffleCards(P.discard);
 
   P.deck = P.discard;
   P.discard = [];
+};
+
+/**
+ * Shuffles the given set of cards. The array is shuffled in-place.
+ * @param cards
+ */
+export const shuffleCards = (cards: Array<CardID>): void => {
+  // Shamelessly copied from https://link.medium.com/1JmrvTx7Y7
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * i);
+    const temp = cards[i];
+    cards[i] = cards[j];
+    cards[j] = temp;
+  }
 };
 
 /**
