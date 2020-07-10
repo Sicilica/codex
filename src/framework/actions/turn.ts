@@ -1,5 +1,7 @@
 import { GameState } from "../types";
 
+import { rebuildTechBuildings } from "./buildings";
+
 export const endTurn = (
   $: GameState,
 ): void => {
@@ -10,4 +12,6 @@ export const endTurn = (
   for (const I of Object.values($.instances)) {
     I.arrivalFatigue = false;
   }
+
+  rebuildTechBuildings($, $.players[$.activePlayer]);
 };

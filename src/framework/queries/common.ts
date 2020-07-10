@@ -42,6 +42,7 @@ export interface InstanceQuery {
   card?: CardID,
   player?: PlayerID,
   tags?: Array<string>,
+  type?: Card["type"] | Array<Card["type"]>,
 }
 
 export const queryInstances = (
@@ -62,6 +63,16 @@ export const queryInstances = (
 
     if (query.tags?.some(tag => !card.tags.includes(tag))) {
       return false;
+    }
+
+    if (query.type != null) {
+      if (typeof query.type === "string") {
+        if (card.type !== query.type) {
+          return false;
+        }
+      } else if (!query.type.includes(card.type)) {
+        return false;
+      }
     }
 
     return true;

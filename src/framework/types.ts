@@ -37,15 +37,11 @@ export type PlayerID = string;
 export type InstanceID = string;
 
 export interface PlayerState {
-  base: {
-    damage: number;
-  };
+  id: PlayerID;
+  base: InstanceID;
   specs: [Spec, Spec, Spec];
-  addon: {
-    type: Addon;
-    damage: number;
-    techLabSpec?: Spec;
-  } | null;
+  addon: InstanceID | null;
+  techLabSpec: Spec | null;
   gold: number;
   hand: Array<CardID>;
   deck: Array<CardID>;
@@ -57,7 +53,8 @@ export interface PlayerState {
     technician: InstanceID | null;
     lookout: InstanceID | null;
   };
-  techBuildings: [TechBuildingState, TechBuildingState, TechBuildingState];
+  purchasedTechBuildings: number;
+  techBuildings: Record<number, InstanceID | null>;
   mainSpec: Spec | null;
 }
 
@@ -117,6 +114,11 @@ export interface BuildingCard extends CardBase {
   tech: number;
   legendary: boolean;
   abilities: Array<Ability>;
+
+  /**
+   * The base itself, tech buildings, and addons are all base components.
+   */
+  baseComponent: boolean;
 }
 
 export interface UpgradeCard extends CardBase {

@@ -10,6 +10,7 @@ import {
   getPlayer,
   isHero,
   isUnit,
+  queryInstances,
 } from "./common";
 import { getOpponents } from "./players";
 
@@ -93,7 +94,10 @@ export const getPossibleAttackTargets = (
         continue;
       }
 
-      // Otherwise, we can attack anything
+      return queryInstances($, {
+        player: pid,
+        type: [ "BUILDING", "HERO", "UNIT" ],
+      });
     }
   }
 
