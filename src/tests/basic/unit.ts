@@ -51,9 +51,22 @@ const debugGotoNextTurn = (
   pid: PlayerID,
 ) => {
   for (let i = 0; i < Object.keys($.players).length; i++) {
+    const P = $.players[$.activePlayer];
+    while (P.deck.length < 2) {
+      P.deck.push("Nautical Dog");
+    }
+
     performAction($, {
       type: "END_TURN",
     });
+
+    if ($.turnPhase === "TECH") {
+      performAction($, {
+        type: "TECH",
+        cards: [ "Crash Bomber", "Firebat" ],
+      });
+    }
+
     if ($.activePlayer === pid) {
       return;
     }

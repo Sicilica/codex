@@ -1,3 +1,11 @@
+export type GlobalTurnPhase =
+  | "READY"
+  | "UPKEEP"
+  | "MAIN"
+  | "DRAW"
+  | "TECH"
+  ;
+
 export type Color =
   | "BLACK"
   | "BLUE"
@@ -26,7 +34,10 @@ export type Addon =
   ;
 
 export interface GameState {
+  firstPlayer: PlayerID;
+  round: number;
   activePlayer: PlayerID;
+  turnPhase: GlobalTurnPhase;
   instances: Record<InstanceID, Instance>;
   nextID: number;
   players: Record<PlayerID, PlayerState>;
@@ -46,11 +57,15 @@ export interface PlayerState {
     damage: number;
     techLabSpec?: Spec;
   } | null;
+  workers: number;
   gold: number;
   hand: Array<CardID>;
   deck: Array<CardID>;
   discard: Array<CardID>;
+  // Ruling: Players can skip tech phase at 10 workers and always thereafter
+  canSkipTech: boolean;
   hasShuffledThisTurn: boolean;
+  hasBuiltWorkerThisTurn: boolean;
   patrol: {
     squadLeader: InstanceID | null;
     elite: InstanceID | null;
