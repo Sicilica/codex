@@ -112,6 +112,7 @@ export const playCard = (
     P.gold -= card.cost;
   }
 
+  P.discard.push(cid);
   P.hand = P.hand.slice(0, indexInHand).concat(P.hand.slice(indexInHand + 1));
 
   switch (card.type) {

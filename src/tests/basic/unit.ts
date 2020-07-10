@@ -62,12 +62,35 @@ const debugGotoNextTurn = (
 };
 
 describe("basic", () => {
-  describe("unit", () => {
-    let $: GameState;
-    beforeEach(() => {
-      $ = initDummyGameState();
+  let $: GameState;
+  beforeEach(() => {
+    $ = initDummyGameState();
+  });
+  describe("card", () => {
+    it("can't play card not in hand", () => {
+      expect(() => performAction($, {
+        type: "PLAY_CARD",
+        cardID: "Nautical Dog",
+        boost: false,
+      })).to.throw("card not in hand");
     });
 
+    it("played card is removed from hand", () => {
+      debugPlayCard($, "Nautical Dog");
+
+      const P = $.players[$.activePlayer];
+      expect(P.hand.pop() === "Nautical Dog").to.equal(false);
+    });
+
+    it("played card goes to discard", () => {
+      debugPlayCard($, "Nautical Dog");
+
+      const P = $.players[$.activePlayer];
+      expect(P.discard.pop() === "Nautical Dog").to.equal(true);
+    });
+  });
+
+  describe("unit", () => {
     it("can't attack when first played", () => {
       const iid = debugPlayUnit($, "Nautical Dog");
 
