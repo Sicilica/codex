@@ -63,7 +63,7 @@ export const getHealth = (
 ): number => {
   const I = getInstance($, iid);
   if (I == null) {
-    throw new Error("id ${iid} is not an instance");
+    throw new Error(`id ${iid} is not an instance`);
   }
 
   const card = lookupCard(I.card);
@@ -76,7 +76,9 @@ export const getHealth = (
     let health = 0;
     card.bands.forEach(band => {
       if (band.nextLevel == null || I.level < band.nextLevel) {
-        health = band.health;
+        if (health === 0) {
+          health = band.health;
+        }
       }
     });
 
