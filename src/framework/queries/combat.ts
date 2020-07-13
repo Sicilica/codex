@@ -125,9 +125,17 @@ export const getPossibleAttackTargets = (
         continue;
       }
 
-      // Otherwise, we can attack anything
+      // Otherwise, we can attack any unit, building, or hero
+      const instances = Object.keys($.instances)
+        .map(key => $.instances[key]);
+
+      instances.filter(I => {
+        const card = lookupCard(I.card);
+        return I.controller !== attackerI.controller
+          && (isUnit(card) || isBuilding(card) || isHero(card));
+      }).forEach(I => targets.push(I.id));
     }
   }
 
-  return targets;
+  return new Set(targets);
 };

@@ -1,8 +1,38 @@
 import { GameState, PlayerState } from "../../framework/types";
-import { P1, initDummyGameState } from "../testhelper";
-import { getHealth } from "../../framework/queries/combat";
+import { P1, P2, initDummyGameState } from "../testhelper";
+import {
+  getHealth,
+  getPossibleAttackTargets,
+} from "../../framework/queries/combat";
 
 import { expect } from "chai";
+
+const addInstance = (
+  $: GameState,
+  id: string,
+  controller: string,
+  card: string,
+  damage: number,
+  level: number,
+): void => {
+  if (id in $.instances) {
+    throw new Error(`Instance ID ${id}, is already in use.`);
+  }
+  $.instances[id] = {
+    id,
+    owner: controller,
+    controller,
+    card,
+    damage,
+    plusMinusTokens: 0,
+    specialTokens: [],
+    attachments: [],
+    level,
+    readyState: "READY",
+    arrivalFatigue: false,
+    armorDamage: 0,
+  };
+};
 
 describe("basic", () => {
   describe("combat", () => {
@@ -28,88 +58,64 @@ describe("basic", () => {
         });
 
         it("should fail if instance is not a hero, unit, or building", () => {
-          $.instances = {
-            test: {
-              id: "test",
-              owner: P1,
-              controller: P1,
-              card: "Hotter Fire",
-              damage: 0,
-              plusMinusTokens: 0,
-              specialTokens: [],
-              attachments: [],
-              level: 0,
-              readyState: "READY",
-              arrivalFatigue: false,
-              armorDamage: 0,
-            },
-          };
+          addInstance($, "test", P1, "Hotter Fire", 0, 0);
 
           expect(() => getHealth($, "test"))
             .to.throw("must be a hero, unit, or building to get health");
         });
 
         it("should return health minus damage for building", () => {
-          $.instances = {
-            test: {
-              id: "test",
-              owner: P1,
-              controller: P1,
-              card: "Sanatorium",
-              damage: 3,
-              plusMinusTokens: 0,
-              specialTokens: [],
-              attachments: [],
-              level: 0,
-              readyState: "READY",
-              arrivalFatigue: false,
-              armorDamage: 0,
-            },
-          };
+          addInstance($, "test", P1, "Sanatorium", 3, 0);
 
           expect(getHealth($, "test")).to.equal(1);
         });
 
         it("should return health minus damage for unit", () => {
-          $.instances = {
-            test: {
-              id: "test",
-              owner: P1,
-              controller: P1,
-              card: "Nautical Dog",
-              damage: 1,
-              plusMinusTokens: 0,
-              specialTokens: [],
-              attachments: [],
-              level: 0,
-              readyState: "READY",
-              arrivalFatigue: false,
-              armorDamage: 0,
-            },
-          };
+          addInstance($, "test", P1, "Nautical Dog", 1, 0);
 
           expect(getHealth($, "test")).to.equal(0);
         });
 
         it("should return health minus damage for hero", () => {
-          $.instances = {
-            test: {
-              id: "test",
-              owner: P1,
-              controller: P1,
-              card: "Captain Zane",
-              damage: 2,
-              plusMinusTokens: 0,
-              specialTokens: [],
-              attachments: [],
-              level: 5,
-              readyState: "READY",
-              arrivalFatigue: false,
-              armorDamage: 0,
-            },
-          };
+          addInstance($, "test", P1, "Captain Zane", 2, 5);
 
           expect(getHealth($, "test")).to.equal(1);
+        });
+      });
+
+      describe("getPossibleAttackTargets()", () => {
+        it("can only target squad leader if available", () => {
+          addInstance($, "0", P1, "Nautical Dog", 0, 0);
+          addInstance($, "1", P2, "Nautical Dog", 0, 0);
+          addInstance($, "2", P2, "Nautical Dog", 0, 0);
+          addInstance($, "3", P2, "Nautical Dog", 0, 0);
+
+          $.players[P2].patrol.squadLeader = "1";
+          $.players[P2].patrol.lookout = "2";
+          expect(getPossibleAttackTargets($, "0"))
+            .is.deep.equal(new Set([ "1" ]));
+        });
+
+        it("can only target another member of patrol if there's no squad leader", () => {
+          addInstance($, "0", P1, "Nautical Dog", 0, 0);
+          addInstance($, "1", P2, "Nautical Dog", 0, 0);
+          addInstance($, "2", P2, "Nautical Dog", 0, 0);
+          addInstance($, "3", P2, "Nautical Dog", 0, 0);
+
+          $.players[P2].patrol.elite = "1";
+          $.players[P2].patrol.lookout = "2";
+          expect(getPossibleAttackTargets($, "0"))
+            .is.deep.equal(new Set([ "1", "2" ]));
+        });
+
+        it("can target any unit, building, or hero if there's no patrol", () => {
+          addInstance($, "0", P1, "Nautical Dog", 0, 0);
+          addInstance($, "1", P2, "Nautical Dog", 0, 0);
+          addInstance($, "2", P2, "Nautical Dog", 0, 0);
+          addInstance($, "3", P2, "Nautical Dog", 0, 0);
+
+          expect(getPossibleAttackTargets($, "0"))
+            .is.deep.equal(new Set([ "1", "2", "3" ]));
         });
       });
     });
