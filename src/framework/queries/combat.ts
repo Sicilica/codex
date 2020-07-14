@@ -57,12 +57,43 @@ export const canPatrol = (
   return true;
 };
 
+export const getAttack = (
+  $: GameState,
+  iid: InstanceID,
+): number => {
+  const I = getInstance($, iid);
+  if (!I) {
+    throw new Error(`id ${iid} is not an instance`);
+  }
+
+  const card = lookupCard(I.card);
+
+  if (!isHero(card) && !isUnit(card)) {
+    return 0;
+  }
+
+  if (isHero(card)) {
+    let attack = 0;
+    card.bands.forEach(band => {
+      if (band.nextLevel == null || I.level < band.nextLevel) {
+        if (attack === 0) {
+          attack = band.attack;
+        }
+      }
+    });
+
+    return attack;
+  }
+
+  return card.attack;
+};
+
 export const getHealth = (
   $: GameState,
   iid: InstanceID,
 ): number => {
   const I = getInstance($, iid);
-  if (I == null) {
+  if (!I) {
     throw new Error(`id ${iid} is not an instance`);
   }
 
@@ -137,5 +168,5 @@ export const getPossibleAttackTargets = (
     }
   }
 
-  return new Set(targets);
+  return targets;
 };
