@@ -84,6 +84,7 @@ export interface Instance {
   specialTokens: Array<string>;
   attachments: Array<Instance>;
   level: number;
+  startedTurnAtMaxBand: boolean;
   readyState: "READY" | "EXHAUSTED" | "DISABLED";
   arrivalFatigue: boolean;
   armorDamage: number;
@@ -141,6 +142,7 @@ export interface UpgradeCard extends CardBase {
   type: "UPGRADE";
   abilities: Array<Ability>;
   legendary: boolean;
+  tech: number;
 }
 
 export interface InstantSpellCard extends CardBase {

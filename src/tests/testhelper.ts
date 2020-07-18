@@ -1,32 +1,41 @@
 import { GameState, PlayerState, Spec } from "../framework/types";
+import { makeInstance } from "../framework/actions/helpers";
 
 export const P1 = "P1";
 export const P2 = "P2";
 
 export const initDummyGameState: () => GameState = () => {
-  return {
+  const $: GameState = {
     firstPlayer: P1,
     round: 1,
     activePlayer: P1,
     turnPhase: "MAIN",
     instances: {},
     nextID: 100,
-    players: {
-      [P1]: generatePlayer([ "ANARCHY", "BLOOD", "FIRE" ], true),
-      [P2]: generatePlayer([ "BALANCE", "FERAL", "GROWTH" ]),
-    },
+    players: {},
   };
+
+  $.players = {
+    [P1]: generatePlayer($, P1, [ "ANARCHY", "BLOOD", "FIRE" ], true),
+    [P2]: generatePlayer($, P2, [ "BALANCE", "FERAL", "GROWTH" ]),
+  };
+
+  return $;
 };
 
 const generatePlayer = (
+  $: GameState,
+  pid: string,
   specs: [Spec, Spec, Spec],
   first = false
 ): PlayerState => {
+  const base = makeInstance($, pid, "$BASE");
+
   return {
+    id: pid,
     addon: null,
-    base: {
-      damage: 0,
-    },
+    techLabSpec: null,
+    base: base.id,
     workers: first ? 4 : 5,
     gold: 0,
     specs,
@@ -44,22 +53,7 @@ const generatePlayer = (
       technician: null,
       lookout: null,
     },
-    techBuildings: [
-      {
-        damage: 0,
-        purchased: false,
-        ready: false,
-      },
-      {
-        damage: 0,
-        purchased: false,
-        ready: false,
-      },
-      {
-        damage: 0,
-        purchased: false,
-        ready: false,
-      },
-    ],
+    techBuildings: [ null, null, null ],
+    purchasedTechBuildings: 0,
   };
 };

@@ -26,7 +26,6 @@ const techBuildingCommon = {
   spec: null,
   abilities: [
     // Dies: 2 damage to base
-    // TODO also remove this from techBuldings array on death
     "TODO" as const,
   ],
   tags: [],

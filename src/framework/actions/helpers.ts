@@ -18,6 +18,7 @@ export const makeInstance = (
     damage: 0,
     plusMinusTokens: 0,
     level: 0,
+    startedTurnAtMaxBand: false,
     attachments: [],
     armorDamage: 0,
     specialTokens: [],
