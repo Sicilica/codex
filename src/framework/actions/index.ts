@@ -1,11 +1,15 @@
 import {
+  CardID,
   GameState,
   Spec,
 } from "../types";
 
-import { playCard } from "./hand";
-import { endTurn } from "./turn";
 import { purchaseTechBuilding } from "./buildings";
+import { playCard } from "./hand";
+import {
+  endTurn,
+  techCards,
+} from "./turn";
 
 export type Action = {
   type: "END_TURN";
@@ -16,6 +20,11 @@ export type Action = {
 } | {
   type: "PURCHASE_TECH_BUILDING";
   spec?: Spec;
+} | {
+  type: "TECH";
+  cards: Array<CardID>;
+} | {
+  type: "END_TURN";
 };
 
 export const performAction = (
@@ -23,14 +32,17 @@ export const performAction = (
   action: Action,
 ): void => {
   switch (action.type) {
-  case "PURCHASE_TECH_BUILDING":
-    purchaseTechBuilding($, action.spec);
-    break;
   case "END_TURN":
     endTurn($);
     break;
   case "PLAY_CARD":
     playCard($, action.cardID, action.boost);
+    break;
+  case "PURCHASE_TECH_BUILDING":
+    purchaseTechBuilding($, action.spec);
+    break;
+  case "TECH":
+    techCards($, action.cards);
     break;
   default:
     throw new Error(
