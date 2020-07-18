@@ -40,7 +40,7 @@ export const TECH_BUILDING_CARDS: Array<BuildingCard & {
     ...techBuildingCommon,
     name: "Tech I Building",
     cost: 1,
-    workerRequirement: 5,
+    workerRequirement: 6,
     tech: 1,
   },
   {

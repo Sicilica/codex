@@ -18,8 +18,10 @@ export const purchaseTechBuilding = (
   const levelToPurchase = P.purchasedTechBuildings;
   const card = TECH_BUILDING_CARDS[levelToPurchase];
 
-  if (spec == null && card.tech === 2) {
-    throw new Error("failed to declare spec");
+  if (card.tech === 2) {
+    if (spec == null) {
+      throw new Error("failed to declare spec");
+    }
   } else if (spec != null) {
     throw new Error("unexpected declared spec");
   }
@@ -28,7 +30,9 @@ export const purchaseTechBuilding = (
     throw new Error("not enough gold");
   }
 
-  // TODO check worker count
+  if (P.workers < card.workerRequirement) {
+    throw new Error("not enough workers");
+  }
 
   P.purchasedTechBuildings++;
   P.gold -= card.cost;

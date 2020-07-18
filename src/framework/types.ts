@@ -70,7 +70,7 @@ export interface PlayerState {
     lookout: InstanceID | null;
   };
   purchasedTechBuildings: number;
-  techBuildings: Record<number, InstanceID | null>;
+  techBuildings: Array<InstanceID | null>;
   mainSpec: Spec | null;
 }
 

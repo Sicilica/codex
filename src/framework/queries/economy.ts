@@ -62,7 +62,7 @@ export const canPlayCard = (
     // played this turn)
     if (card.tech >= 1) {
       const techBuilding = getInstance($, P.techBuildings[card.tech - 1]);
-      if (techBuilding == null || techBuilding.readyState !== "READY") {
+      if (techBuilding == null || techBuilding.arrivalFatigue) {
         return false;
       }
     }
