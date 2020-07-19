@@ -3,6 +3,18 @@ import { discardAll, drawCard } from "./hand";
 import { MAX_GOLD, MAX_HAND_SIZE, WORKERS_TO_SKIP_TECH } from "../constants";
 import { queryInstances } from "../queries/common";
 
+export const startGame = ($: GameState): void => {
+  const gameStarted = $.round !== 1 ||
+    $.activePlayer !== $.firstPlayer ||
+    $.turnPhase !== "READY";
+
+  if (gameStarted) {
+    throw new Error("game has already started");
+  }
+
+  handleReadyPhase($);
+};
+
 const handleReadyPhase = ($: GameState): void => {
   if ($.turnPhase !== "READY") {
     throw new Error(`not in ready phase (${$.turnPhase})`);

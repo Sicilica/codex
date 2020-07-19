@@ -2,9 +2,10 @@ import { expect } from "chai";
 
 import { GameState, PlayerState } from "../../framework/types";
 import { P1, P2, initDummyGameState } from "../testhelper";
-import { endTurn, techCards } from "../../framework/actions/turn";
+import { endTurn, startGame, techCards } from "../../framework/actions/turn";
 import { makeInstance } from "../../framework/actions/helpers";
 import { MAX_GOLD, MAX_HAND_SIZE } from "../../framework/constants";
+import { createInitialGameState } from "../../framework/state/gamestate";
 
 describe("basic", () => {
   describe("turn", () => {
@@ -13,12 +14,47 @@ describe("basic", () => {
 
     beforeEach(() => {
       $ = initDummyGameState();
-      $.turnPhase = "TECH";
-
       P = $.players[$.activePlayer];
     });
 
+    describe("startGame()", () => {
+      it("should advance the game through the initial phases for P1", () => {
+        $ = createInitialGameState([
+          {
+            starterDeckSpec: "ANARCHY",
+            otherSpecs: [ "BLOOD", "FIRE" ],
+          }, {
+            starterDeckSpec: "BALANCE",
+            otherSpecs: [ "FERAL", "GROWTH" ],
+          },
+        ]);
+        P = $.players[$.activePlayer];
+
+        expect($.round).to.equal(1);
+        expect($.activePlayer).to.equal(P1);
+        expect($.turnPhase).to.equal("READY");
+        expect(P.hand.length).to.equal(5);
+        expect(P.deck.length).to.equal(5);
+        expect(P.discard.length).to.equal(0);
+        expect(P.gold).to.equal(0);
+
+        startGame($);
+
+        expect($.round).to.equal(1);
+        expect($.activePlayer).to.equal(P1);
+        expect($.turnPhase).to.equal("MAIN");
+        expect(P.hand.length).to.equal(5);
+        expect(P.deck.length).to.equal(5);
+        expect(P.discard.length).to.equal(0);
+        expect(P.gold).to.equal(P.workers);
+      });
+    });
+
     describe("Ready Phase", () => {
+      beforeEach(() => {
+        $.turnPhase = "TECH";
+      });
+
       it("should reset all turn flags for the player", () => {
         P.hasShuffledThisTurn = true;
         P.hasBuiltWorkerThisTurn = true;
@@ -61,10 +97,16 @@ describe("basic", () => {
     });
 
     describe("Upkeep Phase", () => {
+      beforeEach(() => {
+        $.turnPhase = "TECH";
+      });
+
       it("should give player a gold for every worker", () => {
+        const startGold = P.gold;
+
         techCards($, []);
 
-        expect(P.gold).to.equal(P.workers);
+        expect(P.gold).to.equal(startGold + P.workers);
       });
 
       it(`should cap the player's gold at ${MAX_GOLD}`, () => {
@@ -77,29 +119,6 @@ describe("basic", () => {
     });
 
     describe("Draw Phase", () => {
-      beforeEach(() => {
-        $ = initDummyGameState();
-        $.turnPhase = "MAIN";
-
-        P = $.players[$.activePlayer];
-
-        P.hand = [
-          "Nautical Dog",
-          "Mad Man",
-          "Bombaster",
-          "Careless Musketeer",
-          "Bloodrage Ogre",
-        ];
-
-        P.deck = [
-          "Makeshift Rambaster",
-          "Bloodburn",
-          "Scorch",
-          "Charge",
-          "Pillage",
-        ];
-      });
-
       it(
         "should refill the player's hand by 2",
         () => {
@@ -107,6 +126,7 @@ describe("basic", () => {
 
           endTurn($);
 
+          expect(P.discard.length).to.equal(2);
           expect(P.hand.length).to.equal(4);
         }
       );
@@ -116,41 +136,60 @@ describe("basic", () => {
         () => {
           endTurn($);
 
+          expect(P.discard.length).to.equal(5);
           expect(P.hand.length).to.equal(5);
         }
       );
 
       it("should replace the player's current hand", () => {
+        const hasNauticalDog = P.hand.includes("Nautical Dog");
+
         endTurn($);
 
-        expect(P.hand.includes("Nautical Dog")).to.equal(false);
+        expect(P.discard.length).to.equal(5);
+        expect(P.hand.includes("Nautical Dog")).to.equal(!hasNauticalDog);
       });
     });
 
     describe("Tech Phase", () => {
       it("should skip the tech phase on the first round", () => {
-        techCards($, []);
+        endTurn($);
 
+        expect($.activePlayer).to.equal(P2);
         expect($.turnPhase).to.equal("MAIN");
       });
 
       it("should require 2 teched cards after the first round", () => {
-        $.round = 2;
+        endTurn($);
+        endTurn($);
+
+        expect($.activePlayer).to.equal(P1);
+        expect($.turnPhase).to.equal("TECH");
 
         expect(() => techCards($, [])).to.throw("not enough cards to tech");
       });
 
       it("should add the player's teched cards to the discard pile", () => {
-        $.round = 2;
+        endTurn($);
+        endTurn($);
+
+        expect($.activePlayer).to.equal(P1);
+        expect($.turnPhase).to.equal("TECH");
 
         techCards($, [ "Crash Bomber", "Firebat" ]);
 
+        expect($.turnPhase).to.equal("MAIN");
         expect(P.discard.includes("Crash Bomber")).to.equal(true);
         expect(P.discard.includes("Firebat")).to.equal(true);
       });
 
       it("should reject attempts to tech more than 2 cards", () => {
-        $.round = 2;
+        endTurn($);
+        endTurn($);
+
+        expect($.activePlayer).to.equal(P1);
+        expect($.turnPhase).to.equal("TECH");
+
         P.workers = 10;
 
         expect(() =>
@@ -163,6 +202,7 @@ describe("basic", () => {
       it("should permit 0, 1, or 2 teched cards at 10 workers", () => {
         $.round = 2;
         P.workers = 10;
+        $.turnPhase = "TECH";
 
         techCards($, []);
 
@@ -191,6 +231,7 @@ describe("basic", () => {
       it("should permit 0, 1, or 2 teched cards after 10 workers", () => {
         $.round = 2;
         P.workers = 9;
+        $.turnPhase = "TECH";
         P.canSkipTech = true;
 
         techCards($, []);
@@ -217,20 +258,14 @@ describe("basic", () => {
 
     describe("Advancing Players", () => {
       it("should advance the round on P1's turn", () => {
-        $.turnPhase = "MAIN";
-        $.activePlayer = P2;
-        const p2 = $.players[P2];
+        endTurn($);
 
-        p2.deck = [
-          "Spore Shambler",
-          "Verdant Tree",
-          "Rich Earth",
-          "Rampant Growth",
-          "Forest's Favor",
-        ];
+        expect($.activePlayer).to.equal(P2);
+        expect($.round).to.equal(1);
 
         endTurn($);
 
+        expect($.activePlayer).to.equal(P1);
         expect($.round).to.equal(2);
       });
     });
