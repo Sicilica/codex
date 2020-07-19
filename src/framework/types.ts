@@ -172,5 +172,75 @@ interface HeroCardBand {
   abilities: Array<Ability>;
 }
 
-export type Ability = "TODO";
+export type GameEvent = {
+  type:
+    // TODO implement this
+    | "MAX_LEVEL"
+    ;
+} | {
+  type:
+    // | "ARRIVES"
+    // | "ATTACKS"
+    // | "DIES"
+    // TODO implement this
+    | "KILLS" // rename probably to "THIS_KILLS_OTHER"
+    // | "LEAVES" // TODO ???
+    // | "UPKEEP"
+    ;
+  instance: Instance;
+};
+
+export type Ability =
+  | EventAbility<any>
+  | SimpleKeywordAbility
+  | ValuedKeywordAbility
+  ;
+
 export type Effect = "TODO";
+
+export interface EventAbility<EventT extends GameEvent = GameEvent> {
+  type: "EVENT";
+  event: EventT["type"];
+  effect: ($: GameState, I: Instance, e: EventT) => void;
+}
+
+export interface SimpleKeywordAbility {
+  type: "SIMPLE_KEYWORD";
+  keyword:
+    // | "ANTI-AIR"
+    // | "ARMOR_PIERCING"
+    // | "DEATHTOUCH"
+    // | "DETECTOR"
+    // | "EPHEMERAL"
+    // | "FLYING"
+    // TODO impl haste; we shouldn't have anything uncommented here that isn't hooked up
+    | "HASTE"
+    // | "ILLUSION"
+    // | "INDESTRUCTIBLE"
+    // | "INVISIBLE"
+    // | "LEGENDARY" // TODO ???
+    // | "LONG-RANGE"
+    // | "READINESS"
+    // | "SPARKSHOT"
+    // | "STEALTH"
+    // | "SWIFT_STRIKE"
+    // | "UNATTACKABLE"
+    // | "UNSTOPPABLE"
+    // | "UNTARGETABLE"
+    ;
+}
+
+export interface ValuedKeywordAbility {
+  type: "VALUED_KEYWORD";
+  keyword:
+    // | "ARMOR"
+    // | "FADING"
+    // | "FORECAST"
+    // | "FRENZY"
+    // | "HEALING"
+    // | "OBLITERATE"
+    // TODO impl resist; we shouldn't have anything uncommented that isn't implemented
+    | "RESIST"
+    ;
+  value: number;
+}

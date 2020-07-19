@@ -1,8 +1,10 @@
+import { MAX_GOLD } from "../constants";
 import {
   CardID,
   GameState,
   Instance,
   PlayerID,
+  PlayerState,
 } from "../types";
 
 export const makeInstance = (
@@ -26,4 +28,11 @@ export const makeInstance = (
   };
   $.instances[I.id] = I;
   return I;
+};
+
+export const giveGold = (
+  P: PlayerState,
+  amount: number,
+): void => {
+  P.gold = Math.min(P.gold + amount, MAX_GOLD);
 };

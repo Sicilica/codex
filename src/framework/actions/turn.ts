@@ -1,7 +1,8 @@
 import { CardID, GameState } from "../types";
 import { discardAll, drawCard } from "./hand";
-import { MAX_GOLD, MAX_HAND_SIZE, WORKERS_TO_SKIP_TECH } from "../constants";
+import { MAX_HAND_SIZE, WORKERS_TO_SKIP_TECH } from "../constants";
 import { queryInstances } from "../queries/common";
+import { giveGold } from "./helpers";
 
 const handleReadyPhase = ($: GameState): void => {
   if ($.turnPhase !== "READY") {
@@ -27,6 +28,8 @@ const handleReadyPhase = ($: GameState): void => {
     I.arrivalFatigue = false;
     I.readyState = I.readyState === "DISABLED" ? "EXHAUSTED" : "READY";
 
+    // TODO mark heroes as being at max band at start of turn
+
     // Make dead heroes available
   }
 
@@ -42,7 +45,7 @@ const handleUpkeepPhase = ($: GameState): void => {
 
   const P = $.players[$.activePlayer];
 
-  P.gold = Math.min(P.gold + P.workers, MAX_GOLD);
+  giveGold(P, P.workers);
 
   // Run any upkeep actions
 
