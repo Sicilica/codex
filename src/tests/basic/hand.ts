@@ -4,6 +4,7 @@ import {
   discardAll,
   discardCard,
   drawCard,
+  removeFromHand,
 } from "../../framework/actions/hand";
 import { expect } from "chai";
 
@@ -159,6 +160,28 @@ describe("basic", () => {
         expect(drawCard(P)).to.equal(true);
 
         expect(drawCard(P)).to.equal(false);
+      });
+    });
+
+    describe("removeFromHand()", () => {
+      it("should remove the given card if it is in hand", () => {
+        expect(P.hand.includes("Nautical Dog")).to.equal(true);
+        expect(P.hand.length).to.equal(3);
+
+        removeFromHand(P, "Nautical Dog");
+
+        expect(P.hand.includes("Nautical Dog")).to.equal(false);
+        expect(P.hand.length).to.equal(2);
+      });
+
+      it("should fail if the card is not in hand", () => {
+        expect(P.hand.includes("Careless Musketeer")).to.equal(false);
+        expect(P.hand.length).to.equal(3);
+
+        removeFromHand(P, "Careless Musketeer");
+
+        expect(P.hand.includes("Careless Musketeer")).to.equal(false);
+        expect(P.hand.length).to.equal(3);
       });
     });
   });

@@ -1,4 +1,5 @@
 import { CardID, GameState } from "../types";
+import { removeFromHand } from "./hand";
 
 export const buyWorker = ($: GameState, cid: CardID): void => {
   const P = $.players[$.activePlayer];
@@ -11,12 +12,10 @@ export const buyWorker = ($: GameState, cid: CardID): void => {
     throw new Error("cannot afford worker");
   }
 
-  const indexInHand = P.hand.indexOf(cid);
-  if (indexInHand < 0) {
+  if (!removeFromHand(P, cid)) {
     throw new Error("card not in hand");
   }
 
-  P.hand = P.hand.slice(0, indexInHand).concat(P.hand.slice(indexInHand + 1));
   P.gold -= 1;
   P.workers += 1;
 
