@@ -2,8 +2,12 @@ import { CardID, GameState } from "../types";
 
 import { playCard } from "./hand";
 import { endTurn, techCards } from "./turn";
+import { buyWorker } from "./base";
 
 export type Action = {
+  type: "BUY_WORKER";
+  cardID: string;
+} | {
   type: "PLAY_CARD";
   cardID: string;
   boost: boolean;
@@ -19,6 +23,9 @@ export const performAction = (
   action: Action,
 ): void => {
   switch (action.type) {
+  case "BUY_WORKER":
+    buyWorker($, action.cardID);
+    break;
   case "END_TURN":
     endTurn($);
     break;

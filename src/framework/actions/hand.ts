@@ -83,12 +83,11 @@ export const discardCard = (
   }
 
   const discardID = cid || P.hand[Math.floor(Math.random() * P.hand.length)];
-  const indexInHand = P.hand.indexOf(discardID);
-  if (indexInHand < 0) {
+
+  if (!removeFromHand(P, discardID)) {
     throw new Error("card not in hand");
   }
 
-  P.hand = P.hand.slice(0, indexInHand).concat(P.hand.slice(indexInHand + 1));
   P.discard.push(discardID);
 };
 
@@ -100,27 +99,25 @@ export const playCard = (
   const card = lookupCard(cid);
   const P = $.players[$.activePlayer];
 
-  const indexInHand = P.hand.indexOf(cid);
-  if (indexInHand < 0) {
-    throw new Error("card not in hand");
-  }
+  let cost = card.cost;
 
   if (boost) {
     if (card.boostCost == null) {
       throw new Error("card not boostable");
     }
-    if (P.gold < card.cost + card.boostCost) {
-      throw new Error("not enough money");
-    }
-    P.gold -= card.cost + card.boostCost;
-  } else {
-    if (P.gold < card.cost) {
-      throw new Error("not enough money");
-    }
-    P.gold -= card.cost;
+
+    cost = card.cost + card.boostCost;
   }
 
-  P.hand = P.hand.slice(0, indexInHand).concat(P.hand.slice(indexInHand + 1));
+  if (P.gold < cost) {
+    throw new Error("not enough money");
+  }
+
+  if (!removeFromHand(P, cid)) {
+    throw new Error("card not in hand");
+  }
+
+  P.gold -= cost;
 
   switch (card.type) {
   case "UNIT":
@@ -129,4 +126,14 @@ export const playCard = (
   default:
     throw new Error("unexpected card type");
   }
+};
+
+export const removeFromHand = (P: PlayerState, cid: string): boolean => {
+  const indexInHand = P.hand.indexOf(cid);
+  if (indexInHand < 0) {
+    return false;
+  }
+
+  P.hand = P.hand.slice(0, indexInHand).concat(P.hand.slice(indexInHand + 1));
+  return true;
 };
