@@ -98,6 +98,10 @@ export const playCard = (
   cid: string,
   boost: boolean,
 ): void => {
+  if ($.turnPhase !== "MAIN") {
+    throw new Error(`not in main phase (${$.turnPhase})`);
+  }
+
   const card = lookupCard(cid);
   const P = $.players[$.activePlayer];
 

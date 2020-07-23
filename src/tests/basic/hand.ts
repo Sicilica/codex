@@ -4,9 +4,13 @@ import {
   discardAll,
   discardCard,
   drawCard,
+  playCard,
   removeFromHand,
 } from "../../framework/actions/hand";
 import { expect } from "chai";
+import { queryInstances } from "../../framework/queries/common";
+import { getSpecHero } from "../../data/spec";
+import { HERO_DEATH_FATIGUE } from "../../framework/constants";
 
 describe("basic", () => {
   describe("hand", () => {
@@ -160,6 +164,68 @@ describe("basic", () => {
         expect(drawCard(P)).to.equal(true);
 
         expect(drawCard(P)).to.equal(false);
+      });
+    });
+
+    describe("playCard()", () => {
+      it("should require the main phase", () => {
+        $.turnPhase = "TECH";
+
+        expect(
+          () => playCard($, "Nautical Dog", false)
+        ).to.throw("not in main phase (TECH)");
+      });
+
+      it("should require sufficient gold", () => {
+        P.gold = 0;
+
+        expect(
+          () => playCard($, "Nautical Dog", false)
+        ).to.throw("not enough money");
+
+        expect(
+          () => playCard($, getSpecHero("ANARCHY"), false)
+        ).to.throw("not enough money");
+      });
+
+      it("should require units, buildings, and spells to be in hand", () => {
+        expect(
+          () => playCard($, "Careless Musketeer", false)
+        ).to.throw("card not in hand");
+      });
+
+      it("should play a unit", () => {
+        playCard($, "Nautical Dog", false);
+
+        expect(
+          queryInstances(
+            $,
+            { card: "Nautical Dog", player: $.activePlayer }
+          ).length
+        ).to.equal(1);
+        expect(P.hand.length).to.equal(2);
+        expect(P.gold).to.equal(3);
+      });
+
+      it("should only play heroes when requirements are met", () => {
+        P.heroFatigue[P.specs.indexOf("ANARCHY")] = HERO_DEATH_FATIGUE;
+
+        expect(
+          () => playCard($, getSpecHero("ANARCHY"), false)
+        ).to.throw("hero not currently playable");
+      });
+
+      it("should play a hero", () => {
+        playCard($, getSpecHero("ANARCHY"), false);
+
+        expect(
+          queryInstances(
+            $,
+            { card: getSpecHero("ANARCHY"), player: $.activePlayer }
+          ).length
+        ).to.equal(1);
+        expect(P.hand.length).to.equal(3);
+        expect(P.gold).to.equal(2);
       });
     });
 
