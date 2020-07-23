@@ -57,6 +57,7 @@ const createPlayer = (
     hand: startingCards.slice(0, MAX_HAND_SIZE),
     discard: [],
     deck: startingCards.slice(MAX_HAND_SIZE),
+    heroFatigue: [ 0, 0, 0 ],
     canSkipTech: false,
     hasShuffledThisTurn: false,
     hasBuiltWorkerThisTurn: false,

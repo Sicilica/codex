@@ -2,6 +2,7 @@ import { CardID, GameState } from "../types";
 import { discardAll, drawCard } from "./hand";
 import { MAX_GOLD, MAX_HAND_SIZE, WORKERS_TO_SKIP_TECH } from "../constants";
 import { queryInstances } from "../queries/common";
+import { decrementHeroFatigue } from "./hero";
 
 export const startGame = ($: GameState): void => {
   const gameStarted = $.round !== 1 ||
@@ -38,9 +39,9 @@ const handleReadyPhase = ($: GameState): void => {
 
     I.arrivalFatigue = false;
     I.readyState = I.readyState === "DISABLED" ? "EXHAUSTED" : "READY";
-
-    // Make dead heroes available
   }
+
+  decrementHeroFatigue(P);
 
   $.turnPhase = "UPKEEP";
 
@@ -95,6 +96,8 @@ const handleDrawPhase = ($: GameState): void => {
 };
 
 const advancePlayer = ($: GameState): void => {
+  decrementHeroFatigue($.players[$.activePlayer]);
+
   const pids = Object.keys($.players);
   const currentIndex = pids.indexOf($.activePlayer);
   $.activePlayer = pids[(currentIndex + 1) % pids.length];

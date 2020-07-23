@@ -4,6 +4,10 @@ export const getSpecStarters = (spec: Spec): Array<CardID> => {
   return colorStarters[colorMap[spec]];
 };
 
+export const getSpecHero = (spec: Spec): CardID => {
+  return heroes[spec];
+};
+
 const colorMap: Record<Spec, Color> = {
   ANARCHY: "RED",
   BLOOD: "RED",
@@ -31,6 +35,35 @@ const colorMap: Record<Spec, Color> = {
 
   BASHING: "NEUTRAL",
   FINESSE: "NEUTRAL",
+};
+
+const heroes: Record<Spec, CardID> = {
+  ANARCHY: "Captain Zane",
+  BLOOD: "Drakk Ramhorn",
+  FIRE: "Jaina Stormborne",
+
+  BALANCE: "Master Midori",
+  FERAL: "Calamandra Moss",
+  GROWTH: "Argagarg Garg",
+
+  LAW: "Bigby Hayes",
+  PEACE: "General Onimaru",
+  TRUTH: "Sirus Quince",
+
+  DEMONOLOGY: "Vandy Anadrose",
+  DISEASE: "Orpal Gloor",
+  NECROMANCY: "Garth Torken",
+
+  DISCIPLINE: "Grave Stormborne",
+  NINJUTSU: "Setsuki Hiruki",
+  STRENGTH: "Garus Rook",
+
+  PAST: "Prynn Pasternaak",
+  PRESENT: "Max Geiger",
+  FUTURE: "Vir Garbarean",
+
+  BASHING: "Troq Bashar",
+  FINESSE: "River Montoya",
 };
 
 const colorStarters: Record<Color, Array<CardID>> = {

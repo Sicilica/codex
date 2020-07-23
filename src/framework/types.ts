@@ -62,6 +62,7 @@ export interface PlayerState {
   hand: Array<CardID>;
   deck: Array<CardID>;
   discard: Array<CardID>;
+  heroFatigue: [number, number, number];
   // Ruling: Players can skip tech phase at 10 workers and always thereafter
   canSkipTech: boolean;
   hasShuffledThisTurn: boolean;
@@ -163,6 +164,7 @@ export interface AttachmentSpellCard extends CardBase {
 export interface HeroCard extends CardBase {
   type: "HERO";
   bands: [HeroCardBand, HeroCardBand, HeroCardBand];
+  spec: Spec;
 }
 
 interface HeroCardBand {

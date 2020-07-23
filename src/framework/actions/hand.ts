@@ -3,6 +3,8 @@ import { lookupCard } from "../../data";
 import { CardID, GameState, PlayerState } from "../types";
 
 import { makeInstance } from "./helpers";
+import { isHero } from "../queries/common";
+import { canPlayHero } from "./hero";
 
 /**
  * NOTE: For security purposes, drawing should be handled or confirmed by the
@@ -113,13 +115,20 @@ export const playCard = (
     throw new Error("not enough money");
   }
 
-  if (!removeFromHand(P, cid)) {
+  if (isHero(card)) {
+    if (!canPlayHero($, card)) {
+      throw new Error("hero not currently playable");
+    }
+  } else if (!removeFromHand(P, cid)) {
     throw new Error("card not in hand");
   }
 
   P.gold -= cost;
 
   switch (card.type) {
+  case "HERO":
+    makeInstance($, $.activePlayer, cid);
+    break;
   case "UNIT":
     makeInstance($, $.activePlayer, cid);
     break;

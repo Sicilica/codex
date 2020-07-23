@@ -4,7 +4,11 @@ import { GameState, PlayerState } from "../../framework/types";
 import { P1, P2, initDummyGameState } from "../testhelper";
 import { endTurn, startGame, techCards } from "../../framework/actions/turn";
 import { makeInstance } from "../../framework/actions/helpers";
-import { MAX_GOLD, MAX_HAND_SIZE } from "../../framework/constants";
+import {
+  HERO_DEATH_FATIGUE,
+  MAX_GOLD,
+  MAX_HAND_SIZE,
+} from "../../framework/constants";
 import { createInitialGameState } from "../../framework/state/gamestate";
 
 describe("basic", () => {
@@ -94,6 +98,15 @@ describe("basic", () => {
 
         expect(P.patrol.squadLeader).to.equal(null);
       });
+
+      it("should bring dead heroes closer to being summonable", () => {
+        P.heroFatigue[P.specs.indexOf("ANARCHY")] = HERO_DEATH_FATIGUE;
+
+        techCards($, []);
+
+        expect(P.heroFatigue[P.specs.indexOf("ANARCHY")])
+          .to.equal(HERO_DEATH_FATIGUE - 1);
+      });
     });
 
     describe("Upkeep Phase", () => {
@@ -148,6 +161,15 @@ describe("basic", () => {
 
         expect(P.discard.length).to.equal(5);
         expect(P.hand.includes("Nautical Dog")).to.equal(!hasNauticalDog);
+      });
+
+      it("should bring dead heroes closer to being summonable", () => {
+        P.heroFatigue[P.specs.indexOf("ANARCHY")] = HERO_DEATH_FATIGUE;
+
+        endTurn($);
+
+        expect(P.heroFatigue[P.specs.indexOf("ANARCHY")])
+          .to.equal(HERO_DEATH_FATIGUE - 1);
       });
     });
 
