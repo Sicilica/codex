@@ -1,4 +1,5 @@
 import { Ability } from "../framework/types";
+import { ERROR_ON_MISSING_ABILITIES } from ".";
 
 export const getHeroAbilities = (
   name: string,
@@ -17,6 +18,10 @@ export const getHeroAbilities = (
       return [];
     }
   default:
-    throw new Error(`Failed to find abilities for hero "${name}"`);
+    if (ERROR_ON_MISSING_ABILITIES) {
+      throw new Error(`Failed to find abilities for hero "${name}"`);
+    }
+
+    return [];
   }
 };

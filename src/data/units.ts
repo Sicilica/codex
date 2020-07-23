@@ -1,4 +1,5 @@
 import { Ability } from "../framework/types";
+import { ERROR_ON_MISSING_ABILITIES } from "./index";
 
 const unitBoostCosts: Record<string, number | undefined> = {
   // such empty
@@ -17,6 +18,10 @@ export const getUnitAbilities = (
   case "Nautical Dog":
     return [ "TODO" ];
   default:
-    throw new Error(`Failed to find abilities for unit "${name}"`);
+    if (ERROR_ON_MISSING_ABILITIES) {
+      throw new Error(`Failed to find abilities for unit "${name}"`);
+    }
+
+    return [];
   }
 };

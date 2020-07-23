@@ -14,6 +14,7 @@ import { getUnitAbilities, getUnitBoostCost } from "./units";
 import { getUpgradeAbilities } from "./upgrades";
 
 const ERROR_ON_FAILED_LOAD = false;
+export const ERROR_ON_MISSING_ABILITIES = false;
 
 export const lookupCard = (
   name: string,

@@ -2,6 +2,7 @@ import {
   Ability,
   Effect,
 } from "../framework/types";
+import { ERROR_ON_MISSING_ABILITIES } from ".";
 
 const spellBoostCosts: Record<string, number | undefined> = {
   // such empty
@@ -23,7 +24,14 @@ export const getSpellDetails = (
       effects: [ "TODO" ],
     };
   default:
-    throw new Error(`Failed to find details for spell "${name}"`);
+    if (ERROR_ON_MISSING_ABILITIES) {
+      throw new Error(`Failed to find details for spell "${name}"`);
+    }
+
+    return {
+      type: "INSTANT_SPELL",
+      effects: [ "TODO" ],
+    };
   }
 };
 
