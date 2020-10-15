@@ -39,7 +39,7 @@ export interface GameState {
   activePlayer: PlayerID;
   turnPhase: GlobalTurnPhase;
   instances: Record<InstanceID, Instance>;
-  nextID: number;
+  nextInstanceID: number;
   players: Record<PlayerID, PlayerState>;
 }
 
@@ -48,15 +48,11 @@ export type PlayerID = string;
 export type InstanceID = string;
 
 export interface PlayerState {
-  base: {
-    damage: number;
-  };
+  id: PlayerID;
+  base: InstanceID;
   specs: [Spec, Spec, Spec];
-  addon: {
-    type: Addon;
-    damage: number;
-    techLabSpec?: Spec;
-  } | null;
+  addon: InstanceID | null;
+  techLabSpec: Spec | null;
   workers: number;
   gold: number;
   hand: Array<CardID>;
@@ -73,7 +69,8 @@ export interface PlayerState {
     technician: InstanceID | null;
     lookout: InstanceID | null;
   };
-  techBuildings: [TechBuildingState, TechBuildingState, TechBuildingState];
+  purchasedTechBuildings: number;
+  techBuildings: Array<InstanceID | null>;
   mainSpec: Spec | null;
 }
 
@@ -87,6 +84,7 @@ export interface Instance {
   specialTokens: Array<string>;
   attachments: Array<Instance>;
   level: number;
+  startedTurnAtMaxBand: boolean;
   readyState: "READY" | "EXHAUSTED" | "DISABLED";
   arrivalFatigue: boolean;
   armorDamage: number;
@@ -133,12 +131,18 @@ export interface BuildingCard extends CardBase {
   tech: number;
   legendary: boolean;
   abilities: Array<Ability>;
+
+  /**
+   * The base itself, tech buildings, and addons are all base components.
+   */
+  baseComponent: boolean;
 }
 
 export interface UpgradeCard extends CardBase {
   type: "UPGRADE";
   abilities: Array<Ability>;
   legendary: boolean;
+  tech: number;
 }
 
 export interface InstantSpellCard extends CardBase {

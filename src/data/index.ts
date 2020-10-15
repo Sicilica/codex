@@ -8,6 +8,7 @@ import {
 import * as rawData from "./data.json";
 
 import { getBuildingAbilities } from "./buildings";
+import { CORE_CARDS } from "./core";
 import { getHeroAbilities } from "./hero";
 import { getSpellBoostCost, getSpellDetails } from "./spells";
 import { getUnitAbilities, getUnitBoostCost } from "./units";
@@ -94,6 +95,7 @@ const loadCard = (
       ...rawCard,
       abilities: getBuildingAbilities(rawCard.name),
       boostCost: null,
+      baseComponent: false,
     };
   case "HERO":
     return {
@@ -132,7 +134,9 @@ const loadCard = (
 
 // Load cards when this file is first required. A loop like this is necessary
 // because of the nature of importing a JSON array directly.
-const cardMap: Record<string, Card | null> = {};
+const cardMap: Record<string, Card | null> = {
+  ...CORE_CARDS,
+};
 for (let i = 0; rawData[i] != null; i++) {
   const rawCard = rawData[i] as RawCard;
   try {

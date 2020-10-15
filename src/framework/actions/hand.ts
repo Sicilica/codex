@@ -1,6 +1,14 @@
 import { lookupCard } from "../../data";
 
-import { CardID, GameState, PlayerState } from "../types";
+import {
+  canPlayCard,
+  getCardCost,
+} from "../queries/economy";
+import {
+  CardID,
+  GameState,
+  PlayerState,
+} from "../types";
 
 import { makeInstance } from "./helpers";
 
@@ -99,25 +107,15 @@ export const playCard = (
   const card = lookupCard(cid);
   const P = $.players[$.activePlayer];
 
-  let cost = card.cost;
-
-  if (boost) {
-    if (card.boostCost == null) {
-      throw new Error("card not boostable");
-    }
-
-    cost = card.cost + card.boostCost;
-  }
-
-  if (P.gold < cost) {
-    throw new Error("not enough money");
+  if (!canPlayCard($, P, card, boost)) {
+    throw new Error("card is not playable (check cost, tech, specs, heroes)");
   }
 
   if (!removeFromHand(P, cid)) {
     throw new Error("card not in hand");
   }
 
-  P.gold -= cost;
+  P.gold -= getCardCost($, P, card, boost);
 
   switch (card.type) {
   case "UNIT":

@@ -1,7 +1,9 @@
-import { GameState, PlayerID, PlayerState, Spec } from "../types";
-import { MAX_HAND_SIZE } from "../constants";
-import { shuffleCards } from "../actions/hand";
 import { getSpecStarters } from "../../data/spec";
+
+import { shuffleCards } from "../actions/hand";
+import { makeInstance } from "../actions/helpers";
+import { MAX_HAND_SIZE } from "../constants";
+import { GameState, PlayerState, Spec } from "../types";
 
 export type PlayerSetupData = {
   starterDeckSpec: Spec;
@@ -9,54 +11,61 @@ export type PlayerSetupData = {
 };
 
 export const createInitialGameState = (
-  players: Array<PlayerSetupData>
+  players: Array<PlayerSetupData>,
 ): GameState => {
-  const playerStates = players.map((player, idx) => {
-    return createPlayer(player, idx === 0);
-  });
-
-  const playerMap: Record<PlayerID, PlayerState> = {};
-  playerStates.forEach((player, idx) => {
-    playerMap[idxToPlayerID(idx)] = player;
-  });
-
-  return <GameState>{
-    firstPlayer: idxToPlayerID(0),
+  const $: GameState = {
+    firstPlayer: "nil",
     round: 1,
-    activePlayer: idxToPlayerID(0),
+    activePlayer: "nil",
     turnPhase: "READY",
     instances: {},
-    nextID: 100,
-    players: playerMap,
+    nextInstanceID: 1,
+    players: {},
   };
+
+  for (const setupData of players) {
+    addPlayer($, setupData);
+  }
+
+  if ($.firstPlayer === "nil") {
+    throw new Error("unable to create game with no players");
+  }
+
+  return $;
 };
 
-const createPlayer = (
-  playerData: PlayerSetupData,
-  isFirst: boolean
+const addPlayer = (
+  $: GameState,
+  setupData: PlayerSetupData,
 ): PlayerState => {
-  // One day, we might allow just a single spec
-  const specs: [Spec, Spec, Spec] = [
-    playerData.starterDeckSpec,
-    playerData.otherSpecs[0],
-    playerData.otherSpecs[1],
-  ];
+  const index = Object.keys($.players).length;
+  const isFirst = index === 0;
+  const pid = `P${index + 1}`;
 
-  const startingCards = getSpecStarters(playerData.starterDeckSpec);
+  const base = makeInstance($, pid, "$BASE");
+
+  const startingCards = getSpecStarters(setupData.starterDeckSpec);
   shuffleCards(startingCards);
 
-  return <PlayerState>{
+  if (isFirst) {
+    $.activePlayer = pid;
+    $.firstPlayer = pid;
+  }
+
+  const P: PlayerState = {
+    id: pid,
+    base: base.id,
+    specs: [
+      setupData.starterDeckSpec,
+      ...setupData.otherSpecs,
+    ],
     addon: null,
-    base: {
-      damage: 0,
-    },
+    techLabSpec: null,
     workers: isFirst ? 4 : 5,
     gold: 0,
-    specs,
-    mainSpec: null,
     hand: startingCards.slice(0, MAX_HAND_SIZE),
-    discard: [],
     deck: startingCards.slice(MAX_HAND_SIZE),
+    discard: [],
     canSkipTech: false,
     hasShuffledThisTurn: false,
     hasBuiltWorkerThisTurn: false,
@@ -67,26 +76,12 @@ const createPlayer = (
       technician: null,
       lookout: null,
     },
-    techBuildings: [
-      {
-        damage: 0,
-        purchased: false,
-        ready: false,
-      },
-      {
-        damage: 0,
-        purchased: false,
-        ready: false,
-      },
-      {
-        damage: 0,
-        purchased: false,
-        ready: false,
-      },
-    ],
+    purchasedTechBuildings: 0,
+    techBuildings: [ null, null, null ],
+    mainSpec: null,
   };
-};
 
-const idxToPlayerID = (idx: number): PlayerID => {
-  return `P${idx + 1}`;
+  $.players[pid] = P;
+
+  return P;
 };

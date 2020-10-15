@@ -11,9 +11,13 @@ import {
   CardID,
   GameState,
   InstanceID,
-  PlayerID,
 } from "../../framework/types";
-import { P1, initDummyGameState } from "../testhelper";
+
+import {
+  P1,
+  debugGotoNextTurn,
+  initDummyGameState,
+} from "../testhelper";
 
 const findInstance = (
   $: GameState,
@@ -44,34 +48,6 @@ const debugPlayUnit = (
   return findInstance($, {
     card: cid,
   });
-};
-
-const debugGotoNextTurn = (
-  $: GameState,
-  pid: PlayerID,
-) => {
-  for (let i = 0; i < Object.keys($.players).length; i++) {
-    const P = $.players[$.activePlayer];
-    while (P.deck.length < 2) {
-      P.deck.push("Nautical Dog");
-    }
-
-    performAction($, {
-      type: "END_TURN",
-    });
-
-    if ($.turnPhase === "TECH") {
-      performAction($, {
-        type: "TECH",
-        cards: [ "Crash Bomber", "Firebat" ],
-      });
-    }
-
-    if ($.activePlayer === pid) {
-      return;
-    }
-  }
-  throw new Error("unknown player");
 };
 
 describe("basic", () => {

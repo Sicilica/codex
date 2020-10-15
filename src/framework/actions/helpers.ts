@@ -11,13 +11,14 @@ export const makeInstance = (
   cid: CardID,
 ): Instance => {
   const I: Instance = {
-    id: `${$.nextID++}`,
+    id: `I${$.nextInstanceID++}`,
     owner: pid,
     controller: pid,
     card: cid,
     damage: 0,
     plusMinusTokens: 0,
     level: 0,
+    startedTurnAtMaxBand: false,
     attachments: [],
     armorDamage: 0,
     specialTokens: [],
