@@ -10,9 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.7"
   },
   "dependencies": {
-    "playwright": "^1.1.1"
+    "playwright": "^1.5.1"
   }
 }
