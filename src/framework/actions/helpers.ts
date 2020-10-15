@@ -11,7 +11,7 @@ export const makeInstance = (
   cid: CardID,
 ): Instance => {
   const I: Instance = {
-    id: `I${$.nextID++}`,
+    id: `I${$.nextInstanceID++}`,
     owner: pid,
     controller: pid,
     card: cid,

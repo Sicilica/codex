@@ -39,7 +39,7 @@ export interface GameState {
   activePlayer: PlayerID;
   turnPhase: GlobalTurnPhase;
   instances: Record<InstanceID, Instance>;
-  nextID: number;
+  nextInstanceID: number;
   players: Record<PlayerID, PlayerState>;
 }
 

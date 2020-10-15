@@ -19,7 +19,7 @@ export const createInitialGameState = (
     activePlayer: "nil",
     turnPhase: "READY",
     instances: {},
-    nextID: 1,
+    nextInstanceID: 1,
     players: {},
   };
 
@@ -38,9 +38,9 @@ const addPlayer = (
   $: GameState,
   setupData: PlayerSetupData,
 ): PlayerState => {
-  const isFirst = Object.keys($.players).length === 0;
-
-  const pid = `P${$.nextID++}`;
+  const index = Object.keys($.players).length;
+  const isFirst = index === 0;
+  const pid = `P${index + 1}`;
 
   const base = makeInstance($, pid, "$BASE");
 
