@@ -4,6 +4,7 @@ import {
   Spec,
 } from "../types";
 
+import { buyWorker } from "./base";
 import { purchaseTechBuilding } from "./buildings";
 import { playCard } from "./hand";
 import {
@@ -12,6 +13,9 @@ import {
 } from "./turn";
 
 export type Action = {
+  type: "BUY_WORKER";
+  cardID: string;
+} | {
   type: "END_TURN";
 } | {
   type: "PLAY_CARD";
@@ -23,8 +27,6 @@ export type Action = {
 } | {
   type: "TECH";
   cards: Array<CardID>;
-} | {
-  type: "END_TURN";
 };
 
 export const performAction = (
@@ -32,6 +34,9 @@ export const performAction = (
   action: Action,
 ): void => {
   switch (action.type) {
+  case "BUY_WORKER":
+    buyWorker($, action.cardID);
+    break;
   case "END_TURN":
     endTurn($);
     break;
