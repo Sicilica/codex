@@ -45,6 +45,8 @@ const handleReadyPhase = ($: GameState): void => {
     // Make dead heroes available
   }
 
+  rebuildTechBuildings($, $.players[$.activePlayer]);
+
   $.turnPhase = "UPKEEP";
 
   handleUpkeepPhase($);
@@ -63,6 +65,8 @@ const handleUpkeepPhase = ($: GameState): void => {
 
   $.turnPhase = "MAIN";
 };
+
+import { rebuildTechBuildings } from "./buildings";
 
 export const endTurn = (
   $: GameState,

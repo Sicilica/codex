@@ -1,15 +1,21 @@
 import { lookupCard } from "../../data";
 
 import {
+  AttachmentSpellCard,
+  BuildingCard,
   Card,
   CardID,
   GameState,
   HeroCard,
   Instance,
   InstanceID,
+  InstantSpellCard,
+  OngoingSpellCard,
   PlayerID,
   PlayerState,
+  Spec,
   UnitCard,
+  UpgradeCard,
 } from "../types";
 
 export const getInstance = (
@@ -26,10 +32,24 @@ export const getPlayer = (
   return pid == null ? null : $.players[pid];
 };
 
+export const isBuilding = (
+  card: Card,
+): card is BuildingCard => {
+  return card.type === "BUILDING";
+};
+
 export const isHero = (
   card: Card,
 ): card is HeroCard => {
   return card.type === "HERO";
+};
+
+export const isSpell = (
+  card: Card,
+): card is AttachmentSpellCard | InstantSpellCard | OngoingSpellCard => {
+  return card.type === "ATTACHMENT_SPELL"
+    || card.type === "INSTANT_SPELL"
+    || card.type === "ONGOING_SPELL";
 };
 
 export const isUnit = (
@@ -38,10 +58,18 @@ export const isUnit = (
   return card.type === "UNIT";
 };
 
+export const isUpgrade = (
+  card: Card,
+): card is UpgradeCard => {
+  return card.type === "UPGRADE";
+};
+
 export interface InstanceQuery {
   card?: CardID,
   player?: PlayerID,
+  spec?: Spec | Array<Spec>,
   tags?: Array<string>,
+  type?: Card["type"] | Array<Card["type"]>,
 }
 
 export const queryInstances = (
@@ -60,8 +88,32 @@ export const queryInstances = (
       return false;
     }
 
+    if (query.spec != null) {
+      if (card.spec == null) {
+        return false;
+      }
+
+      if (typeof query.spec === "string") {
+        if (card.spec !== query.spec) {
+          return false;
+        }
+      } else if (!query.spec.includes(card.spec)) {
+        return false;
+      }
+    }
+
     if (query.tags?.some(tag => !card.tags.includes(tag))) {
       return false;
+    }
+
+    if (query.type != null) {
+      if (typeof query.type === "string") {
+        if (card.type !== query.type) {
+          return false;
+        }
+      } else if (!query.type.includes(card.type)) {
+        return false;
+      }
     }
 
     return true;

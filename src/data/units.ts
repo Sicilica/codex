@@ -20,6 +20,14 @@ export const getUnitAbilities = (
   switch (name) {
   case "Nautical Dog":
     return [ HASTE ];
+  case "Calypso Vystari":
+  case "Chameleon":
+  case "Disguised Monkey":
+  case "Gemscout Owl":
+  case "Pirate Gunship":
+  case "Tyrannosaurus Rex":
+    // WIP
+    return [];
   default:
     throw new Error(`Failed to find abilities for unit "${name}"`);
   }
