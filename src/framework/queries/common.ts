@@ -13,10 +13,12 @@ import {
   OngoingSpellCard,
   PlayerID,
   PlayerState,
+  SimpleKeywordAbility,
   Spec,
   UnitCard,
   UpgradeCard,
 } from "../types";
+import { hasSimpleKeyword } from "./abilities";
 
 import { isPatrolling } from "./patrol";
 
@@ -68,6 +70,7 @@ export const isUpgrade = (
 
 export interface InstanceQuery {
   card?: CardID,
+  keywords?: Array<SimpleKeywordAbility["keyword"]>,
   patrolling?: boolean,
   player?: PlayerID,
   spec?: Spec | Array<Spec>,
@@ -85,6 +88,12 @@ export const queryInstances = (
 
     if (query.card != null && I.card !== query.card) {
       return false;
+    }
+
+    if (query.keywords != null) {
+      if (query.keywords.some(kw => !hasSimpleKeyword($, I, kw))) {
+        return false;
+      }
     }
 
     if (query.patrolling != null && isPatrolling($, I) !== query.patrolling) {

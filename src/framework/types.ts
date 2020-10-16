@@ -43,10 +43,21 @@ export type PatrolSlot =
   ;
 
 export type PromptRequest = {
-  type: "ZANE_MAX_BAND"
+  type:
+    | "ZANE_MAX_BAND"
+    ;
+} | {
+  type:
+    | "TREX_ARRIVES"
+    ;
+  instance: InstanceID;
 };
 
 export type PromptResponse = {
+  type: "TREX_ARRIVES";
+  instances: Array<InstanceID>;
+  workers: Array<PlayerID>;
+} | {
   type: "ZANE_MAX_BAND";
   instance: InstanceID;
   slot: PatrolSlot;
@@ -192,16 +203,16 @@ interface HeroCardBand {
 
 export type GameEvent = {
   type:
+    | "END_OF_TURN"
     | "MAX_LEVEL"
+    | "THIS_ARRIVES"
     | "THIS_DIES"
+    | "UPKEEP"
     ;
 } | {
   type:
-    // | "ARRIVES"
-    // | "ATTACKS"
+    | "INSTANCE_DIES"
     | "THIS_KILLS_OTHER"
-    // | "LEAVES" // TODO ???
-    // | "UPKEEP"
     ;
   instance: Instance;
 };
@@ -224,22 +235,23 @@ export interface EventAbility<EventT extends GameEvent = GameEvent> {
 export interface SimpleKeywordAbility {
   type: "SIMPLE_KEYWORD";
   keyword:
-    // | "ANTI-AIR"
-    // | "ARMOR_PIERCING"
+    | "ANTI-AIR"
+    // | "ARMOR PIERCING"
     // | "DEATHTOUCH"
-    // | "DETECTOR"
-    // | "EPHEMERAL"
-    // | "FLYING"
+    | "DETECTOR"
+    | "EPHEMERAL"
+    | "FLYING"
     | "HASTE"
     // | "ILLUSION"
     // | "INDESTRUCTIBLE"
     // | "INVISIBLE"
     // | "LEGENDARY" // TODO ???
-    // | "LONG-RANGE"
+    | "LONG-RANGE"
+    | "OVERPOWER"
     // | "READINESS"
     // | "SPARKSHOT"
-    // | "STEALTH"
-    // | "SWIFT_STRIKE"
+    | "STEALTH"
+    // | "SWIFT STRIKE"
     // | "UNATTACKABLE"
     // | "UNSTOPPABLE"
     // | "UNTARGETABLE"
@@ -252,9 +264,9 @@ export interface ValuedKeywordAbility {
     | "ARMOR"
     // | "FADING"
     // | "FORECAST"
-    // | "FRENZY"
+    | "FRENZY"
     // | "HEALING"
-    // | "OBLITERATE"
+    | "OBLITERATE"
     | "RESIST"
     ;
   value: number;

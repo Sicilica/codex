@@ -1,11 +1,12 @@
 import { CardID, GameState } from "../types";
 import { discardAll, drawCard } from "./hand";
 import { MAX_HAND_SIZE, WORKERS_TO_SKIP_TECH } from "../constants";
-import { queryInstances } from "../queries/common";
+import { getInstance, queryInstances } from "../queries/common";
 import { isMaxBand } from "../queries/heroes";
 
 import { rebuildTechBuildings } from "./buildings";
-import { giveGold } from "./helpers";
+import { giveGold, killInstance } from "./helpers";
+import { dispatchEventToPlayer, dispatchGlobalEvent } from "../events";
 
 export const startGame = ($: GameState): void => {
   const gameStarted = $.round !== 1 ||
@@ -66,7 +67,9 @@ const handleUpkeepPhase = ($: GameState): void => {
 
   giveGold(P, P.workers);
 
-  // Run any upkeep actions
+  dispatchEventToPlayer($, P, {
+    type: "UPKEEP",
+  });
 
   $.turnPhase = "MAIN";
 };
@@ -94,6 +97,20 @@ const handleDrawPhase = ($: GameState): void => {
   for (let i = 0; i < handSize; i++) {
     drawCard(P);
   }
+
+  const ephemeralIIDs = queryInstances($, {
+    keywords: [ "EPHEMERAL" ],
+  });
+  for (const iid of ephemeralIIDs) {
+    const I = getInstance($, iid);
+    if (I != null) {
+      killInstance($, I);
+    }
+  }
+
+  dispatchGlobalEvent($, {
+    type: "END_OF_TURN",
+  });
 
   advancePlayer($);
 

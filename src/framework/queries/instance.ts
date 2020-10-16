@@ -6,7 +6,8 @@ import {
 } from "../types";
 
 import { getKeywordValue } from "./abilities";
-import { isBuilding, isUnit } from "./common";
+import { isBuilding, isHero, isUnit } from "./common";
+import { getHeroBand } from "./heroes";
 
 export const getCurrentArmor = (
   $: GameState,
@@ -15,10 +16,30 @@ export const getCurrentArmor = (
   return getKeywordValue($, I, "ARMOR");
 };
 
+export const getCurrentAttack = (
+  $: GameState,
+  I: Instance,
+): number => {
+  return getBaseAttack(I) + getKeywordValue($, I, "FRENZY");
+};
+
 export const getCurrentHealth = (
   I: Instance,
 ): number => {
   return getBaseHealth(I) - I.damage;
+};
+
+const getBaseAttack = (
+  I: Instance,
+): number => {
+  const card = lookupCard(I.card);
+  if (isUnit(card)) {
+    return card.attack;
+  }
+  if (isHero(card)) {
+    return card.bands[getHeroBand(I)].attack;
+  }
+  return 0;
 };
 
 const getBaseHealth = (
@@ -28,6 +49,8 @@ const getBaseHealth = (
   if (isBuilding(card) || isUnit(card)) {
     return card.health;
   }
-
-  throw new Error("TODO get health for this instance type");
+  if (isHero(card)) {
+    return card.bands[getHeroBand(I)].health;
+  }
+  return 0;
 };

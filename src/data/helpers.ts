@@ -18,9 +18,17 @@ const valued = (kw: ValuedKeywordAbility["keyword"]) =>
     value: val,
   });
 
+export const ANTI_AIR = simple("ANTI-AIR");
+export const EPHEMERAL = simple("EPHEMERAL");
+export const FLYING = simple("FLYING");
 export const HASTE = simple("HASTE");
+export const LONG_RANGE = simple("LONG-RANGE");
+export const OVERPOWER = simple("OVERPOWER");
+export const STEALTH = simple("STEALTH");
 
 export const ARMOR = valued("ARMOR");
+export const FRENZY = valued("FRENZY");
+export const OBLITERATE = valued("OBLITERATE");
 export const RESIST = valued("RESIST");
 
 export const event = <EventTypeT extends GameEvent["type"]> (

@@ -13,7 +13,7 @@ import {
   isUnit,
   queryInstances,
 } from "./common";
-import { getOpponents } from "./players";
+import { getOpponents, hasDetection } from "./players";
 
 export const canAttack = (
   $: GameState,
@@ -70,41 +70,85 @@ export const getPossibleAttackTargets = (
 
   const attackerI = getInstance($, attackerIID);
   if (attackerI != null) {
+    const isFlying = hasSimpleKeyword($, attackerI, "FLYING");
+    const hasStealth = hasSimpleKeyword($, attackerI, "STEALTH");
+    const canAttackAir =
+      isFlying || hasSimpleKeyword($, attackerI, "ANTI-AIR");
+
     for (const pid of getOpponents($, attackerI.controller)) {
       const P = getPlayer($, pid);
       if (P == null) {
         continue;
       }
 
-      // If there's a squad leader, we can't attack anything else
-      if (P.patrol.squadLeader != null) {
+      const unstoppable = hasStealth && !hasDetection($, P.id);
+
+      // If we're blocked by a squad leader, we can't attack anything else
+      if (canAttackInstance($, P.patrol.squadLeader, canAttackAir)) {
         targets.push(P.patrol.squadLeader);
-        continue;
+        if (!unstoppable
+          && blocksAttackers($, P.patrol.squadLeader, isFlying)) {
+          continue;
+        }
       }
 
-      // If there are other patrollers, we can't attack anything else
+      // If we're blocked by other patrollers, we can't attack anything else
       let foundPatroller = false;
-      for (const defenderIID of [
+      for (const patroller of [
         P.patrol.elite,
         P.patrol.scavenger,
         P.patrol.technician,
         P.patrol.lookout,
       ]) {
-        if (defenderIID != null) {
-          targets.push(defenderIID);
-          foundPatroller = true;
+        if (canAttackInstance($, patroller, canAttackAir)) {
+          targets.push(patroller);
+          if (!unstoppable && blocksAttackers($, patroller, isFlying)) {
+            foundPatroller = true;
+          }
         }
       }
       if (foundPatroller) {
         continue;
       }
 
-      return queryInstances($, {
+      targets.push(...queryInstances($, {
+        patrolling: false,
         player: pid,
         type: [ "BUILDING", "HERO", "UNIT" ],
-      });
+      }).filter(iid => canAttackInstance($, iid, canAttackAir)));
     }
   }
 
   return targets;
+};
+
+const blocksAttackers = (
+  $: GameState,
+  iid: InstanceID,
+  attackerHasFlying: boolean,
+): boolean => {
+  const I = getInstance($, iid);
+  if (I == null) {
+    return false;
+  }
+
+  const hasFlying = hasSimpleKeyword($, I, "FLYING");
+
+  if (attackerHasFlying) {
+    return hasFlying || hasSimpleKeyword($, I, "ANTI-AIR");
+  }
+
+  return !hasFlying;
+};
+
+const canAttackInstance = (
+  $: GameState,
+  iid: InstanceID | null,
+  canAttackAir: boolean,
+): iid is InstanceID => {
+  const I = getInstance($, iid);
+  if (I == null) {
+    return false;
+  }
+  return canAttackAir || !hasSimpleKeyword($, I, "FLYING");
 };

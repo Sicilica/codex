@@ -1,4 +1,5 @@
 import { lookupCard } from "../../data";
+import { HERO_AWARD_LEVELS_ON_DEATH } from "../../data/hero";
 import {
   LOOKOUT_ABILITY,
 } from "../../data/patrol";
@@ -31,6 +32,10 @@ export const getInstanceAbilities = (
   I: Instance,
 ): Array<Ability> => {
   const abilities = [ ...getCardAbilities(I) ];
+
+  if (isHero(lookupCard(I.card))) {
+    abilities.push(HERO_AWARD_LEVELS_ON_DEATH);
+  }
 
   const P = getPlayer($, I.controller);
   if (P != null && P.id !== $.activePlayer) {

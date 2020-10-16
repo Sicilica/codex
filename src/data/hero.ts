@@ -13,6 +13,15 @@ import {
   event,
 } from "./helpers";
 
+export const HERO_AWARD_LEVELS_ON_DEATH = event("THIS_DIES", ($, I) => {
+  // TODO
+  // generate list of heroes that can receive the levels:
+  // non-max band, other controller
+
+  // if only one target, grant them levels
+  // if multiple targets, prompt ACTIVE player to decide
+});
+
 export const getHeroAbilities = (
   name: string,
   index: 0 | 1 | 2,

@@ -11,6 +11,7 @@ import {
   GameEvent,
   GameState,
   Instance,
+  PlayerState,
 } from "../types";
 
 export const dispatchGlobalEvent = (
@@ -22,19 +23,33 @@ export const dispatchGlobalEvent = (
     if (I == null) {
       continue;
     }
-    dispatchScopedEvent($, I, e);
+    dispatchEventToInstance($, I, e);
   }
 };
 
-export const dispatchScopedEvent = (
+export const dispatchEventToInstance = (
   $: GameState,
-  scope: Instance,
+  I: Instance,
   e: GameEvent,
 ): void => {
-  for (const ability of getInstanceAbilities($, scope)) {
+  for (const ability of getInstanceAbilities($, I)) {
     if (isEventAbility(ability) && ability.event === e.type) {
-      ability.effect($, scope, e);
+      ability.effect($, I, e);
     }
+  }
+};
+
+export const dispatchEventToPlayer = (
+  $: GameState,
+  P: PlayerState,
+  e: GameEvent,
+): void => {
+  for (const iid of queryInstances($, { player: P.id })) {
+    const I = getInstance($, iid);
+    if (I == null) {
+      continue;
+    }
+    dispatchEventToInstance($, I, e);
   }
 };
 

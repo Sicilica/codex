@@ -1,8 +1,8 @@
 import { lookupCard } from "../../data";
 import { MAX_GOLD } from "../constants";
-import { dispatchScopedEvent } from "../events";
+import { dispatchEventToInstance, dispatchGlobalEvent } from "../events";
 import { getCostToTarget } from "../queries/abilities";
-import { getPlayer } from "../queries/common";
+import { getPlayer, isHero, isUnit } from "../queries/common";
 import { getMaxLevel, isMaxBand } from "../queries/heroes";
 import {
   getCurrentArmor,
@@ -38,7 +38,84 @@ export const makeInstance = (
     arrivalFatigue: true,
   };
   $.instances[I.id] = I;
+
+  dispatchEventToInstance($, I, {
+    type: "THIS_ARRIVES",
+  });
+
   return I;
+};
+
+export const killInstance = (
+  $: GameState,
+  I: Instance,
+): void => {
+  dispatchGlobalEvent($, {
+    type: "INSTANCE_DIES",
+    instance: I,
+  });
+
+  dispatchEventToInstance($, I, {
+    type: "THIS_DIES",
+  });
+
+  delete $.instances[I.id];
+
+  const P = getPlayer($, I.controller);
+  if (P != null) {
+    for (const slot in P.patrol) {
+      if (P.patrol[slot as PatrolSlot] === I.id) {
+        P.patrol[slot as PatrolSlot] = null;
+      }
+    }
+    for (const idx in P.techBuildings) {
+      if (P.techBuildings[idx] === I.id) {
+        P.techBuildings[idx] = null;
+      }
+    }
+  }
+
+  discardInstance($, I);
+};
+
+export const discardInstance = (
+  $: GameState,
+  I: Instance,
+): void => {
+  const card = lookupCard(I.card);
+
+  if (isHero(card)) {
+    // TODO hero should be marked as unavailable
+    return;
+  }
+  if (isUnit(card) && card.token) {
+    return;
+  }
+
+  const P = getPlayer($, I.owner);
+  if (P != null) {
+    P.discard.push(I.card);
+  }
+};
+
+export const returnInstanceToHand = (
+  $: GameState,
+  I: Instance,
+): void => {
+  const card = lookupCard(I.card);
+
+  if (isHero(card)) {
+    // TODO hero should be marked as available
+    return;
+  }
+  if (isUnit(card) && card.token) {
+    return;
+  }
+
+  const P = getPlayer($, I.owner);
+  if (P != null) {
+    P.hand.push(I.card);
+  }
 };
 
 export const giveGold = (
@@ -83,32 +160,14 @@ export const dealDamage = (
   I.damage += amount - armor;
 
   if (getCurrentHealth(I) <= 0) {
-    dispatchScopedEvent($, I, {
-      type: "THIS_DIES",
-    });
-
     if (attacker != null) {
-      dispatchScopedEvent($, attacker, {
+      dispatchEventToInstance($, attacker, {
         type: "THIS_KILLS_OTHER",
         instance: I,
       });
     }
 
-    delete $.instances[I.id];
-
-    const P = getPlayer($, I.controller);
-    if (P != null) {
-      for (const slot in P.patrol) {
-        if (P.patrol[slot as PatrolSlot] === I.id) {
-          P.patrol[slot as PatrolSlot] = null;
-        }
-      }
-      for (const idx in P.techBuildings) {
-        if (P.techBuildings[idx] === I.id) {
-          P.techBuildings[idx] = null;
-        }
-      }
-    }
+    killInstance($, I);
   }
 };
 
@@ -121,7 +180,7 @@ export const giveLevels = (
   I.level = Math.min(I.level + amount, getMaxLevel(lookupCard(I.card)));
 
   if (initialLevel < I.level && isMaxBand(I)) {
-    dispatchScopedEvent($, I, {
+    dispatchEventToInstance($, I, {
       type: "MAX_LEVEL",
     });
   }
