@@ -34,7 +34,7 @@ export const canAttack = (
     return false;
   }
 
-  if (I.arrivalFatigue && !hasSimpleKeyword(I, "HASTE")) {
+  if (I.arrivalFatigue && !hasSimpleKeyword($, I, "HASTE")) {
     return false;
   }
 

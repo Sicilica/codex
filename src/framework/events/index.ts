@@ -31,7 +31,7 @@ export const dispatchScopedEvent = (
   scope: Instance,
   e: GameEvent,
 ): void => {
-  for (const ability of getInstanceAbilities(scope)) {
+  for (const ability of getInstanceAbilities($, scope)) {
     if (isEventAbility(ability) && ability.event === e.type) {
       ability.effect($, scope, e);
     }

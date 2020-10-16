@@ -20,6 +20,7 @@ export const getUnitAbilities = (
   switch (name) {
   case "Mad Man":
     return [ HASTE ];
+  case "Bloodrage Ogre":
   case "Calypso Vystari":
   case "Chameleon":
   case "Disguised Monkey":

@@ -12,6 +12,7 @@ import {
   CardID,
   GameState,
   Instance,
+  PatrolSlot,
   PlayerID,
   PlayerState,
 } from "../types";
@@ -58,7 +59,7 @@ export const targetInstance = (
   $: GameState,
   I: Instance,
 ): void => {
-  const cost = getCostToTarget(I);
+  const cost = getCostToTarget($, I);
   const P = getPlayer($, $.activePlayer);
   if (P == null || cost > P?.gold) {
     throw new Error("insufficient gold to target instance");
@@ -72,7 +73,7 @@ export const dealDamage = (
   amount: number,
   attacker?: Instance,
 ): void => {
-  const armor = getCurrentArmor(I);
+  const armor = getCurrentArmor($, I);
   if (amount <= armor) {
     I.armorDamage += amount;
     return;
@@ -82,6 +83,10 @@ export const dealDamage = (
   I.damage += amount - armor;
 
   if (getCurrentHealth(I) <= 0) {
+    dispatchScopedEvent($, I, {
+      type: "THIS_DIES",
+    });
+
     if (attacker != null) {
       dispatchScopedEvent($, attacker, {
         type: "THIS_KILLS_OTHER",
@@ -90,6 +95,20 @@ export const dealDamage = (
     }
 
     delete $.instances[I.id];
+
+    const P = getPlayer($, I.controller);
+    if (P != null) {
+      for (const slot in P.patrol) {
+        if (P.patrol[slot as PatrolSlot] === I.id) {
+          P.patrol[slot as PatrolSlot] = null;
+        }
+      }
+      for (const idx in P.techBuildings) {
+        if (P.techBuildings[idx] === I.id) {
+          P.techBuildings[idx] = null;
+        }
+      }
+    }
   }
 };
 

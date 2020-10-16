@@ -1,16 +1,18 @@
 import { lookupCard } from "../../data";
 
 import {
+  GameState,
   Instance,
 } from "../types";
 
 import { getKeywordValue } from "./abilities";
-import { isUnit } from "./common";
+import { isBuilding, isUnit } from "./common";
 
 export const getCurrentArmor = (
+  $: GameState,
   I: Instance,
 ): number => {
-  return getKeywordValue(I, "ARMOR");
+  return getKeywordValue($, I, "ARMOR");
 };
 
 export const getCurrentHealth = (
@@ -23,7 +25,7 @@ const getBaseHealth = (
   I: Instance,
 ): number => {
   const card = lookupCard(I.card);
-  if (isUnit(card)) {
+  if (isBuilding(card) || isUnit(card)) {
     return card.health;
   }
 

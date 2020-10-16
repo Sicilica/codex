@@ -28,7 +28,7 @@ const pushablePatrollerExists = (
 
     for (const iid of patrollers) {
       const I = getInstance($, iid);
-      if (I == null || getCostToTarget(I) > activePlayerGold) {
+      if (I == null || getCostToTarget($, I) > activePlayerGold) {
         continue;
       }
       return true;

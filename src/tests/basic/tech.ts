@@ -5,11 +5,13 @@ import {
   purchaseTechBuilding,
   rebuildTechBuildings,
 } from "../../framework/actions/buildings";
+import { dealDamage } from "../../framework/actions/helpers";
 import { getInstance } from "../../framework/queries/common";
 import { canPlayCard } from "../../framework/queries/economy";
 import { GameState, Spec } from "../../framework/types";
 
 import {
+  P1,
   debugGotoNextTurn,
   initDummyGameState,
 } from "../testhelper";
@@ -58,7 +60,28 @@ describe("basic", () => {
     });
 
     describe("tech buildings", () => {
-      it.skip("deals 2 dmg to base when killed");
+      it("deals 2 dmg to base when killed", () => {
+        $.players[P1].gold = 20;
+        $.players[P1].workers = 10;
+        purchaseTechBuilding($);
+
+        expect($.players[P1].purchasedTechBuildings).to.equal(1);
+        const tb = getInstance($, $.players[P1].techBuildings[0]);
+        if (tb == null) {
+          throw new Error("failed to find tech building");
+        }
+        const base = getInstance($, $.players[P1].base);
+        if (base == null) {
+          throw new Error("failed to find base");
+        }
+
+        expect(base.damage).to.equal(0);
+
+        dealDamage($, tb, 5);
+
+        expect($.players[P1].techBuildings[0]).to.equal(null);
+        expect(base.damage).to.equal(2);
+      });
 
       describe("tech 1 building", () => {
         it("requires 6+ workers", () => {

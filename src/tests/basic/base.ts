@@ -1,7 +1,15 @@
-import { GameState, PlayerState } from "../../framework/types";
-import { initDummyGameState } from "../testhelper";
-import { buyWorker } from "../../framework/actions/base";
+
 import { expect } from "chai";
+
+import { buyWorker } from "../../framework/actions/base";
+import { dealDamage } from "../../framework/actions/helpers";
+import { getInstance } from "../../framework/queries/common";
+import { GameState, PlayerState } from "../../framework/types";
+
+import {
+  P1,
+  initDummyGameState,
+} from "../testhelper";
 
 describe("basic", () => {
   describe("base", () => {
@@ -13,7 +21,18 @@ describe("basic", () => {
       P = $.players[$.activePlayer];
     });
 
-    it.skip("ends the game when killed");
+    it("ends the game when killed", () => {
+      const base = getInstance($, $.players[P1].base);
+      if (base == null) {
+        throw new Error("failed to find base");
+      }
+
+      expect($.turnPhase).to.equal("MAIN");
+
+      dealDamage($, base, 20);
+
+      expect($.turnPhase).to.equal("GAME_OVER");
+    });
 
     describe("buyWorker()", () => {
       it("should work under normal circumstances", () => {

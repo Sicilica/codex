@@ -1,21 +1,5 @@
-import { expect } from "chai";
-
-import { canAttack } from "../../framework/queries/combat";
-import { GameState } from "../../framework/types";
-
-import {
-  debugPlayUnit,
-  initDummyGameState,
-} from "../testhelper";
-
 describe("abilities", () => {
   describe("value_keywords", () => {
-    let $: GameState;
-
-    beforeEach(() => {
-      $ = initDummyGameState();
-    });
-
     describe("ARMOR", () => {
       it.skip("takes damage before health");
 
