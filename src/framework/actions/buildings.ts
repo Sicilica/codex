@@ -6,7 +6,10 @@ import {
   Spec,
 } from "../types";
 
-import { makeInstance } from "./helpers";
+import {
+  makeInstance,
+  reduceGold,
+} from "./helpers";
 
 
 export const purchaseTechBuilding = (
@@ -35,7 +38,7 @@ export const purchaseTechBuilding = (
   }
 
   P.purchasedTechBuildings++;
-  P.gold -= card.cost;
+  reduceGold(P, card.cost);
   if (spec != null) {
     P.mainSpec = spec;
   }

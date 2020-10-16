@@ -18,6 +18,8 @@ import {
   UpgradeCard,
 } from "../types";
 
+import { isPatrolling } from "./patrol";
+
 export const getInstance = (
   $: GameState,
   iid: InstanceID | null,
@@ -66,6 +68,7 @@ export const isUpgrade = (
 
 export interface InstanceQuery {
   card?: CardID,
+  patrolling?: boolean,
   player?: PlayerID,
   spec?: Spec | Array<Spec>,
   tags?: Array<string>,
@@ -81,6 +84,10 @@ export const queryInstances = (
     const card = lookupCard(I.card);
 
     if (query.card != null && I.card !== query.card) {
+      return false;
+    }
+
+    if (query.patrolling != null && isPatrolling($, I) !== query.patrolling) {
       return false;
     }
 
@@ -118,4 +125,11 @@ export const queryInstances = (
 
     return true;
   }).map(entry => entry[0]);
+};
+
+export const findInstance = (
+  $: GameState,
+  query: InstanceQuery,
+): Instance | null => {
+  return getInstance($, queryInstances($, query)[0]);
 };

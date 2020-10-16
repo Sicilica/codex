@@ -1,5 +1,7 @@
 import { CardID, GameState } from "../types";
+
 import { removeFromHand } from "./hand";
+import { reduceGold } from "./helpers";
 
 export const buyWorker = ($: GameState, cid: CardID): void => {
   const P = $.players[$.activePlayer];
@@ -16,7 +18,7 @@ export const buyWorker = ($: GameState, cid: CardID): void => {
     throw new Error("card not in hand");
   }
 
-  P.gold -= 1;
+  reduceGold(P, 1);
   P.workers += 1;
 
   P.hasBuiltWorkerThisTurn = true;

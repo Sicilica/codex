@@ -33,6 +33,24 @@ export type Addon =
   | "TOWER"
   ;
 
+export type PatrolSlot =
+  | "squadLeader"
+  | "elite"
+  | "scavenger"
+  | "technician"
+  | "lookout"
+  ;
+
+export type PromptRequest = {
+  type: "ZANE_MAX_BAND"
+};
+
+export type PromptResponse = {
+  type: "ZANE_MAX_BAND";
+  instance: InstanceID;
+  slot: PatrolSlot;
+};
+
 export interface GameState {
   firstPlayer: PlayerID;
   round: number;
@@ -41,6 +59,7 @@ export interface GameState {
   instances: Record<InstanceID, Instance>;
   nextInstanceID: number;
   players: Record<PlayerID, PlayerState>;
+  blockingPrompts: Array<PromptRequest>;
 }
 
 export type CardID = string;
@@ -62,13 +81,7 @@ export interface PlayerState {
   canSkipTech: boolean;
   hasShuffledThisTurn: boolean;
   hasBuiltWorkerThisTurn: boolean;
-  patrol: {
-    squadLeader: InstanceID | null;
-    elite: InstanceID | null;
-    scavenger: InstanceID | null;
-    technician: InstanceID | null;
-    lookout: InstanceID | null;
-  };
+  patrol: Record<PatrolSlot, InstanceID | null>;
   purchasedTechBuildings: number;
   techBuildings: Array<InstanceID | null>;
   mainSpec: Spec | null;

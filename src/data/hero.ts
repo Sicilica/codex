@@ -1,5 +1,6 @@
 import { drawCard } from "../framework/actions/hand";
 import { giveGold } from "../framework/actions/helpers";
+import { enqueuePrompt } from "../framework/prompts";
 import { getPlayer } from "../framework/queries/common";
 import {
   isScavenger,
@@ -38,19 +39,15 @@ export const getHeroAbilities = (
       ];
     case 2:
       return [
-        // TODO implement this
-        // event("MAX_LEVEL", ($, I) => {
-        //   if ($.activePlayer !== I.controller) {
-        //     return;
-        //   }
+        event("MAX_LEVEL", ($, I) => {
+          if ($.activePlayer !== I.controller) {
+            return;
+          }
 
-        //   // TODO target a patroller
-        //   // move it to empty slot in patrol zone
-        //   // deal 1 damage to it
-
-        //   // requires async targetting of patroller and slot, and then async
-        //   // resolution
-        // }),
+          enqueuePrompt($, {
+            type: "ZANE_MAX_BAND",
+          });
+        }),
       ];
     default:
       return [];

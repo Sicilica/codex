@@ -4,13 +4,12 @@ import { lookupCard } from "../../data";
 import { performAction } from "../../framework/actions";
 import { canAttack, canPatrol } from "../../framework/queries/combat";
 import {
-  InstanceQuery,
-  queryInstances,
+  findInstance,
 } from "../../framework/queries/common";
 import {
   CardID,
   GameState,
-  InstanceID,
+  Instance,
 } from "../../framework/types";
 
 import {
@@ -18,13 +17,6 @@ import {
   debugGotoNextTurn,
   initDummyGameState,
 } from "../testhelper";
-
-const findInstance = (
-  $: GameState,
-  query: InstanceQuery,
-): InstanceID => {
-  return queryInstances($, query)[0];
-};
 
 const debugPlayCard = (
   $: GameState,
@@ -43,11 +35,15 @@ const debugPlayCard = (
 const debugPlayUnit = (
   $: GameState,
   cid: CardID,
-): InstanceID => {
+): Instance => {
   debugPlayCard($, cid);
-  return findInstance($, {
+  const I = findInstance($, {
     card: cid,
   });
+  if (I == null) {
+    throw new Error("failed to find played unit");
+  }
+  return I;
 };
 
 describe("basic", () => {
@@ -58,22 +54,22 @@ describe("basic", () => {
     });
 
     it("can't attack when first played", () => {
-      const iid = debugPlayUnit($, "Nautical Dog");
+      const I = debugPlayUnit($, "Nautical Dog");
 
-      expect(canAttack($, iid)).to.equal(false);
+      expect(canAttack($, I.id)).to.equal(false);
     });
 
     it("can attack the turn after it's played", () => {
-      const iid = debugPlayUnit($, "Nautical Dog");
+      const I = debugPlayUnit($, "Nautical Dog");
       debugGotoNextTurn($, P1);
 
-      expect(canAttack($, iid)).to.equal(true);
+      expect(canAttack($, I.id)).to.equal(true);
     });
 
     it("can patrol when first played", () => {
-      const iid = debugPlayUnit($, "Nautical Dog");
+      const I = debugPlayUnit($, "Nautical Dog");
 
-      expect(canPatrol($, iid)).to.equal(true);
+      expect(canPatrol($, I.id)).to.equal(true);
     });
   });
 });

@@ -1,6 +1,8 @@
 import {
+  getInstanceAbilities,
+} from "../queries/abilities";
+import {
   getInstance,
-  isUnit,
   queryInstances,
 } from "../queries/common";
 import {
@@ -8,9 +10,7 @@ import {
   EventAbility,
   GameEvent,
   GameState,
-  Instance,
 } from "../types";
-import { lookupCard } from "../../data";
 
 export const dispatchEvent = (
   $: GameState,
@@ -28,17 +28,6 @@ export const dispatchEvent = (
       }
     }
   }
-};
-
-const getInstanceAbilities = (
-  I: Instance,
-): Array<Ability> => {
-  const card = lookupCard(I.card);
-  if (isUnit(card)) {
-    return card.abilities;
-  }
-
-  throw new Error("TODO get abilities for this instance type");
 };
 
 const isEventAbility = (
