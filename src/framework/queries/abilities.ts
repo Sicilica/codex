@@ -2,13 +2,13 @@ import { lookupCard } from "../../data";
 
 import {
   Ability,
-  GameState,
   Instance,
   SimpleKeywordAbility,
   ValuedKeywordAbility,
 } from "../types";
 
-import { isUnit } from "./common";
+import { isBuilding, isHero, isUnit } from "./common";
+import { getHeroBand } from "./heroes";
 
 export const getCostToTarget = (
   I: Instance,
@@ -20,7 +20,13 @@ export const getInstanceAbilities = (
   I: Instance,
 ): Array<Ability> => {
   const card = lookupCard(I.card);
-  if (isUnit(card)) {
+  if (isHero(card)) {
+    const band = getHeroBand(I);
+    card.bands
+      .slice(0, band + 1)
+      .map(b => b.abilities)
+      .reduce((a, b) => a.concat(b));
+  } else if (isBuilding(card) || isUnit(card)) {
     return card.abilities;
   }
 

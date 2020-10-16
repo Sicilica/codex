@@ -18,12 +18,13 @@ export const getUnitAbilities = (
   name: string,
 ): Array<Ability> => {
   switch (name) {
-  case "Nautical Dog":
+  case "Mad Man":
     return [ HASTE ];
   case "Calypso Vystari":
   case "Chameleon":
   case "Disguised Monkey":
   case "Gemscout Owl":
+  case "Nautical Dog":
   case "Pirate Gunship":
   case "Tyrannosaurus Rex":
     // WIP
