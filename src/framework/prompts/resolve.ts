@@ -46,8 +46,6 @@ const resolveZaneMaxBand = (
     throw new Error("failed to find controller");
   }
   if (currSlot === destSlot) {
-    // TODO Ruling: Even if all slots are full, you still have to deal 1 damage to a
-    // patroller because of "do everything you can".
     if (hasEmptyPatrolSlot(P)) {
       throw new Error("must shove target to empty slot");
     }
@@ -63,7 +61,6 @@ const resolveZaneMaxBand = (
   P.patrol[destSlot] = I.id;
 
   // Deal 1 damage
-  // TODO Ruling: This counts as Zane dealing damage (though spells e.g. do not).
   dealDamage($, I, 1, zane);
 };
 
