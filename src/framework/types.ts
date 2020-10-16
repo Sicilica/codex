@@ -4,6 +4,7 @@ export type GlobalTurnPhase =
   | "MAIN"
   | "DRAW"
   | "TECH"
+  | "GAME_OVER"
   ;
 
 export type Color =
@@ -192,12 +193,12 @@ interface HeroCardBand {
 export type GameEvent = {
   type:
     | "MAX_LEVEL"
+    | "THIS_DIES"
     ;
 } | {
   type:
     // | "ARRIVES"
     // | "ATTACKS"
-    // | "DIES"
     | "THIS_KILLS_OTHER"
     // | "LEAVES" // TODO ???
     // | "UPKEEP"

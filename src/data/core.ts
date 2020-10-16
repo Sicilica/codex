@@ -1,4 +1,8 @@
+import { dealDamage } from "../framework/actions/helpers";
+import { getInstance, getPlayer } from "../framework/queries/common";
 import { BuildingCard, Card } from "../framework/types";
+
+import { event } from "./helpers";
 
 export const BASE_CARD: BuildingCard = {
   type: "BUILDING",
@@ -9,8 +13,9 @@ export const BASE_CARD: BuildingCard = {
   spec: null,
   tech: 0,
   abilities: [
-    // Dies: lose game
-    "TODO",
+    event("THIS_DIES", $ => {
+      $.turnPhase = "GAME_OVER";
+    }),
   ],
   tags: [],
   cost: 0,
@@ -25,8 +30,14 @@ const techBuildingCommon = {
   color: "NEUTRAL" as const,
   spec: null,
   abilities: [
-    // Dies: 2 damage to base
-    "TODO" as const,
+    event("THIS_DIES", ($, I) => {
+      const P = getPlayer($, I.controller);
+      const base = getInstance($, P?.base ?? null);
+      if (base == null) {
+        return;
+      }
+      dealDamage($, base, 2);
+    }),
   ],
   tags: [],
   boostCost: null,
