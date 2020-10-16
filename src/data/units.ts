@@ -1,5 +1,9 @@
 import { Ability } from "../framework/types";
 
+import {
+  HASTE,
+} from "./helpers";
+
 const unitBoostCosts: Record<string, number | undefined> = {
   // such empty
 };
@@ -14,6 +18,9 @@ export const getUnitAbilities = (
   name: string,
 ): Array<Ability> => {
   switch (name) {
+  case "Mad Man":
+    return [ HASTE ];
+  case "Bloodrage Ogre":
   case "Calypso Vystari":
   case "Chameleon":
   case "Disguised Monkey":
@@ -21,7 +28,8 @@ export const getUnitAbilities = (
   case "Nautical Dog":
   case "Pirate Gunship":
   case "Tyrannosaurus Rex":
-    return [ "TODO" ];
+    // WIP
+    return [];
   default:
     throw new Error(`Failed to find abilities for unit "${name}"`);
   }

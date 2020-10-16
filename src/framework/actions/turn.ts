@@ -1,7 +1,11 @@
 import { CardID, GameState } from "../types";
 import { discardAll, drawCard } from "./hand";
-import { MAX_GOLD, MAX_HAND_SIZE, WORKERS_TO_SKIP_TECH } from "../constants";
+import { MAX_HAND_SIZE, WORKERS_TO_SKIP_TECH } from "../constants";
 import { queryInstances } from "../queries/common";
+import { isMaxBand } from "../queries/heroes";
+
+import { rebuildTechBuildings } from "./buildings";
+import { giveGold } from "./helpers";
 
 export const startGame = ($: GameState): void => {
   const gameStarted = $.round !== 1 ||
@@ -39,6 +43,10 @@ const handleReadyPhase = ($: GameState): void => {
     I.arrivalFatigue = false;
     I.readyState = I.readyState === "DISABLED" ? "EXHAUSTED" : "READY";
 
+    if (isMaxBand(I)) {
+      I.startedTurnAtMaxBand = true;
+    }
+
     // Make dead heroes available
   }
 
@@ -56,14 +64,12 @@ const handleUpkeepPhase = ($: GameState): void => {
 
   const P = $.players[$.activePlayer];
 
-  P.gold = Math.min(P.gold + P.workers, MAX_GOLD);
+  giveGold(P, P.workers);
 
   // Run any upkeep actions
 
   $.turnPhase = "MAIN";
 };
-
-import { rebuildTechBuildings } from "./buildings";
 
 export const endTurn = (
   $: GameState,

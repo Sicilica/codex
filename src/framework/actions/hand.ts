@@ -10,7 +10,10 @@ import {
   PlayerState,
 } from "../types";
 
-import { makeInstance } from "./helpers";
+import {
+  makeInstance,
+  reduceGold,
+} from "./helpers";
 
 /**
  * NOTE: For security purposes, drawing should be handled or confirmed by the
@@ -115,7 +118,7 @@ export const playCard = (
     throw new Error("card not in hand");
   }
 
-  P.gold -= getCardCost($, P, card, boost);
+  reduceGold(P, getCardCost($, P, card, boost));
 
   switch (card.type) {
   case "UNIT":

@@ -1,12 +1,14 @@
+
+import { expect } from "chai";
 import { GameState, PlayerState } from "../../framework/types";
-import { P1, initDummyGameState } from "../testhelper";
 import {
   discardAll,
   discardCard,
   drawCard,
   removeFromHand,
 } from "../../framework/actions/hand";
-import { expect } from "chai";
+
+import { P1, initDummyGameState } from "../testhelper";
 
 describe("basic", () => {
   describe("hand", () => {

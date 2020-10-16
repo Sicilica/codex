@@ -1,12 +1,14 @@
 import {
   CardID,
   GameState,
+  PromptResponse,
   Spec,
 } from "../types";
 
 import { buyWorker } from "./base";
 import { purchaseTechBuilding } from "./buildings";
 import { playCard } from "./hand";
+import { respondToPrompt } from "./prompt";
 import {
   endTurn,
   techCards,
@@ -25,6 +27,10 @@ export type Action = {
   type: "PURCHASE_TECH_BUILDING";
   spec?: Spec;
 } | {
+  type: "RESPOND_TO_PROMPT";
+  index: number;
+  response: PromptResponse;
+} | {
   type: "TECH";
   cards: Array<CardID>;
 };
@@ -33,6 +39,10 @@ export const performAction = (
   $: GameState,
   action: Action,
 ): void => {
+  if (action.type !== "RESPOND_TO_PROMPT" && $.blockingPrompts.length > 0) {
+    throw new Error("cannot ignore blocking prompt");
+  }
+
   switch (action.type) {
   case "BUY_WORKER":
     buyWorker($, action.cardID);
@@ -45,6 +55,9 @@ export const performAction = (
     break;
   case "PURCHASE_TECH_BUILDING":
     purchaseTechBuilding($, action.spec);
+    break;
+  case "RESPOND_TO_PROMPT":
+    respondToPrompt($, action.index, action.response);
     break;
   case "TECH":
     techCards($, action.cards);

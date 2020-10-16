@@ -12,6 +12,7 @@ import {
 } from "../types";
 
 import {
+  findInstance,
   getInstance,
   isBuilding,
   isSpell,
@@ -29,20 +30,20 @@ export const canPlayCard = (
   if (isSpell(card)) {
     if (card.spec == null) {
       // For basic spells, must have any hero
-      const heroes = queryInstances($, {
+      const hero = findInstance($, {
         player: P.id,
         type: "HERO",
       });
-      if (heroes.length === 0) {
+      if (hero == null) {
         return false;
       }
     } else {
       // For non-basic spells, we must have the correct hero
-      const hero = queryInstances($, {
+      const hero = findInstance($, {
         player: P.id,
         spec: card.spec,
         type: "HERO",
-      }).map(iid => getInstance($, iid))[0];
+      });
       if (hero == null) {
         return false;
       }

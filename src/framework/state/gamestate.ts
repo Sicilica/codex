@@ -21,6 +21,7 @@ export const createInitialGameState = (
     instances: {},
     nextInstanceID: 1,
     players: {},
+    blockingPrompts: [],
   };
 
   for (const setupData of players) {

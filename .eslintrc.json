@@ -45,7 +45,6 @@
     "max-len": ["error", 79],
     "max-statements-per-line": "error",
     "multiline-comment-style": ["error", "separate-lines"],
-    "new-cap": "error",
     "new-parens": "error",
     "no-alert": "error",
     "no-array-constructor": "error",
