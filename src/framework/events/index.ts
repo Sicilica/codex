@@ -10,9 +10,10 @@ import {
   EventAbility,
   GameEvent,
   GameState,
+  Instance,
 } from "../types";
 
-export const dispatchEvent = (
+export const dispatchGlobalEvent = (
   $: GameState,
   e: GameEvent,
 ): void => {
@@ -21,11 +22,18 @@ export const dispatchEvent = (
     if (I == null) {
       continue;
     }
+    dispatchScopedEvent($, I, e);
+  }
+};
 
-    for (const ability of getInstanceAbilities(I)) {
-      if (isEventAbility(ability) && ability.event === e.type) {
-        ability.effect($, I, e);
-      }
+export const dispatchScopedEvent = (
+  $: GameState,
+  scope: Instance,
+  e: GameEvent,
+): void => {
+  for (const ability of getInstanceAbilities(scope)) {
+    if (isEventAbility(ability) && ability.event === e.type) {
+      ability.effect($, scope, e);
     }
   }
 };

@@ -5,6 +5,7 @@ import {
   InstanceID,
 } from "../types";
 
+import { hasSimpleKeyword } from "./abilities";
 import {
   getInstance,
   getPlayer,
@@ -29,7 +30,11 @@ export const canAttack = (
     return false;
   }
 
-  if (I.readyState !== "READY" || I.arrivalFatigue) {
+  if (I.readyState !== "READY") {
+    return false;
+  }
+
+  if (I.arrivalFatigue && !hasSimpleKeyword(I, "HASTE")) {
     return false;
   }
 

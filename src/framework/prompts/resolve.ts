@@ -64,7 +64,7 @@ const resolveZaneMaxBand = (
 
   // Deal 1 damage
   // TODO Ruling: This counts as Zane dealing damage (though spells e.g. do not).
-  dealDamage($, I, 1, zane.id);
+  dealDamage($, I, 1, zane);
 };
 
 export const resolvePrompt = (

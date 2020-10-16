@@ -191,7 +191,6 @@ interface HeroCardBand {
 
 export type GameEvent = {
   type:
-    // TODO implement this
     | "MAX_LEVEL"
     ;
 } | {
@@ -199,8 +198,7 @@ export type GameEvent = {
     // | "ARRIVES"
     // | "ATTACKS"
     // | "DIES"
-    // TODO implement this
-    | "KILLS" // rename probably to "THIS_KILLS_OTHER"
+    | "THIS_KILLS_OTHER"
     // | "LEAVES" // TODO ???
     // | "UPKEEP"
     ;
@@ -208,6 +206,7 @@ export type GameEvent = {
 };
 
 export type Ability =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   | EventAbility<any>
   | SimpleKeywordAbility
   | ValuedKeywordAbility
@@ -230,7 +229,6 @@ export interface SimpleKeywordAbility {
     // | "DETECTOR"
     // | "EPHEMERAL"
     // | "FLYING"
-    // TODO impl haste; we shouldn't have anything uncommented here that isn't hooked up
     | "HASTE"
     // | "ILLUSION"
     // | "INDESTRUCTIBLE"
@@ -250,13 +248,12 @@ export interface SimpleKeywordAbility {
 export interface ValuedKeywordAbility {
   type: "VALUED_KEYWORD";
   keyword:
-    // | "ARMOR"
+    | "ARMOR"
     // | "FADING"
     // | "FORECAST"
     // | "FRENZY"
     // | "HEALING"
     // | "OBLITERATE"
-    // TODO impl resist; we shouldn't have anything uncommented that isn't implemented
     | "RESIST"
     ;
   value: number;

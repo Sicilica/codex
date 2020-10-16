@@ -2,6 +2,9 @@ import { CardID, GameState } from "../types";
 import { discardAll, drawCard } from "./hand";
 import { MAX_HAND_SIZE, WORKERS_TO_SKIP_TECH } from "../constants";
 import { queryInstances } from "../queries/common";
+import { isMaxBand } from "../queries/heroes";
+
+import { rebuildTechBuildings } from "./buildings";
 import { giveGold } from "./helpers";
 
 export const startGame = ($: GameState): void => {
@@ -40,7 +43,9 @@ const handleReadyPhase = ($: GameState): void => {
     I.arrivalFatigue = false;
     I.readyState = I.readyState === "DISABLED" ? "EXHAUSTED" : "READY";
 
-    // TODO mark heroes as being at max band at start of turn
+    if (isMaxBand(I)) {
+      I.startedTurnAtMaxBand = true;
+    }
 
     // Make dead heroes available
   }
@@ -65,8 +70,6 @@ const handleUpkeepPhase = ($: GameState): void => {
 
   $.turnPhase = "MAIN";
 };
-
-import { rebuildTechBuildings } from "./buildings";
 
 export const endTurn = (
   $: GameState,

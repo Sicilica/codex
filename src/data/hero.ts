@@ -24,7 +24,7 @@ export const getHeroAbilities = (
       return [ HASTE ];
     case 1:
       return [
-        event("KILLS", ($, I, e) => {
+        event("THIS_KILLS_OTHER", ($, I, e) => {
           const P = getPlayer($, I.controller);
           if (P == null) {
             return;
