@@ -13,6 +13,8 @@ describe("basic", () => {
       P = $.players[$.activePlayer];
     });
 
+    it.skip("ends the game when killed");
+
     describe("buyWorker()", () => {
       it("should work under normal circumstances", () => {
         const cid = P.hand[0];

@@ -58,6 +58,8 @@ describe("basic", () => {
     });
 
     describe("tech buildings", () => {
+      it.skip("deals 2 dmg to base when killed");
+
       describe("tech 1 building", () => {
         it("requires 6+ workers", () => {
           $.players[$.activePlayer].gold = 20;

@@ -1,8 +1,12 @@
+import { lookupCard } from "../data";
 import { performAction } from "../framework/actions";
 import { startGame } from "../framework/actions/turn";
+import { findInstance } from "../framework/queries/common";
 import { createInitialGameState } from "../framework/state/gamestate";
 import {
+  CardID,
   GameState,
+  Instance,
   PlayerID,
 } from "../framework/types";
 
@@ -51,4 +55,32 @@ export const debugGotoNextTurn = (
     }
   }
   throw new Error("unknown player");
+};
+
+export const debugPlayCard = (
+  $: GameState,
+  cid: CardID,
+): void => {
+  const card = lookupCard(cid);
+  $.players[$.activePlayer].gold += card.cost;
+  $.players[$.activePlayer].hand.push(cid);
+  performAction($, {
+    type: "PLAY_CARD",
+    cardID: cid,
+    boost: false,
+  });
+};
+
+export const debugPlayUnit = (
+  $: GameState,
+  cid: CardID,
+): Instance => {
+  debugPlayCard($, cid);
+  const I = findInstance($, {
+    card: cid,
+  });
+  if (I == null) {
+    throw new Error("failed to find played unit");
+  }
+  return I;
 };
