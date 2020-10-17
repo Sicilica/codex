@@ -4,16 +4,15 @@ import {
   AttachmentSpellCard,
   BuildingCard,
   Card,
-  CardID,
   GameState,
   HeroCard,
-  Instance,
   InstanceID,
+  InstanceQuery,
+  InstanceState,
   InstantSpellCard,
   OngoingSpellCard,
   PlayerID,
   PlayerState,
-  Spec,
   UnitCard,
   UpgradeCard,
 } from "../types";
@@ -23,7 +22,7 @@ import { isPatrolling } from "./patrol";
 export const getInstance = (
   $: GameState,
   iid: InstanceID | null,
-): Instance | null => {
+): InstanceState | null => {
   return iid == null ? null : $.instances[iid];
 };
 
@@ -65,15 +64,6 @@ export const isUpgrade = (
 ): card is UpgradeCard => {
   return card.type === "UPGRADE";
 };
-
-export interface InstanceQuery {
-  card?: CardID,
-  patrolling?: boolean,
-  player?: PlayerID,
-  spec?: Spec | Array<Spec>,
-  tags?: Array<string>,
-  type?: Card["type"] | Array<Card["type"]>,
-}
 
 export const queryInstances = (
   $: GameState,
@@ -130,6 +120,6 @@ export const queryInstances = (
 export const findInstance = (
   $: GameState,
   query: InstanceQuery,
-): Instance | null => {
+): InstanceState | null => {
   return getInstance($, queryInstances($, query)[0]);
 };

@@ -1,10 +1,8 @@
-import { Ability } from "../framework/types";
+import { getProperties } from "./helpers";
 
-export const getUpgradeAbilities = (
-  name: string,
-): Array<Ability> => {
-  switch (name) {
+export const getUpgradeProperties = getProperties(id => {
+  switch (id) {
   default:
-    throw new Error(`Failed to find abilities for upgrade "${name}"`);
+    throw new Error(`Failed to find properties for upgrade "${id}"`);
   }
-};
+});

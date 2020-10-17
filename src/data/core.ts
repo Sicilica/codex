@@ -5,8 +5,8 @@ import { BuildingCard, Card } from "../framework/types";
 import { event } from "./helpers";
 
 export const BASE_CARD: BuildingCard = {
+  id: "Base",
   type: "BUILDING",
-  name: "Base",
   health: 20,
   legendary: false,
   color: "NEUTRAL",
@@ -49,30 +49,28 @@ export const TECH_BUILDING_CARDS: Array<BuildingCard & {
 }> = [
   {
     ...techBuildingCommon,
-    name: "Tech I Building",
+    id: "Tech I Building",
     cost: 1,
     workerRequirement: 6,
     tech: 1,
   },
   {
     ...techBuildingCommon,
-    name: "Tech II Building",
+    id: "Tech II Building",
     cost: 4,
     workerRequirement: 8,
     tech: 2,
   },
   {
     ...techBuildingCommon,
-    name: "Tech III Building",
+    id: "Tech III Building",
     cost: 5,
     workerRequirement: 10,
     tech: 3,
   },
 ];
 
-export const CORE_CARDS: Record<string, Card> = {
-  $BASE: BASE_CARD,
-  $TECH1: TECH_BUILDING_CARDS[0],
-  $TECH2: TECH_BUILDING_CARDS[1],
-  $TECH3: TECH_BUILDING_CARDS[2],
-};
+export const CORE_CARDS: Array<Card> = [
+  BASE_CARD,
+  ...TECH_BUILDING_CARDS,
+];

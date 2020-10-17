@@ -1,39 +1,13 @@
-import {
-  CardID,
-  GameState,
-  PromptResponse,
-  Spec,
-} from "../types";
+
+import { Action } from "../types/serializable";
 
 import { buyWorker } from "./base";
 import { purchaseTechBuilding } from "./buildings";
 import { playCard } from "./hand";
-import { respondToPrompt } from "./prompt";
 import {
   endTurn,
   techCards,
 } from "./turn";
-
-export type Action = {
-  type: "BUY_WORKER";
-  cardID: string;
-} | {
-  type: "END_TURN";
-} | {
-  type: "PLAY_CARD";
-  cardID: string;
-  boost: boolean;
-} | {
-  type: "PURCHASE_TECH_BUILDING";
-  spec?: Spec;
-} | {
-  type: "RESPOND_TO_PROMPT";
-  index: number;
-  response: PromptResponse;
-} | {
-  type: "TECH";
-  cards: Array<CardID>;
-};
 
 export const performAction = (
   $: GameState,

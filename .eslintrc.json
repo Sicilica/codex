@@ -86,7 +86,7 @@
       "selector": "FunctionDeclaration",
       "message": "Prefer arrow functions."
     }, {
-      "selector": "FunctionExpression",
+      "selector": "FunctionExpression:not(MethodDefinition > *)",
       "message": "Prefer arrow functions."
     }],
     "no-return-assign": "error",

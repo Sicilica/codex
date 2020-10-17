@@ -1,33 +1,41 @@
 import {
-  Ability,
-  EventAbility,
-  GameEvent,
-  SimpleKeywordAbility,
-  ValuedKeywordAbility,
+  Attribute,
+  GameState,
+  InstanceCard,
+  ResolvableEffect,
+  TriggerEvent,
 } from "../framework/types";
 
-const simple = (kw: SimpleKeywordAbility["keyword"]): Ability => ({
-  type: "SIMPLE_KEYWORD",
-  keyword: kw,
-});
+export const getProperties = (
+  fn: (id: string) => Partial<InstanceCard>,
+) => (
+  id: string,
+  health: number | null,
+  attack: number | null,
+): InstanceCard => {
+  const properties = {
+    activatedAbilities: [],
+    attributes: {} as Record<Attribute, number>,
+    continuousModifiers: [],
+    traits: [],
+    triggeredAbilities: [],
+    ...fn(id),
+  };
 
-const valued = (kw: ValuedKeywordAbility["keyword"]) =>
-  (val: number): Ability => ({
-    type: "VALUED_KEYWORD",
-    keyword: kw,
-    value: val,
-  });
+  if (health != null) {
+    properties.attributes.HEALTH = health;
+  }
+  if (attack != null) {
+    properties.attributes.ATTACK = attack;
+  }
 
-export const HASTE = simple("HASTE");
+  return properties;
+};
 
-export const ARMOR = valued("ARMOR");
-export const RESIST = valued("RESIST");
-
-export const event = <EventTypeT extends GameEvent["type"]> (
-  type: EventTypeT,
-  effect: EventAbility<GameEvent & { type: EventTypeT }>["effect"],
-): EventAbility<GameEvent & { type: EventTypeT }> => ({
-    type: "EVENT",
-    event: type,
+export const trigger = <EventT extends TriggerEvent>(
+  type: EventT["type"],
+  effect: ($: GameState, iid: string, e: EventT) => Array<ResolvableEffect>,
+): InstanceCard["triggeredAbilities"][0] => ({
+    type,
     effect,
   });
