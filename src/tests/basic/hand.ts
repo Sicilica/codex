@@ -6,7 +6,7 @@ import {
   discardCard,
   drawCard,
   removeFromHand,
-} from "../../framework/actions/hand";
+} from "../../framework/old/actions/hand";
 
 import { P1, initDummyGameState } from "../testhelper";
 

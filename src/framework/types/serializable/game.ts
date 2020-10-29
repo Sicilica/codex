@@ -7,7 +7,7 @@ import {
   PlayerState,
 } from "./player";
 import {
-  ResolvableEffect,
+  ResolvableEffect, ResolvableEffectID,
 } from "./resolvable";
 
 export type AddonType =
@@ -19,15 +19,22 @@ export type AddonType =
 
 export interface GameState {
   time: number;
-  players: Record<PlayerID, PlayerState>;
-  instances: Record<InstanceID, InstanceState>;
+  round: number;
   activePlayer: PlayerID;
   turnPhase: TurnPhase;
-  unresolvedEffects: Array<ResolvableEffect>;
+  players: Record<PlayerID, PlayerState>;
+  instances: Record<InstanceID, InstanceState>;
+  unresolvedEffects: Array<ResolvableEffect & {
+    id: ResolvableEffectID;
+  }>;
   unresolvedCombat: {
     attacker: InstanceID;
+    attackerExtraDamage: number;
     defender: InstanceID;
+    defenderExtraDamage: number;
   } | null;
+  nextID: number;
+  earliestAllowedRewind: number;
 }
 
 export type TurnPhase =
@@ -37,4 +44,6 @@ export type TurnPhase =
   | "MAIN"
   | "DRAW"
   | "END_OF_TURN"
+  // TODO probably remove this and handle this a different way
+  | "GAME_OVER"
   ;

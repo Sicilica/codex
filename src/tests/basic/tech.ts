@@ -4,8 +4,8 @@ import { lookupCard } from "../../data";
 import {
   purchaseTechBuilding,
   rebuildTechBuildings,
-} from "../../framework/actions/buildings";
-import { dealDamage } from "../../framework/actions/helpers";
+} from "../../framework/old/actions/buildings";
+import { dealDamage } from "../../framework/old/actions/helpers";
 import { getInstance } from "../../framework/queries/common";
 import { canPlayCard } from "../../framework/queries/economy";
 import { GameState, Spec } from "../../framework/types";

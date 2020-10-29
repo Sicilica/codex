@@ -1,6 +1,8 @@
+import { ActivatedAbilityID } from "./ability";
 import { CardID } from "./card";
 import { InstanceID } from "./instance";
-import { ActivatedAbilityID, Spec } from "./property";
+import { PatrolZone } from "./player";
+import { Spec } from "./property";
 import { ResolvableEffectID } from "./resolvable";
 
 export type Action = {
@@ -16,6 +18,7 @@ export type Action = {
   card: CardID;
 } | {
   type: "END_TURN";
+  patrol: PatrolZone;
 } | {
   type: "PLAY_CARD";
   card: CardID;

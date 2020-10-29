@@ -1,11 +1,11 @@
 import { expect } from "chai";
 
-import { performAction } from "../../framework/actions";
+import { performAction } from "../../framework/old/actions";
 import {
   dealDamage,
   giveLevels,
   makeInstance,
-} from "../../framework/actions/helpers";
+} from "../../framework/old/actions/helpers";
 import { ensurePromptsAreValid } from "../../framework/prompts";
 import { GameState, Instance } from "../../framework/types";
 

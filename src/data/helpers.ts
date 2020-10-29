@@ -1,10 +1,20 @@
 import {
-  Attribute,
-  GameState,
+  AbilityFn,
   InstanceCard,
-  ResolvableEffect,
   TriggerEvent,
+  TriggeredAbility,
+  TriggeredAbilityFn,
 } from "../framework/types";
+
+export const defaultProperties = (): InstanceCard => ({
+  ...{
+    activatedAbilities: [],
+    attributes: {},
+    continuousModifiers: [],
+    traits: [],
+    triggeredAbilities: [],
+  },
+});
 
 export const getProperties = (
   fn: (id: string) => Partial<InstanceCard>,
@@ -14,11 +24,7 @@ export const getProperties = (
   attack: number | null,
 ): InstanceCard => {
   const properties = {
-    activatedAbilities: [],
-    attributes: {} as Record<Attribute, number>,
-    continuousModifiers: [],
-    traits: [],
-    triggeredAbilities: [],
+    ...defaultProperties(),
     ...fn(id),
   };
 
@@ -32,10 +38,10 @@ export const getProperties = (
   return properties;
 };
 
-export const trigger = <EventT extends TriggerEvent>(
-  type: EventT["type"],
-  effect: ($: GameState, iid: string, e: EventT) => Array<ResolvableEffect>,
-): InstanceCard["triggeredAbilities"][0] => ({
+export const trigger = <TypeT extends TriggerEvent["type"]>(
+  type: TypeT,
+  effect: AbilityFn<TriggerEvent & { type: TypeT }>,
+): TriggeredAbility => ({
     type,
-    effect,
+    effect: effect as TriggeredAbilityFn,
   });

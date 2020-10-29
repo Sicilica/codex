@@ -1,3 +1,5 @@
+import { SingleOrArray } from "../helpers";
+
 import { CardID, CardType } from "./card";
 import { ModifierGrant } from "./modifier";
 import { PlayerID } from "./player";
@@ -15,13 +17,14 @@ export interface InstanceState {
   damage: number;
   armorDamage: number;
   level: number;
+  levelAtTurnStart: number;
   plusMinusRunes: number;
   timeRunes: number;
   customRunes: Record<CustomRuneID, number>;
   attachments: Array<InstanceID>;
   attachedTo: InstanceID | null;
   modifiers: Array<ModifierGrant>;
-  // memory: Record<string, SingleOrArray<CardID | InstanceID>>;
+  memory: Record<string, SingleOrArray<CardID | InstanceID>>;
 }
 
 export type InstanceType = Exclude<CardType, "INSTANT_SPELL">;

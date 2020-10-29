@@ -1,9 +1,11 @@
 import {
-  Attribute,
+  AttachmentSpellCard,
   InstanceCard,
   InstantSpellCard,
-  SpellCard,
+  OngoingSpellCard,
 } from "../framework/types";
+import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
+import { trigger } from "./helpers";
 
 const spellBoostCosts: Record<string, number | undefined> = {
   // such empty
@@ -16,33 +18,91 @@ export const getSpellBoostCost = (
 };
 
 export const getSpellDetails = (
-  name: string,
-): SpellDetails => {
-  switch (name) {
+  id: string,
+): SpellDetails<AttachmentSpellCard>
+  | SpellDetails<InstantSpellCard>
+  | SpellDetails<OngoingSpellCard> => {
+  switch (id) {
   case "Scorch":
     return instantSpell({
-      effect: () => {
-        throw new Error("todo");
+      effect: () => [
+        {
+          type: "DAMAGE",
+          sourceCard: id,
+          sourceInstance: null,
+          target: {
+            OR: [
+              { patrolling: true },
+              { type: "BUILDING" },
+            ],
+          },
+          amount: 2,
+        },
+      ],
+    });
+  case "Spirit of the Panda":
+    return attachmentSpell({
+      query: {
+        type: "UNIT",
       },
+      attributes: {
+        ATTACK: 2,
+        HEALING: 1,
+        HEALTH: 2,
+      },
+      triggeredAbilities: [
+        trigger("THIS_ATTACKS", (_, I) => [
+          {
+            type: "GIVE_GOLD",
+            sourceCard: id,
+            sourceInstance: I.id,
+            player: I.controller,
+            amount: 1,
+          },
+        ]),
+      ],
+    });
+  case "War Drums":
+    return ongoingSpell({
+      continuousModifiers: [
+        {
+          condition: null,
+          query: {
+            type: "UNIT",
+          },
+          effect: ($, I) => {
+            const numUnits = Array.from($.queryInstances({
+              player: I.controller,
+              type: "UNIT",
+            })).length;
+            return {
+              type: "ATTRIBUTE",
+              attribute: "ATTACK",
+              amount: numUnits,
+            };
+          },
+        },
+      ],
     });
   default:
-    throw new Error(`Failed to find details for spell "${name}"`);
+    if (REQUIRE_ALL_CARD_PROPERTIES) {
+      throw new Error(`Failed to find details for spell "${id}"`);
+    }
+    return instantSpell({
+      effect: () => [],
+    });
   }
 };
 
-type SpellDetails = Pick<SpellCard, Exclude<keyof SpellCard, "ultimate">> & ({
-  type: "INSTANT_SPELL";
-  effect: InstantSpellCard["effect"];
-} | (InstanceCard & {
-  type: "ATTACHMENT_SPELL" | "ONGOING_SPELL";
-}));
+type SpellDetails<T> = Pick<T, Exclude<keyof T,
+  "id" | "color" | "spec" | "cost" | "boostCost" | "tags" | "ultimate">>;
 
 const attachmentSpell = (
-  details: Partial<InstanceCard>,
-): SpellDetails => ({
+  details: Partial<InstanceCard> & Pick<AttachmentSpellCard, "query">,
+): SpellDetails<AttachmentSpellCard> => ({
   type: "ATTACHMENT_SPELL",
   activatedAbilities: [],
-  attributes: {} as Record<Attribute, number>,
+  attributes: {},
   continuousModifiers: [],
   traits: [],
   triggeredAbilities: [],
@@ -51,17 +111,17 @@ const attachmentSpell = (
 
 const instantSpell = (
   details: Pick<InstantSpellCard, "effect">,
-): SpellDetails => ({
+): SpellDetails<InstantSpellCard> => ({
   type: "INSTANT_SPELL",
   ...details,
 });
 
 const ongoingSpell = (
   details: Partial<InstanceCard>,
-): SpellDetails => ({
+): SpellDetails<OngoingSpellCard> => ({
   type: "ONGOING_SPELL",
   activatedAbilities: [],
-  attributes: {} as Record<Attribute, number>,
+  attributes: {},
   continuousModifiers: [],
   traits: [],
   triggeredAbilities: [],

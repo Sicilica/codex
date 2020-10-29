@@ -1,22 +1,3 @@
-export type ActivatedAbilityCost = {
-  type:
-    | "EXHAUST_THIS"
-    | "SACRIFICE_THIS"
-    ;
-} | {
-  type:
-    | "GOLD"
-    | "TIME_RUNES"
-    ;
-  amount: number;
-} | {
-  type: "CUSTOM_RUNES"
-  rune: CustomRuneID;
-  amount: number;
-};
-
-export type ActivatedAbilityID = string;
-
 export type Attribute =
   | "ARMOR"
   | "ATTACK"

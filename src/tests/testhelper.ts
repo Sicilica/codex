@@ -1,86 +1,118 @@
-import { lookupCard } from "../data";
-import { performAction } from "../framework/actions";
-import { startGame } from "../framework/actions/turn";
-import { findInstance } from "../framework/queries/common";
-import { createInitialGameState } from "../framework/state/gamestate";
+
+import { newGame, simulateAction } from "..";
+import { CachedDataSource, loadCards } from "../data";
+import { GameEngine } from "../framework/engine";
 import {
+  Action,
   CardID,
-  GameState,
-  Instance,
+  InstanceQuery,
+  InstanceState,
   PlayerID,
+  ResolvableEffect,
 } from "../framework/types";
+import { requireActivePlayer } from "../game/helpers";
 
 export const P1 = "P1";
 export const P2 = "P2";
 
-export const initDummyGameState = (): GameState => {
-  const gameState = createInitialGameState([
+const data = new CachedDataSource(loadCards());
+
+export const makeDefaultGame = (): GameEngine => {
+  const state = newGame([
     {
-      starterDeckSpec: "ANARCHY",
-      otherSpecs: [ "BLOOD", "FIRE" ],
-    }, {
-      starterDeckSpec: "BALANCE",
-      otherSpecs: [ "FERAL", "GROWTH" ],
+      startingColor: "RED",
+      specs: [ "ANARCHY", "BLOOD", "FIRE" ],
     },
-  ]);
+    {
+      startingColor: "GREEN",
+      specs: [ "BALANCE", "FERAL", "GROWTH" ],
+    },
+  ], data);
 
-  startGame(gameState);
-
-  return gameState;
+  return new GameEngine(state, data, []);
 };
 
 export const debugGotoNextTurn = (
-  $: GameState,
+  $: GameEngine,
   pid: PlayerID,
 ): void => {
-  for (let i = 0; i < Object.keys($.players).length; i++) {
-    const P = $.players[$.activePlayer];
-    while (P.deck.length < 2) {
-      P.deck.push("Nautical Dog");
-    }
-
-    performAction($, {
+  do {
+    debugAction($, {
       type: "END_TURN",
+      patrol: {
+        SQUAD_LEADER: null,
+        ELITE: null,
+        SCAVENGER: null,
+        TECHNICIAN: null,
+        LOOKOUT: null,
+      },
     });
 
-    if ($.turnPhase === "TECH") {
-      performAction($, {
+    if ($.state.turnPhase === "TECH") {
+      debugAction($, {
         type: "TECH",
         cards: [ "Crash Bomber", "Firebat" ],
       });
     }
-
-    if ($.activePlayer === pid) {
-      return;
-    }
-  }
-  throw new Error("unknown player");
+  } while ($.state.activePlayer !== pid);
 };
 
 export const debugPlayCard = (
-  $: GameState,
+  $: GameEngine,
   cid: CardID,
 ): void => {
-  const card = lookupCard(cid);
-  $.players[$.activePlayer].gold += card.cost;
-  $.players[$.activePlayer].hand.push(cid);
-  performAction($, {
+  const card = $.data.lookupCard(cid);
+  requireActivePlayer($).gold += card.cost;
+  requireActivePlayer($).hand.push(cid);
+  debugAction($, {
     type: "PLAY_CARD",
-    cardID: cid,
+    card: cid,
     boost: false,
   });
 };
 
 export const debugPlayUnit = (
-  $: GameState,
+  $: GameEngine,
   cid: CardID,
-): Instance => {
+): InstanceState => {
   debugPlayCard($, cid);
-  const I = findInstance($, {
+  const I = findLastInstance($, {
     card: cid,
   });
   if (I == null) {
     throw new Error("failed to find played unit");
   }
   return I;
+};
+
+export const debugAction = (
+  $: GameEngine,
+  action: Action,
+): void => {
+  const res = simulateAction($.state, action, data);
+  if (res.error != null) {
+    throw new Error(`${res.error}`);
+  }
+};
+
+export const debugEffect = (
+  $: GameEngine,
+  effect: ResolvableEffect,
+): void => {
+  debugAction($, {
+    type: "RESOLVE_EFFECT",
+    effect: $.queueEffect(effect),
+    params: {},
+  });
+};
+
+const findLastInstance = (
+  $: GameEngine,
+  q: InstanceQuery,
+): InstanceState | null => {
+  let toRet = null;
+  for (const I of $.queryInstances(q)) {
+    toRet = I;
+  }
+  return toRet;
 };

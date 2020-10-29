@@ -2,8 +2,8 @@ import { expect } from "chai";
 
 import { GameState, PlayerState } from "../../framework/types";
 import { P1, P2, initDummyGameState } from "../testhelper";
-import { endTurn, startGame, techCards } from "../../framework/actions/turn";
-import { makeInstance } from "../../framework/actions/helpers";
+import { endTurn, startGame, techCards } from "../../framework/old/actions/turn";
+import { makeInstance } from "../../framework/old/actions/helpers";
 import { MAX_GOLD, MAX_HAND_SIZE } from "../../framework/constants";
 import { createInitialGameState } from "../../framework/state/gamestate";
 

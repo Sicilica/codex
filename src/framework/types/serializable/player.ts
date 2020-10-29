@@ -16,6 +16,7 @@ export type PlayerID = string;
 
 export interface PlayerState {
   id: PlayerID;
+  isFirstPlayer: boolean;
   specs: [Spec, Spec, Spec];
   base: InstanceID;
   techBuildings: Array<InstanceID | null>;
@@ -28,6 +29,7 @@ export interface PlayerState {
   hand: Array<CardID>;
   deck: Array<CardID>;
   discard: Array<CardID>;
+  codex: Record<CardID, number | null>;
   canSkipTech: boolean;
   hasBuiltWorkerThisTurn: boolean;
   hasShuffledThisTurn: boolean;

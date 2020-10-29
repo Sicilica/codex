@@ -1,3 +1,5 @@
+import { GameEngine } from "../../engine";
+
 import {
   ActivatedAbilityCost,
   ActivatedAbilityID,
@@ -6,19 +8,31 @@ import {
   GameState,
   InstanceID,
   InstanceQuery,
+  InstanceState,
   ModifierEffect,
-  PlayerID,
-  ResolvableEffect,
   Spec,
   Tag,
   TechLevel,
   Trait,
-  TriggerEvent,
+  TriggerType,
 } from "../serializable";
+
+import {
+  ActivatedAbilityFn,
+  InstantSpellFn,
+  TriggeredAbilityFn,
+} from "./fn";
+
+export interface ActivatedAbility {
+  id: ActivatedAbilityID;
+  cost: Array<ActivatedAbilityCost>;
+  effect: ActivatedAbilityFn;
+}
 
 export interface AttachmentSpellCard
   extends CardBase, InstanceCard, SpellCard {
   type: "ATTACHMENT_SPELL";
+  query: InstanceQuery;
 }
 
 export interface BuildingCard extends CardBase, InstanceCard, TechCard {
@@ -52,14 +66,16 @@ export interface HeroCardBand extends InstanceCard {
 
 export interface InstantSpellCard extends CardBase, SpellCard {
   type: "INSTANT_SPELL";
-  effect: (
-    $: GameState,
-    pid: PlayerID,
-  ) => Array<ResolvableEffect>;
+  effect: InstantSpellFn;
 }
 
 export interface OngoingSpellCard extends CardBase, InstanceCard, SpellCard {
   type: "ONGOING_SPELL";
+}
+
+export interface TriggeredAbility {
+  type: TriggerType;
+  effect: TriggeredAbilityFn;
 }
 
 export interface UnitCard extends CardBase, InstanceCard, TechCard {
@@ -82,28 +98,14 @@ interface CardBase {
 
 export interface InstanceCard {
   traits: Array<Trait>;
-  attributes: Record<Attribute, number>;
-  triggeredAbilities: Array<{
-    type: TriggerEvent["type"];
-    effect: (
-      $: GameState,
-      iid: InstanceID,
-      e: TriggerEvent,
-    ) => Array<ResolvableEffect>;
-  }>;
-  activatedAbilities: Array<{
-    id: ActivatedAbilityID;
-    cost: Array<ActivatedAbilityCost>;
-    effect: (
-      $: GameState,
-      iid: InstanceID,
-      boosted: boolean,
-    ) => Array<ResolvableEffect>;
-  }>;
+  attributes: Partial<Record<Attribute, number>>;
+  triggeredAbilities: Array<TriggeredAbility>;
+  activatedAbilities: Array<ActivatedAbility>;
   continuousModifiers: Array<{
     condition: (($: GameState, iid: InstanceID) => boolean) | null,
     query: InstanceQuery | "SELF";
-    effect: ModifierEffect;
+    // TODO clean this up. we need to be able to support +X is the thing.
+    effect: ($: GameEngine, I: InstanceState) => ModifierEffect;
   }>;
 }
 

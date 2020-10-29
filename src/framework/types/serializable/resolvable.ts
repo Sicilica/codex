@@ -1,26 +1,28 @@
+import { CustomTriggerID } from "./ability";
 import { CardID } from "./card";
 import { InstanceID } from "./instance";
 import { ModifierGrant } from "./modifier";
-import { PatrolSlot } from "./player";
+import { PatrolSlot, PlayerID } from "./player";
 import { InstanceQuery } from "./query";
-import { CustomTriggerID } from "./trigger";
 
 export type ResolvableEffectID = string;
 
 export type ResolvableEffect = {
-  id: ResolvableEffectID;
-  sourceCard: CardID;
+  sourceCard: CardID | null;
   sourceInstance: InstanceID | null;
 } & ({
   type:
     | "DISCARD"
     | "DRAW"
+    | "GIVE_GOLD"
     ;
+  player: PlayerID;
   amount: number;
 } | {
   type:
     | "ARRIVE"
     | "BOUNCE_TO_HAND"
+    | "DESTROY"
     | "SIDELINE"
     | "TAKE_CONTROL"
     | "TRASH"
@@ -42,7 +44,8 @@ export type ResolvableEffect = {
 } | {
   type: "SHOVE";
   target: InstanceTarget;
-  slot: PatrolSlot;
+  // TODO there's currently no way to represent this query...
+  slot: PatrolSlot | null;
 } | {
   type: "CUSTOM";
   sourceInstance: InstanceID;
@@ -51,6 +54,7 @@ export type ResolvableEffect = {
 });
 
 export type InstanceTarget = InstanceID | InstanceQuery;
+
 export type InstanceTargets = Array<InstanceID> | {
   query: InstanceQuery;
   min: number;

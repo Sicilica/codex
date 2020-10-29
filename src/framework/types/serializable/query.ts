@@ -4,20 +4,28 @@ import { CardID, CardType } from "./card";
 import { InstanceType } from "./instance";
 import { PlayerID } from "./player";
 import {
+  Color,
   Spec,
   Tag,
   TechLevel,
   Trait,
 } from "./property";
 
-export interface CardQuery {
+export type CardQuery = MaybeOrQuery<{
   source: "HAND";
   tech?: SingleOrArray<TechLevel>;
   type?: SingleOrArray<CardType>;
+}>;
+
+export type InstanceQuery = MaybeOrQuery<SimpleInstanceQuery>;
+
+export interface OrQuery<T> {
+  OR: Array<T>;
 }
 
-export interface InstanceQuery {
+export interface SimpleInstanceQuery {
   card?: SingleOrArray<CardID>;
+  color?: SingleOrArray<Color>;
   hasPlusRune?: boolean;
   patrolling?: boolean;
   player?: SingleOrArray<PlayerID>;
@@ -27,3 +35,5 @@ export interface InstanceQuery {
   traits?: Array<Trait>;
   type?: SingleOrArray<InstanceType>;
 }
+
+type MaybeOrQuery<T> = T | OrQuery<T>;

@@ -1,47 +1,57 @@
-import { dealDamage } from "../framework/actions/helpers";
-import { getInstance, getPlayer } from "../framework/queries/common";
 import { BuildingCard, Card } from "../framework/types";
 
-import { event } from "./helpers";
+import { defaultProperties, trigger } from "./helpers";
 
 export const BASE_CARD: BuildingCard = {
   id: "Base",
   type: "BUILDING",
-  health: 20,
-  legendary: false,
   color: "NEUTRAL",
   spec: null,
   tech: 0,
-  abilities: [
-    event("THIS_DIES", $ => {
-      $.turnPhase = "GAME_OVER";
-    }),
-  ],
-  tags: [],
   cost: 0,
   boostCost: null,
   baseComponent: true,
+  tags: [],
+  ...defaultProperties(),
+  attributes: {
+    HEALTH: 20,
+  },
+  triggeredAbilities: [
+    trigger("THIS_DIES", $ => {
+      $.state.turnPhase = "GAME_OVER";
+      return [];
+    }),
+  ],
 };
 
 const techBuildingCommon = {
   type: "BUILDING" as const,
-  health: 5,
-  legendary: false,
   color: "NEUTRAL" as const,
   spec: null,
-  abilities: [
-    event("THIS_DIES", ($, I) => {
-      const P = getPlayer($, I.controller);
-      const base = getInstance($, P?.base ?? null);
+  boostCost: null,
+  tags: [],
+  baseComponent: true,
+  ...defaultProperties(),
+  attributes: {
+    HEALTH: 5,
+  },
+  triggeredAbilities: [
+    trigger("THIS_DIES", ($, I) => {
+      const base = $.getPlayer(I.controller)?.base;
       if (base == null) {
-        return;
+        return [];
       }
-      dealDamage($, base, 2);
+      return [
+        {
+          type: "DAMAGE",
+          sourceCard: I.card,
+          sourceInstance: I.id,
+          target: base,
+          amount: 2,
+        },
+      ];
     }),
   ],
-  tags: [],
-  boostCost: null,
-  baseComponent: true,
 };
 
 export const TECH_BUILDING_CARDS: Array<BuildingCard & {

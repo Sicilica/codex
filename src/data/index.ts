@@ -1,4 +1,6 @@
 import {
+  AbilityFn,
+  AbilityFnID,
   Card,
   CardID,
   Color,
@@ -8,7 +10,7 @@ import {
   TechLevel,
 } from "../framework/types";
 
-import * as rawData from "./data.json";
+import rawData from "./data.json";
 
 import { getBuildingProperties } from "./buildings";
 import { CORE_CARDS } from "./core";
@@ -19,13 +21,26 @@ import { getUpgradeProperties } from "./upgrades";
 
 export class CachedDataSource implements DataSource {
 
-  private cards: Record<CardID, Card>;
+  private abilityFns: Array<AbilityFn<unknown>> = [];
+
+  private cards: Record<CardID, Card> = {};
 
   public constructor(cards: Array<Card>) {
-    this.cards = {};
     for (const card of cards) {
       this.cards[card.id] = card;
     }
+  }
+
+  public *allCards(): Iterable<Card> {
+    for (const cid in this.cards) {
+      if (Object.prototype.hasOwnProperty.call(this.cards, cid)) {
+        yield this.cards[cid];
+      }
+    }
+  }
+
+  public lookupAbilityFn(aid: AbilityFnID): AbilityFn<unknown> {
+    return this.abilityFns[aid];
   }
 
   public lookupCard(cid: CardID): Card {
@@ -39,7 +54,7 @@ export class CachedDataSource implements DataSource {
 }
 
 export const loadCards = (): Array<Card> =>
-  (rawData as Array<RawCard>)
+  (Array.from(rawData) as Array<RawCard>)
     .map(loadCard)
     .filter(card => card != null)
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -133,25 +148,29 @@ const loadCard = (
   case "SPELL":
     return {
       ...commonFields,
+      boostCost: getSpellBoostCost(commonFields.id),
       tags: rawCard.tags,
       ultimate: rawCard.ultimate,
-      boostCost: getSpellBoostCost(commonFields.id),
       ...getSpellDetails(commonFields.id),
     };
   case "UNIT":
     return {
       ...commonFields,
       type: "UNIT",
-      token: false,
       boostCost: getUnitBoostCost(commonFields.id),
+      tech: rawCard.tech,
+      tags: rawCard.tags,
+      token: false,
       ...getUnitProperties(commonFields.id, rawCard.health, rawCard.attack),
     };
   case "UPGRADE":
     return {
       ...commonFields,
       type: "UPGRADE",
-      ...getUpgradeProperties(commonFields.id, null, null),
       boostCost: null,
+      tech: rawCard.tech,
+      tags: rawCard.tags,
+      ...getUpgradeProperties(commonFields.id, null, null),
     };
   default:
     return null;
@@ -161,12 +180,16 @@ const loadCard = (
 const loadBand = (
   rawCard: RawCard & { type: "HERO" },
   index: 0 | 1 | 2,
-): HeroCardBand => ({
-  nextLevel: index < 2 ? rawCard.levelBands[index + 1].level : null,
-  ...getHeroBandProperties(
-    rawCard.name,
-    index,
-    rawCard.levelBands[index].health,
-    rawCard.levelBands[index].attack,
-  ),
-});
+): HeroCardBand => {
+  const prevBand = index > 0 ? rawCard.levelBands[index - 1] : null;
+  const nextBand = index < 2 ? rawCard.levelBands[index + 1] : null;
+  return {
+    nextLevel: nextBand?.level ?? null,
+    ...getHeroBandProperties(
+      rawCard.name,
+      index,
+      rawCard.levelBands[index].health - (prevBand?.health ?? 0),
+      rawCard.levelBands[index].attack - (prevBand?.attack ?? 0),
+    ),
+  };
+};

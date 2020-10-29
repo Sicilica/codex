@@ -1,7 +1,10 @@
+import {
+  AbilityFnID,
+  TriggerType,
+} from "./ability";
 import { CardID } from "./card";
 import { InstanceID } from "./instance";
 import { Attribute, Trait } from "./property";
-import { TriggeredAbilityID } from "./trigger";
 
 export type ModifierEffect = {
   type: "ATTRIBUTE";
@@ -12,8 +15,10 @@ export type ModifierEffect = {
   trait: Trait;
 } | {
   type: "TRIGGERED_ABILITY";
-  // TODO refactor triggered abilities to guarantee global accessibility, expand data model to be able to lookup triggered abilities
-  id: TriggeredAbilityID;
+  ability: {
+    type: TriggerType;
+    effect: AbilityFnID;
+  };
 };
 
 export type ModifierGrant = {

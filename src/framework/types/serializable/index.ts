@@ -1,3 +1,4 @@
+export * from "./ability";
 export * from "./action";
 export * from "./card";
 export * from "./game";
@@ -7,4 +8,3 @@ export * from "./player";
 export * from "./property";
 export * from "./query";
 export * from "./resolvable";
-export * from "./trigger";
