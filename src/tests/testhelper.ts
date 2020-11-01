@@ -1,4 +1,3 @@
-
 import { newGame, simulateAction } from "..";
 import { CachedDataSource, loadCards } from "../data";
 import { GameEngine } from "../framework/engine";
@@ -92,8 +91,6 @@ export const debugPlayCard = (
   });
 };
 
-// TODO this isn't perferct by any means.
-// also a lot of tests use createInstance directly.
 export const debugPlayUnit = (
   $: GameEngine,
   cid: CardID,

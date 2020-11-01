@@ -104,7 +104,6 @@ export interface InstanceCard {
   continuousModifiers: Array<{
     condition: (($: GameState, iid: InstanceID) => boolean) | null,
     query: InstanceQuery | "SELF";
-    // TODO clean this up. we need to be able to support +X is the thing.
     effect: ($: GameEngine, I: InstanceState) => ModifierEffect;
   }>;
 }

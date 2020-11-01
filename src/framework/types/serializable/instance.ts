@@ -16,6 +16,7 @@ export interface InstanceState {
   readyState: ReadyState;
   damage: number;
   armorDamage: number;
+  dead: boolean;
   level: number;
   levelAtTurnStart: number;
   plusMinusRunes: number;

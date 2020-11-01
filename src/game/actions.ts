@@ -172,7 +172,7 @@ const attack = (
   checkCanExhaust($, attacker);
   checkUnitOrHero($, attacker);
 
-  // TODO make sure the attack is valid (and maybe consume detector)
+  // make sure the attack is valid (and maybe consume detector)
 
   $.state.unresolvedCombat = {
     attacker: attacker.id,

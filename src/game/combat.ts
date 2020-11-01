@@ -16,7 +16,6 @@ export const resolveCombat = (
     exhaust(attacker);
   }
 
-  // TODO factor in stuff like long range and swift strike and deathtouch and flying...
   dealCombatDamage($, defender, attacker, combat.defenderExtraDamage);
   dealCombatDamage($, attacker, defender, combat.attackerExtraDamage);
 };
@@ -27,6 +26,5 @@ const dealCombatDamage = (
   from: InstanceState | null,
   extraDamage: number,
 ): void => {
-  // TODO this is very wrong still
   dealDamage($, to, getAttribute($, from, "ATTACK") + extraDamage, from);
 };

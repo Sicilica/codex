@@ -44,6 +44,5 @@ export type TurnPhase =
   | "MAIN"
   | "DRAW"
   | "END_OF_TURN"
-  // TODO probably remove this and handle this a different way
   | "GAME_OVER"
   ;

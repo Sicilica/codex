@@ -26,8 +26,6 @@ export const simulateUntilIdle = (
 ): void => {
   let returnControlToPlayer = false;
   while (!returnControlToPlayer) {
-    // TODO if instance was added or removed, recalc continuous effects
-    
     cancelInvalidEffects($);
 
     if ($.state.unresolvedEffects.length === 0) {

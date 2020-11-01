@@ -36,9 +36,8 @@ export const dealDamage = (
   const absorbedAmount = Math.min(amount, currentArmor);
   I.armorDamage += absorbedAmount;
   I.damage += amount - absorbedAmount;
-  if (I.damage >= getAttribute($, I, "HEALTH")) {
-    // TODO worry about deduping this...
-    // probably track something on the card's memory
+  if (!I.dead && I.damage >= getAttribute($, I, "HEALTH")) {
+    I.dead = true;
     $.queueEffect({
       type: "DESTROY",
       sourceCard: source?.card ?? null,
@@ -137,12 +136,11 @@ const removeInstance = (
   $: GameEngine,
   I: InstanceState,
 ): void => {
-  // TODO
-  // we need to delete this but also trigger leaves, which means it has to stay
-  // around sooooo
+  // fire leaves trigger...
+
   delete $.state.instances[I.id];
 
-  // TODO remove attachments...
+  // remove attachments...
 
   const P = $.getPlayer(I.controller);
   if (P != null) {

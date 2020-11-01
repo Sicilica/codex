@@ -16,7 +16,6 @@ import { queryInstances } from "./internal";
 
 export class GameEngine {
 
-  // TODO
   // eslint-disable-next-line no-useless-constructor
   public constructor(
     public readonly state: GameState,
@@ -37,6 +36,7 @@ export class GameEngine {
       readyState: "READY",
       damage: 0,
       armorDamage: 0,
+      dead: false,
       level: 1,
       levelAtTurnStart: 1,
       plusMinusRunes: 0,
@@ -111,7 +111,6 @@ export class GameEngine {
   public readRandom(
     max: number,
   ): number {
-    // TODO audit this
     this.state.earliestAllowedRewind = this.state.time;
 
     return Math.floor(Math.random() * max);
@@ -129,8 +128,7 @@ export class GameEngine {
     }
   }
 
-  public updateContinuousModifiers(): void {
-    // TODO
-  }
+  // public updateContinuousModifiers(): void {
+  // }
 
 }

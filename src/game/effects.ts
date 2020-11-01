@@ -111,7 +111,7 @@ export const executeEffect = (
       $.fireInstanceTrigger(I, {
         type: "CUSTOM",
         id: effect.trigger.value,
-        // TODO pass effect.params
+        // pass effect.params...
       });
     }
     break;
@@ -267,9 +267,6 @@ export const shouldCancelEffect = (
       }
     }
   }
-
-  // TODO we might need to cancel certain types of effects under other situtations,
-  // such as if the source no longer exists
 
   return false;
 };

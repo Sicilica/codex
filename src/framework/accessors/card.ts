@@ -20,8 +20,14 @@ export const getTech = (
 
 export const isSpell = (
   card: Card,
-): card is (AttachmentSpellCard | InstantSpellCard | OngoingSpellCard) => {
+): card is SpellCard => {
   return card.type === "ATTACHMENT_SPELL"
     || card.type === "INSTANT_SPELL"
     || card.type === "ONGOING_SPELL";
 };
+
+type SpellCard =
+  | AttachmentSpellCard
+  | InstantSpellCard
+  | OngoingSpellCard
+  ;
