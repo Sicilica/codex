@@ -2,10 +2,7 @@ import { TECH_BUILDING_CARDS } from "../data/core";
 
 import {
   getActivatedAbility,
-  getTech,
   hasTrait,
-  isMaxLevel,
-  isSpell,
 } from "../framework/accessors";
 import { PATROL_SLOTS } from "../framework/constants";
 import { GameEngine } from "../framework/engine";
@@ -36,13 +33,15 @@ import {
   checkUnitOrHero,
   requireActivePlayer,
   requireCardInHand,
+  requireCardPlayableAndGetCost,
   requireGold,
   requireInstance,
   requireMainPhase,
   requireUsableTechBuilding,
 } from "./helpers";
 import {
-  gotoDrawPhase, gotoReadyPhase,
+  gotoDrawPhase,
+  gotoReadyPhase,
 } from "./turn_phases";
 
 export const performAction = (
@@ -260,74 +259,21 @@ const playCard = (
 
   const card = $.data.lookupCard(cid);
 
-  const tech = getTech(card);
-  if (tech != null) {
-    if (tech > 0) {
-      requireUsableTechBuilding($, P, tech);
-    }
-
-    if (tech > 1) {
-      if (P.mainSpec !== card.spec && P.techLabSpec !== card.spec) {
-        throw new Error("this spec is inaccessible");
-      }
-    }
-  }
-
-  let cost: number;
-  if (boost) {
-    if (card.boostCost == null) {
-      throw new Error("card is not boostable");
-    }
-    cost = card.boostCost;
-  } else {
-    cost = card.cost;
-  }
-
-  if (isSpell(card)) {
-    if (card.spec == null) {
-      // For basic spells, must have any hero, but have to pay extra for
-      // cross-color
-      const freeHero = $.findInstance({
-        color: card.color,
-        player: P.id,
-        type: "HERO",
-      });
-      if (freeHero == null) {
-        const crossHero = $.findInstance({
-          player: P.id,
-          type: "HERO",
-        });
-        if (crossHero == null) {
-          throw new Error("cannot cast without a hero");
-        }
-        cost += 1;
-      }
-    } else {
-      // For non-basic spells, must have the correct hero, and must be max-band
-      // for ultimate spells
-      const hero = $.findInstance({
-        player: P.id,
-        spec: card.spec,
-        type: "HERO",
-      });
-      if (hero == null) {
-        throw new Error("cannot cast without the associated hero");
-      }
-
-      if (card.ultimate) {
-        if (!isMaxLevel($, hero) || hero.level !== hero.levelAtTurnStart) {
-          throw new Error("hero must have started the turn at max band");
-        }
-      }
-    }
-  }
-
-  requireGold(P, cost);
+  const cost = requireCardPlayableAndGetCost($, P, card, boost);
 
   reduceGold(P, cost);
   removeCardFromHand(P, cid);
 
-  // TODO enqueue card effects
+  if (card.type === "INSTANT_SPELL") {
+    for (const effect of card.effect($, P)) {
+      $.queueEffect(effect);
+    }
+    P.discard.push(card.id);
+  } else if (card.type === "ATTACHMENT_SPELL") {
+    throw new Error("attachment spells are not yet supported");
+  } else {
+    createInstance($, P, card);
+  }
 };
 
 const purchaseTechBuilding = (
@@ -404,7 +350,7 @@ const tech = (
   if (cids.length > 2) {
     throw new Error("can only tech 2 cards per turn");
   }
-  if (P.canSkipTech && cids.length !== 2) {
+  if (cids.length !== 2 && !P.canSkipTech) {
     throw new Error("teching is not optional until you attain 10 workers");
   }
 
@@ -415,7 +361,7 @@ const tech = (
 
   for (const cid in cidsAsMap) {
     if ((P.codex[cid] ?? 0) < cidsAsMap[cid]) {
-      throw new Error("card does not exist in codex");
+      throw new Error("card is not in codex");
     }
   }
 

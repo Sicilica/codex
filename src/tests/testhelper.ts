@@ -8,9 +8,13 @@ import {
   InstanceQuery,
   InstanceState,
   PlayerID,
+  PlayerState,
   ResolvableEffect,
 } from "../framework/types";
+import { resolveEffect } from "../game/actions";
+import { effectParamsAreValid } from "../game/effects";
 import { requireActivePlayer } from "../game/helpers";
+import { simulateUntilIdle } from "../game/system";
 
 export const P1 = "P1";
 export const P2 = "P2";
@@ -32,6 +36,23 @@ export const makeDefaultGame = (): GameEngine => {
   return new GameEngine(state, data, []);
 };
 
+export const debugAutoResolve = (
+  $: GameEngine,
+): void => {
+  while ($.state.unresolvedEffects.length > 0) {
+    simulateUntilIdle($);
+
+    const nextEffect = $.state.unresolvedEffects[0];
+    if (nextEffect != null) {
+      if (effectParamsAreValid($, nextEffect, {})) {
+        resolveEffect($, nextEffect.id, {});
+      } else {
+        throw new Error("encountered effect that cannot be auto-resolved");
+      }
+    }
+  }
+};
+
 export const debugGotoNextTurn = (
   $: GameEngine,
   pid: PlayerID,
@@ -51,7 +72,7 @@ export const debugGotoNextTurn = (
     if ($.state.turnPhase === "TECH") {
       debugAction($, {
         type: "TECH",
-        cards: [ "Crash Bomber", "Firebat" ],
+        cards: pickNextCardsFromCodex(requireActivePlayer($)),
       });
     }
   } while ($.state.activePlayer !== pid);
@@ -71,6 +92,8 @@ export const debugPlayCard = (
   });
 };
 
+// TODO this isn't perferct by any means.
+// also a lot of tests use createInstance directly.
 export const debugPlayUnit = (
   $: GameEngine,
   cid: CardID,
@@ -83,6 +106,15 @@ export const debugPlayUnit = (
     throw new Error("failed to find played unit");
   }
   return I;
+};
+
+export const debugValidateEffects = (
+  $: GameEngine,
+): void => {
+  if ($ == null) {
+    throw new Error("WAO");
+  }
+  throw new Error("TODO");
 };
 
 export const debugAction = (
@@ -115,4 +147,25 @@ const findLastInstance = (
     toRet = I;
   }
   return toRet;
+};
+
+const pickNextCardsFromCodex = (
+  P: PlayerState,
+): Array<CardID> => {
+  let foundOne: CardID | undefined;
+  for (const cid in P.codex) {
+    if (Object.prototype.hasOwnProperty.call(P.codex, cid)) {
+      const count = P.codex[cid] ?? 0;
+      if (count >= 2) {
+        return [ cid, cid ];
+      } else if (count > 0) {
+        if (foundOne == null) {
+          foundOne = cid;
+        } else {
+          return [ foundOne, cid ];
+        }
+      }
+    }
+  }
+  throw new Error("unable to pick techable cards from codex");
 };

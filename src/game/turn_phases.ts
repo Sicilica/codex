@@ -1,10 +1,8 @@
-import { TECH_BUILDING_CARDS } from "../data/core";
-
 import { MAX_HAND_SIZE, PATROL_SLOTS } from "../framework/constants";
 import { GameEngine } from "../framework/engine";
 import {
-  createInstance,
   giveGold,
+  rebuildTechBuildings,
 } from "../framework/mutators";
 import { executeEffect } from "./effects";
 
@@ -33,11 +31,7 @@ export const gotoReadyPhase = (
     P.patrol[slot] = null;
   }
 
-  for (let i = 0; i < P.purchasedTechBuildings; i++) {
-    if (P.techBuildings[i] == null) {
-      P.techBuildings[i] = createInstance($, P, TECH_BUILDING_CARDS[i]).id;
-    }
-  }
+  rebuildTechBuildings($, P);
 };
 
 export const gotoUpkeepPhase = (

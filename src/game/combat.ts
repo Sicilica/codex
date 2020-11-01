@@ -28,5 +28,5 @@ const dealCombatDamage = (
   extraDamage: number,
 ): void => {
   // TODO this is very wrong still
-  dealDamage($, to, getAttribute($, from, "ATTACK") + extraDamage);
+  dealDamage($, to, getAttribute($, from, "ATTACK") + extraDamage, from);
 };

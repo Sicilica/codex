@@ -19,6 +19,10 @@ export type ResolvableEffect = {
   player: PlayerID;
   amount: number;
 } | {
+  type: "DISCARD_SELECTED";
+  player: PlayerID;
+  card: CardID;
+} | {
   type:
     | "ARRIVE"
     | "BOUNCE_TO_HAND"

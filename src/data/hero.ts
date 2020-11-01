@@ -74,7 +74,7 @@ export const getHeroBandProperties = getBandProperties((id, band) => {
     case 2:
       return {
         triggeredAbilities: [
-          trigger("MAX_LEVEL", ($, I) => {
+          trigger("MAX_BAND", ($, I) => {
             if ($.state.activePlayer !== I.controller) {
               return [];
             }

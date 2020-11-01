@@ -67,7 +67,9 @@ export class GameEngine {
 
   public fireInstanceTrigger(I: InstanceState, e: TriggerEvent): void {
     for (const ability of getTriggeredAbilities(this, I, e.type)) {
-      ability.effect(this, I, e);
+      for (const effect of ability.effect(this, I, e)) {
+        this.queueEffect(effect);
+      }
     }
   }
 

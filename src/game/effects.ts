@@ -91,7 +91,7 @@ export const executeEffect = (
   case "DAMAGE": {
     const I = resolveInstanceTarget($, effect, params, "target");
     if (I != null) {
-      dealDamage($, I, effect.amount);
+      dealDamage($, I, effect.amount, null);
     }
     break;
   }
@@ -118,6 +118,14 @@ export const executeEffect = (
     }
     break;
   }
+  case "DISCARD_SELECTED": {
+    const P = $.getPlayer(effect.player);
+    if (P != null && P.hand.includes(effect.card)) {
+      removeCardFromHand(P, effect.card);
+      P.discard.push(effect.card);
+    }
+    break;
+  }
   case "DRAW": {
     const P = $.getPlayer(effect.player);
     if (P != null) {
@@ -133,10 +141,10 @@ export const executeEffect = (
           P.discard = [];
           $.shuffleArray(P.deck);
         }
-      }
-      const cid = P.deck.pop();
-      if (cid != null) {
-        P.hand.push(cid);
+        const cid = P.deck.pop();
+        if (cid != null) {
+          P.hand.push(cid);
+        }
       }
     }
     break;

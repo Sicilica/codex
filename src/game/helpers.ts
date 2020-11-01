@@ -1,11 +1,90 @@
-import { hasTrait } from "../framework/accessors";
+import {
+  getTech,
+  hasTrait,
+  isMaxLevel,
+  isSpell,
+} from "../framework/accessors";
 import { GameEngine } from "../framework/engine";
 import {
+  Card,
   CardID,
   InstanceID,
   InstanceState,
   PlayerState,
 } from "../framework/types";
+
+export const requireCardPlayableAndGetCost = (
+  $: GameEngine,
+  P: PlayerState,
+  card: Card,
+  boost: boolean,
+): number => {
+  const tech = getTech(card);
+  if (tech != null) {
+    if (tech > 0) {
+      requireUsableTechBuilding($, P, tech);
+    }
+
+    if (tech > 1) {
+      if (P.mainSpec !== card.spec && P.techLabSpec !== card.spec) {
+        throw new Error("this spec is inaccessible");
+      }
+    }
+  }
+
+  let cost: number;
+  if (boost) {
+    if (card.boostCost == null) {
+      throw new Error("card is not boostable");
+    }
+    cost = card.boostCost;
+  } else {
+    cost = card.cost;
+  }
+
+  if (isSpell(card)) {
+    if (card.spec == null) {
+      // For basic spells, must have any hero, but have to pay extra for
+      // cross-color
+      const freeHero = $.findInstance({
+        color: card.color,
+        player: P.id,
+        type: "HERO",
+      });
+      if (freeHero == null) {
+        const crossHero = $.findInstance({
+          player: P.id,
+          type: "HERO",
+        });
+        if (crossHero == null) {
+          throw new Error("cannot cast without a hero");
+        }
+        cost += 1;
+      }
+    } else {
+      // For non-basic spells, must have the correct hero, and must be max-band
+      // for ultimate spells
+      const hero = $.findInstance({
+        player: P.id,
+        spec: card.spec,
+        type: "HERO",
+      });
+      if (hero == null) {
+        throw new Error("cannot cast without the associated hero");
+      }
+
+      if (card.ultimate) {
+        if (!isMaxLevel($, hero) || hero.level !== hero.levelAtTurnStart) {
+          throw new Error("hero must have started the turn at max band");
+        }
+      }
+    }
+  }
+
+  requireGold(P, cost);
+
+  return cost;
+};
 
 export const checkHasControl = (
   P: PlayerState,

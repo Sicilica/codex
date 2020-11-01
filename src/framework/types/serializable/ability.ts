@@ -27,7 +27,7 @@ export type CustomTriggerID = string;
 export type TriggerEvent = {
   type:
     | "END_OF_TURN"
-    | "MAX_LEVEL"
+    | "MAX_BAND"
     | "THIS_ARRIVES"
     | "THIS_BOOSTED"
     | "THIS_DIES"

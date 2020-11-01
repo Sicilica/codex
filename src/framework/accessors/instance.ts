@@ -15,6 +15,58 @@ import {
   TriggeredAbility,
 } from "../types";
 
+export const canPatrol = (
+  $: GameEngine,
+  I: InstanceState | null,
+): boolean => {
+  if (I == null) {
+    return false;
+  }
+
+  const card = $.data.lookupCard(I.card);
+  if (card.type !== "HERO" && card.type !== "UNIT") {
+    return false;
+  }
+
+  if (I.readyState !== "READY") {
+    return false;
+  }
+
+  if (hasTrait($, I, "NO_PATROL")) {
+    return false;
+  }
+
+  return true;
+};
+
+export const canPerformAttack = (
+  $: GameEngine,
+  I: InstanceState | null,
+): boolean => {
+  if (I == null) {
+    return false;
+  }
+
+  const card = $.data.lookupCard(I.card);
+  if (card.type !== "HERO" && card.type !== "UNIT") {
+    return false;
+  }
+
+  if (getAttribute($, I, "ATTACK") <= 0) {
+    return false;
+  }
+
+  if (I.readyState !== "READY") {
+    return false;
+  }
+
+  if (I.arrivalFatigue && !hasTrait($, I, "HASTE")) {
+    return false;
+  }
+
+  return true;
+};
+
 export const getActivatedAbility = (
   $: GameEngine,
   I: InstanceState | null,

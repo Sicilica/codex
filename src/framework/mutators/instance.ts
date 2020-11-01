@@ -30,6 +30,7 @@ export const dealDamage = (
   $: GameEngine,
   I: InstanceState,
   amount: number,
+  source: InstanceState | null,
 ): void => {
   const currentArmor = getAttribute($, I, "ARMOR") - I.armorDamage;
   const absorbedAmount = Math.min(amount, currentArmor);
@@ -40,8 +41,8 @@ export const dealDamage = (
     // probably track something on the card's memory
     $.queueEffect({
       type: "DESTROY",
-      sourceCard: null,
-      sourceInstance: null,
+      sourceCard: source?.card ?? null,
+      sourceInstance: source?.id ?? null,
       target: I.id,
     });
   }
