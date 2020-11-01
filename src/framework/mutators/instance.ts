@@ -1,4 +1,9 @@
-import { getAttribute, getOpponents, getPatrolSlot } from "../accessors";
+import {
+  getAttribute,
+  getOpponents,
+  getPatrolSlot,
+  isTransient,
+} from "../accessors";
 import { PATROL_SLOTS } from "../constants";
 import { GameEngine } from "../engine";
 import {
@@ -94,7 +99,7 @@ export const destroy = (
         value: 2,
       },
     });
-  } else if (card.type !== "UNIT" || !card.token) {
+  } else if (!isTransient(card)) {
     P.discard.push(card.id);
   }
 };
@@ -121,7 +126,7 @@ export const returnInstanceToHand = (
   const card = $.data.lookupCard(I.card);
   if (card.type === "HERO") {
     P.heroes[card.id] = "AVAILABLE";
-  } else if (card.type !== "UNIT" || !card.token) {
+  } else if (!isTransient(card)) {
     P.hand.push(card.id);
   }
 };

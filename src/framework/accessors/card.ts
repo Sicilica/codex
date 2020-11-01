@@ -26,6 +26,21 @@ export const isSpell = (
     || card.type === "ONGOING_SPELL";
 };
 
+export const isTransient = (
+  card: Card,
+): boolean => {
+  if (card.type === "BUILDING") {
+    return card.baseComponent;
+  }
+  if (card.type === "HERO") {
+    return true;
+  }
+  if (card.type === "UNIT") {
+    return card.token;
+  }
+  return false;
+};
+
 type SpellCard =
   | AttachmentSpellCard
   | InstantSpellCard
