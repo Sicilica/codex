@@ -1,7 +1,6 @@
-import { Ability } from "../framework/types";
-
+import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
 import {
-  HASTE,
+  getProperties,
 } from "./helpers";
 
 const unitBoostCosts: Record<string, number | undefined> = {
@@ -14,12 +13,12 @@ export const getUnitBoostCost = (
   return unitBoostCosts[name] ?? null;
 };
 
-export const getUnitAbilities = (
-  name: string,
-): Array<Ability> => {
-  switch (name) {
+export const getUnitProperties = getProperties(id => {
+  switch (id) {
   case "Mad Man":
-    return [ HASTE ];
+    return {
+      traits: [ "HASTE" ],
+    };
   case "Bloodrage Ogre":
   case "Calypso Vystari":
   case "Chameleon":
@@ -29,8 +28,11 @@ export const getUnitAbilities = (
   case "Pirate Gunship":
   case "Tyrannosaurus Rex":
     // WIP
-    return [];
+    return {};
   default:
-    throw new Error(`Failed to find abilities for unit "${name}"`);
+    if (REQUIRE_ALL_CARD_PROPERTIES) {
+      throw new Error(`Failed to find properties for unit "${id}"`);
+    }
+    return {};
   }
-};
+});

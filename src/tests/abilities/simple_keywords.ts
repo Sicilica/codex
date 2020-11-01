@@ -1,25 +1,25 @@
 import { expect } from "chai";
 
-import { canAttack } from "../../framework/queries/combat";
-import { GameState } from "../../framework/types";
+import { canPerformAttack } from "../../framework/accessors";
+import { GameEngine } from "../../framework/engine";
 
 import {
   debugPlayUnit,
-  initDummyGameState,
+  makeDefaultGame,
 } from "../testhelper";
 
 describe("abilities", () => {
   describe("simple_keywords", () => {
-    let $: GameState;
+    let $: GameEngine;
 
     beforeEach(() => {
-      $ = initDummyGameState();
+      $ = makeDefaultGame();
     });
 
     describe("HASTE", () => {
       it("lets units attack on the turn they are played", () => {
         const I = debugPlayUnit($, "Mad Man");
-        expect(canAttack($, I.id)).to.equal(true);
+        expect(canPerformAttack($, I)).to.equal(true);
       });
     });
   });

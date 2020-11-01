@@ -1,47 +1,62 @@
-import { dealDamage } from "../framework/actions/helpers";
-import { getInstance, getPlayer } from "../framework/queries/common";
 import { BuildingCard, Card } from "../framework/types";
 
-import { event } from "./helpers";
+import {
+  constantParam,
+  defaultProperties,
+  trigger,
+  valueParam,
+} from "./helpers";
 
 export const BASE_CARD: BuildingCard = {
+  id: "Base",
   type: "BUILDING",
-  name: "Base",
-  health: 20,
-  legendary: false,
   color: "NEUTRAL",
   spec: null,
   tech: 0,
-  abilities: [
-    event("THIS_DIES", $ => {
-      $.turnPhase = "GAME_OVER";
-    }),
-  ],
-  tags: [],
   cost: 0,
   boostCost: null,
   baseComponent: true,
+  tags: [],
+  ...defaultProperties(),
+  attributes: {
+    HEALTH: 20,
+  },
+  triggeredAbilities: [
+    trigger("THIS_DIES", $ => {
+      $.state.turnPhase = "GAME_OVER";
+      return [];
+    }),
+  ],
 };
 
 const techBuildingCommon = {
   type: "BUILDING" as const,
-  health: 5,
-  legendary: false,
   color: "NEUTRAL" as const,
   spec: null,
-  abilities: [
-    event("THIS_DIES", ($, I) => {
-      const P = getPlayer($, I.controller);
-      const base = getInstance($, P?.base ?? null);
+  boostCost: null,
+  tags: [],
+  baseComponent: true,
+  ...defaultProperties(),
+  attributes: {
+    HEALTH: 5,
+  },
+  triggeredAbilities: [
+    trigger("THIS_DIES", ($, I) => {
+      const base = $.getPlayer(I.controller)?.base;
       if (base == null) {
-        return;
+        return [];
       }
-      dealDamage($, base, 2);
+      return [
+        {
+          type: "DAMAGE",
+          sourceCard: I.card,
+          sourceInstance: I.id,
+          target: valueParam("INSTANCE", base),
+          amount: constantParam(2),
+        },
+      ];
     }),
   ],
-  tags: [],
-  boostCost: null,
-  baseComponent: true,
 };
 
 export const TECH_BUILDING_CARDS: Array<BuildingCard & {
@@ -49,30 +64,28 @@ export const TECH_BUILDING_CARDS: Array<BuildingCard & {
 }> = [
   {
     ...techBuildingCommon,
-    name: "Tech I Building",
+    id: "Tech I Building",
     cost: 1,
     workerRequirement: 6,
     tech: 1,
   },
   {
     ...techBuildingCommon,
-    name: "Tech II Building",
+    id: "Tech II Building",
     cost: 4,
     workerRequirement: 8,
     tech: 2,
   },
   {
     ...techBuildingCommon,
-    name: "Tech III Building",
+    id: "Tech III Building",
     cost: 5,
     workerRequirement: 10,
     tech: 3,
   },
 ];
 
-export const CORE_CARDS: Record<string, Card> = {
-  $BASE: BASE_CARD,
-  $TECH1: TECH_BUILDING_CARDS[0],
-  $TECH2: TECH_BUILDING_CARDS[1],
-  $TECH3: TECH_BUILDING_CARDS[2],
-};
+export const CORE_CARDS: Array<Card> = [
+  BASE_CARD,
+  ...TECH_BUILDING_CARDS,
+];

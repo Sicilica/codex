@@ -1,10 +1,12 @@
-import { Ability } from "../framework/types";
+import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
+import { getProperties } from "./helpers";
 
-export const getUpgradeAbilities = (
-  name: string,
-): Array<Ability> => {
-  switch (name) {
+export const getUpgradeProperties = getProperties(id => {
+  switch (id) {
   default:
-    throw new Error(`Failed to find abilities for upgrade "${name}"`);
+    if (REQUIRE_ALL_CARD_PROPERTIES) {
+      throw new Error(`Failed to find properties for upgrade "${id}"`);
+    }
+    return {};
   }
-};
+});

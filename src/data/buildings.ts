@@ -1,10 +1,12 @@
-import { Ability } from "../framework/types";
+import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
+import { getProperties } from "./helpers";
 
-export const getBuildingAbilities = (
-  name: string,
-): Array<Ability> => {
-  switch (name) {
+export const getBuildingProperties = getProperties(id => {
+  switch (id) {
   default:
-    throw new Error(`Failed to find abilities for building "${name}"`);
+    if (REQUIRE_ALL_CARD_PROPERTIES) {
+      throw new Error(`Failed to find properties for building "${id}"`);
+    }
+    return {};
   }
-};
+});

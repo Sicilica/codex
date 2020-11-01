@@ -83,10 +83,10 @@
     "no-promise-executor-return": "error",
     "no-proto": "error",
     "no-restricted-syntax": ["error", {
-      "selector": "FunctionDeclaration",
+      "selector": "FunctionDeclaration:not([generator])",
       "message": "Prefer arrow functions."
     }, {
-      "selector": "FunctionExpression",
+      "selector": "FunctionExpression:not(MethodDefinition > *)",
       "message": "Prefer arrow functions."
     }],
     "no-return-assign": "error",
