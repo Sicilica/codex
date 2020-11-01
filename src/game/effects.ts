@@ -199,6 +199,32 @@ export const executeEffect = (
     }
     break;
   }
+  case "PILLAGE": {
+    const I = resolveInstanceParam($, effect, params, "target");
+    if (I != null) {
+      dealDamage($, I, 1, null);
+
+      const hasPirate = $.findInstance({
+        player: $.state.activePlayer,
+        tags: [ "PIRATE" ],
+      }) != null;
+
+      executeEffect($, {
+        type: "STEAL_GOLD",
+        sourceCard: effect.sourceCard,
+        sourceInstance: effect.sourceInstance,
+        player: {
+          type: "PLAYER",
+          value: I.controller,
+        },
+        amount: {
+          type: "CONSTANT",
+          value: hasPirate ? 2 : 1,
+        },
+      }, {});
+    }
+    break;
+  }
   case "SHOVE": {
     const I = resolveInstanceParam($, effect, params, "target");
     const slot = resolvePatrolSlotParam(effect, params, "slot");
@@ -218,8 +244,7 @@ export const executeEffect = (
     break;
   }
   case "STEAL_GOLD": {
-    const I = resolveInstanceParam($, effect, params, "target");
-    const targetP = $.getPlayer(I?.controller ?? null);
+    const targetP = resolvePlayerParam($, effect, params, "player");
     const activeP = $.getPlayer($.state.activePlayer);
     if (targetP != null && activeP != null && activeP !== targetP) {
       const amount = Math.min(effect.amount.value, targetP.gold);

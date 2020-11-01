@@ -15,6 +15,7 @@ export type ResolvableEffect = {
     | "DISCARD"
     | "DRAW"
     | "GIVE_GOLD"
+    | "STEAL_GOLD"
     ;
   player: PlayerParam;
   amount: ConstantParam<number>;
@@ -27,6 +28,7 @@ export type ResolvableEffect = {
     | "ARRIVE"
     | "BOUNCE_TO_HAND"
     | "DESTROY"
+    | "PILLAGE"
     | "SIDELINE"
     | "TAKE_CONTROL"
     | "TRASH"
@@ -36,7 +38,6 @@ export type ResolvableEffect = {
   type:
     | "DAMAGE"
     | "GIVE_LEVELS"
-    | "STEAL_GOLD"
     ;
   target: InstanceParam;
   amount: ConstantParam<number>;

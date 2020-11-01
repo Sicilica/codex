@@ -1,9 +1,16 @@
 import {
   AbilityFn,
+  ActivatedAbility,
+  ActivatedAbilityCost,
+  ActivatedAbilityFn,
+  CardID,
   ConstantParam,
   EffectParamQuery,
   EffectParamValue,
   InstanceCard,
+  InstanceID,
+  InstanceState,
+  ResolvableEffect,
   TriggerEvent,
   TriggeredAbility,
   TriggeredAbilityFn,
@@ -65,6 +72,31 @@ export const getProperties = (
 
   return properties;
 };
+
+export const active = (
+  cid: CardID,
+  index: number,
+  cost: Array<ActivatedAbilityCost>,
+  effect: ActivatedAbilityFn,
+): ActivatedAbility => ({
+  id: `${cid} #${index}`,
+  cost,
+  effect,
+});
+
+export const effectBase = <TypeT extends ResolvableEffect["type"]>(
+  cid: CardID,
+  I: InstanceState | null,
+  type: TypeT,
+): {
+  type: TypeT,
+  sourceCard: CardID,
+  sourceInstance: InstanceID | null,
+} => ({
+    type,
+    sourceCard: cid,
+    sourceInstance: I?.id ?? null,
+  });
 
 export const trigger = <TypeT extends TriggerEvent["type"]>(
   type: TypeT,
