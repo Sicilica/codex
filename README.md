@@ -8,3 +8,7 @@
 make setup
 make build
 ```
+
+## Contributing
+
+[API / Development Docs](src/README.md)
