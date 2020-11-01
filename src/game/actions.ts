@@ -2,6 +2,7 @@ import { TECH_BUILDING_CARDS } from "../data/core";
 
 import {
   getActivatedAbility,
+  getMaxLevel,
   hasTrait,
 } from "../framework/accessors";
 import { PATROL_SLOTS } from "../framework/constants";
@@ -9,6 +10,7 @@ import { GameEngine } from "../framework/engine";
 import {
   createInstance,
   exhaust,
+  giveLevels,
   reduceGold,
   removeCardFromHand,
 } from "../framework/mutators";
@@ -61,6 +63,9 @@ export const performAction = (
     break;
   case "END_TURN":
     endTurn($, action.patrol);
+    break;
+  case "LEVEL_UP":
+    levelUp($, action.hero, action.amount);
     break;
   case "PLAY_CARD":
     playCard($, action.card, action.boost);
@@ -251,6 +256,28 @@ const endTurn = (
   }
 
   gotoDrawPhase($);
+};
+
+const levelUp = (
+  $: GameEngine,
+  iid: InstanceID,
+  amount: number,
+): void => {
+  requireMainPhase($);
+
+  const P = requireActivePlayer($);
+  const I = requireInstance($, iid);
+  checkHasControl(P, I);
+
+  const availableLevels = getMaxLevel($, I) - I.level;
+  if (availableLevels < amount) {
+    throw new Error("this would cause the target to exceed max level");
+  }
+
+  requireGold(P, amount);
+
+  reduceGold(P, amount);
+  giveLevels($, I, amount);
 };
 
 const playCard = (

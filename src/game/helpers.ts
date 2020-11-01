@@ -191,6 +191,9 @@ export const requireMainPhase = (
   if ($.state.unresolvedEffects.length > 0) {
     throw new Error("all pending effects must be resolved first");
   }
+  if ($.state.unresolvedCombat != null) {
+    throw new Error("combat must be resolved first");
+  }
 };
 
 export const requireUsableTechBuilding = (

@@ -20,6 +20,10 @@ export type Action = {
   type: "END_TURN";
   patrol: PatrolZone;
 } | {
+  type: "LEVEL_UP";
+  hero: InstanceID;
+  amount: number;
+} | {
   type: "PLAY_CARD";
   card: CardID;
   boost: boolean;
