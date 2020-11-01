@@ -3,6 +3,7 @@ import { ResolvableEffect } from "../framework/types";
 import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
 import {
   active,
+  constantModifiers,
   constantParam,
   effectBase,
   getProperties,
@@ -116,7 +117,7 @@ export const getUnitProperties = getProperties(id => {
             {
               ...effectBase(id, I, "MODIFY"),
               target: valueParam("INSTANCE", I.id),
-              modifiers: constantParam([
+              modifiers: constantModifiers([
                 {
                   expiration: "END_OF_COMBAT",
                   sourceCard: I.card,

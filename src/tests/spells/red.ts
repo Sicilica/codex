@@ -1,7 +1,11 @@
+import { expect } from "chai";
+
 describe("spells", () => {
   describe("red", () => {
     describe("Pillage", () => {
-      it.skip("can't steal more gold than the target has");
+      it("can't steal more gold than the target has", () => {
+        expect(true).to.equal(false);
+      });
     });
   });
 });

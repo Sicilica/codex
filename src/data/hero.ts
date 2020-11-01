@@ -1,5 +1,7 @@
 import {
-  getPatrolSlot,
+  getEmptyPatrolSlots,
+  getOpponents,
+  getPatrolSlot, hasEmptyPatrolSlot,
 } from "../framework/accessors";
 import { InstanceCard } from "../framework/types";
 import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
@@ -7,6 +9,8 @@ import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
 import {
   constantParam,
   defaultProperties,
+  effectBase,
+  inheritParam,
   queryParam,
   trigger,
   valueParam,
@@ -82,15 +86,49 @@ export const getHeroBandProperties = getBandProperties((id, band) => {
               return [];
             }
 
+            const opponents = Array.from(
+              getOpponents($, $.getPlayer(I.controller)),
+            );
+            const opponentsWithEmptySlots =
+              opponents.filter(P => hasEmptyPatrolSlot(P));
+
+            if (opponentsWithEmptySlots.length === 0) {
+              // The enemy patrol zone is full, so we just do damage to a
+              // patroller without moving it
+              return [
+                {
+                  ...effectBase(id, I, "DAMAGE"),
+                  target: queryParam("INSTANCE", {
+                    patrolling: true,
+                  }),
+                  amount: constantParam(1),
+                },
+              ];
+            }
+
+            if (opponentsWithEmptySlots.length > 1) {
+              // This is difficult to support atm, since we wouldn't know which
+              // patrol slots are valid until we know which player was chosen.
+              throw new Error("shove unsupported vs multiple opponents");
+            }
+            const emptySlots = getEmptyPatrolSlots(opponentsWithEmptySlots[0]);
+
+            // Move a patroller to an empty slot, then deal 1 damage to it
             return [
               {
-                type: "SHOVE",
-                sourceCard: I.card,
-                sourceInstance: I.id,
+                ...effectBase(id, I, "MOVE_TO_SLOT"),
                 target: queryParam("INSTANCE", {
                   patrolling: true,
+                  player: opponentsWithEmptySlots[0].id,
                 }),
-                slot: queryParam("PATROL_SLOT", {}),
+                slot: queryParam("PATROL_SLOT", emptySlots),
+                chainedEffects: [
+                  {
+                    type: "DAMAGE",
+                    target: inheritParam("INSTANCE", "target"),
+                    amount: constantParam(1),
+                  },
+                ],
               },
             ];
           }),

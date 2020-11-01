@@ -5,6 +5,7 @@ import {
   ActivatedAbilityFn,
   CardID,
   ConstantParam,
+  EffectParamInherited,
   EffectParamQuery,
   EffectParamValue,
   InstanceCard,
@@ -21,6 +22,18 @@ export const constantParam = <T> (
 ): ConstantParam<T> => ({
     type: "CONSTANT",
     value,
+  });
+
+export const inheritParam = <TypeT> (
+  type: TypeT,
+  field: EffectParamInherited["inherit"]["field"],
+  mode: EffectParamInherited["inherit"]["mode"] = "DIRECT",
+): { type: TypeT } & EffectParamInherited => ({
+    type,
+    inherit: {
+      field,
+      mode,
+    },
   });
 
 export const queryParam = <TypeT, QueryT> (
@@ -83,6 +96,13 @@ export const active = (
   cost,
   effect,
 });
+
+export const constantModifiers = (
+  modifiers: (ResolvableEffect & { type: "MODIFY" })["modifiers"]["value"],
+): (
+  ResolvableEffect & { type: "MODIFY" }
+)["modifiers"] =>
+  constantParam(modifiers);
 
 export const effectBase = <TypeT extends ResolvableEffect["type"]>(
   cid: CardID,

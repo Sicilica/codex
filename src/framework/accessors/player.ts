@@ -1,6 +1,15 @@
 import { PATROL_SLOTS } from "../constants";
 import { GameEngine } from "../engine";
-import { PlayerState } from "../types";
+import { PatrolSlot, PlayerState } from "../types";
+
+export const getEmptyPatrolSlots = (
+  P: PlayerState | null,
+): Array<PatrolSlot> => {
+  if (P == null) {
+    return [];
+  }
+  return PATROL_SLOTS.filter(slot => P.patrol[slot] == null);
+};
 
 export const getHeroLimit = (
   $: GameEngine,
@@ -40,15 +49,17 @@ export function *getOpponents(
 export const hasEmptyPatrolSlot = (
   P: PlayerState | null,
 ): boolean => {
-  if (P == null) {
-    return false;
+  return getFirstEmptyPatrolSlot(P) != null;
+};
+
+const getFirstEmptyPatrolSlot = (
+  P: PlayerState | null,
+): PatrolSlot | null => {
+  // eslint-disable-next-line no-unreachable-loop
+  for (const slot of getEmptyPatrolSlots(P)) {
+    return slot;
   }
-  for (const slot of PATROL_SLOTS) {
-    if (P.patrol[slot] == null) {
-      return true;
-    }
-  }
-  return false;
+  return null;
 };
 
 const hasUsableTechBuilding = (

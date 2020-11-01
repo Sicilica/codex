@@ -2,15 +2,16 @@ import {
   AttachmentSpellCard,
   InstanceCard,
   InstantSpellCard,
-  ModifierGrant,
   OngoingSpellCard,
 } from "../framework/types";
 
 import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
 import { BASE_CARD } from "./core";
 import {
+  constantModifiers,
   constantParam,
   effectBase,
+  inheritParam,
   queryParam,
   trigger,
   valueParam,
@@ -41,13 +42,13 @@ export const getSpellDetails = (
             player: P.id,
             type: "UNIT",
           }),
-          modifiers: constantParam([
+          modifiers: constantModifiers([
             {
               expiration: "END_OF_TURN",
               sourceCard: id,
               effect: {
                 type: "ATTRIBUTE",
-                trait: "ATTACK",
+                attribute: "ATTACK",
                 amount: 1,
               },
             },
@@ -59,25 +60,35 @@ export const getSpellDetails = (
                 trait: "HASTE",
               },
             },
-            // TODO clean this up, make some modifier helpers
-          ] as Array<ModifierGrant & { expiration: "END_OF_TURN" }>),
+          ]),
         },
       ],
     });
   case "Pillage":
     return instantSpell({
-      // TODO can't use a custom trigger because there's no instance...
-      // there may be some way to do this by adding a trigger to the target base...
-      // in general it feels like we just need a way to use the same params for multiple effects
-      // this shouldn't be hard, just add an optional field for "chained" effects, and a new param source "previous"
-      effect: () => [
-        {
-          ...effectBase(id, null, "PILLAGE"),
-          target: queryParam("INSTANCE", {
-            card: BASE_CARD.id,
-          }),
-        },
-      ],
+      effect: ($, P) => {
+        const hasPirate = $.findInstance({
+          player: P.id,
+          tags: [ "PIRATE" ],
+        }) != null;
+
+        return [
+          {
+            ...effectBase(id, null, "DAMAGE"),
+            target: queryParam("INSTANCE", {
+              card: BASE_CARD.id,
+            }),
+            amount: constantParam(1),
+            chainedEffects: [
+              {
+                type: "STEAL_GOLD",
+                player: inheritParam("PLAYER", "target", "GET_CONTROLLER"),
+                amount: constantParam(hasPirate ? 2 : 1),
+              },
+            ],
+          },
+        ];
+      },
     });
   case "Scorch":
     return instantSpell({
