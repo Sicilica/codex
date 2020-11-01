@@ -43,7 +43,10 @@ export const dealDamage = (
       type: "DESTROY",
       sourceCard: source?.card ?? null,
       sourceInstance: source?.id ?? null,
-      target: I.id,
+      target: {
+        type: "INSTANCE",
+        value: I.id,
+      },
     });
   }
 };
@@ -51,10 +54,18 @@ export const dealDamage = (
 export const destroy = (
   $: GameEngine,
   I: InstanceState,
+  killer: InstanceState | null,
 ): void => {
   $.fireInstanceTrigger(I, {
     type: "THIS_DIES",
   });
+
+  if (killer != null) {
+    $.fireInstanceTrigger(killer, {
+      type: "THIS_KILLS",
+      instance: I,
+    });
+  }
 
   removeInstance($, I);
 

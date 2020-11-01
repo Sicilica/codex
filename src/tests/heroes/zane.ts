@@ -84,7 +84,7 @@ describe("heroes", () => {
           type: "RESOLVE_EFFECT",
           effect: effectID,
           params: {
-            instance: patroller.id,
+            target: patroller.id,
             slot: "ELITE",
           },
         });
@@ -100,7 +100,7 @@ describe("heroes", () => {
           type: "RESOLVE_EFFECT",
           effect: effectID,
           params: {
-            instance: patroller.id,
+            target: patroller.id,
             slot: "ELITE",
           },
         });
@@ -113,7 +113,7 @@ describe("heroes", () => {
           type: "RESOLVE_EFFECT",
           effect: effectID,
           params: {
-            instance: patroller.id,
+            target: patroller.id,
             slot: "SQUAD_LEADER",
           },
         })).to.throw("must shove target to empty slot");
@@ -127,7 +127,7 @@ describe("heroes", () => {
           type: "RESOLVE_EFFECT",
           effect: effectID,
           params: {
-            instance: patroller.id,
+            target: patroller.id,
             slot: "SQUAD_LEADER",
           },
         })).to.throw("must shove target to empty slot");
@@ -142,7 +142,7 @@ describe("heroes", () => {
           type: "RESOLVE_EFFECT",
           effect: effectID,
           params: {
-            instance: patroller.id,
+            target: patroller.id,
             slot: "SCAVENGER",
           },
         });
@@ -151,7 +151,8 @@ describe("heroes", () => {
         expect(oppP.patrol.SCAVENGER).to.equal(null);
       });
 
-      it("counts as a targeted ability", () => {
+      // SKIP until targetting / RESIST is supported
+      it.skip("counts as a targeted ability", () => {
         oppP.patrol.SQUAD_LEADER = null;
         oppP.patrol.LOOKOUT = patroller.id;
 
@@ -161,7 +162,7 @@ describe("heroes", () => {
           type: "RESOLVE_EFFECT",
           effect: effectID,
           params: {
-            instance: patroller.id,
+            target: patroller.id,
             slot: "ELITE",
           },
         });
@@ -195,7 +196,7 @@ describe("heroes", () => {
           type: "RESOLVE_EFFECT",
           effect: effectID,
           params: {
-            instance: patroller.id,
+            target: patroller.id,
             slot: "SQUAD_LEADER",
           },
         });
@@ -204,7 +205,8 @@ describe("heroes", () => {
         expect(oppP.patrol.SQUAD_LEADER).to.equal(patroller.id);
       });
 
-      it("can't be used without funds if all targets have resist", () => {
+      // SKIP until targetting / RESIST is supported
+      it.skip("can't be used without funds if all targets have resist", () => {
         oppP.patrol.SQUAD_LEADER = null;
         oppP.patrol.LOOKOUT = patroller.id;
         P.gold = 0;

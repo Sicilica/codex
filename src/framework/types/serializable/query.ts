@@ -30,7 +30,7 @@ export interface SimpleInstanceQuery {
   patrolling?: boolean;
   player?: SingleOrArray<PlayerID>;
   spec?: SingleOrArray<Spec>;
-  tags?: Array<Tag>
+  tags?: Array<Tag>;
   tech?: SingleOrArray<TechLevel>;
   traits?: Array<Trait>;
   type?: SingleOrArray<InstanceType>;

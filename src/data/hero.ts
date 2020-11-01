@@ -5,8 +5,11 @@ import { InstanceCard } from "../framework/types";
 import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
 
 import {
+  constantParam,
   defaultProperties,
+  queryParam,
   trigger,
+  valueParam,
 } from "./helpers";
 
 const getBandProperties = (
@@ -51,8 +54,8 @@ export const getHeroBandProperties = getBandProperties((id, band) => {
                   type: "GIVE_GOLD",
                   sourceCard: I.card,
                   sourceInstance: I.id,
-                  player: I.controller,
-                  amount: 1,
+                  player: valueParam("PLAYER", I.controller),
+                  amount: constantParam(1),
                 },
               ];
             } else if (patrolSlot === "TECHNICIAN") {
@@ -61,8 +64,8 @@ export const getHeroBandProperties = getBandProperties((id, band) => {
                   type: "DRAW",
                   sourceCard: I.card,
                   sourceInstance: I.id,
-                  player: I.controller,
-                  amount: 1,
+                  player: valueParam("PLAYER", I.controller),
+                  amount: constantParam(1),
                 },
               ];
             }
@@ -84,10 +87,10 @@ export const getHeroBandProperties = getBandProperties((id, band) => {
                 type: "SHOVE",
                 sourceCard: I.card,
                 sourceInstance: I.id,
-                target: {
+                target: queryParam("INSTANCE", {
                   patrolling: true,
-                },
-                slot: null,
+                }),
+                slot: queryParam("PATROL_SLOT", {}),
               },
             ];
           }),

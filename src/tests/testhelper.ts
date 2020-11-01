@@ -14,7 +14,7 @@ import {
 import { resolveEffect } from "../game/actions";
 import { effectParamsAreValid } from "../game/effects";
 import { requireActivePlayer } from "../game/helpers";
-import { simulateUntilIdle } from "../game/system";
+import { cancelInvalidEffects, simulateUntilIdle } from "../game/system";
 
 export const P1 = "P1";
 export const P2 = "P2";
@@ -111,10 +111,7 @@ export const debugPlayUnit = (
 export const debugValidateEffects = (
   $: GameEngine,
 ): void => {
-  if ($ == null) {
-    throw new Error("WAO");
-  }
-  throw new Error("TODO");
+  cancelInvalidEffects($);
 };
 
 export const debugAction = (

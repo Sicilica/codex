@@ -60,15 +60,27 @@ export const gotoDrawPhase = (
     type: "DISCARD",
     sourceCard: null,
     sourceInstance: null,
-    player: P.id,
-    amount: discardCount,
+    player: {
+      type: "PLAYER",
+      value: P.id,
+    },
+    amount: {
+      type: "CONSTANT",
+      value: discardCount,
+    },
   }, {});
   executeEffect($, {
     type: "DRAW",
     sourceCard: null,
     sourceInstance: null,
-    player: P.id,
-    amount: Math.min(discardCount + 2, MAX_HAND_SIZE),
+    player: {
+      type: "PLAYER",
+      value: P.id,
+    },
+    amount: {
+      type: "CONSTANT",
+      value: Math.min(discardCount + 2, MAX_HAND_SIZE),
+    },
   }, {});
 };
 

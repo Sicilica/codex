@@ -1,10 +1,38 @@
 import {
   AbilityFn,
+  ConstantParam,
+  EffectParamQuery,
+  EffectParamValue,
   InstanceCard,
   TriggerEvent,
   TriggeredAbility,
   TriggeredAbilityFn,
 } from "../framework/types";
+
+export const constantParam = <T> (
+  value: T,
+): ConstantParam<T> => ({
+    type: "CONSTANT",
+    value,
+  });
+
+export const queryParam = <TypeT, QueryT> (
+  type: TypeT,
+  query: QueryT,
+  count?: EffectParamQuery<unknown>["count"],
+): { type: TypeT } & EffectParamQuery<QueryT> => ({
+    type,
+    query,
+    count,
+  });
+
+export const valueParam = <TypeT, ValueT> (
+  type: TypeT,
+  value: ValueT,
+): { type: TypeT } & EffectParamValue<ValueT> => ({
+    type,
+    value,
+  });
 
 export const defaultProperties = (): InstanceCard => ({
   ...{

@@ -2,7 +2,7 @@ import { GameEngine } from "../framework/engine";
 
 import { resolveEffect } from "./actions";
 import { resolveCombat } from "./combat";
-import { effectParamsAreValid } from "./effects";
+import { effectParamsAreValid, shouldCancelEffect } from "./effects";
 import {
   gotoEndOfTurnPhase,
   gotoMainPhase,
@@ -10,13 +10,25 @@ import {
   gotoUpkeepPhase,
 } from "./turn_phases";
 
+export const cancelInvalidEffects = (
+  $: GameEngine,
+): void => {
+  for (let i = 0; i < $.state.unresolvedEffects.length; i++) {
+    if (shouldCancelEffect($, $.state.unresolvedEffects[i])) {
+      $.state.unresolvedEffects.splice(i, 1);
+      i--;
+    }
+  }
+};
+
 export const simulateUntilIdle = (
   $: GameEngine,
 ): void => {
   let returnControlToPlayer = false;
   while (!returnControlToPlayer) {
     // TODO if instance was added or removed, recalc continuous effects
-    // TODO check validity of all effects
+    
+    cancelInvalidEffects($);
 
     if ($.state.unresolvedEffects.length === 0) {
       // There are no pending effects. We should automatically advance the

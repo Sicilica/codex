@@ -23,8 +23,8 @@ import {
 } from "../framework/types";
 
 import {
-  effectParamsAreValid,
   executeEffect,
+  validateEffectParams,
 } from "./effects";
 import {
   checkCanExhaust,
@@ -139,7 +139,10 @@ const activateAbility = (
         type: "DESTROY",
         sourceCard: I.card,
         sourceInstance: I.id,
-        target: I.id,
+        target: {
+          type: "INSTANCE",
+          value: I.id,
+        },
       });
       break;
     case "TIME_RUNES":
@@ -326,8 +329,9 @@ export const resolveEffect = (
   }
   const effect = $.state.unresolvedEffects[indexOfEffect];
 
-  if (!effectParamsAreValid($, effect, params)) {
-    throw new Error("invalid params for effect");
+  const err = validateEffectParams($, effect, params);
+  if (err != null) {
+    throw new Error(`invalid params for effect: ${err}`);
   }
 
   $.state.unresolvedEffects.splice(indexOfEffect, 1);

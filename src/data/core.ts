@@ -1,6 +1,11 @@
 import { BuildingCard, Card } from "../framework/types";
 
-import { defaultProperties, trigger } from "./helpers";
+import {
+  constantParam,
+  defaultProperties,
+  trigger,
+  valueParam,
+} from "./helpers";
 
 export const BASE_CARD: BuildingCard = {
   id: "Base",
@@ -46,8 +51,8 @@ const techBuildingCommon = {
           type: "DAMAGE",
           sourceCard: I.card,
           sourceInstance: I.id,
-          target: base,
-          amount: 2,
+          target: valueParam("INSTANCE", base),
+          amount: constantParam(2),
         },
       ];
     }),

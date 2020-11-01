@@ -4,7 +4,11 @@ import {
   TriggeredAbilityFn,
 } from "../framework/types";
 
-import { trigger } from "./helpers";
+import {
+  constantParam,
+  trigger,
+  valueParam,
+} from "./helpers";
 
 const registeredAbilities: Array<ActivatedAbilityFn | TriggeredAbilityFn> = [];
 
@@ -27,8 +31,8 @@ export const scavengerDies = registerAbility(trigger("THIS_DIES", (_, I) => [
     type: "DRAW",
     sourceCard: I.card,
     sourceInstance: I.id,
-    player: I.controller,
-    amount: 1,
+    player: valueParam("PLAYER", I.controller),
+    amount: constantParam(1),
   },
 ]));
 
@@ -37,7 +41,7 @@ export const technicianDies = registerAbility(trigger("THIS_DIES", (_, I) => [
     type: "GIVE_GOLD",
     sourceCard: I.card,
     sourceInstance: I.id,
-    player: I.controller,
-    amount: 1,
+    player: valueParam("PLAYER", I.controller),
+    amount: constantParam(1),
   },
 ]));

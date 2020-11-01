@@ -4,8 +4,9 @@ import {
   InstantSpellCard,
   OngoingSpellCard,
 } from "../framework/types";
+
 import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
-import { trigger } from "./helpers";
+import { constantParam, queryParam, trigger, valueParam } from "./helpers";
 
 const spellBoostCosts: Record<string, number | undefined> = {
   // such empty
@@ -30,13 +31,13 @@ export const getSpellDetails = (
           type: "DAMAGE",
           sourceCard: id,
           sourceInstance: null,
-          target: {
+          target: queryParam("INSTANCE", {
             OR: [
               { patrolling: true },
               { type: "BUILDING" },
             ],
-          },
-          amount: 2,
+          }),
+          amount: constantParam(2),
         },
       ],
     });
@@ -56,8 +57,8 @@ export const getSpellDetails = (
             type: "GIVE_GOLD",
             sourceCard: id,
             sourceInstance: I.id,
-            player: I.controller,
-            amount: 1,
+            player: valueParam("PLAYER", I.controller),
+            amount: constantParam(1),
           },
         ]),
       ],

@@ -1,6 +1,7 @@
 
 import { expect } from "chai";
 
+import { constantParam, valueParam } from "../../data/helpers";
 import { GameEngine } from "../../framework/engine";
 import { removeCardFromHand } from "../../framework/mutators";
 import { CardID, PlayerState } from "../../framework/types";
@@ -19,8 +20,8 @@ const discardAll = (
     type: "DISCARD",
     sourceCard: null,
     sourceInstance: null,
-    player: P.id,
-    amount: P.hand.length,
+    player: valueParam("PLAYER", P.id),
+    amount: constantParam(P.hand.length),
   });
 };
 
@@ -34,16 +35,16 @@ const discardCard = (
       type: "DISCARD",
       sourceCard: null,
       sourceInstance: null,
-      player: P.id,
-      amount: 1,
+      player: valueParam("PLAYER", P.id),
+      amount: constantParam(1),
     });
   } else {
     debugEffect($, {
       type: "DISCARD_SELECTED",
       sourceCard: null,
       sourceInstance: null,
-      player: P.id,
-      card: cid,
+      player: valueParam("PLAYER", P.id),
+      card: constantParam(cid),
     });
   }
 };
@@ -57,8 +58,8 @@ const drawCard = (
     type: "DRAW",
     sourceCard: null,
     sourceInstance: null,
-    player: P.id,
-    amount: 1,
+    player: valueParam("PLAYER", P.id),
+    amount: constantParam(1),
   });
   return P.hand.length > initialHandSize;
 };

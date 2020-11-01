@@ -1,6 +1,7 @@
 
 import { expect } from "chai";
 
+import { constantParam, valueParam } from "../../data/helpers";
 import { GameEngine } from "../../framework/engine";
 import { PlayerState } from "../../framework/types";
 import { requireActivePlayer } from "../../game/helpers";
@@ -33,8 +34,8 @@ describe("basic", () => {
         type: "DAMAGE",
         sourceCard: null,
         sourceInstance: null,
-        target: base.id,
-        amount: 20,
+        target: valueParam("INSTANCE", base.id),
+        amount: constantParam(20),
       });
 
       expect($.state.turnPhase).to.equal("GAME_OVER");

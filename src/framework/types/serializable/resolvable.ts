@@ -16,12 +16,12 @@ export type ResolvableEffect = {
     | "DRAW"
     | "GIVE_GOLD"
     ;
-  player: PlayerID;
-  amount: number;
+  player: PlayerParam;
+  amount: ConstantParam<number>;
 } | {
   type: "DISCARD_SELECTED";
-  player: PlayerID;
-  card: CardID;
+  player: PlayerParam;
+  card: ConstantParam<CardID>;
 } | {
   type:
     | "ARRIVE"
@@ -31,36 +31,65 @@ export type ResolvableEffect = {
     | "TAKE_CONTROL"
     | "TRASH"
     ;
-  target: InstanceTarget;
+  target: InstanceParam;
 } | {
   type:
     | "DAMAGE"
     | "STEAL_GOLD"
     ;
-  target: InstanceTarget;
-  amount: number;
+  target: InstanceParam;
+  amount: ConstantParam<number>;
 } | {
   type: "MODIFY";
-  target: InstanceTarget;
-  modifiers: Array<ModifierGrant & {
+  target: InstanceParam;
+  modifiers: ConstantParam<Array<ModifierGrant & {
     expiration: Exclude<ModifierGrant["expiration"], "CONTINUOUS">,
-  }>;
+  }>>;
 } | {
   type: "SHOVE";
-  target: InstanceTarget;
-  // TODO there's currently no way to represent this query...
-  slot: PatrolSlot | null;
+  target: InstanceParam;
+  slot: PatrolSlotParam;
 } | {
   type: "CUSTOM";
   sourceInstance: InstanceID;
-  trigger: CustomTriggerID;
-  targets: InstanceTargets;
+  trigger: ConstantParam<CustomTriggerID>;
+  params: Record<string, EffectParam>;
 });
 
-export type InstanceTarget = InstanceID | InstanceQuery;
+export type EffectParam =
+  | ConstantParam<unknown>
+  | InstanceParam
+  | PatrolSlotParam
+  | PlayerParam
+  ;
 
-export type InstanceTargets = Array<InstanceID> | {
-  query: InstanceQuery;
-  min: number;
-  max: number;
-};
+export interface EffectParamQuery<T> {
+  query: T;
+  count?: {
+    min: number;
+    max: number;
+  };
+}
+
+export interface EffectParamValue<T> {
+  value: T;
+}
+
+type CommonEffectParam<TypeT, ValueT, QueryT> = {
+  type: TypeT;
+} & (
+  EffectParamValue<ValueT> | EffectParamQuery<QueryT>
+);
+
+export interface ConstantParam<T> extends EffectParamValue<T> {
+  type: "CONSTANT"
+}
+
+export type InstanceParam =
+  CommonEffectParam<"INSTANCE", InstanceID, InstanceQuery>;
+
+export type PatrolSlotParam =
+  CommonEffectParam<"PATROL_SLOT", PatrolSlot, unknown>;
+
+export type PlayerParam =
+  CommonEffectParam<"PLAYER", PlayerID, unknown>;
