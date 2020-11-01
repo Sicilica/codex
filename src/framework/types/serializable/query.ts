@@ -27,6 +27,7 @@ export interface SimpleInstanceQuery {
   card?: SingleOrArray<CardID>;
   color?: SingleOrArray<Color>;
   hasPlusRune?: boolean;
+  isMaxLevel?: boolean;
   patrolling?: boolean;
   player?: SingleOrArray<PlayerID>;
   spec?: SingleOrArray<Spec>;

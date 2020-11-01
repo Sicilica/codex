@@ -1,4 +1,5 @@
 import {
+  getHeroLimit,
   getTech,
   hasTrait,
   isMaxLevel,
@@ -8,6 +9,7 @@ import { GameEngine } from "../framework/engine";
 import {
   Card,
   CardID,
+  HeroCard,
   InstanceID,
   InstanceState,
   PlayerState,
@@ -148,6 +150,24 @@ export const requireGold = (
 ): void => {
   if (P.gold < amount) {
     throw new Error("not enough gold");
+  }
+};
+
+export const requireHeroPlayable = (
+  $: GameEngine,
+  P: PlayerState,
+  hero: HeroCard,
+): void => {
+  if (P.heroes[hero.id] !== "AVAILABLE") {
+    throw new Error("hero is not available");
+  }
+
+  const heroesInPlay = Array.from($.queryInstances({
+    player: P.id,
+    type: "HERO",
+  })).length;
+  if (heroesInPlay >= getHeroLimit($, P)) {
+    throw new Error("hero limit reached");
   }
 };
 

@@ -2,6 +2,13 @@ import { CardID } from "./card";
 import { InstanceID } from "./instance";
 import { Spec } from "./property";
 
+export type HeroAvailability =
+  | "AVAILABLE"
+  | "DIED_BEFORE_THIS_TURN"
+  | "DIED_THIS_TURN"
+  | "IN_PLAY"
+  ;
+
 export type PatrolSlot =
   | "SQUAD_LEADER"
   | "ELITE"
@@ -23,6 +30,7 @@ export interface PlayerState {
   mainSpec: Spec | null;
   addon: InstanceID | null;
   techLabSpec: Spec | null;
+  heroes: Record<CardID, HeroAvailability>;
   gold: number;
   workers: number;
   patrol: PatrolZone;

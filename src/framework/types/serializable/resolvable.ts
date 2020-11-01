@@ -35,6 +35,7 @@ export type ResolvableEffect = {
 } | {
   type:
     | "DAMAGE"
+    | "GIVE_LEVELS"
     | "STEAL_GOLD"
     ;
   target: InstanceParam;

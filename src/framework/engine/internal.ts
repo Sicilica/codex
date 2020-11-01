@@ -2,6 +2,7 @@ import {
   getTech,
   hasTag,
   hasTrait,
+  isMaxLevel,
   isPatrolling,
 } from "../accessors";
 import { GameEngine } from "./engine";
@@ -32,6 +33,12 @@ export function *queryInstances(
       if (q.hasPlusRune != null) {
         const hasPlusRune = I.plusMinusRunes > 0;
         if (hasPlusRune !== q.hasPlusRune) {
+          return false;
+        }
+      }
+
+      if (q.isMaxLevel != null) {
+        if (isMaxLevel($, I) !== q.isMaxLevel) {
           return false;
         }
       }

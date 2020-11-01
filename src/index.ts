@@ -87,6 +87,7 @@ export const newGame = (
       mainSpec: null,
       addon: null,
       techLabSpec: null,
+      heroes: {},
       gold: 0,
       workers: isFirstPlayer ? 4 : 5,
       patrol: {
@@ -117,6 +118,8 @@ export const newGame = (
     P.deck = startingDeck.slice(5);
 
     for (const spec of P.specs) {
+      P.heroes[getHero($, spec).id] = "AVAILABLE";
+
       for (const card of getCodex($, spec)) {
         P.codex[card.id] = 2;
       }
@@ -158,6 +161,18 @@ export const simulateAction = (
     log,
     state,
   };
+};
+
+const getHero = (
+  $: GameEngine,
+  spec: Spec,
+): Card => {
+  for (const card of $.data.allCards()) {
+    if (card.type === "HERO" && card.spec === spec) {
+      return card;
+    }
+  }
+  throw new Error("panic: failed to find hero for spec");
 };
 
 function *getCodex(

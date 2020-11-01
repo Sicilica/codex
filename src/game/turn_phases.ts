@@ -32,6 +32,14 @@ export const gotoReadyPhase = (
   }
 
   rebuildTechBuildings($, P);
+
+  for (const cid in P.heroes) {
+    if (Object.prototype.hasOwnProperty.call(P.heroes, cid)) {
+      if (P.heroes[cid] === "DIED_THIS_TURN") {
+        P.heroes[cid] = "DIED_BEFORE_THIS_TURN";
+      }
+    }
+  }
 };
 
 export const gotoUpkeepPhase = (
@@ -82,6 +90,14 @@ export const gotoDrawPhase = (
       value: Math.min(discardCount + 2, MAX_HAND_SIZE),
     },
   }, {});
+
+  for (const cid in P.heroes) {
+    if (Object.prototype.hasOwnProperty.call(P.heroes, cid)) {
+      if (P.heroes[cid] === "DIED_BEFORE_THIS_TURN") {
+        P.heroes[cid] = "AVAILABLE";
+      }
+    }
+  }
 };
 
 export const gotoEndOfTurnPhase = (

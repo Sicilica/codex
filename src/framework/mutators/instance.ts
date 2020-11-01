@@ -1,4 +1,4 @@
-import { getAttribute, getPatrolSlot } from "../accessors";
+import { getAttribute, getOpponents, getPatrolSlot } from "../accessors";
 import { PATROL_SLOTS } from "../constants";
 import { GameEngine } from "../engine";
 import {
@@ -75,7 +75,25 @@ export const destroy = (
 
   const card = $.data.lookupCard(I.card);
   if (card.type === "HERO") {
-    // TODO
+    P.heroes[card.id] = "DIED_THIS_TURN";
+
+    $.queueEffect({
+      type: "GIVE_LEVELS",
+      sourceCard: card.id,
+      sourceInstance: null,
+      target: {
+        type: "INSTANCE",
+        query: {
+          isMaxLevel: false,
+          player: Array.from(getOpponents($, P)).map(oppP => oppP.id),
+          type: "HERO",
+        },
+      },
+      amount: {
+        type: "CONSTANT",
+        value: 2,
+      },
+    });
   } else if (card.type !== "UNIT" || !card.token) {
     P.discard.push(card.id);
   }
@@ -102,7 +120,7 @@ export const returnInstanceToHand = (
 
   const card = $.data.lookupCard(I.card);
   if (card.type === "HERO") {
-    // TODO...
+    P.heroes[card.id] = "AVAILABLE";
   } else if (card.type !== "UNIT" || !card.token) {
     P.hand.push(card.id);
   }

@@ -24,6 +24,9 @@ export type Action = {
   card: CardID;
   boost: boolean;
 } | {
+  type: "PLAY_HERO";
+  hero: CardID;
+} | {
   type: "PURCHASE_TECH_BUILDING";
   spec?: Spec;
 } | {

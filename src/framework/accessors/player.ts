@@ -2,6 +2,23 @@ import { PATROL_SLOTS } from "../constants";
 import { GameEngine } from "../engine";
 import { PlayerState } from "../types";
 
+export const getHeroLimit = (
+  $: GameEngine,
+  P: PlayerState,
+): number => {
+  if (hasUsableTechBuilding($, P, 3)) {
+    return 3;
+  }
+
+  const hasUsableHeroHall = false as boolean;
+
+  if (hasUsableTechBuilding($, P, 2)) {
+    return hasUsableHeroHall ? 3 : 2;
+  }
+
+  return hasUsableHeroHall ? 2 : 1;
+};
+
 export function *getOpponents(
   $: GameEngine,
   P: PlayerState | null,
@@ -32,4 +49,15 @@ export const hasEmptyPatrolSlot = (
     }
   }
   return false;
+};
+
+const hasUsableTechBuilding = (
+  $: GameEngine,
+  P: PlayerState,
+  tech: number,
+): boolean => {
+  const techBuilding = $.getInstance(P.techBuildings[tech - 1]);
+  return techBuilding != null
+    && !techBuilding.arrivalFatigue
+    && techBuilding.readyState === "READY";
 };

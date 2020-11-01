@@ -35,6 +35,7 @@ import {
   requireCardInHand,
   requireCardPlayableAndGetCost,
   requireGold,
+  requireHeroPlayable,
   requireInstance,
   requireMainPhase,
   requireUsableTechBuilding,
@@ -63,6 +64,9 @@ export const performAction = (
     break;
   case "PLAY_CARD":
     playCard($, action.card, action.boost);
+    break;
+  case "PLAY_HERO":
+    playHero($, action.hero);
     break;
   case "PURCHASE_TECH_BUILDING":
     purchaseTechBuilding($, action.spec ?? null);
@@ -277,6 +281,28 @@ const playCard = (
   } else {
     createInstance($, P, card);
   }
+};
+
+const playHero = (
+  $: GameEngine,
+  cid: CardID,
+): void => {
+  requireMainPhase($);
+
+  const P = requireActivePlayer($);
+
+  const card = $.data.lookupCard(cid);
+  if (card.type !== "HERO") {
+    throw new Error("must specify a hero card");
+  }
+
+  requireHeroPlayable($, P, card);
+
+  requireGold(P, 2);
+
+  reduceGold(P, 2);
+  P.heroes[card.id] = "IN_PLAY";
+  createInstance($, P, card);
 };
 
 const purchaseTechBuilding = (

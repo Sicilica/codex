@@ -5,6 +5,7 @@ import {
   dealDamage,
   destroy,
   giveGold,
+  giveLevels,
   reduceGold,
   removeCardFromHand,
   returnInstanceToHand,
@@ -181,6 +182,13 @@ export const executeEffect = (
     const P = resolvePlayerParam($, effect, params, "player");
     if (P != null) {
       giveGold(P, effect.amount.value);
+    }
+    break;
+  }
+  case "GIVE_LEVELS": {
+    const I = resolveInstanceParam($, effect, params, "target");
+    if (I != null) {
+      giveLevels($, I, effect.amount.value);
     }
     break;
   }
