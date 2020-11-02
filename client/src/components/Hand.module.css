@@ -1,0 +1,11 @@
+.hand {
+  /* NOTE this is some random value to fit 10 cards on screen with current settings */
+  font-size: 0.38em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  max-width: 100%;
+  background-color: blue;
+}
