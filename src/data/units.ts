@@ -142,6 +142,33 @@ export const getUnitProperties = getProperties(id => {
   case "Disguised Monkey":
   case "Gemscout Owl":
   case "Pirate Gunship":
+
+  // Green
+  case "Ironbark Treant":
+  case "Merfolk Prospector":
+    return {
+      activatedAbilities: [
+        active(
+          id,
+          aid++,
+          [ { type: "EXHAUST_THIS" } ],
+          ($, I) => {
+            return [
+              {
+                ...effectBase(id, I, "GIVE_GOLD"),
+                player: valueParam("PLAYER", I.controller),
+                amount: constantParam(1),
+              },
+            ];
+          },
+        ),
+      ]
+    };
+  case "Playful Panda":
+  case "Spore Shambler":
+  case "Tiger Cub":
+    return {};
+  case "Young Treant":
   case "Tyrannosaurus Rex":
     // WIP
     return {};
