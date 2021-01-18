@@ -41,6 +41,7 @@ export type ResolvableEffectWithoutSource = {
   type:
     | "DAMAGE"
     | "GIVE_LEVELS"
+    | "GIVE_PLUS_MINUS_RUNES"
     ;
   target: InstanceParam;
   amount: ConstantParam<number>;

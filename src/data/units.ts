@@ -162,10 +162,50 @@ export const getUnitProperties = getProperties(id => {
             ];
           },
         ),
-      ]
+      ],
     };
   case "Playful Panda":
   case "Spore Shambler":
+    return {
+      activatedAbilities: [
+        active(id, aid++, [
+          { type: "EXHAUST_THIS" },
+          { type: "PLUS_MINUS_RUNES", amount: 1 },
+        ], (_, I) => [
+          {
+            ...effectBase(id, I, "GIVE_PLUS_MINUS_RUNES"),
+            target: queryParam("INSTANCE", {
+              type: [ "UNIT" ],
+            }),
+            amount: constantParam(1),
+          },
+        ]),
+        active(id, aid++, [
+          { type: "GOLD", amount: 1 },
+          { type: "PLUS_MINUS_RUNES", amount: 1 },
+        ], (_, I) => [
+          {
+            ...effectBase(id, I, "GIVE_PLUS_MINUS_RUNES"),
+            target: queryParam("INSTANCE", {
+              type: [ "UNIT" ],
+            }),
+            amount: constantParam(1),
+          },
+        ]),
+      ],
+      triggeredAbilities: [
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        trigger("THIS_ARRIVES", ($, I, e) => {
+          return [
+            {
+              ...effectBase(id, I, "GIVE_PLUS_MINUS_RUNES"),
+              target: valueParam("INSTANCE", I.id),
+              amount: constantParam(2),
+            },
+          ];
+        }),
+      ],
+    };
   case "Tiger Cub":
     return {};
   case "Young Treant":

@@ -119,6 +119,19 @@ const activateAbility = (
     case "GOLD":
       requireGold(P, cost.amount);
       break;
+    case "PLUS_MINUS_RUNES":
+      // +1/+1 runes
+      if (cost.amount > 0) {
+        if (I.plusMinusRunes < cost.amount) {
+          throw new Error("insufficient runes");
+        }
+      // -1/-1 runes
+      } else if (cost.amount < 0) {
+        if (I.plusMinusRunes > cost.amount) {
+          throw new Error("insufficient runes");
+        }
+      }
+      break;
     case "SACRIFICE_THIS":
       if (hasTrait($, I, "INDESTRUCTIBLE")) {
         throw new Error("INDESTRUCTIBLE instances cannot be sacrificed");
@@ -142,6 +155,9 @@ const activateAbility = (
       break;
     case "GOLD":
       reduceGold(P, cost.amount);
+      break;
+    case "PLUS_MINUS_RUNES":
+      I.plusMinusRunes -= cost.amount;
       break;
     case "SACRIFICE_THIS":
       $.queueEffect({
