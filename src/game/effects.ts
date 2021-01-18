@@ -188,6 +188,13 @@ const executeEffectWithInheritedParams = (
     }
     break;
   }
+  case "GIVE_PLUS_MINUS_RUNES": {
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
+    if (I != null) {
+      I.plusMinusRunes += effect.amount.value;
+    }
+    break;
+  }
   case "MODIFY": {
     const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
