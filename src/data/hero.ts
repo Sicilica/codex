@@ -3,6 +3,7 @@ import { HeroBands } from "../framework/types/data/hero";
 import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
 import { defaultProperties } from "./helpers";
 import { CaptainZane } from "./heroes/captainzane";
+import { MasterMidori } from "./heroes/mastermidori";
 
 const getBandProperties = (
   fn: (id: string, band: 0 | 1 | 2) => Partial<InstanceCard>,
@@ -31,6 +32,8 @@ export const getHeroBandProperties = getBandProperties((id, band) => {
   switch (id) {
   case "Captain Zane":
     return getHeroBand(id, band, CaptainZane);
+  case "Master Midori":
+    return getHeroBand(id, band, MasterMidori);
   default:
     if (REQUIRE_ALL_CARD_PROPERTIES) {
       throw new Error(`Failed to find abilities for hero "${name}"`);
