@@ -49,6 +49,7 @@ export type Trait =
   | "INVISIBLE"
   | "LEGENDARY"
   | "LONG_RANGE"
+  | "NO_ATTACK"
   | "NO_PATROL"
   | "OVERPOWER"
   | "READINESS"
