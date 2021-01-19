@@ -209,6 +209,21 @@ export const getUnitProperties = getProperties(id => {
   case "Tiger Cub":
     return {};
   case "Young Treant":
+    return {
+      traits: [ "NO_ATTACK" ],
+      triggeredAbilities: [
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        trigger("THIS_ARRIVES", ($, I, e) => {
+          return [
+            {
+              ...effectBase(id, I, "DRAW"),
+              player: valueParam("PLAYER", I.controller),
+              amount: constantParam(1),
+            },
+          ];
+        }),
+      ],
+    };
   case "Tyrannosaurus Rex":
     // WIP
     return {};

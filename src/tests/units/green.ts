@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { MAX_HAND_SIZE } from "../../framework/constants";
 
 import { GameEngine } from "../../framework/engine";
 import { createInstance } from "../../framework/mutators";
@@ -6,8 +7,10 @@ import { InstanceState, PlayerState } from "../../framework/types";
 import { requireActivePlayer } from "../../game/helpers";
 
 import {
+  P2,
   debugAction,
   debugAutoResolve,
+  debugGotoNextTurn,
   debugValidateEffects,
   makeDefaultGame,
 } from "../testhelper";
@@ -171,6 +174,47 @@ describe("units", () => {
             target: I2.id,
           },
         })).to.throw("invalid params for effect: invalid param [target]");
+      });
+    });
+
+    describe("Young Treant", () => {
+      let oppP: PlayerState;
+      let I: InstanceState;
+      let oppI: InstanceState;
+
+      beforeEach(() => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        oppP = $.getPlayer(P2)!;
+        I = createInstance($, P, $.data.lookupCard("Young Treant"));
+        oppI = createInstance($, oppP, $.data.lookupCard("Tiger Cub"));
+        I.arrivalFatigue = false;
+        debugAutoResolve($);
+      });
+
+      it("causes the player to draw a card upon being played", () => {
+        expect(P.hand.length).to.equal(MAX_HAND_SIZE + 1);
+      });
+
+      it("cannot attack", () => {
+        expect(() => debugAction($, {
+          type: "ATTACK",
+          attacker: I.id,
+          defender: oppI.id,
+        })).to.throw("instance is not allowed to attack");
+      });
+
+      it("can counter attack", () => {
+        I.plusMinusRunes = 1;
+
+        debugGotoNextTurn($, P2);
+
+        debugAction($, {
+          type: "ATTACK",
+          attacker: oppI.id,
+          defender: I.id,
+        });
+
+        expect(oppI.damage).to.equal(1);
       });
     });
   });

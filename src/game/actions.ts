@@ -29,6 +29,7 @@ import {
   validateEffectParams,
 } from "./effects";
 import {
+  checkCanAttack,
   checkCanExhaust,
   checkHasControl,
   checkReady,
@@ -195,7 +196,7 @@ const attack = (
 
   checkHasControl(P, attacker);
   checkCanExhaust($, attacker);
-  checkUnitOrHero($, attacker);
+  checkCanAttack($, attacker);
 
   // make sure the attack is valid (and maybe consume detector)
 
