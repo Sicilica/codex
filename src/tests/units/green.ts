@@ -77,6 +77,23 @@ describe("units", () => {
       });
     });
 
+    describe("Playful Panda", () => {
+      let I: InstanceState;
+
+      beforeEach(() => {
+        I = createInstance($, P, $.data.lookupCard("Playful Panda"));
+        debugAutoResolve($);
+      });
+
+      it("arrives exhausted", () => {
+        expect(I.readyState).to.equal("EXHAUSTED");
+      });
+
+      it.skip("summons a wisp when it arrives", () => {
+        expect(true).to.equal(false);
+      });
+    });
+
     describe("Spore Shambler", () => {
       let I: InstanceState;
 

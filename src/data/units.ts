@@ -184,6 +184,26 @@ export const getUnitProperties = getProperties(id => {
     return {
       attributes: { FRENZY: 1 },
     };
+  case "Playful Panda":
+    return {
+      triggeredAbilities: [
+        trigger("THIS_ARRIVES", (_, I) => {
+          return [
+            {
+              ...effectBase(id, I, "READY_STATE"),
+              target: valueParam("INSTANCE", I.id),
+              state: constantParam("EXHAUSTED"),
+            },
+            // WIP
+            // Needs support for tokens and summoning
+            // {
+            //   ...effectBase(id, I, "ARRIVE"),
+
+            // }
+          ];
+        }),
+      ],
+    };
   case "Spore Shambler":
     return {
       activatedAbilities: [
@@ -249,7 +269,6 @@ export const getUnitProperties = getProperties(id => {
   case "Disguised Monkey":
   case "Gemscout Owl":
   case "Pirate Gunship":
-  case "Playful Panda":
   case "Tyrannosaurus Rex":
     // WIP
     return {};
