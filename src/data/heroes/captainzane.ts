@@ -23,7 +23,7 @@ export const CaptainZane: HeroBands = {
     return {
       triggeredAbilities: [
         trigger("THIS_KILLS", ($, I, e) => {
-          const patrolSlot = getPatrolSlot($, e.instance);
+          const patrolSlot = getPatrolSlot($.state, e.instance);
           if (patrolSlot === "SCAVENGER") {
             return [
               {

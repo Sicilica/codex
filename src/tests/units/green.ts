@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { getAttribute } from "../../framework/accessors";
 import { MAX_HAND_SIZE } from "../../framework/constants";
 
 import { GameEngine } from "../../framework/engine";
@@ -23,6 +24,32 @@ describe("units", () => {
     beforeEach(() => {
       $ = makeDefaultGame();
       P = requireActivePlayer($);
+    });
+
+    describe("Ironbark Treant", () => {
+      let I: InstanceState;
+
+      beforeEach(() => {
+        I = createInstance($, P, $.data.lookupCard("Ironbark Treant"));
+      });
+
+      it("has -2 attack / +2 armor while patrolling", () => {
+        expect(getAttribute($, I, "ATTACK")).to.equal(3);
+        expect(getAttribute($, I, "ARMOR")).to.equal(0);
+
+        debugGotoNextTurn($, P2);
+
+        expect(getAttribute($, I, "ATTACK")).to.equal(3);
+        expect(getAttribute($, I, "ARMOR")).to.equal(0);
+
+        // WIP
+        // continuousModifiers are not fully supported
+
+        // P.patrol["SQUAD_LEADER"] = I.id;
+
+        // expect(getAttribute($, I, "ATTACK")).to.equal(1);
+        // expect(getAttribute($, I, "ARMOR")).to.equal(3);
+      });
     });
 
     describe("Merfolk Prospector", () => {
