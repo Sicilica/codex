@@ -10,7 +10,7 @@ import {
   PlayerState,
   ResolvableEffect,
 } from "../framework/types";
-import { resolveEffect } from "../game/actions";
+import { performAction, resolveEffect } from "../game/actions";
 import { effectParamsAreValid } from "../game/effects";
 import { requireActivePlayer } from "../game/helpers";
 import { cancelInvalidEffects, simulateUntilIdle } from "../game/system";
@@ -80,15 +80,20 @@ export const debugGotoNextTurn = (
 export const debugPlayCard = (
   $: GameEngine,
   cid: CardID,
+  simulate = true,
 ): void => {
   const card = $.data.lookupCard(cid);
   requireActivePlayer($).gold += card.cost;
   requireActivePlayer($).hand.push(cid);
-  debugAction($, {
-    type: "PLAY_CARD",
-    card: cid,
-    boost: false,
-  });
+  debugAction(
+    $,
+    {
+      type: "PLAY_CARD",
+      card: cid,
+      boost: false,
+    },
+    simulate
+  );
 };
 
 export const debugPlayUnit = (
@@ -114,10 +119,15 @@ export const debugValidateEffects = (
 export const debugAction = (
   $: GameEngine,
   action: Action,
+  simulate = true,
 ): void => {
-  const res = simulateAction($.state, action, data);
-  if (res.error != null) {
-    throw new Error(`${res.error}`);
+  if (simulate) {
+    const res = simulateAction($.state, action, data);
+    if (res.error != null) {
+      throw new Error(`${res.error}`);
+    }
+  } else {
+    performAction($, action);
   }
 };
 
