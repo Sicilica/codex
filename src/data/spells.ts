@@ -110,6 +110,37 @@ export const getSpellDetails = (
         ];
       },
     });
+  case "Rampant Growth":
+    return instantSpell({
+      effect: () => [
+        {
+          ...effectBase(id, null, "MODIFY"),
+          target: queryParam("INSTANCE", {
+            type: [ "HERO", "UNIT" ],
+          }),
+          modifiers: constantModifiers([
+            {
+              sourceCard: id,
+              effect: {
+                type: "ATTRIBUTE",
+                attribute: "ATTACK",
+                amount: 2,
+              },
+              expiration: "END_OF_TURN",
+            },
+            {
+              sourceCard: id,
+              effect: {
+                type: "ATTRIBUTE",
+                attribute: "ARMOR",
+                amount: 2,
+              },
+              expiration: "END_OF_TURN",
+            },
+          ]),
+        },
+      ],
+    });
   case "Scorch":
     return instantSpell({
       effect: () => [

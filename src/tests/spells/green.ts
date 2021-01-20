@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { getAttribute } from "../../framework/accessors";
 import { GameEngine } from "../../framework/engine";
 import { createInstance } from "../../framework/mutators";
 import { InstanceState, PlayerState } from "../../framework/types";
@@ -6,6 +7,7 @@ import { requireActivePlayer } from "../../game/helpers";
 import {
   P2,
   debugAction,
+  debugGotoNextTurn,
   debugPlayCard,
   makeDefaultGame,
 } from "../testhelper";
@@ -153,6 +155,26 @@ describe("spells", () => {
             },
           });
         }).to.throw("invalid params for effect: invalid param [target]");
+      });
+    });
+
+    describe("Rampant Growth", () => {
+      it("should give +2 attack / +2 armor for only one turn", () => {
+        const midori = createInstance(
+          $,
+          P,
+          $.data.lookupCard("Master Midori")
+        );
+
+        debugPlayCard($, "Rampant Growth");
+
+        expect(getAttribute($, midori, "ATTACK")).to.equal(4);
+        expect(getAttribute($, midori, "ARMOR")).to.equal(2);
+
+        debugGotoNextTurn($, P2);
+
+        expect(getAttribute($, midori, "ATTACK")).to.equal(2);
+        expect(getAttribute($, midori, "ARMOR")).to.equal(0);
       });
     });
   });
