@@ -105,6 +105,13 @@ export const gotoEndOfTurnPhase = (
 ): void => {
   $.state.turnPhase = "END_OF_TURN";
 
+  const P = requireActivePlayer($);
+
+  for (const I of $.queryInstances({ player: P.id })) {
+    I.modifiers = I.modifiers.filter(modifier =>
+      modifier.expiration !== "END_OF_TURN");
+  }
+
   $.fireGlobalTrigger({
     type: "END_OF_TURN",
   });
