@@ -133,18 +133,6 @@ export const getUnitProperties = getProperties(id => {
         }),
       ],
     };
-  case "Nautical Dog":
-    return {
-      attributes: { FRENZY: 1 },
-    };
-  case "Calypso Vystari":
-  case "Chameleon":
-  case "Disguised Monkey":
-  case "Gemscout Owl":
-  case "Pirate Gunship":
-
-  // Green
-  case "Ironbark Treant":
   case "Merfolk Prospector":
     return {
       activatedAbilities: [
@@ -164,7 +152,10 @@ export const getUnitProperties = getProperties(id => {
         ),
       ],
     };
-  case "Playful Panda":
+  case "Nautical Dog":
+    return {
+      attributes: { FRENZY: 1 },
+    };
   case "Spore Shambler":
     return {
       activatedAbilities: [
@@ -224,6 +215,14 @@ export const getUnitProperties = getProperties(id => {
         }),
       ],
     };
+
+  case "Calypso Vystari":
+  case "Chameleon":
+  case "Disguised Monkey":
+  case "Gemscout Owl":
+  case "Ironbark Treant":
+  case "Pirate Gunship":
+  case "Playful Panda":
   case "Tyrannosaurus Rex":
     // WIP
     return {};
