@@ -1,6 +1,6 @@
 import { CustomTriggerID } from "./ability";
 import { CardID } from "./card";
-import { InstanceID } from "./instance";
+import { InstanceID, ReadyState } from "./instance";
 import { ModifierGrant } from "./modifier";
 import { PatrolSlot, PlayerID } from "./player";
 import { InstanceQuery } from "./query";
@@ -45,6 +45,10 @@ export type ResolvableEffectWithoutSource = {
     ;
   target: InstanceParam;
   amount: ConstantParam<number>;
+} | {
+  type: "READY_STATE";
+  target: InstanceParam;
+  state: ConstantParam<ReadyState>;
 } | {
   type: "MODIFY";
   target: InstanceParam;

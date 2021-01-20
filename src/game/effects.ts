@@ -212,6 +212,13 @@ const executeEffectWithInheritedParams = (
     }
     break;
   }
+  case "READY_STATE": {
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
+    if (I != null) {
+      I.readyState = effect.state.value;
+    }
+    break;
+  }
   case "SIDELINE": {
     const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
