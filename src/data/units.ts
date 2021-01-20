@@ -1,3 +1,4 @@
+import { isPatrolling } from "../framework/accessors";
 import { ResolvableEffect } from "../framework/types";
 
 import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
@@ -98,6 +99,33 @@ export const getUnitProperties = getProperties(id => {
 
           return effects;
         }),
+      ],
+    };
+  case "Ironbark Treant":
+    return {
+      continuousModifiers: [
+        {
+          condition: ($, iid) => isPatrolling($, $.instances[iid]),
+          query: "SELF",
+          effect: () => {
+            return {
+              type: "ATTRIBUTE",
+              attribute: "ATTACK",
+              amount: -2,
+            };
+          },
+        },
+        {
+          condition: ($, iid) => isPatrolling($, $.instances[iid]),
+          query: "SELF",
+          effect: () => {
+            return {
+              type: "ATTRIBUTE",
+              attribute: "ARMOR",
+              amount: 2,
+            };
+          },
+        },
       ],
     };
   case "Mad Man":
@@ -220,7 +248,6 @@ export const getUnitProperties = getProperties(id => {
   case "Chameleon":
   case "Disguised Monkey":
   case "Gemscout Owl":
-  case "Ironbark Treant":
   case "Pirate Gunship":
   case "Playful Panda":
   case "Tyrannosaurus Rex":
