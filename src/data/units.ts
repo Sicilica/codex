@@ -140,7 +140,7 @@ export const getUnitProperties = getProperties(id => {
           id,
           aid++,
           [ { type: "EXHAUST_THIS" } ],
-          ($, I) => {
+          (_, I) => {
             return [
               {
                 ...effectBase(id, I, "GIVE_GOLD"),
@@ -186,7 +186,7 @@ export const getUnitProperties = getProperties(id => {
       ],
       triggeredAbilities: [
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        trigger("THIS_ARRIVES", ($, I, e) => {
+        trigger("THIS_ARRIVES", (_, I) => {
           return [
             {
               ...effectBase(id, I, "GIVE_PLUS_MINUS_RUNES"),
@@ -204,7 +204,7 @@ export const getUnitProperties = getProperties(id => {
       traits: [ "NO_ATTACK" ],
       triggeredAbilities: [
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        trigger("THIS_ARRIVES", ($, I, e) => {
+        trigger("THIS_ARRIVES", (_, I) => {
           return [
             {
               ...effectBase(id, I, "DRAW"),
