@@ -37,6 +37,22 @@ export const getUpgradeProperties = getProperties(id => {
         }),
       ],
     };
+  case "Rich Earth":
+    // WIP
+    // Unable to target bases with modifiers
+    // No "free worker" modifier effect currently exists
+    return {};
+    // return {
+    //   continuousModifiers: [
+    //     {
+    //       condition: () => null,
+    //       query: AllYourBase,
+    //       effect: ($, I) => {
+    //         ...effectBase()
+    //       }
+    //     },
+    //   ],
+    // };
   default:
     if (REQUIRE_ALL_CARD_PROPERTIES) {
       throw new Error(`Failed to find properties for upgrade "${id}"`);
