@@ -64,6 +64,26 @@ export const getSpellDetails = (
         },
       ],
     });
+  case "Forest's Favor":
+    return instantSpell({
+      effect: (_, P) => [
+        {
+          ...effectBase(id, null, "GIVE_PLUS_MINUS_RUNES"),
+          target: queryParam(
+            "INSTANCE",
+            {
+              hasPlusRune: false,
+              player: P.id,
+              type: [
+                "HERO",
+                "UNIT",
+              ],
+            },
+          ),
+          amount: constantParam(1),
+        },
+      ],
+    });
   case "Pillage":
     return instantSpell({
       effect: ($, P) => {
