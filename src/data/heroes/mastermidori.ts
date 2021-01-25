@@ -8,11 +8,11 @@ export const MasterMidori: HeroBands = {
     return {
       continuousModifiers: [
         {
-          condition: null,
-          query: {
-            type: "UNIT",
+          query: () => {
+            return {
+              type: "UNIT",
+            };
           },
-          // effect: ($, I) => {
           effect: () => {
             return {
               type: "ATTRIBUTE",
@@ -22,11 +22,11 @@ export const MasterMidori: HeroBands = {
           },
         },
         {
-          condition: null,
-          query: {
-            type: "UNIT",
+          query: () => {
+            return {
+              type: "UNIT",
+            };
           },
-          // effect: ($, I) => {
           effect: () => {
             return {
               type: "ATTRIBUTE",
