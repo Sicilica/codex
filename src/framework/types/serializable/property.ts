@@ -59,4 +59,7 @@ export type Trait =
   | "UNATTACKABLE"
   | "UNSTOPPABLE"
   | "UNTARGETABLE"
+
+  // Intended for bases only
+  | "FREE_WORKERS"
   ;

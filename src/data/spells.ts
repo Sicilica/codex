@@ -182,9 +182,10 @@ export const getSpellDetails = (
     return ongoingSpell({
       continuousModifiers: [
         {
-          condition: null,
-          query: {
-            type: "UNIT",
+          query: () => {
+            return {
+              type: "UNIT",
+            };
           },
           effect: ($, I) => {
             const numUnits = Array.from($.queryInstances({

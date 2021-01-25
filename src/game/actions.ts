@@ -221,14 +221,20 @@ const buyWorker = (
 
   const P = requireActivePlayer($);
 
-  requireGold(P, 1);
+  let cost = 1;
+
+  if (hasTrait($, $.getInstance(P.base), "FREE_WORKERS")) {
+    cost = 0;
+  }
+
+  requireGold(P, cost);
   requireCardInHand(P, cid);
 
   if (P.hasBuiltWorkerThisTurn) {
     throw new Error("only one worker may be built per turn");
   }
 
-  reduceGold(P, 1);
+  reduceGold(P, cost);
   removeCardFromHand(P, cid);
   P.workers++;
   P.hasBuiltWorkerThisTurn = true;
