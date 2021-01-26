@@ -52,15 +52,15 @@ export const canPerformAttack = (
     return false;
   }
 
-  if (getAttribute($, I, "ATTACK") <= 0) {
-    return false;
-  }
-
   if (I.readyState !== "READY") {
     return false;
   }
 
   if (I.arrivalFatigue && !hasTrait($, I, "HASTE")) {
+    return false;
+  }
+
+  if (getAttribute($, I, "ATTACK") <= 0) {
     return false;
   }
 

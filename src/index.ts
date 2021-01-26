@@ -5,6 +5,7 @@ import { createInstance } from "./framework/mutators";
 import {
   Action,
   Card,
+  CardID,
   Color,
   DataSource,
   GameState,
@@ -30,6 +31,45 @@ export interface SimulationResult {
   state: GameState;
 }
 
+export const REDACTED_CARD = "<UNKNOWN>";
+
+export const getViewForPlayer = (
+  state: GameState,
+  povPlayer: PlayerID | null,
+): GameState => {
+  const view: GameState = {
+    ...state,
+    players: {},
+  };
+
+  for (const pid in state.players) {
+    if (Object.prototype.hasOwnProperty.call(state.players, pid)) {
+      const P = {
+        ...state.players[pid],
+      };
+      view.players[pid] = P;
+
+      P.deck = redactCards(P.deck);
+
+      if (povPlayer !== pid) {
+        P.hand = redactCards(P.hand);
+        // Rules state that you can look at your own discard pile at any time
+        P.discard = redactCards(P.discard);
+        P.codex = {
+          [REDACTED_CARD]: Object.values(P.codex)
+            .filter(count => count != null)
+            // eslint-disable-next-line max-len
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            .map(count => count!)
+            .reduce((a, b) => a + b, 0),
+        };
+      }
+    }
+  }
+
+  return view;
+};
+
 export const newGame = (
   players: Array<{
     specs: PlayerState["specs"],
@@ -46,7 +86,7 @@ export const newGame = (
     instances: {},
     unresolvedEffects: [],
     unresolvedCombat: null,
-    nextID: 1,
+    nextID: players.length + 1,
     earliestAllowedRewind: 1,
   };
 
@@ -180,7 +220,7 @@ function *getCodex(
   spec: Spec,
 ): Iterable<Card> {
   for (const card of $.data.allCards()) {
-    if (card.spec === spec) {
+    if (card.spec === spec && card.type !== "HERO") {
       yield card;
     }
   }
@@ -196,3 +236,8 @@ function *getStartingDeck(
     }
   }
 }
+
+const redactCards = (
+  cards: Array<CardID>,
+): Array<CardID> =>
+  cards.map(() => REDACTED_CARD);
