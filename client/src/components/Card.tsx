@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Card.module.css";
 
+// TODO make this configurable, and if nothing else, copy these files
+// down so I can have them local for dev / behind an extra CDN for prod
 const BASE_URL = "https://res.cloudinary.com/rgdelato/image/fetch/f_auto/http://codexcards-assets.surge.sh/images";
 
 interface Props {
