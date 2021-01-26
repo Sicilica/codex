@@ -55,11 +55,7 @@ export const hasEmptyPatrolSlot = (
 const getFirstEmptyPatrolSlot = (
   P: PlayerState | null,
 ): PatrolSlot | null => {
-  // eslint-disable-next-line no-unreachable-loop
-  for (const slot of getEmptyPatrolSlots(P)) {
-    return slot;
-  }
-  return null;
+  return getEmptyPatrolSlots(P).find(() => true) || null;
 };
 
 const hasUsableTechBuilding = (
