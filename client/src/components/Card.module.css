@@ -1,0 +1,24 @@
+.card_wrapper {
+  /* TODO this actually should depend on the number of cards probably */
+  margin: 0 -3em;
+}
+
+.card_wrapper:hover {
+  cursor: pointer;
+  z-index: 1;
+}
+
+.card {
+  width: 30em;
+  height: 42em;
+  border-radius: 1.2em;
+  background-position: -1.5em;
+  background-color: magenta;
+  background-size: 33em;
+  transition: transform 0.1s;
+}
+
+.card:hover {
+  /* NOTE this translate is calc'd to keep the baseline exactly the same */
+  transform: translate(0em, calc(100% * -0.6/2)) scale(1.6);
+}
