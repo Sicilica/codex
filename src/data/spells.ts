@@ -6,7 +6,16 @@ import {
 } from "../framework/types";
 
 import { REQUIRE_ALL_CARD_PROPERTIES } from "./config";
-import { constantParam, queryParam, trigger, valueParam } from "./helpers";
+import { BASE_CARD } from "./core";
+import {
+  constantModifiers,
+  constantParam,
+  effectBase,
+  inheritParam,
+  queryParam,
+  trigger,
+  valueParam,
+} from "./helpers";
 
 const spellBoostCosts: Record<string, number | undefined> = {
   // such empty
@@ -24,13 +33,68 @@ export const getSpellDetails = (
   | SpellDetails<InstantSpellCard>
   | SpellDetails<OngoingSpellCard> => {
   switch (id) {
+  case "Charge":
+    return instantSpell({
+      effect: (_, P) => [
+        {
+          ...effectBase(id, null, "MODIFY"),
+          target: queryParam("INSTANCE", {
+            player: P.id,
+            type: "UNIT",
+          }),
+          modifiers: constantModifiers([
+            {
+              expiration: "END_OF_TURN",
+              sourceCard: id,
+              effect: {
+                type: "ATTRIBUTE",
+                attribute: "ATTACK",
+                amount: 1,
+              },
+            },
+            {
+              expiration: "END_OF_TURN",
+              sourceCard: id,
+              effect: {
+                type: "TRAIT",
+                trait: "HASTE",
+              },
+            },
+          ]),
+        },
+      ],
+    });
+  case "Pillage":
+    return instantSpell({
+      effect: ($, P) => {
+        const hasPirate = $.findInstance({
+          player: P.id,
+          tags: [ "PIRATE" ],
+        }) != null;
+
+        return [
+          {
+            ...effectBase(id, null, "DAMAGE"),
+            target: queryParam("INSTANCE", {
+              card: BASE_CARD.id,
+            }),
+            amount: constantParam(1),
+            chainedEffects: [
+              {
+                type: "STEAL_GOLD",
+                player: inheritParam("PLAYER", "target", "GET_CONTROLLER"),
+                amount: constantParam(hasPirate ? 2 : 1),
+              },
+            ],
+          },
+        ];
+      },
+    });
   case "Scorch":
     return instantSpell({
       effect: () => [
         {
-          type: "DAMAGE",
-          sourceCard: id,
-          sourceInstance: null,
+          ...effectBase(id, null, "DAMAGE"),
           target: queryParam("INSTANCE", {
             OR: [
               { patrolling: true },

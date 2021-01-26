@@ -1,4 +1,3 @@
-import { getPatrolSlot, hasEmptyPatrolSlot } from "../framework/accessors";
 import { PATROL_SLOTS } from "../framework/constants";
 import { GameEngine } from "../framework/engine";
 import {
@@ -14,6 +13,7 @@ import {
 } from "../framework/mutators";
 import {
   EffectParam,
+  EffectParamInherited,
   EffectParamQuery,
   EffectParamValue,
   InstanceID,
@@ -33,6 +33,7 @@ const GLOBAL_EFFECT_KEYS = [
   "sourceInstance",
   "type",
   "params",
+  "chainedEffects",
 ];
 
 export const effectParamsAreValid = (
@@ -55,7 +56,7 @@ export const validateEffectParams = (
       }
 
       const fromEffect = effectAsMap[key];
-      if (isQueryParam(fromEffect)) {
+      if (isQueryParam<unknown>(fromEffect)) {
         // valid if:
         // - the param exists and matches the query
         // - the param doesn't exist and the query has only one option
@@ -71,25 +72,6 @@ export const validateEffectParams = (
     }
   }
 
-  switch (effect.type) {
-  case "SHOVE": {
-    const I = resolveInstanceParam($, effect, params, "target");
-    const slot = resolvePatrolSlotParam(effect, params, "slot");
-    const P = $.getPlayer(I?.controller ?? null);
-    if (I == null || slot == null || P == null) {
-      throw new Error("panic: bad shove didn't fail early validation");
-    }
-    if (getPatrolSlot($, I) === slot) {
-      if (hasEmptyPatrolSlot(P)) {
-        return "must shove target to empty slot";
-      }
-    } else if (P.patrol[slot] != null) {
-      return "destination slot is not empty";
-    }
-    break;
-  }
-  }
-
   return null;
 };
 
@@ -98,9 +80,18 @@ export const executeEffect = (
   effect: ResolvableEffect,
   params: Record<string, string>,
 ): void => {
+  executeEffectWithInheritedParams($, effect, params, {});
+};
+
+const executeEffectWithInheritedParams = (
+  $: GameEngine,
+  effect: ResolvableEffect,
+  params: Record<string, string>,
+  inherited: Record<string, string>,
+): void => {
   switch (effect.type) {
   case "BOUNCE_TO_HAND": {
-    const I = resolveInstanceParam($, effect, params, "target");
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
       returnInstanceToHand($, I);
     }
@@ -118,21 +109,26 @@ export const executeEffect = (
     break;
   }
   case "DAMAGE": {
-    const I = resolveInstanceParam($, effect, params, "target");
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
-      dealDamage($, I, effect.amount.value, null);
+      dealDamage(
+        $,
+        I,
+        effect.amount.value,
+        $.getInstance(effect.sourceInstance),
+      );
     }
     break;
   }
   case "DESTROY": {
-    const I = resolveInstanceParam($, effect, params, "target");
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
       destroy($, I, $.getInstance(effect.sourceInstance));
     }
     break;
   }
   case "DISCARD": {
-    const P = resolvePlayerParam($, effect, params, "player");
+    const P = resolvePlayerParam($, effect, params, inherited, "player");
     if (P != null) {
       if (effect.amount.value >= P.hand.length) {
         P.discard.push(...P.hand);
@@ -148,7 +144,7 @@ export const executeEffect = (
     break;
   }
   case "DISCARD_SELECTED": {
-    const P = resolvePlayerParam($, effect, params, "player");
+    const P = resolvePlayerParam($, effect, params, inherited, "player");
     if (P != null && P.hand.includes(effect.card.value)) {
       removeCardFromHand(P, effect.card.value);
       P.discard.push(effect.card.value);
@@ -156,7 +152,7 @@ export const executeEffect = (
     break;
   }
   case "DRAW": {
-    const P = resolvePlayerParam($, effect, params, "player");
+    const P = resolvePlayerParam($, effect, params, inherited, "player");
     if (P != null) {
       for (let i = 0; i < effect.amount.value; i++) {
         if (P.deck.length === 0) {
@@ -179,47 +175,45 @@ export const executeEffect = (
     break;
   }
   case "GIVE_GOLD": {
-    const P = resolvePlayerParam($, effect, params, "player");
+    const P = resolvePlayerParam($, effect, params, inherited, "player");
     if (P != null) {
       giveGold(P, effect.amount.value);
     }
     break;
   }
   case "GIVE_LEVELS": {
-    const I = resolveInstanceParam($, effect, params, "target");
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
       giveLevels($, I, effect.amount.value);
     }
     break;
   }
   case "MODIFY": {
-    const I = resolveInstanceParam($, effect, params, "target");
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
       I.modifiers.push(...effect.modifiers.value);
     }
     break;
   }
-  case "SHOVE": {
-    const I = resolveInstanceParam($, effect, params, "target");
-    const slot = resolvePatrolSlotParam(effect, params, "slot");
+  case "MOVE_TO_SLOT": {
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
+    const slot = resolvePatrolSlotParam(effect, params, inherited, "slot");
     const P = $.getPlayer(I?.controller ?? null);
     if (I != null && slot != null && P != null) {
       sideline($, I);
       P.patrol[slot] = I.id;
-      dealDamage($, I, 1, $.getInstance(effect.sourceInstance));
     }
     break;
   }
   case "SIDELINE": {
-    const I = resolveInstanceParam($, effect, params, "target");
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
       sideline($, I);
     }
     break;
   }
   case "STEAL_GOLD": {
-    const I = resolveInstanceParam($, effect, params, "target");
-    const targetP = $.getPlayer(I?.controller ?? null);
+    const targetP = resolvePlayerParam($, effect, params, inherited, "player");
     const activeP = $.getPlayer($.state.activePlayer);
     if (targetP != null && activeP != null && activeP !== targetP) {
       const amount = Math.min(effect.amount.value, targetP.gold);
@@ -229,14 +223,14 @@ export const executeEffect = (
     break;
   }
   case "TAKE_CONTROL": {
-    const I = resolveInstanceParam($, effect, params, "target");
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
       I.controller = $.state.activePlayer;
     }
     break;
   }
   case "TRASH": {
-    const I = resolveInstanceParam($, effect, params, "target");
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
       trash($, I);
     }
@@ -244,6 +238,34 @@ export const executeEffect = (
   }
   default:
     throw new Error(`unrecognized effect type "${effect.type}"`);
+  }
+
+  if (effect.chainedEffects != null) {
+    const inheritableParams = {
+      ...inherited,
+    };
+    for (const key in effect) {
+      if (Object.prototype.hasOwnProperty.call(effect, key)) {
+        if (!GLOBAL_EFFECT_KEYS.includes(key)) {
+          const fromEffect =
+            (effect as unknown as Record<string, EffectParam>)[key];
+
+          if (isValueParam(fromEffect)) {
+            inheritableParams[key] = fromEffect.value as string;
+          } else if (isQueryParam<unknown>(fromEffect)) {
+            inheritableParams[key] = params[key];
+          }
+        }
+      }
+    }
+
+    for (const chainedEffect of effect.chainedEffects) {
+      executeEffectWithInheritedParams($, {
+        ...chainedEffect,
+        sourceCard: effect.sourceCard,
+        sourceInstance: effect.sourceInstance,
+      }, params, inheritableParams);
+    }
   }
 };
 
@@ -260,7 +282,7 @@ export const shouldCancelEffect = (
       }
 
       const fromEffect = effectAsMap[key];
-      if (isQueryParam(fromEffect)) {
+      if (isQueryParam<unknown>(fromEffect)) {
         if (getPossibleQueryTargets($, fromEffect).length === 0) {
           return true;
         }
@@ -283,9 +305,21 @@ const resolveInstanceParam = <Key extends string> (
   $: GameEngine,
   effect: Record<Key, InstanceParam>,
   params: Record<Key, InstanceID | null>,
+  inherited: Record<string, string>,
   key: Key,
 ): InstanceState | null => {
   const fromEffect = effect[key];
+
+  if (isInheritedParam(fromEffect)) {
+    const raw = inherited[fromEffect.inherit.field];
+    switch (fromEffect.inherit.mode) {
+    case "DIRECT":
+      return $.getInstance(raw);
+    default:
+      throw new Error("unsupported inherit mode for instance param");
+    }
+  }
+
   if (isValueParam(fromEffect)) {
     return $.getInstance(fromEffect.value);
   }
@@ -304,9 +338,26 @@ const resolveInstanceParam = <Key extends string> (
 const resolvePatrolSlotParam = <Key extends string> (
   effect: Record<Key, PatrolSlotParam>,
   params: Record<Key, string | null>,
+  inherited: Record<string, string>,
   key: Key,
 ): PatrolSlot | null => {
   const fromEffect = effect[key];
+
+  if (isInheritedParam(fromEffect)) {
+    const raw = inherited[fromEffect.inherit.field];
+    switch (fromEffect.inherit.mode) {
+    case "DIRECT": {
+      const slot = raw as PatrolSlot;
+      if (PATROL_SLOTS.includes(slot)) {
+        return slot;
+      }
+      return null;
+    }
+    default:
+      throw new Error("unsupported inherit mode for patrol slot param");
+    }
+  }
+
   if (isValueParam(fromEffect)) {
     return fromEffect.value;
   }
@@ -325,9 +376,23 @@ const resolvePlayerParam = <Key extends string> (
   $: GameEngine,
   effect: Record<Key, PlayerParam>,
   params: Record<Key, PlayerID | null>,
+  inherited: Record<string, string>,
   key: Key,
 ): PlayerState | null => {
   const fromEffect = effect[key];
+
+  if (isInheritedParam(fromEffect)) {
+    const raw = inherited[fromEffect.inherit.field];
+    switch (fromEffect.inherit.mode) {
+    case "DIRECT":
+      return $.getPlayer(raw);
+    case "GET_CONTROLLER":
+      return $.getPlayer($.getInstance(raw)?.controller ?? null);
+    default:
+      throw new Error("unsupported inherit mode for player param");
+    }
+  }
+
   if (isValueParam(fromEffect)) {
     return $.getPlayer(fromEffect.value);
   }
@@ -343,33 +408,50 @@ const getPossibleQueryTargets = (
   $: GameEngine,
   param: EffectParam,
 ): Array<unknown> => {
-  if (!isQueryParam(param)) {
-    throw new Error("panic: this isn't a query param");
-  }
-
   switch (param.type) {
   case "INSTANCE": {
+    if (!isQueryParam(param)) {
+      throw new Error("panic: this isn't a query param");
+    }
     return Array.from(
       $.queryInstances(param.query),
     ).map(I => I.id);
   }
   case "PATROL_SLOT":
-    return PATROL_SLOTS;
+    if (!isQueryParam(param)) {
+      throw new Error("panic: this isn't a query param");
+    }
+    return param.query;
   case "PLAYER":
-    throw new Error("player queries are not yet supported");
+    if (!isQueryParam(param)) {
+      throw new Error("panic: this isn't a query param");
+    }
+    return param.query;
   default:
     throw new Error("unrecognized queryable effect param type");
   }
 };
 
+const isInheritedParam = (
+  param: EffectParamInherited
+    | EffectParamQuery<unknown>
+    | EffectParamValue<unknown>,
+): param is EffectParamInherited => {
+  return "inherit" in param;
+};
+
 const isQueryParam = <QueryT> (
-  param: EffectParamQuery<QueryT> | EffectParamValue<unknown>,
+  param: EffectParamQuery<QueryT>
+    | EffectParamValue<unknown>
+    | EffectParamInherited,
 ): param is EffectParamQuery<QueryT> => {
   return "query" in param;
 };
 
 const isValueParam = <ValueT> (
-  param: EffectParamValue<ValueT> | EffectParamQuery<unknown>,
+  param: EffectParamValue<ValueT>
+  | EffectParamQuery<unknown>
+  | EffectParamInherited,
 ): param is EffectParamValue<ValueT> => {
   return "value" in param;
 };

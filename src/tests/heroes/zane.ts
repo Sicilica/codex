@@ -64,20 +64,19 @@ describe("heroes", () => {
 
     describe("max band", () => {
       let patroller: InstanceState;
-      let effectID: string;
 
       beforeEach(() => {
         patroller =
           createInstance($, oppP, $.data.lookupCard("Bloodrage Ogre"));
         oppP.patrol.SQUAD_LEADER = patroller.id;
-
-        giveLevels($, zane, 5);
-
-        expect($.state.unresolvedEffects.length).to.equal(1);
-        effectID = $.state.unresolvedEffects[0].id;
       });
 
       it("moves a patroller to an empty space", () => {
+        giveLevels($, zane, 5);
+        debugValidateEffects($);
+        expect($.state.unresolvedEffects.length).to.equal(1);
+        const effectID = $.state.unresolvedEffects[0].id;
+
         expect(oppP.patrol.SQUAD_LEADER).to.equal(patroller.id);
 
         debugAction($, {
@@ -94,6 +93,11 @@ describe("heroes", () => {
       });
 
       it("deals 1 damage", () => {
+        giveLevels($, zane, 5);
+        debugValidateEffects($);
+        expect($.state.unresolvedEffects.length).to.equal(1);
+        const effectID = $.state.unresolvedEffects[0].id;
+
         expect(patroller.damage).to.equal(0);
 
         debugAction($, {
@@ -109,6 +113,11 @@ describe("heroes", () => {
       });
 
       it("can't leave the patroller in place", () => {
+        giveLevels($, zane, 5);
+        debugValidateEffects($);
+        expect($.state.unresolvedEffects.length).to.equal(1);
+        const effectID = $.state.unresolvedEffects[0].id;
+
         expect(() => debugAction($, {
           type: "RESOLVE_EFFECT",
           effect: effectID,
@@ -116,24 +125,34 @@ describe("heroes", () => {
             target: patroller.id,
             slot: "SQUAD_LEADER",
           },
-        })).to.throw("must shove target to empty slot");
+        })).to.throw("invalid params for effect: invalid param [slot]");
       });
 
       it("can't move a patroller into an occupied slot", () => {
         oppP.patrol.ELITE =
           createInstance($, oppP, $.data.lookupCard("Nautical Dog")).id;
 
+        giveLevels($, zane, 5);
+        debugValidateEffects($);
+        expect($.state.unresolvedEffects.length).to.equal(1);
+        const effectID = $.state.unresolvedEffects[0].id;
+
         expect(() => debugAction($, {
           type: "RESOLVE_EFFECT",
           effect: effectID,
           params: {
             target: patroller.id,
-            slot: "SQUAD_LEADER",
+            slot: "ELITE",
           },
-        })).to.throw("must shove target to empty slot");
+        })).to.throw("invalid params for effect: invalid param [slot]");
       });
 
       it("triggers Zane's midband if it kills the target", () => {
+        giveLevels($, zane, 5);
+        debugValidateEffects($);
+        expect($.state.unresolvedEffects.length).to.equal(1);
+        const effectID = $.state.unresolvedEffects[0].id;
+
         patroller.damage = 1;
 
         expect(P.gold).to.equal(4);
@@ -156,6 +175,11 @@ describe("heroes", () => {
         oppP.patrol.SQUAD_LEADER = null;
         oppP.patrol.LOOKOUT = patroller.id;
 
+        giveLevels($, zane, 5);
+        debugValidateEffects($);
+        expect($.state.unresolvedEffects.length).to.equal(1);
+        const effectID = $.state.unresolvedEffects[0].id;
+
         expect(P.gold).to.equal(4);
 
         debugAction($, {
@@ -173,8 +197,8 @@ describe("heroes", () => {
       it("can't be used if there are no patrollers", () => {
         oppP.patrol.SQUAD_LEADER = null;
 
+        giveLevels($, zane, 5);
         debugValidateEffects($);
-
         expect($.state.unresolvedEffects.length).to.equal(0);
       });
 
@@ -191,6 +215,11 @@ describe("heroes", () => {
 
         expect(patroller.damage).to.equal(0);
         expect(oppP.patrol.SQUAD_LEADER).to.equal(patroller.id);
+
+        giveLevels($, zane, 5);
+        debugValidateEffects($);
+        expect($.state.unresolvedEffects.length).to.equal(1);
+        const effectID = $.state.unresolvedEffects[0].id;
 
         debugAction($, {
           type: "RESOLVE_EFFECT",
@@ -211,8 +240,8 @@ describe("heroes", () => {
         oppP.patrol.LOOKOUT = patroller.id;
         P.gold = 0;
 
+        giveLevels($, zane, 5);
         debugValidateEffects($);
-
         expect($.state.unresolvedEffects.length).to.equal(0);
       });
     });

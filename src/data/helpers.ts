@@ -1,9 +1,17 @@
 import {
   AbilityFn,
+  ActivatedAbility,
+  ActivatedAbilityCost,
+  ActivatedAbilityFn,
+  CardID,
   ConstantParam,
+  EffectParamInherited,
   EffectParamQuery,
   EffectParamValue,
   InstanceCard,
+  InstanceID,
+  InstanceState,
+  ResolvableEffect,
   TriggerEvent,
   TriggeredAbility,
   TriggeredAbilityFn,
@@ -14,6 +22,18 @@ export const constantParam = <T> (
 ): ConstantParam<T> => ({
     type: "CONSTANT",
     value,
+  });
+
+export const inheritParam = <TypeT> (
+  type: TypeT,
+  field: EffectParamInherited["inherit"]["field"],
+  mode: EffectParamInherited["inherit"]["mode"] = "DIRECT",
+): { type: TypeT } & EffectParamInherited => ({
+    type,
+    inherit: {
+      field,
+      mode,
+    },
   });
 
 export const queryParam = <TypeT, QueryT> (
@@ -65,6 +85,38 @@ export const getProperties = (
 
   return properties;
 };
+
+export const active = (
+  cid: CardID,
+  index: number,
+  cost: Array<ActivatedAbilityCost>,
+  effect: ActivatedAbilityFn,
+): ActivatedAbility => ({
+  id: `${cid} #${index}`,
+  cost,
+  effect,
+});
+
+export const constantModifiers = (
+  modifiers: (ResolvableEffect & { type: "MODIFY" })["modifiers"]["value"],
+): (
+  ResolvableEffect & { type: "MODIFY" }
+)["modifiers"] =>
+  constantParam(modifiers);
+
+export const effectBase = <TypeT extends ResolvableEffect["type"]>(
+  cid: CardID,
+  I: InstanceState | null,
+  type: TypeT,
+): {
+  type: TypeT,
+  sourceCard: CardID,
+  sourceInstance: InstanceID | null,
+} => ({
+    type,
+    sourceCard: cid,
+    sourceInstance: I?.id ?? null,
+  });
 
 export const trigger = <TypeT extends TriggerEvent["type"]>(
   type: TypeT,

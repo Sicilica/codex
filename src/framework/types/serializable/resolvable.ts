@@ -7,14 +7,19 @@ import { InstanceQuery } from "./query";
 
 export type ResolvableEffectID = string;
 
-export type ResolvableEffect = {
+export type ResolvableEffect = ResolvableEffectWithoutSource & {
   sourceCard: CardID | null;
   sourceInstance: InstanceID | null;
+};
+
+export type ResolvableEffectWithoutSource = {
+  chainedEffects?: Array<ResolvableEffectWithoutSource>;
 } & ({
   type:
     | "DISCARD"
     | "DRAW"
     | "GIVE_GOLD"
+    | "STEAL_GOLD"
     ;
   player: PlayerParam;
   amount: ConstantParam<number>;
@@ -36,7 +41,6 @@ export type ResolvableEffect = {
   type:
     | "DAMAGE"
     | "GIVE_LEVELS"
-    | "STEAL_GOLD"
     ;
   target: InstanceParam;
   amount: ConstantParam<number>;
@@ -47,12 +51,12 @@ export type ResolvableEffect = {
     expiration: Exclude<ModifierGrant["expiration"], "CONTINUOUS">,
   }>>;
 } | {
-  type: "SHOVE";
+  type: "MOVE_TO_SLOT";
   target: InstanceParam;
   slot: PatrolSlotParam;
 } | {
   type: "CUSTOM";
-  sourceInstance: InstanceID;
+  target: InstanceParam;
   trigger: ConstantParam<CustomTriggerID>;
   params: Record<string, EffectParam>;
 });
@@ -63,6 +67,16 @@ export type EffectParam =
   | PatrolSlotParam
   | PlayerParam
   ;
+
+export interface EffectParamInherited {
+  inherit: {
+    field: string;
+    mode:
+      | "DIRECT"
+      | "GET_CONTROLLER"
+      ;
+  };
+}
 
 export interface EffectParamQuery<T> {
   query: T;
@@ -79,7 +93,7 @@ export interface EffectParamValue<T> {
 type CommonEffectParam<TypeT, ValueT, QueryT> = {
   type: TypeT;
 } & (
-  EffectParamValue<ValueT> | EffectParamQuery<QueryT>
+  EffectParamValue<ValueT> | EffectParamQuery<QueryT> | EffectParamInherited
 );
 
 export interface ConstantParam<T> extends EffectParamValue<T> {
@@ -90,7 +104,7 @@ export type InstanceParam =
   CommonEffectParam<"INSTANCE", InstanceID, InstanceQuery>;
 
 export type PatrolSlotParam =
-  CommonEffectParam<"PATROL_SLOT", PatrolSlot, unknown>;
+  CommonEffectParam<"PATROL_SLOT", PatrolSlot, Array<PatrolSlot>>;
 
 export type PlayerParam =
-  CommonEffectParam<"PLAYER", PlayerID, unknown>;
+  CommonEffectParam<"PLAYER", PlayerID, Array<PlayerID>>;
