@@ -226,6 +226,15 @@ const executeEffectWithInheritedParams = (
     }
     break;
   }
+  case "SUMMON_TOKEN": {
+    const targetP = resolvePlayerParam($, effect, params, inherited, "player");
+    const card = $.data.lookupCard(effect.card.value);
+
+    if (targetP != null && card.type === "UNIT" && card.token) {
+      $.addInstance(targetP, card);
+    }
+    break;
+  }
   case "STEAL_GOLD": {
     const targetP = resolvePlayerParam($, effect, params, inherited, "player");
     const activeP = $.getPlayer($.state.activePlayer);
