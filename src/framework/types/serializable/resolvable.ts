@@ -24,6 +24,11 @@ export type ResolvableEffectWithoutSource = {
   player: PlayerParam;
   amount: ConstantParam<number>;
 } | {
+  type: "SUMMON_TOKEN";
+  player: PlayerParam;
+  card: ConstantParam<CardID>;
+  amount: ConstantParam<number>;
+} | {
   type: "DISCARD_SELECTED";
   player: PlayerParam;
   card: ConstantParam<CardID>;

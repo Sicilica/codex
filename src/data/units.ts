@@ -194,12 +194,12 @@ export const getUnitProperties = getProperties(id => {
               target: valueParam("INSTANCE", I.id),
               state: constantParam("EXHAUSTED"),
             },
-            // WIP
-            // Needs support for tokens and summoning
-            // {
-            //   ...effectBase(id, I, "ARRIVE"),
-
-            // }
+            {
+              ...effectBase(id, I, "SUMMON_TOKEN"),
+              player: valueParam("PLAYER", I.controller),
+              card: constantParam("Wisp"),
+              amount: constantParam(1),
+            },
           ];
         }),
       ],

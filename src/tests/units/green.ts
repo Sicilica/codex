@@ -89,8 +89,14 @@ describe("units", () => {
         expect(I.readyState).to.equal("EXHAUSTED");
       });
 
-      it.skip("summons a wisp when it arrives", () => {
-        expect(true).to.equal(false);
+      it("summons a wisp when it arrives", () => {
+        const wisp = $.findInstance({
+          card: "Wisp",
+          player: I.controller,
+        });
+
+        // eslint-disable-next-line no-unused-expressions
+        expect(wisp).to.not.be.null;
       });
     });
 
