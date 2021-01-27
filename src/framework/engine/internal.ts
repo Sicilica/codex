@@ -44,7 +44,7 @@ export function *queryInstances(
       }
 
       if (q.patrolling != null) {
-        const patrolling = isPatrolling($, I);
+        const patrolling = isPatrolling($.state, I);
         if (patrolling !== q.patrolling) {
           return false;
         }

@@ -37,6 +37,25 @@ export const getUpgradeProperties = getProperties(id => {
         }),
       ],
     };
+  case "Rich Earth":
+    return {
+      continuousModifiers: [
+        {
+          query: (_, I) => {
+            return {
+              card: "Base",
+              player: I.controller,
+            };
+          },
+          effect: () => {
+            return {
+              type: "TRAIT",
+              trait: "FREE_WORKERS",
+            };
+          },
+        },
+      ],
+    };
   default:
     if (REQUIRE_ALL_CARD_PROPERTIES) {
       throw new Error(`Failed to find properties for upgrade "${id}"`);

@@ -11,6 +11,7 @@ import {
 } from "../framework/types";
 
 import rawData from "./data.json";
+import tokenData from "./tokenData.json";
 
 import { getBuildingProperties } from "./buildings";
 import { CORE_CARDS } from "./core";
@@ -18,6 +19,7 @@ import { getHeroBandProperties } from "./hero";
 import { getSpellBoostCost, getSpellDetails } from "./spells";
 import { getUnitBoostCost, getUnitProperties } from "./units";
 import { getUpgradeProperties } from "./upgrades";
+import { getTokenProperties } from "./tokens";
 
 export class CachedDataSource implements DataSource {
 
@@ -55,6 +57,7 @@ export class CachedDataSource implements DataSource {
 
 export const loadCards = (): Array<Card> =>
   (Array.from(rawData) as Array<RawCard>)
+    .concat(Array.from(tokenData) as unknown as Array<RawCard>)
     .map(loadCard)
     .filter(card => card != null)
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -67,10 +70,10 @@ type RawCard = {
   cost: number,
   cardText: string,
   cardRulings: Array<string>,
+  spec: Spec | null,
 } & ({
   type: "BUILDING",
   color: Color,
-  spec: Spec,
   tech: TechLevel,
   health: number,
   tags: Array<string>,
@@ -83,15 +86,20 @@ type RawCard = {
 } | {
   type: "SPELL",
   color: Color,
-  spec: Spec,
   tags: Array<string>,
   ultimate: boolean,
   ongoing: boolean,
 } | {
   type: "UNIT",
   color: Color,
-  spec: Spec,
   tech: TechLevel,
+  attack: number,
+  health: number,
+  tags: Array<string>,
+  legendary: boolean,
+} | {
+  type: "TOKEN",
+  color: Color,
   attack: number,
   health: number,
   tags: Array<string>,
@@ -99,7 +107,6 @@ type RawCard = {
 } | {
   type: "UPGRADE",
   color: Color,
-  spec: Spec,
   tech: TechLevel,
   legendary: boolean,
   tags: Array<string>,
@@ -137,6 +144,7 @@ const loadCard = (
     return {
       ...commonFields,
       type: "HERO",
+      spec: rawCard.spec,
       bands: [
         loadBand(rawCard, 0),
         loadBand(rawCard, 1),
@@ -162,6 +170,16 @@ const loadCard = (
       tags: rawCard.tags,
       token: false,
       ...getUnitProperties(commonFields.id, rawCard.health, rawCard.attack),
+    };
+  case "TOKEN":
+    return {
+      ...commonFields,
+      type: "UNIT",
+      boostCost: 0,
+      tech: 0,
+      tags: rawCard.tags,
+      token: true,
+      ...getTokenProperties(commonFields.id, rawCard.health, rawCard.attack),
     };
   case "UPGRADE":
     return {

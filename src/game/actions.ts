@@ -29,6 +29,7 @@ import {
   validateEffectParams,
 } from "./effects";
 import {
+  checkCanAttack,
   checkCanExhaust,
   checkHasControl,
   checkReady,
@@ -119,6 +120,19 @@ const activateAbility = (
     case "GOLD":
       requireGold(P, cost.amount);
       break;
+    case "PLUS_MINUS_RUNES":
+      // +1/+1 runes
+      if (cost.amount > 0) {
+        if (I.plusMinusRunes < cost.amount) {
+          throw new Error("insufficient runes");
+        }
+      // -1/-1 runes
+      } else if (cost.amount < 0) {
+        if (I.plusMinusRunes > cost.amount) {
+          throw new Error("insufficient runes");
+        }
+      }
+      break;
     case "SACRIFICE_THIS":
       if (hasTrait($, I, "INDESTRUCTIBLE")) {
         throw new Error("INDESTRUCTIBLE instances cannot be sacrificed");
@@ -142,6 +156,9 @@ const activateAbility = (
       break;
     case "GOLD":
       reduceGold(P, cost.amount);
+      break;
+    case "PLUS_MINUS_RUNES":
+      I.plusMinusRunes -= cost.amount;
       break;
     case "SACRIFICE_THIS":
       $.queueEffect({
@@ -179,7 +196,7 @@ const attack = (
 
   checkHasControl(P, attacker);
   checkCanExhaust($, attacker);
-  checkUnitOrHero($, attacker);
+  checkCanAttack($, attacker);
 
   // make sure the attack is valid (and maybe consume detector)
 
@@ -204,14 +221,20 @@ const buyWorker = (
 
   const P = requireActivePlayer($);
 
-  requireGold(P, 1);
+  let cost = 1;
+
+  if (hasTrait($, $.getInstance(P.base), "FREE_WORKERS")) {
+    cost = 0;
+  }
+
+  requireGold(P, cost);
   requireCardInHand(P, cid);
 
   if (P.hasBuiltWorkerThisTurn) {
     throw new Error("only one worker may be built per turn");
   }
 
-  reduceGold(P, 1);
+  reduceGold(P, cost);
   removeCardFromHand(P, cid);
   P.workers++;
   P.hasBuiltWorkerThisTurn = true;

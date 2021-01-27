@@ -1,3 +1,4 @@
+import { getAttribute } from "../framework/accessors";
 import { MAX_HAND_SIZE, PATROL_SLOTS } from "../framework/constants";
 import { GameEngine } from "../framework/engine";
 import {
@@ -15,6 +16,8 @@ export const gotoReadyPhase = (
 
   const P = requireActivePlayer($);
 
+  let healing = 0;
+
   for (const I of $.queryInstances({
     player: P.id,
   })) {
@@ -25,6 +28,17 @@ export const gotoReadyPhase = (
     }
     I.arrivalFatigue = false;
     I.levelAtTurnStart = I.level;
+
+    healing += getAttribute($, I, "HEALING");
+  }
+
+  if (healing > 0) {
+    for (const I of $.queryInstances({
+      player: P.id,
+      type: [ "UNIT", "HERO" ],
+    })) {
+      I.damage = Math.max(I.damage - healing, 0);
+    }
   }
 
   for (const slot of PATROL_SLOTS) {
@@ -104,6 +118,13 @@ export const gotoEndOfTurnPhase = (
   $: GameEngine,
 ): void => {
   $.state.turnPhase = "END_OF_TURN";
+
+  const P = requireActivePlayer($);
+
+  for (const I of $.queryInstances({ player: P.id })) {
+    I.modifiers = I.modifiers.filter(modifier =>
+      modifier.expiration !== "END_OF_TURN");
+  }
 
   $.fireGlobalTrigger({
     type: "END_OF_TURN",

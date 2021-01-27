@@ -140,7 +140,7 @@ export const sideline = (
     return;
   }
 
-  const slot = getPatrolSlot($, I);
+  const slot = getPatrolSlot($.state, I);
   if (slot == null) {
     return;
   }

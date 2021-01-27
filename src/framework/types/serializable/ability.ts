@@ -12,6 +12,7 @@ export type ActivatedAbilityCost = {
   type:
     | "GOLD"
     | "TIME_RUNES"
+    | "PLUS_MINUS_RUNES"
     ;
   amount: number;
 } | {

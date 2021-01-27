@@ -1,6 +1,6 @@
 import { CustomTriggerID } from "./ability";
 import { CardID } from "./card";
-import { InstanceID } from "./instance";
+import { InstanceID, ReadyState } from "./instance";
 import { ModifierGrant } from "./modifier";
 import { PatrolSlot, PlayerID } from "./player";
 import { InstanceQuery } from "./query";
@@ -24,6 +24,11 @@ export type ResolvableEffectWithoutSource = {
   player: PlayerParam;
   amount: ConstantParam<number>;
 } | {
+  type: "SUMMON_TOKEN";
+  player: PlayerParam;
+  card: ConstantParam<CardID>;
+  amount: ConstantParam<number>;
+} | {
   type: "DISCARD_SELECTED";
   player: PlayerParam;
   card: ConstantParam<CardID>;
@@ -41,9 +46,14 @@ export type ResolvableEffectWithoutSource = {
   type:
     | "DAMAGE"
     | "GIVE_LEVELS"
+    | "GIVE_PLUS_MINUS_RUNES"
     ;
   target: InstanceParam;
   amount: ConstantParam<number>;
+} | {
+  type: "READY_STATE";
+  target: InstanceParam;
+  state: ConstantParam<ReadyState>;
 } | {
   type: "MODIFY";
   target: InstanceParam;

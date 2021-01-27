@@ -26,5 +26,12 @@ const dealCombatDamage = (
   from: InstanceState | null,
   extraDamage: number,
 ): void => {
-  dealDamage($, to, getAttribute($, from, "ATTACK") + extraDamage, from);
+  const runeModifier = from?.plusMinusRunes ?? 0;
+
+  const damage = Math.max(
+    getAttribute($, from, "ATTACK") + runeModifier + extraDamage,
+    0
+  );
+
+  dealDamage($, to, damage, from);
 };
