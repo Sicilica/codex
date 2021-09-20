@@ -231,7 +231,11 @@ function *getStartingDeck(
   color: Color,
 ): Iterable<Card> {
   for (const card of $.data.allCards()) {
-    if (card.spec == null && card.color === color) {
+    if (
+      card.spec == null &&
+      card.color === color &&
+      (card.type !== "UNIT" || !card.token)
+    ) {
       yield card;
     }
   }

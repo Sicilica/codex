@@ -115,6 +115,17 @@ export const checkReady = (
   }
 };
 
+export const checkCanAttack = (
+  $: GameEngine,
+  I: InstanceState,
+): void => {
+  checkUnitOrHero($, I);
+
+  if (hasTrait($, I, "NO_ATTACK")) {
+    throw new Error("instance is not allowed to attack");
+  }
+};
+
 export const checkUnitOrHero = (
   $: GameEngine,
   I: InstanceState,

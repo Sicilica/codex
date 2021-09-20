@@ -64,6 +64,26 @@ export const getSpellDetails = (
         },
       ],
     });
+  case "Forest's Favor":
+    return instantSpell({
+      effect: (_, P) => [
+        {
+          ...effectBase(id, null, "GIVE_PLUS_MINUS_RUNES"),
+          target: queryParam(
+            "INSTANCE",
+            {
+              hasPlusRune: false,
+              player: P.id,
+              type: [
+                "HERO",
+                "UNIT",
+              ],
+            },
+          ),
+          amount: constantParam(1),
+        },
+      ],
+    });
   case "Pillage":
     return instantSpell({
       effect: ($, P) => {
@@ -89,6 +109,37 @@ export const getSpellDetails = (
           },
         ];
       },
+    });
+  case "Rampant Growth":
+    return instantSpell({
+      effect: () => [
+        {
+          ...effectBase(id, null, "MODIFY"),
+          target: queryParam("INSTANCE", {
+            type: [ "HERO", "UNIT" ],
+          }),
+          modifiers: constantModifiers([
+            {
+              sourceCard: id,
+              effect: {
+                type: "ATTRIBUTE",
+                attribute: "ATTACK",
+                amount: 2,
+              },
+              expiration: "END_OF_TURN",
+            },
+            {
+              sourceCard: id,
+              effect: {
+                type: "ATTRIBUTE",
+                attribute: "ARMOR",
+                amount: 2,
+              },
+              expiration: "END_OF_TURN",
+            },
+          ]),
+        },
+      ],
     });
   case "Scorch":
     return instantSpell({
@@ -131,9 +182,10 @@ export const getSpellDetails = (
     return ongoingSpell({
       continuousModifiers: [
         {
-          condition: null,
-          query: {
-            type: "UNIT",
+          query: () => {
+            return {
+              type: "UNIT",
+            };
           },
           effect: ($, I) => {
             const numUnits = Array.from($.queryInstances({

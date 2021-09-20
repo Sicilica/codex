@@ -230,7 +230,7 @@ describe("heroes", () => {
           },
         });
 
-        expect(patroller.damage).to.equal(1);
+        expect(patroller.armorDamage).to.equal(1);
         expect(oppP.patrol.SQUAD_LEADER).to.equal(patroller.id);
       });
 

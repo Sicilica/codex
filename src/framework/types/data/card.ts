@@ -87,6 +87,12 @@ export interface UpgradeCard extends CardBase, InstanceCard, TechCard {
   type: "UPGRADE";
 }
 
+export interface ContinuousAbility {
+  condition?: ($: GameState, iid: InstanceID) => boolean;
+  query: (($: GameEngine, I: InstanceState) => InstanceQuery) | "SELF";
+  effect: ($: GameEngine, I: InstanceState) => ModifierEffect;
+}
+
 interface CardBase {
   id: string;
   color: Color;
@@ -101,11 +107,7 @@ export interface InstanceCard {
   attributes: Partial<Record<Attribute, number>>;
   triggeredAbilities: Array<TriggeredAbility>;
   activatedAbilities: Array<ActivatedAbility>;
-  continuousModifiers: Array<{
-    condition: (($: GameState, iid: InstanceID) => boolean) | null,
-    query: InstanceQuery | "SELF";
-    effect: ($: GameEngine, I: InstanceState) => ModifierEffect;
-  }>;
+  continuousModifiers: Array<ContinuousAbility>;
 }
 
 export interface SpellCard {

@@ -5,6 +5,7 @@ import {
   destroy,
   giveGold,
   giveLevels,
+  modifyPlusMinusRunes,
   reduceGold,
   removeCardFromHand,
   returnInstanceToHand,
@@ -188,6 +189,18 @@ const executeEffectWithInheritedParams = (
     }
     break;
   }
+  case "GIVE_PLUS_MINUS_RUNES": {
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
+    if (I != null) {
+      modifyPlusMinusRunes(
+        $,
+        I,
+        effect.amount.value,
+        $.getInstance(effect.sourceInstance)
+      );
+    }
+    break;
+  }
   case "MODIFY": {
     const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
@@ -205,10 +218,26 @@ const executeEffectWithInheritedParams = (
     }
     break;
   }
+  case "READY_STATE": {
+    const I = resolveInstanceParam($, effect, params, inherited, "target");
+    if (I != null) {
+      I.readyState = effect.state.value;
+    }
+    break;
+  }
   case "SIDELINE": {
     const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
       sideline($, I);
+    }
+    break;
+  }
+  case "SUMMON_TOKEN": {
+    const targetP = resolvePlayerParam($, effect, params, inherited, "player");
+    const card = $.data.lookupCard(effect.card.value);
+
+    if (targetP != null && card.type === "UNIT" && card.token) {
+      $.addInstance(targetP, card);
     }
     break;
   }

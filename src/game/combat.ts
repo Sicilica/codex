@@ -26,5 +26,10 @@ const dealCombatDamage = (
   from: InstanceState | null,
   extraDamage: number,
 ): void => {
-  dealDamage($, to, getAttribute($, from, "ATTACK") + extraDamage, from);
+  const damage = Math.max(
+    getAttribute($, from, "ATTACK") + extraDamage,
+    0
+  );
+
+  dealDamage($, to, damage, from);
 };

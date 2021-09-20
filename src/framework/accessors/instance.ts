@@ -5,6 +5,7 @@ import {
   ActivatedAbilityID,
   Attribute,
   CardType,
+  GameState,
   HeroCard,
   HeroCardBand,
   InstanceState,
@@ -131,13 +132,13 @@ export const getType = (
 };
 
 export const getPatrolSlot = (
-  $: GameEngine,
+  $: GameState,
   I: InstanceState | null,
 ): PatrolSlot | null => {
   if (I == null) {
     return null;
   }
-  const P = $.getPlayer(I.controller);
+  const P = $.players[I.controller];
   if (P == null) {
     return null;
   }
@@ -177,7 +178,7 @@ export const hasTrait = (
 };
 
 export const isPatrolling = (
-  $: GameEngine,
+  $: GameState,
   I: InstanceState | null,
 ): boolean => {
   return getPatrolSlot($, I) != null;
@@ -214,6 +215,12 @@ function *getAttributeValues(
     return;
   }
 
+  const P = $.getPlayer(I.controller);
+
+  if (P == null) {
+    return;
+  }
+
   const C = $.data.lookupCard(I.card);
   if (C.type === "HERO") {
     for (const band of getBands(C, I.level)) {
@@ -227,6 +234,24 @@ function *getAttributeValues(
     if (M.effect.type === "ATTRIBUTE" && M.effect.attribute === q) {
       yield M.effect.amount;
     }
+  }
+
+  if ($.state.activePlayer !== P.id) {
+    if (C.type === "HERO" || C.type === "UNIT") {
+      if (q === "ATTACK" && P.patrol.ELITE === I.id) {
+        yield 1;
+      } else if (q === "ARMOR" && P.patrol.SQUAD_LEADER === I.id) {
+        yield 1;
+      }
+    }
+  }
+
+  if (
+    (q === "ATTACK" || q === "HEALTH") &&
+    I.plusMinusRunes !== 0 &&
+    (C.type === "HERO" || C.type === "UNIT")
+  ) {
+    yield I.plusMinusRunes;
   }
 }
 

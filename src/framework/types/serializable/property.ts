@@ -49,6 +49,7 @@ export type Trait =
   | "INVISIBLE"
   | "LEGENDARY"
   | "LONG_RANGE"
+  | "NO_ATTACK"
   | "NO_PATROL"
   | "OVERPOWER"
   | "READINESS"
@@ -58,4 +59,7 @@ export type Trait =
   | "UNATTACKABLE"
   | "UNSTOPPABLE"
   | "UNTARGETABLE"
+
+  // Intended for bases only
+  | "FREE_WORKERS"
   ;

@@ -41,6 +41,26 @@ export const dealDamage = (
   const absorbedAmount = Math.min(amount, currentArmor);
   I.armorDamage += absorbedAmount;
   I.damage += amount - absorbedAmount;
+
+  checkIfDead($, I, source);
+};
+
+export const modifyPlusMinusRunes = (
+  $: GameEngine,
+  I: InstanceState,
+  amount: number,
+  source: InstanceState | null,
+): void => {
+  I.plusMinusRunes += amount;
+
+  checkIfDead($, I, source);
+};
+
+const checkIfDead = (
+  $: GameEngine,
+  I: InstanceState,
+  source: InstanceState | null,
+): void => {
   if (!I.dead && I.damage >= getAttribute($, I, "HEALTH")) {
     I.dead = true;
     $.queueEffect({
@@ -140,7 +160,7 @@ export const sideline = (
     return;
   }
 
-  const slot = getPatrolSlot($, I);
+  const slot = getPatrolSlot($.state, I);
   if (slot == null) {
     return;
   }
