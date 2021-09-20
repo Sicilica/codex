@@ -245,6 +245,14 @@ function *getAttributeValues(
       }
     }
   }
+
+  if (
+    (q === "ATTACK" || q === "HEALTH") &&
+    I.plusMinusRunes !== 0 &&
+    (C.type === "HERO" || C.type === "UNIT")
+  ) {
+    yield I.plusMinusRunes;
+  }
 }
 
 function *getBands(

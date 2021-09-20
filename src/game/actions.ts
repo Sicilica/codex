@@ -11,6 +11,7 @@ import {
   createInstance,
   exhaust,
   giveLevels,
+  modifyPlusMinusRunes,
   reduceGold,
   removeCardFromHand,
 } from "../framework/mutators";
@@ -158,7 +159,7 @@ const activateAbility = (
       reduceGold(P, cost.amount);
       break;
     case "PLUS_MINUS_RUNES":
-      I.plusMinusRunes -= cost.amount;
+      modifyPlusMinusRunes($, I, -cost.amount, I);
       break;
     case "SACRIFICE_THIS":
       $.queueEffect({

@@ -5,6 +5,7 @@ import {
   destroy,
   giveGold,
   giveLevels,
+  modifyPlusMinusRunes,
   reduceGold,
   removeCardFromHand,
   returnInstanceToHand,
@@ -191,7 +192,12 @@ const executeEffectWithInheritedParams = (
   case "GIVE_PLUS_MINUS_RUNES": {
     const I = resolveInstanceParam($, effect, params, inherited, "target");
     if (I != null) {
-      I.plusMinusRunes += effect.amount.value;
+      modifyPlusMinusRunes(
+        $,
+        I,
+        effect.amount.value,
+        $.getInstance(effect.sourceInstance)
+      );
     }
     break;
   }
