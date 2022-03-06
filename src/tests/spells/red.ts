@@ -55,6 +55,17 @@ describe("spells", () => {
         });
       };
 
+      it("deals damage to the target's base", () => {
+        playAndResolvePillage(oppP.id);
+        expect($.getInstance(oppP.base)?.damage).to.equal(1);
+
+        const EX_PIRATE_CARD = $.data.lookupCard("Bombaster");
+        createInstance($, P, EX_PIRATE_CARD);
+
+        playAndResolvePillage(oppP.id);
+        expect($.getInstance(oppP.base)?.damage).to.equal(3);
+      });
+
       it("can't steal more gold than the target has", () => {
         P.gold = 0;
         oppP.gold = 0;
@@ -88,6 +99,10 @@ describe("spells", () => {
         playAndResolvePillage(oppP.id);
         expect(P.gold).to.equal(2);
         expect(oppP.gold).to.equal(1);
+      });
+
+      it.skip("counts as a target effect", () => {
+        playAndResolvePillage(oppP.id);
       });
     });
   });

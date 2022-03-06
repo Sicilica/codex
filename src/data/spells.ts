@@ -98,7 +98,7 @@ export const getSpellDetails = (
             target: queryParam("INSTANCE", {
               card: BASE_CARD.id,
             }),
-            amount: constantParam(1),
+            amount: constantParam(hasPirate ? 2 : 1),
             chainedEffects: [
               {
                 type: "STEAL_GOLD",
