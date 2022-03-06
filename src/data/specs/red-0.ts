@@ -12,6 +12,34 @@ import {
 export const RedTechZero: {
   [key: string]: (id: string) => Partial<InstanceCard>
 } = {
+  Bloodburn: (id: string) => {
+    let aid = 1;
+    return {
+      activatedAbilities: [
+        active(id, aid++, [
+          { type: "EXHAUST_THIS" },
+          { type: "CUSTOM_RUNES", rune: "BLOOD", amount: 2 },
+        ], (_, I) => [
+          {
+            ...effectBase(id, I, "DAMAGE"),
+            target: queryParam("INSTANCE", {
+              type: [ "BUILDING", "UNIT" ],
+            }),
+            amount: constantParam(1),
+          },
+        ]),
+      ],
+      triggeredAbilities: [
+        trigger("INSTANCE_DIES", ($, I, e) => {
+          const targetCard = $.data.lookupCard(e.instance.card);
+          if (targetCard.type === "UNIT") {
+            I.customRunes.BLOOD = Math.min((I.customRunes.BLOOD ?? 0) + 1, 4);
+          }
+          return [];
+        }),
+      ],
+    };
+  },
   BloodrageOgre: (id: string) => {
     return {
       triggeredAbilities: [
