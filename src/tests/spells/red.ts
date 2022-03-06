@@ -1,9 +1,9 @@
 import { expect } from "chai";
 
-import { BASE_CARD } from "../../data/core";
+import { BASE_CARD, TECH_BUILDING_CARDS } from "../../data/core";
 import { GameEngine } from "../../framework/engine";
 import { createInstance } from "../../framework/mutators";
-import { PlayerID, PlayerState } from "../../framework/types";
+import { InstanceID, PlayerID, PlayerState } from "../../framework/types";
 import { requireActivePlayer } from "../../game/helpers";
 
 import {
@@ -103,6 +103,65 @@ describe("spells", () => {
 
       it.skip("counts as a target effect", () => {
         playAndResolvePillage(oppP.id);
+      });
+    });
+
+    describe("Scorch", () => {
+      beforeEach(() => {
+        const EX_RED_HERO = $.data.lookupCard("Captain Zane");
+        createInstance($, P, EX_RED_HERO);
+      });
+
+      const playAndResolveScorch = (
+        target: InstanceID,
+      ): void => {
+        debugPlayCard($, "Scorch");
+        expect($.state.unresolvedEffects.length).to.equal(1);
+        const eid = $.state.unresolvedEffects[0].id;
+
+        debugAction($, {
+          type: "RESOLVE_EFFECT",
+          effect: eid,
+          params: {
+            target,
+          },
+        });
+      };
+
+      it("can damage any patroller", () => {
+        const I = createInstance($, oppP, $.data.lookupCard("Tiger Cub"));
+        const I2 = createInstance($, oppP, $.data.lookupCard("Tiger Cub"));
+        oppP.patrol.SQUAD_LEADER = I.id;
+        oppP.patrol.ELITE = I2.id;
+
+        playAndResolveScorch(I.id);
+        playAndResolveScorch(I2.id);
+
+        expect(I.damage).to.equal(1);
+        expect(I2.damage).to.equal(2);
+      });
+
+      it("can damage any building", () => {
+        playAndResolveScorch(oppP.base);
+
+        expect($.getInstance(oppP.base)?.damage).to.equal(2);
+
+        const tech = createInstance($, oppP, TECH_BUILDING_CARDS[0]);
+        playAndResolveScorch(tech.id);
+
+        expect(tech.damage).to.equal(2);
+      });
+
+      it("cannot damage non-patrollers", () => {
+        const I = createInstance($, oppP, $.data.lookupCard("Tiger Cub"));
+
+        expect(
+          () => playAndResolveScorch(I.id)
+        ).to.throw("invalid params for effect: invalid param [target]");
+      });
+
+      it.skip("counts as a target effect", () => {
+        expect(true).to.equal(false);
       });
     });
   });
