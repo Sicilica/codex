@@ -37,7 +37,7 @@ describe("units", () => {
       });
 
       it("returns AFTER the draw/discard phase", () => {
-        I.arrivalFatigue = false;
+        I._arrivalFatigue = false;
 
         debugGotoNextTurn($, P2);
         expect(inPlay($, I)).to.equal(false);
@@ -51,7 +51,7 @@ describe("units", () => {
         debugGotoNextTurn($, P2);
         expect(inPlay($, I)).to.equal(true);
 
-        I.arrivalFatigue = false;
+        I._arrivalFatigue = false;
         I.owner = P2;
 
         debugGotoNextTurn($, P1);

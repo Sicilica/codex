@@ -47,7 +47,7 @@ export const RedTechZero: {
           if ($.state.activePlayer !== I.controller) {
             return [];
           }
-          if (I.arrivalFatigue) {
+          if (I._arrivalFatigue) {
             return [];
           }
           if (I.memory.attackedThisTurn === "true") {

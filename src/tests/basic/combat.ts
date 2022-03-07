@@ -29,7 +29,7 @@ describe("combat", () => {
       oppP = $.getPlayer(P2)!;
       I = createInstance($, P, $.data.lookupCard("Mad Man"));
       oppI = createInstance($, oppP, $.data.lookupCard("Tiger Cub"));
-      I.arrivalFatigue = false;
+      I._arrivalFatigue = false;
       debugAutoResolve($);
     });
 

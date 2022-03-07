@@ -34,7 +34,7 @@ describe("buildings", () => {
         ).to.throw("tech building is still being built");
 
         const tree = debugPlayUnit($, "Verdant Tree");
-        tree.arrivalFatigue = false;
+        tree._arrivalFatigue = false;
 
         debugAction($, {
           type: "ACTIVATE_ABILITY",
@@ -54,7 +54,7 @@ describe("buildings", () => {
           P.workers = 6;
 
           const tree = debugPlayUnit($, "Verdant Tree");
-          tree.arrivalFatigue = false;
+          tree._arrivalFatigue = false;
 
           expect(
             () => debugPlayCard($, "Gemscout Owl")

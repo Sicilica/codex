@@ -1,6 +1,7 @@
 import {
   getHeroLimit,
   getTech,
+  hasArrivalFatigue,
   hasTrait,
   isMaxLevel,
   isSpell,
@@ -102,7 +103,7 @@ export const checkCanExhaust = (
   I: InstanceState,
 ): void => {
   checkReady(I);
-  if (I.arrivalFatigue && !hasTrait($, I, "HASTE")) {
+  if (hasArrivalFatigue($, I)) {
     throw new Error("instance cannot attack on the turn it arrived");
   }
 };
@@ -216,7 +217,7 @@ export const requireUsableTechBuilding = (
   if (techBuilding == null) {
     throw new Error("missing tech building");
   }
-  if (techBuilding.arrivalFatigue) {
+  if (hasArrivalFatigue($, techBuilding)) {
     throw new Error("tech building is still being built");
   }
   if (techBuilding.readyState !== "READY") {

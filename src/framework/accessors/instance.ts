@@ -16,6 +16,17 @@ import {
   TriggeredAbility,
 } from "../types";
 
+export const hasArrivalFatigue = (
+  $: GameEngine,
+  I: InstanceState | null,
+): boolean => {
+  if (I == null) {
+    return false;
+  }
+
+  return I._arrivalFatigue && !hasTrait($, I, "HASTE");
+};
+
 export const canPatrol = (
   $: GameEngine,
   I: InstanceState | null,
@@ -57,7 +68,7 @@ export const canPerformAttack = (
     return false;
   }
 
-  if (I.arrivalFatigue && !hasTrait($, I, "HASTE")) {
+  if (hasArrivalFatigue($, I)) {
     return false;
   }
 

@@ -60,7 +60,7 @@ describe("units", () => {
       });
 
       it("grants one gold when exhausted", () => {
-        I.arrivalFatigue = false;
+        I._arrivalFatigue = false;
         const before = P.gold;
 
         debugAction(
@@ -105,7 +105,7 @@ describe("units", () => {
 
       beforeEach(() => {
         I = createInstance($, P, $.data.lookupCard("Spore Shambler"));
-        I.arrivalFatigue = false;
+        I._arrivalFatigue = false;
         debugAutoResolve($);
       });
 
@@ -237,7 +237,7 @@ describe("units", () => {
         oppP = $.getPlayer(P2)!;
         I = createInstance($, P, $.data.lookupCard("Young Treant"));
         oppI = createInstance($, oppP, $.data.lookupCard("Tiger Cub"));
-        I.arrivalFatigue = false;
+        I._arrivalFatigue = false;
         debugAutoResolve($);
       });
 

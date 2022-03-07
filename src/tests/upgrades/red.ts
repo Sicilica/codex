@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { hasArrivalFatigue } from "../../framework/accessors";
 
 import { GameEngine } from "../../framework/engine";
 import { createInstance, dealDamage } from "../../framework/mutators";
@@ -38,7 +39,7 @@ describe("upgrades", () => {
       describe("active ability", () => {
         it("can't be used on its first turn because it doesn't have " +
           "haste", () => {
-          expect(I.arrivalFatigue).to.equal(true);
+          expect(hasArrivalFatigue($, I)).to.equal(true);
 
           I.customRunes.BLOOD = 2;
 

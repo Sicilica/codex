@@ -107,9 +107,9 @@ describe("basic", () => {
         const patrolling =
           createInstance($, P, $.data.lookupCard("Nautical Dog"));
 
-        exhausted.arrivalFatigue = false;
-        disabled.arrivalFatigue = false;
-        patrolling.arrivalFatigue = false;
+        exhausted._arrivalFatigue = false;
+        disabled._arrivalFatigue = false;
+        patrolling._arrivalFatigue = false;
 
         exhausted.readyState = "EXHAUSTED";
         disabled.readyState = "DISABLED";
@@ -118,10 +118,10 @@ describe("basic", () => {
 
         techCards($, []);
 
-        expect(fatigued.arrivalFatigue).to.equal(false);
-        expect(exhausted.arrivalFatigue).to.equal(false);
-        expect(disabled.arrivalFatigue).to.equal(false);
-        expect(patrolling.arrivalFatigue).to.equal(false);
+        expect(fatigued._arrivalFatigue).to.equal(false);
+        expect(exhausted._arrivalFatigue).to.equal(false);
+        expect(disabled._arrivalFatigue).to.equal(false);
+        expect(patrolling._arrivalFatigue).to.equal(false);
 
         expect(fatigued.readyState).to.equal("READY");
         expect(exhausted.readyState).to.equal("READY");

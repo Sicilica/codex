@@ -26,7 +26,7 @@ export const gotoReadyPhase = (
     } else {
       I.readyState = "READY";
     }
-    I.arrivalFatigue = false;
+    I._arrivalFatigue = false;
     I.levelAtTurnStart = I.level;
 
     healing += getAttribute($, I, "HEALING");

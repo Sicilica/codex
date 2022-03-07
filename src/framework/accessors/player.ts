@@ -1,3 +1,4 @@
+import { hasArrivalFatigue } from ".";
 import { PATROL_SLOTS } from "../constants";
 import { GameEngine } from "../engine";
 import { PatrolSlot, PlayerState } from "../types";
@@ -65,6 +66,6 @@ const hasUsableTechBuilding = (
 ): boolean => {
   const techBuilding = $.getInstance(P.techBuildings[tech - 1]);
   return techBuilding != null
-    && !techBuilding.arrivalFatigue
+    && !hasArrivalFatigue($, techBuilding)
     && techBuilding.readyState === "READY";
 };
