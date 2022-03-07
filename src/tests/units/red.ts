@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { hasArrivalFatigue } from "../../framework/accessors";
 
 import { GameEngine } from "../../framework/engine";
 import { createInstance } from "../../framework/mutators";
@@ -8,7 +9,10 @@ import { requireActivePlayer } from "../../game/helpers";
 import {
   P1,
   P2,
+  debugAction,
+  debugAutoResolve,
   debugGotoNextTurn,
+  debugPlayCard,
   makeDefaultGame,
 } from "../testhelper";
 
@@ -23,10 +27,12 @@ describe("units", () => {
   describe("red", () => {
     let $: GameEngine;
     let P: PlayerState;
+    let oppP: PlayerState;
 
     beforeEach(() => {
       $ = makeDefaultGame();
       P = requireActivePlayer($);
+      oppP = $.state.players[P2];
     });
 
     describe("Bloodrage Ogre", () => {
@@ -60,6 +66,37 @@ describe("units", () => {
         debugGotoNextTurn($, P2);
         expect(inPlay($, I)).to.equal(false);
       });
+
+      it("doesn't return if it attacks that turn", () => {
+        I._arrivalFatigue = false;
+        const oppI = createInstance(
+          $,
+          oppP,
+          $.data.lookupCard("Young Treant")
+        );
+        debugAutoResolve($);
+
+        debugAction($, {
+          type: "ATTACK",
+          attacker: I.id,
+          defender: oppI.id,
+        });
+
+        debugGotoNextTurn($, P2);
+        expect(inPlay($, I)).to.equal(true);
+      });
+
+      it(
+        "doesn't return on its first turn if it has haste but doesn't attack",
+        () => {
+          debugPlayCard($, "Captain Zane");
+          debugPlayCard($, "Charge");
+          expect(hasArrivalFatigue($, I)).to.equal(false);
+
+          debugGotoNextTurn($, P2);
+          expect(inPlay($, I)).to.equal(true);
+        }
+      );
     });
   });
 });
