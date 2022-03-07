@@ -1,6 +1,7 @@
 import { expect } from "chai";
 
 import { BASE_CARD, TECH_BUILDING_CARDS } from "../../data/core";
+import { getAttribute, hasArrivalFatigue } from "../../framework/accessors";
 import { GameEngine } from "../../framework/engine";
 import { createInstance } from "../../framework/mutators";
 import { InstanceID, PlayerID, PlayerState } from "../../framework/types";
@@ -23,6 +24,77 @@ describe("spells", () => {
       $ = makeDefaultGame();
       P = requireActivePlayer($);
       oppP = $.state.players[P2];
+    });
+
+    describe("Charge", () => {
+      beforeEach(() => {
+        const EX_RED_HERO = $.data.lookupCard("Captain Zane");
+        createInstance($, P, EX_RED_HERO);
+      });
+
+      const playAndResolveCharge = (
+        target: InstanceID,
+      ): void => {
+        debugPlayCard($, "Charge");
+        expect($.state.unresolvedEffects.length).to.equal(1);
+        const eid = $.state.unresolvedEffects[0].id;
+
+        debugAction($, {
+          type: "RESOLVE_EFFECT",
+          effect: eid,
+          params: {
+            target,
+          },
+        });
+      };
+
+      it("gives +1 ATK and Haste", () => {
+        const I = createInstance($, P, $.data.lookupCard("Bloodrage Ogre"));
+        // Create a second one so spell cast doesn't auto-resolve without
+        // waiting for target
+        createInstance($, P, $.data.lookupCard("Bloodrage Ogre"));
+        expect(hasArrivalFatigue($, I)).to.equal(true);
+
+        playAndResolveCharge(I.id);
+        expect(hasArrivalFatigue($, I)).to.equal(false);
+        expect(getAttribute($, I, "ATTACK")).to.equal(4);
+      });
+
+      it("can only target units", () => {
+        createInstance($, P, $.data.lookupCard("Bloodrage Ogre"));
+        // Create a second one so spell cast doesn't auto-resolve without
+        // waiting for target
+        createInstance($, P, $.data.lookupCard("Bloodrage Ogre"));
+        const I = $.findInstance({
+          player: P.id,
+          card: "Captain Zane",
+        });
+
+        if (I == null) {
+          throw new Error("Could not find hero");
+        }
+
+        expect(
+          () => playAndResolveCharge(I.id)
+        ).to.throw("invalid params for effect: invalid param [target]");
+      });
+
+      it("cannot target enemy units", () => {
+        createInstance($, P, $.data.lookupCard("Bloodrage Ogre"));
+        // Create a second one so spell cast doesn't auto-resolve without
+        // waiting for target
+        createInstance($, P, $.data.lookupCard("Bloodrage Ogre"));
+
+        const I = createInstance($, oppP, $.data.lookupCard("Tiger Cub"));
+
+        expect(
+          () => playAndResolveCharge(I.id)
+        ).to.throw("invalid params for effect: invalid param [target]");
+      });
+
+      it.skip("counts as a target effect", () => {
+        expect(true).to.equal(false);
+      });
     });
 
     describe("Pillage", () => {
