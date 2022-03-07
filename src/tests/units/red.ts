@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { hasArrivalFatigue } from "../../framework/accessors";
+import { getAttribute, hasArrivalFatigue } from "../../framework/accessors";
 
 import { GameEngine } from "../../framework/engine";
 import { createInstance } from "../../framework/mutators";
@@ -97,6 +97,22 @@ describe("units", () => {
           expect(inPlay($, I)).to.equal(true);
         }
       );
+    });
+
+    describe("Nautical Dog", () => {
+      let I: InstanceState;
+
+      beforeEach(() => {
+        I = createInstance($, P, $.data.lookupCard("Nautical Dog"));
+      });
+
+      it("has +1 ATK on your turn", () => {
+        expect(getAttribute($, I, "ATTACK")).to.equal(2);
+
+        debugGotoNextTurn($, P2);
+
+        expect(getAttribute($, I, "ATTACK")).to.equal(1);
+      });
     });
   });
 });
