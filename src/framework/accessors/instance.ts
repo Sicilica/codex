@@ -264,6 +264,10 @@ function *getAttributeValues(
   ) {
     yield I.plusMinusRunes;
   }
+
+  if (q === "ATTACK" && $.state.activePlayer === P.id) {
+    yield getAttribute($, I, "FRENZY");
+  }
 }
 
 function *getBands(

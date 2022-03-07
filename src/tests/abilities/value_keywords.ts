@@ -1,8 +1,10 @@
 import { expect } from "chai";
+import { getAttribute } from "../../framework/accessors";
 import { createInstance } from "../../framework/mutators";
 import { requireActivePlayer } from "../../game/helpers";
 import {
   P1,
+  P2,
   debugAutoResolve,
   debugGotoNextTurn,
   makeDefaultGame,
@@ -14,6 +16,44 @@ describe("abilities", () => {
       it.skip("takes damage before health");
 
       it.skip("replenishes during each ready phase");
+    });
+
+    describe("FRENZY", () => {
+      it("should increase attack on their turn", () => {
+        const $ = makeDefaultGame();
+        const P = requireActivePlayer($);
+
+        const I = createInstance($, P, $.data.lookupCard("Tiger Cub"));
+        const I2 = createInstance($, P, $.data.lookupCard("Tiger Cub"));
+
+        I.modifiers.push({
+          effect: {
+            type: "ATTRIBUTE",
+            attribute: "FRENZY",
+            amount: 3,
+          },
+          sourceCard: "Tiger Cub",
+          expiration: "END_OF_TURN",
+        });
+
+        I2.modifiers.push({
+          effect: {
+            type: "ATTRIBUTE",
+            attribute: "FRENZY",
+            amount: 1,
+          },
+          sourceCard: "Tiger Cub",
+          expiration: "END_OF_TURN",
+        });
+
+        expect(getAttribute($, I, "ATTACK")).to.equal(5);
+        expect(getAttribute($, I2, "ATTACK")).to.equal(3);
+
+        $.state.activePlayer = P2;
+
+        expect(getAttribute($, I, "ATTACK")).to.equal(2);
+        expect(getAttribute($, I2, "ATTACK")).to.equal(2);
+      });
     });
 
     describe("HEALING", () => {
