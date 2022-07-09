@@ -32,7 +32,7 @@ export class GameEngine {
       card: card.id,
       owner: P.id,
       controller: P.id,
-      arrivalFatigue: true,
+      _arrivalFatigue: true,
       readyState: "READY",
       damage: 0,
       armorDamage: 0,

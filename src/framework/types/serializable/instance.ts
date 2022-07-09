@@ -12,7 +12,7 @@ export interface InstanceState {
   card: CardID;
   owner: PlayerID;
   controller: PlayerID;
-  arrivalFatigue: boolean;
+  _arrivalFatigue: boolean; // Read with hasArrivalFatigue()
   readyState: ReadyState;
   damage: number;
   armorDamage: number;

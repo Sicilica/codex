@@ -91,6 +91,11 @@ export const destroy = (
     });
   }
 
+  $.fireGlobalTrigger({
+    type: "INSTANCE_DIES",
+    instance: I,
+  });
+
   removeInstance($, I);
 
   const P = $.getPlayer(I.owner);

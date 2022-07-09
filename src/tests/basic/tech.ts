@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { hasArrivalFatigue } from "../../framework/accessors";
 
 import { GameEngine } from "../../framework/engine";
 import { dealDamage, rebuildTechBuildings } from "../../framework/mutators";
@@ -50,7 +51,7 @@ const debugSetTech = (
   for (const iid of P.techBuildings) {
     const I = $.getInstance(iid);
     if (I != null) {
-      I.arrivalFatigue = false;
+      I._arrivalFatigue = false;
     }
   }
 
@@ -76,7 +77,7 @@ const readyTechBuildings = (
     const I = $.getInstance(iid);
     if (I != null) {
       I.readyState = "READY";
-      I.arrivalFatigue = false;
+      I._arrivalFatigue = false;
     }
   }
 };
@@ -318,12 +319,12 @@ describe("basic", () => {
         expect($.getInstance(P.techBuildings[0])).not.to.equal(null);
         expect(P.gold).to.equal(20);
         expect(
-          $.getInstance(P.techBuildings[0])?.arrivalFatigue,
+          hasArrivalFatigue($, $.getInstance(P.techBuildings[0])),
         ).to.equal(true);
 
         debugGotoNextTurn($, P.id);
         expect(
-          $.getInstance(P.techBuildings[0])?.arrivalFatigue,
+          hasArrivalFatigue($, $.getInstance(P.techBuildings[0])),
         ).to.equal(false);
       });
     });
