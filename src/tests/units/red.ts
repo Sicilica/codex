@@ -204,6 +204,14 @@ describe("units", () => {
       });
     });
 
+    describe("Mad Man", () => {
+      it("has haste", () => {
+        const I = createInstance($, P, $.data.lookupCard("Mad Man"));
+
+        expect(hasArrivalFatigue($, I)).to.equal(false);
+      });
+    });
+
     describe("Nautical Dog", () => {
       let I: InstanceState;
 
