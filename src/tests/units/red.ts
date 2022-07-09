@@ -212,6 +212,21 @@ describe("units", () => {
       });
     });
 
+    describe("Makeshift Rambaster", () => {
+      let I: InstanceState;
+
+      beforeEach(() => {
+        I = createInstance($, P, $.data.lookupCard("Makeshift Rambaster"));
+      });
+
+      it("has haste", () => {
+        expect(hasArrivalFatigue($, I)).to.equal(false);
+      });
+
+      // Requires constant modifiers to work
+      it.skip("has +2 ATK when attacking a building");
+    });
+
     describe("Nautical Dog", () => {
       let I: InstanceState;
 
